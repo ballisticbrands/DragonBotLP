@@ -55,14 +55,16 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right - Integration Animation */}
+          {/* Right - Integration Animation (relative container so content doesn't affect grid row height) */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col"
+            className="relative"
           >
-            <HeroAnimation />
+            <div className="lg:absolute lg:inset-0 flex flex-col">
+              <HeroAnimation />
+            </div>
           </motion.div>
         </div>
       </div>

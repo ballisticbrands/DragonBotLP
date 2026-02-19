@@ -2,10 +2,12 @@ import { motion } from 'framer-motion';
 import ChatWindow from './ChatWindow';
 
 const heroMessages = [
-  { role: 'user', text: 'Hey Dragon, can you pull the top 20 keywords for my main product and drop them in a Google Sheet?' },
-  { role: 'bot', text: 'On it! 🐉 Pulling keyword data from your Amazon listing now...' },
-  { role: 'bot', text: 'Found 847 relevant keywords. Filtering for top 20 by search volume and relevance...' },
-  { role: 'bot', text: 'Done! Here\'s your sheet: docs.google.com/spreadsheet/d/... — Top 20 keywords sorted by monthly search volume. Want me to also check which ones your competitors are ranking for?' },
+  { role: 'user', text: 'Automatically respond to customer messages coming from Amazon and Shopify. You can find response templates on our Notion. If you are not sure, ask me how to respond.' },
+  { role: 'bot', text: 'On it! 🐉 Updating you here on all customer messages...' },
+  { role: 'user', text: 'Do Amazon keyword research for our new product. Use these competitor ASIN\'s for your research - B0C7X9LQ2M, B09Q4T7K8R, B0B2M5N8P3, B08Z6R1V4L, B0C1H8J7K2, B09L3W6X5T' },
+  { role: 'bot', text: 'Researching competitors...' },
+  { role: 'bot', text: 'Creating sheet...' },
+  { role: 'bot', text: 'Done! 🐉 Here\'s your sheet: docs.google.com/spreadsheet/d/... — Complete KW research including suggested PPC setup. Want me to suggest the listing text for your product?' },
   { role: 'user', text: 'Yes please! Check ASIN B09XYZ1234' },
   { role: 'bot', text: 'Analyzing competitor ASIN... They rank for 12 of your top 20. I\'ve highlighted the 8 keyword gaps in yellow — these are your biggest opportunities. 🔥' },
 ];

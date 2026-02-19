@@ -55,8 +55,7 @@ export default function ChatWindow({ messages, className = "", title = "DragonBo
 
   useEffect(() => {
     if (currentIndex >= messages.length) {
-      const timeout = setTimeout(resetAndPlay, 4000);
-      return () => clearTimeout(timeout);
+      return;
     }
 
     const msg = messages[currentIndex];
