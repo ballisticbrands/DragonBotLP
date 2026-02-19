@@ -4,10 +4,10 @@ You can view the DragonBot project here:
 https://github.com/ballisticbrands/DragonBot
 
 ## Structure
-* header/hero section - clearly explaining what this is - perhaps a chatbox similar to the one shows in more detail at the features section below showing the capabilities of dragonbot. this should be paired with an animation showing the dragonbot being connected to all of their services - Google drive/sheets, amazon seller central, the open web, their notion, their slack, and 266+ other services (we'll replace "266" with whatever random number - to give them ease of mind that it will connect to their service).
+* header/hero section - clearly explaining what this is - a chatbox animation similar to the ones shown in more detail at the features section below showing the capabilities of dragonbot. this should be paired with an animation showing the dragonbot being connected to all of their services - Google drive/sheets, amazon seller central, the open web, their notion, their slack, and 266+ other services (we'll replace "266" with whatever random number - to give them ease of mind that it will connect to their service).
 * AI advantage section - tell them about AI adoption for ecommerce and scare them that their competitors already do it. put a placeholder here for now that will say "Your business NEEDS AI".
 * DragonBot offer - "what you get with dragonbot" - 4 columns - column 1: "Access to all of the most advance AI tools in one place", some placeholder text below it - column 2: "A 24/7/365 virutal ecommerce assistant - always on, always ready", some placeholder text below it - column 3: PLACEHOLDER - column 4: PLACEHOLDER
-* features sections - a number of sections showing what sellers can do with the bot. each of these sections will have a gif style video (quick and soundless) showing how the bot works (showing a chat box with the bot and then the bot doing something as a response). perhaps it would make sense to make this into one section with a few buttons at the top ("Keyword research", "Customer support", etc...) that when the user clicks it will show them a different video
+* features sections - a number of sections showing what sellers can do with the bot. each of these sections will have a chatbox animation showing how the bot works (showing a chat box with the bot and then the bot doing something as a response). put this into one section with a few buttons at the top ("Keyword research", "Customer support", etc...) that when the user clicks it will show them a different video
 ** kw research - user typing into slack "yo dragon here are 10 competitor ASIN's, plz do keyword research on them and upload the result as a google sheet to the project's folder. 10 ASINS PASTED HERE". the dragonbot will then spit out messages like "researching competitor ASINs", "checking which keywords they rank for", "finding root keywords", "finding never keywords", "creating sheet", "done! LINK PASTED HERE. plz have a look and let me know your thoughts! 🐉"
 * * product research - a similar sequence
 * * customer support - a similar sequence
@@ -36,4 +36,3 @@ https://github.com/ballisticbrands/DragonBot
 * the "DragonBot" text should be 75% the hight of the logo image, and be perfectly vertically centered to it
 * the logo should appear at the top-left of the page
 * in animations, only the ./dragonbot_fire.png should appear
-
