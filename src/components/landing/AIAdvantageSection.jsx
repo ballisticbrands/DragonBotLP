@@ -61,29 +61,24 @@ export default function AIAdvantageSection() {
             {' '}using AI.
           </p>
 
-          <p className="mt-8 text-lg text-white/50 font-satoshi leading-relaxed max-w-2xl mx-auto">
-            87% of top Amazon sellers are already using AI tools to optimize their listings, automate PPC, and outperform competitors. Every day you wait, you're falling further behind.
-          </p>
-
-          <div className="grid grid-cols-3 gap-8 mt-16 max-w-xl mx-auto">
-            {[
-              { stat: '87%', label: 'of top sellers use AI' },
-              { stat: '3.2×', label: 'faster research' },
-              { stat: '40%', label: 'lower ad spend' },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
-                className="text-center"
-              >
-                <div className="font-clash font-bold text-3xl sm:text-4xl text-[#98CC65]">{item.stat}</div>
-                <div className="text-sm text-white/50 font-satoshi mt-1">{item.label}</div>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15, duration: 0.5 }}
+            className="mt-16 text-center"
+          >
+            <div className="font-clash font-bold text-5xl sm:text-6xl text-[#98CC65]">75%</div>
+            <div className="text-lg text-white/70 font-satoshi mt-2">Less employees</div>
+            <a
+              href="https://amazingwave.digital/2023/11/28/exclusive-interview-kevin-king-on-ai-and-amazon/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm text-white/40 font-satoshi mt-2 hover:text-white/60 transition-colors"
+            >
+              Source — Kevin King (Billion Dollar Seller Summit founder)
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

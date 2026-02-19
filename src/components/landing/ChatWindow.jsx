@@ -33,7 +33,8 @@ const TypewriterText = ({ text, onComplete, speed = 20 }) => {
   return <span>{displayed}</span>;
 };
 
-export default function ChatWindow({ messages, className = "", title = "DragonBot" }) {
+// Set animated={false} to show all messages instantly (no typing animation)
+export default function ChatWindow({ messages, className = "", title = "DragonBot", animated = true }) {
   const [visibleMessages, setVisibleMessages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
@@ -42,6 +43,14 @@ export default function ChatWindow({ messages, className = "", title = "DragonBo
   const cycleRef = useRef(0);
 
   const resetAndPlay = () => {
+    if (!animated) {
+      setVisibleMessages(messages.map(m => ({ ...m, animating: false })));
+      setCurrentIndex(messages.length);
+      setIsTyping(false);
+      setIsTypewriting(false);
+      cycleRef.current++;
+      return;
+    }
     setVisibleMessages([]);
     setCurrentIndex(0);
     setIsTyping(false);
@@ -54,6 +63,7 @@ export default function ChatWindow({ messages, className = "", title = "DragonBo
   }, [messages]);
 
   useEffect(() => {
+    if (!animated) return;
     if (currentIndex >= messages.length) {
       return;
     }
@@ -74,13 +84,13 @@ export default function ChatWindow({ messages, className = "", title = "DragonBo
       }, 400);
       return () => clearTimeout(delay);
     }
-  }, [currentIndex, messages]);
+  }, [currentIndex, messages, animated]);
 
   useEffect(() => {
     if (chatRef.current) {
-      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+      chatRef.current.scrollTop = !animated ? 0 : chatRef.current.scrollHeight;
     }
-  }, [visibleMessages, isTyping]);
+  }, [visibleMessages, isTyping, animated]);
 
   const handleTypewriterComplete = () => {
     setIsTypewriting(false);
@@ -138,8 +148,8 @@ export default function ChatWindow({ messages, className = "", title = "DragonBo
       </div>
 
       {/* Input bar */}
-      <div className="border-t border-gray-200 px-4 py-3 bg-white">
-        <div className="flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2.5">
+      <div className="border-t border-gray-200 px-3 py-1 bg-white">
+        <div className="flex items-center gap-2 bg-gray-100 rounded-full px-3 py-1">
           <span className="text-gray-400 text-sm font-satoshi flex-1">Ask DragonBot to do anything...</span>
           <div className="w-8 h-8 rounded-full bg-[#2F7D4F] flex items-center justify-center">
             <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">

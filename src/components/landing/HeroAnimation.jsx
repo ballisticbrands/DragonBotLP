@@ -1,16 +1,27 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ChatWindow from './ChatWindow';
 
-const heroMessages = [
-  { role: 'user', text: 'Automatically respond to customer messages coming from Amazon and Shopify. You can find response templates on our Notion. If you are not sure, ask me how to respond.' },
-  { role: 'bot', text: 'On it! 🐉 Updating you here on all customer messages...' },
-  { role: 'user', text: 'Do Amazon keyword research for our new product. Use these competitor ASIN\'s for your research - B0C7X9LQ2M, B09Q4T7K8R, B0B2M5N8P3, B08Z6R1V4L, B0C1H8J7K2, B09L3W6X5T' },
-  { role: 'bot', text: 'Researching competitors...' },
-  { role: 'bot', text: 'Creating sheet...' },
-  { role: 'bot', text: 'Done! 🐉 Here\'s your sheet: docs.google.com/spreadsheet/d/... — Complete KW research including suggested PPC setup. Want me to suggest the listing text for your product?' },
-  { role: 'user', text: 'Yes please! Check ASIN B09XYZ1234' },
-  { role: 'bot', text: 'Analyzing competitor ASIN... They rank for 12 of your top 20. I\'ve highlighted the 8 keyword gaps in yellow — these are your biggest opportunities. 🔥' },
-];
+const conversations = {
+  'Keyword research': [
+    { role: 'user', text: 'Do Amazon keyword research for our new product. Use these competitor ASIN\'s for your research - B0C7X9LQ2M, B09Q4T7K8R, B0B2M5N8P3, B08Z6R1V4L, B0C1H8J7K2, B09L3W6X5T' },
+    { role: 'bot', text: 'Researching competitors...' },
+    { role: 'bot', text: 'Creating sheet...' },
+    { role: 'bot', text: 'Done! 🐉 Here\'s your sheet: docs.google.com/spreadsheet/d/... — Complete KW research including suggested PPC setup. Want me to suggest the listing text for your product?' },
+    { role: 'user', text: 'Yes please!' },
+    { role: 'bot', text: 'Analyzing competitor ASIN... They rank for 12 of your top 20. I\'ve highlighted the 8 keyword gaps in yellow — these are your biggest opportunities. 🔥' },
+  ],
+  'Customer support': [
+    { role: 'user', text: 'Automatically respond to customer messages coming from Amazon and Shopify. You can find response templates on our Notion. If you are not sure, ask me how to respond.' },
+    { role: 'bot', text: 'On it! 🐉 Updating you here on all customer messages...' },
+    { role: 'bot', text: 'New message from Amazon buyer (Order #112-456): "When will my order arrive? It\'s been 5 days." — I responded using your template: shipping update + tracking link. ✅' },
+    { role: 'bot', text: 'New message from Shopify customer: "Can I exchange this for a different size?" — Not sure about your exchange policy, how should I respond?' },
+    { role: 'user', text: 'Yes we accept exchanges within 30 days. Send them the return label from our Notion.' },
+    { role: 'bot', text: 'Done! Sent the exchange instructions with return label. I\'ll remember this policy for future messages. 🐉🔥' },
+  ],
+};
+
+const conversationKeys = Object.keys(conversations);
 
 // Inline SVG icon paths with original brand colors
 const icons = {
@@ -32,6 +43,7 @@ const toolsAbove = [
 ];
 
 export default function HeroAnimation() {
+  const [activeConvo, setActiveConvo] = useState(conversationKeys[0]);
   const svgWidth = 560;
   const svgHeight = 130;
   const centerX = svgWidth / 2;
@@ -146,7 +158,25 @@ export default function HeroAnimation() {
 
       {/* Chatbox animation — fills remaining height */}
       <div className="w-full max-w-[560px] flex-1 min-h-0">
-        <ChatWindow messages={heroMessages} className="h-full [&>div:nth-child(2)]:min-h-0 [&>div:nth-child(2)]:max-h-none [&>div:nth-child(2)]:flex-1" />
+        <ChatWindow messages={conversations[activeConvo]} animated={true} className="h-full [&>div:nth-child(2)]:min-h-0 [&>div:nth-child(2)]:max-h-none [&>div:nth-child(2)]:flex-1" />
+      </div>
+
+      {/* Conversation switcher */}
+      <div className="flex items-center gap-2 mt-3 flex-wrap justify-center">
+        <span className="text-sm text-[#1A1A1A]/50 font-satoshi">See examples for:</span>
+        {conversationKeys.map(key => (
+          <button
+            key={key}
+            onClick={() => setActiveConvo(key)}
+            className={`px-4 py-1.5 rounded-full text-sm font-satoshi font-medium transition-all duration-200 ${
+              activeConvo === key
+                ? 'bg-[#2F7D4F] text-white shadow-lg shadow-[#2F7D4F]/20'
+                : 'bg-white text-[#1A1A1A]/60 border border-gray-200 hover:border-[#2F7D4F]/30 hover:text-[#2F7D4F]'
+            }`}
+          >
+            {key}
+          </button>
+        ))}
       </div>
     </div>
   );
