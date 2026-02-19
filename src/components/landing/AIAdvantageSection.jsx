@@ -1,7 +1,25 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const rotatingPhrases = [
+  'creating better listing images than you',
+  'responding to customers faster than you',
+  'creating better social media content than you',
+  'researching more products than you',
+  'finding suppliers faster than you',
+  'spending less on employees than you',
+];
 
 export default function AIAdvantageSection() {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPhraseIndex(i => (i + 1) % rotatingPhrases.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="py-24 bg-[#0F3D2E] relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
@@ -25,7 +43,25 @@ export default function AIAdvantageSection() {
             Your business <span className="text-[#D63C3C]">NEEDS</span> AI
           </h2>
 
-          <p className="mt-6 text-lg text-white/60 font-satoshi leading-relaxed max-w-2xl mx-auto">
+          {/* Rotating phrase */}
+          <p className="mt-6 text-xl sm:text-2xl text-white/80 font-satoshi leading-relaxed">
+            Your competitors are{' '}
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={phraseIndex}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35 }}
+                className="inline-block font-semibold text-[#D63C3C]"
+              >
+                {rotatingPhrases[phraseIndex]}
+              </motion.span>
+            </AnimatePresence>
+            {' '}using AI.
+          </p>
+
+          <p className="mt-8 text-lg text-white/50 font-satoshi leading-relaxed max-w-2xl mx-auto">
             87% of top Amazon sellers are already using AI tools to optimize their listings, automate PPC, and outperform competitors. Every day you wait, you're falling further behind.
           </p>
 
