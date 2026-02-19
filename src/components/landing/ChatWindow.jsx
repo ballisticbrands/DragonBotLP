@@ -141,7 +141,7 @@ export default function ChatWindow({ messages, className = "", title = "DragonBo
       {/* Input bar */}
       <div className="border-t border-gray-200 px-4 py-3 bg-white">
         <div className="flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2.5">
-          <span className="text-gray-400 text-sm font-satoshi flex-1">Message DragonBot...</span>
+          <span className="text-gray-400 text-sm font-satoshi flex-1">Ask DragonBot to do anything...</span>
           <div className="w-8 h-8 rounded-full bg-[#2F7D4F] flex items-center justify-center">
             <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

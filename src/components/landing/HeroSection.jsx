@@ -10,7 +10,7 @@ export default function HeroSection() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#98CC65]/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/4" />
 
       <div className="relative max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           {/* Left - Copy */}
           <div className="max-w-xl">
             <motion.div
@@ -60,6 +60,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-col"
           >
             <HeroAnimation />
           </motion.div>
