@@ -1,16 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ChatWindow from './ChatWindow';
-import IntegrationOrbit from './IntegrationOrbit';
-
-const heroMessages = [
-  { role: 'user', text: 'Hey Dragon, can you pull the top 20 keywords for my main product and drop them in a Google Sheet?' },
-  { role: 'bot', text: 'On it! 🐉 Pulling keyword data from your Amazon listing now...' },
-  { role: 'bot', text: 'Found 847 relevant keywords. Filtering for top 20 by search volume and relevance...' },
-  { role: 'bot', text: 'Done! Here\'s your sheet: docs.google.com/spreadsheet/d/... — Top 20 keywords sorted by monthly search volume. Want me to also check which ones your competitors are ranking for?' },
-  { role: 'user', text: 'Yes please! Check ASIN B09XYZ1234' },
-  { role: 'bot', text: 'Analyzing competitor ASIN... They rank for 12 of your top 20. I\'ve highlighted the 8 keyword gaps in yellow — these are your biggest opportunities. 🔥' },
-];
+import HeroAnimation from './HeroAnimation';
 
 export default function HeroSection() {
   return (
@@ -62,45 +52,17 @@ export default function HeroSection() {
                   See it in action
                 </a>
               </div>
-
-              {/* Integration count */}
-              <div className="mt-12 flex items-center gap-3">
-                <div className="flex -space-x-2">
-                  {['📁', '📊', '📦', '💬', '🌐'].map((emoji, i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-white border-2 border-white shadow-sm flex items-center justify-center text-sm">
-                      {emoji}
-                    </div>
-                  ))}
-                </div>
-                <span className="text-sm text-[#1A1A1A]/50 font-satoshi">
-                  Connected to <span className="font-semibold text-[#2F7D4F]">266+</span> services
-                </span>
-              </div>
             </motion.div>
           </div>
 
-          {/* Right - Chat + Orbit */}
+          {/* Right - Integration Animation */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
           >
-            {/* Chat window */}
-            <div className="relative z-10">
-              <ChatWindow messages={heroMessages} className="w-full" />
-            </div>
-
-            {/* Orbit underneath on large screens */}
-            <div className="hidden lg:block absolute -bottom-32 -right-16 w-[300px] opacity-60">
-              <IntegrationOrbit />
-            </div>
+            <HeroAnimation />
           </motion.div>
-        </div>
-
-        {/* Mobile orbit */}
-        <div className="lg:hidden mt-16">
-          <IntegrationOrbit />
         </div>
       </div>
     </section>
