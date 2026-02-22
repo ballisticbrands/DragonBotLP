@@ -55,7 +55,7 @@ export default function OfferSection() {
             What You Get
           </p>
           <h2 className="font-clash font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
-            Everything You Need to <span className="text-[#2F7D4F]">Dominate</span>
+            We Help You to <span className="text-[#2F7D4F]">Dominate</span>
           </h2>
         </motion.div>
 

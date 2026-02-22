@@ -18,9 +18,15 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2F7D4F]/10 rounded-full mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#98CC65] animate-pulse" />
-                <span className="text-xs font-satoshi font-medium text-[#2F7D4F]">Now in early access</span>
+              <div className="flex flex-col items-start gap-2 mb-8">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2F7D4F]/10 rounded-full">
+                  <div className="w-2 h-2 rounded-full bg-[#98CC65] animate-pulse" />
+                  <span className="text-xs font-satoshi font-medium text-[#2F7D4F]">Now in early access</span>
+                </div>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#F59E0B]/10 rounded-full">
+                  <div className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
+                  <span className="text-xs font-satoshi font-medium text-[#B45309]">Only a few spots left — book your call now!</span>
+                </div>
               </div>
 
               <h1 className="font-clash font-semibold text-4xl sm:text-5xl lg:text-[56px] leading-[1.1] tracking-tight text-[#1A1A1A]">
@@ -43,7 +49,7 @@ export default function HeroSection() {
                   href="#pricing"
                   className="px-7 py-3.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white font-satoshi font-semibold rounded-full transition-all shadow-xl shadow-[#2F7D4F]/25 hover:shadow-[#2F7D4F]/35 hover:-translate-y-0.5"
                 >
-                  Start for free →
+                  Book call →
                 </a>
                 <a
                   href="#features"

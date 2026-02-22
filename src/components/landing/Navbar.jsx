@@ -55,7 +55,7 @@ export default function Navbar() {
               href="#pricing"
               className="px-5 py-2.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white text-sm font-satoshi font-medium rounded-full transition-all shadow-lg shadow-[#2F7D4F]/20 hover:shadow-[#2F7D4F]/30"
             >
-              Get Started
+              Book call
             </a>
           </div>
 
@@ -91,7 +91,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-[#2F7D4F] text-white text-center font-satoshi font-medium rounded-full"
               >
-                Get Started
+                Book call
               </a>
             </div>
           </motion.div>
