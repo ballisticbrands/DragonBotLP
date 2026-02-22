@@ -40,7 +40,7 @@ const plans = [
   },
   {
     name: 'Pro',
-    price: '$99',
+    price: '$129',
     period: '/mo',
     highlight: false,
     badge: null,
