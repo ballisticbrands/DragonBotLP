@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
+  { label: 'You NEED AI', href: '#you-need-ai' },
+  { label: 'We GIVE you AI', href: '#we-give-you-ai' },
   { label: 'Features', href: '#features' },
   { label: 'How It Works', href: '#how-it-works' },
   { label: 'Pricing', href: '#pricing' },

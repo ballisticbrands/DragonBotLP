@@ -21,7 +21,7 @@ export default function AIAdvantageSection() {
   }, []);
 
   return (
-    <section className="py-24 bg-[#0F3D2E] relative overflow-hidden">
+    <section id="you-need-ai" className="py-24 bg-[#0F3D2E] relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#98CC65] rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#2F7D4F] rounded-full blur-3xl" />

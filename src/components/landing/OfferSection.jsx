@@ -22,7 +22,7 @@ const offerings = [
   },
   {
     title: 'Guidance on How to Get the Best Out of AI',
-    description: 'We scour the internet for the latest AI workflows and create simple video guides showing how to use them in your business today. DragonBot is already set up to run these workflows — no extra setup needed on your end.',
+    description: 'Advanced AI workflows are what will really take your business forward. We will show you how you can create weekly tasks for your DragonBot to track 100\'s of competitors, find long-tail keywords, optimize listings continuously, and much more.',
     icon: (
       <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full text-[#2F7D4F]">
         <circle cx="24" cy="24" r="20"/><polygon points="20,16 34,24 20,32" fill="currentColor" stroke="none"/>
@@ -43,7 +43,7 @@ const offerings = [
 
 export default function OfferSection() {
   return (
-    <section className="py-24 bg-[#f9fafb]">
+    <section id="we-give-you-ai" className="py-24 bg-[#f9fafb]">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
