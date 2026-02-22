@@ -34,10 +34,9 @@ export default function AIAdvantageSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#D63C3C]/20 rounded-full mb-8">
-            <div className="w-2 h-2 rounded-full bg-[#D63C3C] animate-pulse" />
-            <span className="text-xs font-satoshi font-medium text-[#D63C3C]">Don't get left behind</span>
-          </div>
+          <p className="font-satoshi font-bold text-sm uppercase tracking-[2px] text-[#D63C3C] mb-3">
+            Don't get left behind
+          </p>
 
           <h2 className="font-clash font-semibold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
             Your business <span className="text-[#D63C3C]">NEEDS</span> AI
@@ -61,24 +60,65 @@ export default function AIAdvantageSection() {
             {' '}using AI.
           </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15, duration: 0.5 }}
-            className="mt-16 text-center"
-          >
-            <div className="font-clash font-bold text-5xl sm:text-6xl text-[#98CC65]">75%</div>
-            <div className="text-lg text-white/70 font-satoshi mt-2">Less employees</div>
-            <a
-              href="https://amazingwave.digital/2023/11/28/exclusive-interview-kevin-king-on-ai-and-amazon/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-sm text-white/40 font-satoshi mt-2 hover:text-white/60 transition-colors"
-            >
-              Source — Kevin King (Billion Dollar Seller Summit founder)
-            </a>
-          </motion.div>
+          <div className="grid sm:grid-cols-3 gap-8 mt-16">
+            {[
+              {
+                stat: '75%',
+                label: 'Less employees',
+                quote: 'Ecommerce brands and agencies utilizing AI can easily reduce staff by ~75%',
+                image: '/people/kevin-king.jpg',
+                name: 'Kevin King',
+                role: 'Billion Dollar Seller Summit founder',
+                source: 'https://amazingwave.digital/2023/11/28/exclusive-interview-kevin-king-on-ai-and-amazon/',
+              },
+              {
+                stat: '85%',
+                label: 'Time reduction for repetitive ecommerce tasks',
+                quote: "We've seen tasks such as listing creation take us an hour and a half go down to 10-15 minutes",
+                image: '/people/yoni-steinschriber.jpg',
+                name: 'Yoni Steinschriber',
+                role: 'Elev8 Brands founder',
+                source: 'https://www.youtube.com/watch?v=RJuuXHv86Ak',
+              },
+              {
+                stat: '15–25%',
+                label: 'Increased conversion rate',
+                quote: 'Using AI we were able to repetitively optimize Amazon listings and increase conversion by 15-25%',
+                image: '/people/david-dwek.jpg',
+                name: 'David Dwek',
+                role: 'Market Share Growth founder',
+                source: 'https://www.youtube.com/watch?v=V7Bx4TZS3YI',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.5 }}
+                className="text-center"
+              >
+                <div className="font-clash font-bold text-4xl sm:text-5xl text-[#98CC65]">{item.stat}</div>
+                <div className="text-sm text-white/60 font-satoshi mt-1 uppercase tracking-wide">{item.label}</div>
+                <p className="text-white/70 font-satoshi text-sm italic mt-4 leading-relaxed">"{item.quote}"</p>
+                <div className="flex items-center justify-center gap-3 mt-4">
+                  <img src={item.image} alt={item.name} className="w-10 h-10 rounded-full object-cover" />
+                  <div className="text-left">
+                    {item.name && <div className="text-white/80 font-satoshi text-sm font-medium">{item.name}</div>}
+                    {item.role && <div className="text-white/40 font-satoshi text-xs">{item.role}</div>}
+                  </div>
+                </div>
+                <a
+                  href={item.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-xs text-white/30 font-satoshi mt-3 hover:text-white/50 transition-colors underline"
+                >
+                  Link to source
+                </a>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

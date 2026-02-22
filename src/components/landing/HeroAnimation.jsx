@@ -9,7 +9,7 @@ const conversations = {
     { role: 'bot', text: 'Creating sheet...' },
     { role: 'bot', text: 'Done! 🐉 Here\'s your sheet: docs.google.com/spreadsheet/d/... — Complete KW research including suggested PPC setup. Want me to suggest the listing text for your product?' },
     { role: 'user', text: 'Yes please!' },
-    { role: 'bot', text: 'Analyzing competitor ASIN... They rank for 12 of your top 20. I\'ve highlighted the 8 keyword gaps in yellow — these are your biggest opportunities. 🔥' },
+    { role: 'bot', text: 'Done! 🐉 Added it in another tab on the same sheet. Check it out and let me know if you have any feedback!' },
   ],
   'Customer support': [
     { role: 'user', text: 'Automatically respond to customer messages coming from Amazon and Shopify. You can find response templates on our Notion. If you are not sure, ask me how to respond.' },
@@ -23,14 +23,29 @@ const conversations = {
 
 const conversationKeys = Object.keys(conversations);
 
-// Inline SVG icon paths with original brand colors
+// Inline SVG icon paths — simple shapes that render clearly at 20px
 const icons = {
-  amazon: <path d="M.045 18.02c.072-.116.187-.124.348-.024 2.131 1.3 4.49 1.953 7.077 1.953 1.748 0 3.443-.363 5.084-1.089a26.7 26.7 0 002.14-1.1c.19-.112.336-.063.436.148.106.18.073.33-.09.45-.738.513-1.556.98-2.454 1.4a13.78 13.78 0 01-5.089 1.167c-2.863.07-5.477-.7-7.846-2.313-.13-.09-.17-.2-.107-.34l.5-.252zm7.394-3.384c0-.6.016-1.127.048-1.58.032-.454.1-.862.206-1.224.106-.363.254-.676.445-.94.19-.263.44-.49.748-.678.308-.19.676-.336 1.103-.44.428-.103.928-.155 1.5-.155.972 0 1.852.13 2.64.389v-.443c0-.596-.072-1.052-.216-1.37-.144-.318-.393-.558-.748-.72-.354-.162-.82-.243-1.396-.243-.28 0-.588.025-.924.076-.337.05-.677.122-1.02.216a8.08 8.08 0 00-.864.3c-.076.032-.148.05-.216.05a.39.39 0 01-.264-.096.347.347 0 01-.12-.264c0-.12.076-.252.228-.396.388-.36.916-.66 1.584-.9.668-.24 1.36-.36 2.076-.36 1.24 0 2.152.32 2.736.96.584.64.876 1.588.876 2.844v5.148c0 .296-.132.444-.396.444-.236 0-.396-.148-.48-.444l-.156-.648a6.052 6.052 0 01-1.596 1.02 4.173 4.173 0 01-1.74.384c-.916 0-1.644-.256-2.184-.768-.54-.512-.81-1.236-.81-2.172zm2.088-.24c0 .576.156 1.02.468 1.332.312.312.732.468 1.26.468.36 0 .72-.084 1.08-.252.36-.168.696-.404 1.008-.708v-2.58c-.672-.2-1.356-.3-2.052-.3-.696 0-1.2.152-1.512.456-.312.304-.468.804-.252 1.584z" fill="#FF9900"/>,
+  amazon: <>
+    <text x="12" y="10.5" textAnchor="middle" dominantBaseline="middle" fontSize="15" fontWeight="800" fontFamily="Arial, sans-serif" fill="#232F3E">a</text>
+    <path d="M5 17c3.5 2 9 2 13 0" stroke="#FF9900" strokeWidth="2" strokeLinecap="round" fill="none"/>
+    <path d="M18 17l1 1.5" stroke="#FF9900" strokeWidth="2" strokeLinecap="round"/>
+  </>,
   internet: <><circle cx="12" cy="12" r="10" stroke="#4285F4" strokeWidth="1.5" fill="none"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z" stroke="#4285F4" strokeWidth="1.5" fill="none"/></>,
-  shopify: <path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.058-.121-.074l-.914 21.104zm-1.844-17.673c-.065 0-.224.064-.383.128-.227-.66-.627-1.267-1.332-1.267h-.07C11.36 4.728 10.94 4.5 10.59 4.5c-1.635 0-2.414 2.044-2.66 3.083-.638.198-1.09.338-1.148.358-.358.112-.369.123-.415.46-.035.264-1.005 7.716-1.005 7.716l7.527 1.3 1.604-11.11c-.087.001-.167 0-.254 0zm-2.332-.675c0 .054 0 .118-.005.187-.35.108-.734.227-1.118.346.215-.827.618-1.228.987-1.384.107.22.183.521.136.851zm-.858-1.272c.064 0 .131.022.196.066-.466.22-.97.77-1.18 1.872-.306.094-.605.187-.876.27.244-.843.82-2.208 1.86-2.208zm.276 5.987s-.412-.22-.917-.22c-.744 0-.78.467-.78.585 0 .643.838.89.838 2.396 0 1.186-.752 1.95-1.766 1.95-1.217 0-1.838-.757-1.838-.757l.326-1.076s.639.548 1.178.548c.352 0 .495-.277.495-.48 0-.84-.688-1.218-.688-2.31 0-1.188.852-2.338 2.573-2.338.665 0 .993.19.993.19l-.414 1.512z" fill="#95BF47"/>,
+  shopify: <>
+    <path d="M7.5 7l1 13h7l1-13z" fill="#95BF47" fillOpacity="0.15" stroke="#95BF47" strokeWidth="1.5" strokeLinejoin="round"/>
+    <path d="M9.5 7V5.5a2.5 2.5 0 015 0V7" stroke="#95BF47" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+  </>,
   notion: <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L18.56 2.42c-.42-.326-.98-.7-2.055-.607L3.43 2.788c-.466.046-.56.28-.374.466l1.403.954zm.793 2.846v13.91c0 .746.373 1.026 1.213.98l14.523-.84c.84-.047.933-.56.933-1.167V6.054c0-.607-.233-.933-.747-.887l-15.177.887c-.56.047-.745.327-.745.887v.113zm14.337.56c.093.42 0 .84-.42.887l-.7.14v10.264c-.607.327-1.167.514-1.634.514-.746 0-.933-.234-1.493-.934l-4.577-7.186v6.953l1.447.327s0 .84-1.167.84l-3.22.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.372 9.76c-.093-.42.14-1.026.793-1.073l3.453-.233 4.764 7.279v-6.44l-1.213-.14c-.094-.514.28-.887.746-.933l3.267-.187.394.08zm-17.1-5.74L16.436.326C17.886.14 18.28.187 19.166.84l3.546 2.473c.7.513.933.654.933 1.213v16.71c0 .98-.373 1.54-1.634 1.633l-15.457.934c-.933.047-1.353-.093-1.82-.7L1.49 18.89c-.513-.7-.747-1.213-.747-1.82V4.094c0-.747.374-1.4 1.247-1.54l-.001-.68z" fill="#000000"/>,
-  googledrive: <><path d="M7.71 3.5L1.15 15l3.44 5.96h6.87" fill="#0066DA"/><path d="M8.3 21.46L4.83 15.5 12.5 3.5h5.21L8.3 21.46z" fill="#00AC47"/><path d="M17.71 3.5L8.3 21.46h8.41L22.85 15l-5.14-11.5z" fill="#EA4335"/><path d="M7.71 3.5L1.15 15l3.44 5.96h6.87L17.71 3.5H7.71z" fill="#0066DA" opacity="0.6"/></>,
-  moreTools: <><circle cx="12" cy="12" r="10" stroke="#6b7280" strokeWidth="1.5" fill="none"/><text x="12" y="13" textAnchor="middle" dominantBaseline="middle" fontSize="7" fontWeight="700" fontFamily="Satoshi, sans-serif" fill="#6b7280">266+</text></>,
+  googledrive: <>
+    <path d="M12 2L2.5 17.5H12V2z" fill="#FBBC04"/>
+    <path d="M12 2l9.5 15.5H12V2z" fill="#34A853"/>
+    <path d="M2.5 17.5l2 4h15l2-4z" fill="#4285F4"/>
+  </>,
+  moreTools: <>
+    <circle cx="12" cy="12" r="10" stroke="#6b7280" strokeWidth="1.5" fill="none"/>
+    <line x1="7" y1="12" x2="17" y2="12" stroke="#6b7280" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="12" y1="7" x2="12" y2="17" stroke="#6b7280" strokeWidth="2" strokeLinecap="round"/>
+  </>,
 };
 
 const toolsAbove = [

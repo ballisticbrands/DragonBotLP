@@ -3,17 +3,8 @@ import { motion } from 'framer-motion';
 
 const offerings = [
   {
-    title: 'Access to All Advanced AI Tools in One Place',
-    description: 'Stop juggling between ChatGPT, Claude, Midjourney, and a dozen other tools. DragonBot brings the best AI models together under one roof — accessible through a single, simple chat interface you already know how to use.',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full text-[#2F7D4F]">
-        <circle cx="24" cy="24" r="20"/><path d="M16 24l6 6 10-12"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'A 24/7/365 Virtual Ecommerce Assistant',
-    description: 'DragonBot never sleeps, never takes a day off, and never needs a coffee break. Whether it\'s 3 AM or a holiday weekend, your AI assistant is always on and always ready to help — research, support, analysis, and more.',
+    title: 'A 24/7 Virtual Ecommerce Assistant',
+    description: 'DragonBot never sleeps, never takes a day off, and never needs a coffee break. Whether it\'s 3 AM or a holiday weekend, your AI assistant is always on and always ready to help.',
     icon: (
       <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full text-[#2F7D4F]">
         <circle cx="24" cy="24" r="20"/><path d="M24 14v10l6 6"/>
@@ -21,24 +12,32 @@ const offerings = [
     ),
   },
   {
-    title: 'Coming Soon',
-    description: 'We\'re working on something exciting for this spot. Stay tuned — more powerful capabilities are on the way.',
+    title: 'A Simple Chat Interface',
+    description: 'No complicated dashboards or steep learning curves. Just chat naturally with DragonBot like you would with a colleague — and it gets the job done.',
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full text-gray-300">
-        <rect x="8" y="8" width="32" height="32" rx="4"/><path d="M18 20h12"/><path d="M18 28h8"/>
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full text-[#2F7D4F]">
+        <rect x="6" y="10" width="36" height="24" rx="4"/><path d="M16 22h16"/><path d="M16 28h10"/>
       </svg>
     ),
-    placeholder: true,
   },
   {
-    title: 'Coming Soon',
-    description: 'We\'re working on something exciting for this spot. Stay tuned — more powerful capabilities are on the way.',
+    title: 'Guidance on How to Get the Best Out of AI',
+    description: 'We scour the internet for the latest AI workflows and create simple video guides showing how to use them in your business today. DragonBot is already set up to run these workflows — no extra setup needed on your end.',
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full text-gray-300">
-        <rect x="8" y="8" width="32" height="32" rx="4"/><path d="M18 20h12"/><path d="M18 28h8"/>
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full text-[#2F7D4F]">
+        <circle cx="24" cy="24" r="20"/><polygon points="20,16 34,24 20,32" fill="currentColor" stroke="none"/>
       </svg>
     ),
-    placeholder: true,
+    link: { label: 'See example videos', href: '#' },
+  },
+  {
+    title: 'Human Support — Forever',
+    description: 'Need a new tool connected or a workflow tweaked? Our team is always here to help. Real humans, real support, for as long as you use DragonBot.',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full text-[#2F7D4F]">
+        <circle cx="24" cy="16" r="8"/><path d="M10 40c0-8 6-14 14-14s14 6 14 14"/>
+      </svg>
+    ),
   },
 ];
 
@@ -79,6 +78,16 @@ export default function OfferSection() {
               <p className="text-[15px] text-[#1A1A1A]/50 font-satoshi leading-relaxed">
                 {item.description}
               </p>
+              {item.link && (
+                <a
+                  href={item.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-sm text-[#2F7D4F] font-satoshi font-medium mt-3 hover:underline"
+                >
+                  {item.link.label} →
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
