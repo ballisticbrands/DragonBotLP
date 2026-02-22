@@ -127,11 +127,14 @@ export default function PricingSection() {
                 ))}
               </ul>
 
-              <button
-                className={`w-full py-3 rounded-full font-satoshi font-semibold text-sm transition-all ${plan.ctaStyle}`}
+              <a
+                href="https://calendly.com/ggballas"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block w-full py-3 rounded-full font-satoshi font-semibold text-sm text-center transition-all ${plan.ctaStyle}`}
               >
                 {plan.cta}
-              </button>
+              </a>
             </motion.div>
           ))}
         </div>

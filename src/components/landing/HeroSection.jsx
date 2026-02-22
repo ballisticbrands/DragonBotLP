@@ -46,7 +46,9 @@ export default function HeroSection() {
 
               <div className="flex flex-wrap items-center gap-4 mt-10">
                 <a
-                  href="#pricing"
+                  href="https://calendly.com/ggballas"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-7 py-3.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white font-satoshi font-semibold rounded-full transition-all shadow-xl shadow-[#2F7D4F]/25 hover:shadow-[#2F7D4F]/35 hover:-translate-y-0.5"
                 >
                   Book call →
