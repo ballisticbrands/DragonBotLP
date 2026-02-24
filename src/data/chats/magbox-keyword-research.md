@@ -1,7 +1,7 @@
-# MagBox Keyword Research — Full Conversation History
+# MagVault Keyword Research — Full Conversation History
 
 Extracted from DragonBot (OpenClaw) session logs.
-Product: MagBox — magnetic TCG deck box by Paramint (Ballistic Brands).
+Product: MagVault — magnetic TCG deck box by Paramint (Ballistic Brands).
 
 Covers:
 - Competitor ASIN selection and product research (Feb 11-12)
@@ -17,13 +17,13 @@ Covers:
 
 **[14:16 UTC] Gershon:**
 
-which supplier is creating the magbox for us ?
+which supplier is creating the magvault for us ?
 
 ---
 
 **[14:16 UTC] DragonBot:**
 
-**IMD Cases** is the supplier creating the MagBox for you. They have a CM (contract manufacturing) agreement with Paramint for the magnetic TCG deck boxes. 🐉
+**IMD Cases** is the supplier creating the MagVault for you. They have a CM (contract manufacturing) agreement with Paramint for the magnetic TCG deck boxes. 🐉
 
 ---
 
@@ -187,13 +187,13 @@ I'd go with option 1. It's 2 minutes of your time in H10, and I handle the rest.
 
 **[10:22 UTC] Gershon:**
 
-aight the product we wanna do the kw research for is the magbox. what do you know about the magbox ?
+aight the product we wanna do the kw research for is the magvault. what do you know about the magvault ?
 
 ---
 
 **[10:34 UTC] Gershon:**
 
-1. yes it's a tcg deck box that has magnetic closures - it feels very premium. made of hardened plastic with a PU leather cover on all sides. much more premium than competitors. the covers also come with different designs (as is the feature with all of our products - we have mats and sleeves, both of which come in different designs, that's how we capture market share). note tho - just like the other products, we're gonna be releasing this product under paramint, wizcraft, and tcgware. we have these different brands in order to safeguard ourselves from amazon shutting down accounts. (if one gets shut down, we still have the two other accounts). it's for all TCG's but customers are most primarily MTG customers. 2. answered in previous question. it's also quite spacious (easily holds 100 double sleeved cards plus room for tokens) 3. it does NOT have a dice tray. HOWEVER, we will be releasing the MagDiceBox at the same time - which is a magnetically attached extension to the magbox which is a dice tray. so I do want to inclue "dice tray" (and variations) in the listing text, because I want people who search for "dice tray" as well to see our listings - because it's relevant to them. 4. no 5. "realm guard" also has the same playbood - they release many tcg products in different designs. they have the "vault" tcg deck box (comes in different designs) - here's an example asin: B0F7H1G52K. here are some other ASINs of other companies playing the same playbood: B0F9XYRSFF B0FN47FNRM B0D264D63X a. include asins from 10 different brands (if you can find). for each brand - get their most popular deck box design. make sure you only get brands who have deck boxes in different designs of course first step - suggest relevant asins to me that we'll use for the kw research
+1. yes it's a tcg deck box that has magnetic closures - it feels very premium. made of hardened plastic with a PU leather cover on all sides. much more premium than competitors. the covers also come with different designs (as is the feature with all of our products - we have mats and sleeves, both of which come in different designs, that's how we capture market share). note tho - just like the other products, we're gonna be releasing this product under paramint, wizcraft, and tcgware. we have these different brands in order to safeguard ourselves from amazon shutting down accounts. (if one gets shut down, we still have the two other accounts). it's for all TCG's but customers are most primarily MTG customers. 2. answered in previous question. it's also quite spacious (easily holds 100 double sleeved cards plus room for tokens) 3. it does NOT have a dice tray. HOWEVER, we will be releasing the MagDiceTray at the same time - which is a magnetically attached extension to the magvault which is a dice tray. so I do want to inclue "dice tray" (and variations) in the listing text, because I want people who search for "dice tray" as well to see our listings - because it's relevant to them. 4. no 5. "realm guard" also has the same playbood - they release many tcg products in different designs. they have the "vault" tcg deck box (comes in different designs) - here's an example asin: B0F7H1G52K. here are some other ASINs of other companies playing the same playbood: B0F9XYRSFF B0FN47FNRM B0D264D63X a. include asins from 10 different brands (if you can find). for each brand - get their most popular deck box design. make sure you only get brands who have deck boxes in different designs of course first step - suggest relevant asins to me that we'll use for the kw research
 
 ---
 
@@ -229,8 +229,8 @@ Here's my proposed list of **10 competitor ASINs** from 10 different brands — 
 **Notable observations:**
 - **Mage Tech** (B0D28H7H3Y) is the top dog — BSR 974, 600/mo, $26.99, has dice tray
 - **ZLCA** has the most designs (39!) at BSR 525
-- **Fabmaker** already includes a dice tray — similar to your MagDiceBox concept
-- Price range is $10-$27 — where are you planning to price the MagBox?
+- **Fabmaker** already includes a dice tray — similar to your MagDiceTray concept
+- Price range is $10-$27 — where are you planning to price the MagVault?
 - The "Black Lotus" one is weak (BSR 308K) but I included it since you suggested it
 
 Want to swap any of these, or should I proceed with this list for the Cerebro run? 🐉
@@ -239,13 +239,13 @@ Want to swap any of these, or should I proceed with this list for the Cerebro ru
 
 **[11:09 UTC] Gershon:**
 
-more notes: • when you reference an ASIN - also include a link (preferably just make the ASIN text a link to the product) • there are more features about deck boxes in general that I haven't told you about: ◦ some have a window to show the front card (also referred to as the commander) - our does have a window ◦ some have (or do not have) art on them - we only care about ones that have art on them ◦ some allow you to put one deck (~100 cards), some allow you to put multiple decks - we only care about single deck deck boxes (ours is a single deck one as well) ◦ some have dice trays and some do not. we have an optional dice tray as a separate product (the magdicebox - it connects magnetically to the magbox - so that you can have one dice tray and many magboxes and just move the magdice box from one to the other) • let's find competing ASINs: a. only art deck boxes b. only for single deck c. at least 5 w/ window d. at least 5 w/ dice tray ◦ at least 5 w/o window or dice tray ◦ preferably from different brands (different brands have different KW templates they use, we don't want to include all ASINs from a single brand - this way we will only get one KW template) ◦ if a brand has multiple designs (which all of them probably do) - get their strongest ASIN in that category • example products: 1. <https://www.amazon.com/Appearance-Commander-Magnetic-Dividers-Compatible/dp/B0FN47FNRM/ref=sr_1_18?crid=2RK9HUY8CE4PD&amp;dib=eyJ2IjoiMSJ9.hW5YoRSVlBK-Oxx4KS8MFDiKimQFCwqSmX2xtNooyHKbhxBRQOuCWa819nGob9tsW6MNE_rQhP1xDKcgj_8T2jQi1yg778FxYUfcmD_WrFrv3Dh2Mb-L-g7QIq1H6WKA290XOVaSl2oHdCy7nUVaAiQrhNLEmuJgmPnEXe9z5r7LLqAc5XqlCx-i4uuEInnq0WDvgJSbD-qThTzw28pWaN0ZfDjHZRCvKUH_yEfXuhw2QPStgAg4xdSLUgCgJ5blfBTEsHd1yb0dsMR8Hhyp_D6gCXJ5_W8j8eWyIO-eop4.JOCoU9tNtGtJPCk303Qq3yEcHylvr_xYOf9lSTplnEk&amp;dib_tag=se&amp;keywords=art%2Btcg%2Bdeck%2Bbox&amp;qid=1770892370&amp;sprefix=art%2Btcg%2Bdeck%2Bb%2Caps%2C364&amp;sr=8-18&amp;th=1|B0FN47FNRM> 2. <https://www.amazon.com/Realm-Guard-Vaults-Boxes-Complete/dp/B0FWBM3FL3/ref=sr_1_6?crid=2RK9HUY8CE4PD&amp;dib=eyJ2IjoiMSJ9.hW5YoRSVlBK-Oxx4KS8MFDiKimQFCwqSmX2xtNooyHKbhxBRQOuCWa819nGob9tsW6MNE_rQhP1xDKcgj_8T2jQi1yg778FxYUfcmD_WrFrv3Dh2Mb-L-g7QIq1H6WKA290XOVaSl2oHdCy7nUVaAiQrhNLEmuJgmPnEXe9z5r7LLqAc5XqlCx-i4uuEInnq0WDvgJSbD-qThTzw28pWaN0ZfDjHZRCvKUH_yEfXuhw2QPStgAg4xdSLUgCgJ5blfBTEsHd1yb0dsMR8Hhyp_D6gCXJ5_W8j8eWyIO-eop4.JOCoU9tNtGtJPCk303Qq3yEcHylvr_xYOf9lSTplnEk&amp;dib_tag=se&amp;keywords=art%2Btcg%2Bdeck%2Bbox&amp;qid=1770892370&amp;sprefix=art%2Btcg%2Bdeck%2Bb%2Caps%2C364&amp;sr=8-6&amp;th=1|B0FWBM3FL3> 3. <https://www.amazon.com/Ai-Armor-Starry-Commander-Storage/dp/B0DSJQYWLG/ref=ast_sto_dp_puis?th=1|B0DSJQYWLG> 4. <https://www.amazon.com/Black-Lotus-Trading-Portable-Holding100/dp/B0F9XYRSFF/ref=sr_1_7?crid=2RK9HUY8CE4PD&amp;dib=eyJ2IjoiMSJ9.hW5YoRSVlBK-Oxx4KS8MFDiKimQFCwqSmX2xtNooyHKbhxBRQOuCWa819nGob9tsW6MNE_rQhP1xDKcgj_8T2jQi1yg778FxYUfcmD_WrFrv3Dh2Mb-L-g7QIq1H6WKA290XOVaSl2oHdCy7nUVaAiQrhNLEmuJgmPnEXe9z5r7LLqAc5XqlCx-i4uuEInnq0WDvgJSbD-qThTzw28pWaN0ZfDjHZRCvKUH_yEfXuhw2QPStgAg4xdSLUgCgJ5blfBTEsHd1yb0dsMR8Hhyp_D6gCXJ5_W8j8eWyIO-eop4.JOCoU9tNtGtJPCk303Qq3yEcHylvr_xYOf9lSTplnEk&amp;dib_tag=se&amp;keywords=art+tcg+deck+box&amp;qid=1770892370&amp;sprefix=art+tcg+deck+b%2Caps%2C364&amp;sr=8-7|B0F9XYRSFF> - very weak product - find 5 more in addition to it • <https://www.amazon.com/UAONO-Trading-Storage-Commander-Dividers/dp/B0D264D63X/ref=sr_1_17?crid=2RK9HUY8CE4PD&amp;dib=eyJ2IjoiMSJ9.hW5YoRSVlBK-Oxx4KS8MFDiKimQFCwqSmX2xtNooyHKbhxBRQOuCWa819nGob9tsW6MNE_rQhP1xDKcgj_8T2jQi1yg778FxYUfcmD_WrFrv3Dh2Mb-L-g7QIq1H6WKA290XOVaSl2oHdCy7nUVaAiQrhNLEmuJgmPnEXe9z5r7LLqAc5XqlCx-i4uuEInnq0WDvgJSbD-qThTzw28pWaN0ZfDjHZRCvKUH_yEfXuhw2QPStgAg4xdSLUgCgJ5blfBTEsHd1yb0dsMR8Hhyp_D6gCXJ5_W8j8eWyIO-eop4.JOCoU9tNtGtJPCk303Qq3yEcHylvr_xYOf9lSTplnEk&amp;dib_tag=se&amp;keywords=art%2Btcg%2Bdeck%2Bbox&amp;qid=1770892370&amp;sprefix=art%2Btcg%2Bdeck%2Bb%2Caps%2C364&amp;sr=8-17&amp;th=1|B0D264D63X>
+more notes: • when you reference an ASIN - also include a link (preferably just make the ASIN text a link to the product) • there are more features about deck boxes in general that I haven't told you about: ◦ some have a window to show the front card (also referred to as the commander) - our does have a window ◦ some have (or do not have) art on them - we only care about ones that have art on them ◦ some allow you to put one deck (~100 cards), some allow you to put multiple decks - we only care about single deck deck boxes (ours is a single deck one as well) ◦ some have dice trays and some do not. we have an optional dice tray as a separate product (the magdicetray - it connects magnetically to the magvault - so that you can have one dice tray and many magvaultes and just move the magdice box from one to the other) • let's find competing ASINs: a. only art deck boxes b. only for single deck c. at least 5 w/ window d. at least 5 w/ dice tray ◦ at least 5 w/o window or dice tray ◦ preferably from different brands (different brands have different KW templates they use, we don't want to include all ASINs from a single brand - this way we will only get one KW template) ◦ if a brand has multiple designs (which all of them probably do) - get their strongest ASIN in that category • example products: 1. <https://www.amazon.com/Appearance-Commander-Magnetic-Dividers-Compatible/dp/B0FN47FNRM/ref=sr_1_18?crid=2RK9HUY8CE4PD&amp;dib=eyJ2IjoiMSJ9.hW5YoRSVlBK-Oxx4KS8MFDiKimQFCwqSmX2xtNooyHKbhxBRQOuCWa819nGob9tsW6MNE_rQhP1xDKcgj_8T2jQi1yg778FxYUfcmD_WrFrv3Dh2Mb-L-g7QIq1H6WKA290XOVaSl2oHdCy7nUVaAiQrhNLEmuJgmPnEXe9z5r7LLqAc5XqlCx-i4uuEInnq0WDvgJSbD-qThTzw28pWaN0ZfDjHZRCvKUH_yEfXuhw2QPStgAg4xdSLUgCgJ5blfBTEsHd1yb0dsMR8Hhyp_D6gCXJ5_W8j8eWyIO-eop4.JOCoU9tNtGtJPCk303Qq3yEcHylvr_xYOf9lSTplnEk&amp;dib_tag=se&amp;keywords=art%2Btcg%2Bdeck%2Bbox&amp;qid=1770892370&amp;sprefix=art%2Btcg%2Bdeck%2Bb%2Caps%2C364&amp;sr=8-18&amp;th=1|B0FN47FNRM> 2. <https://www.amazon.com/Realm-Guard-Vaults-Boxes-Complete/dp/B0FWBM3FL3/ref=sr_1_6?crid=2RK9HUY8CE4PD&amp;dib=eyJ2IjoiMSJ9.hW5YoRSVlBK-Oxx4KS8MFDiKimQFCwqSmX2xtNooyHKbhxBRQOuCWa819nGob9tsW6MNE_rQhP1xDKcgj_8T2jQi1yg778FxYUfcmD_WrFrv3Dh2Mb-L-g7QIq1H6WKA290XOVaSl2oHdCy7nUVaAiQrhNLEmuJgmPnEXe9z5r7LLqAc5XqlCx-i4uuEInnq0WDvgJSbD-qThTzw28pWaN0ZfDjHZRCvKUH_yEfXuhw2QPStgAg4xdSLUgCgJ5blfBTEsHd1yb0dsMR8Hhyp_D6gCXJ5_W8j8eWyIO-eop4.JOCoU9tNtGtJPCk303Qq3yEcHylvr_xYOf9lSTplnEk&amp;dib_tag=se&amp;keywords=art%2Btcg%2Bdeck%2Bbox&amp;qid=1770892370&amp;sprefix=art%2Btcg%2Bdeck%2Bb%2Caps%2C364&amp;sr=8-6&amp;th=1|B0FWBM3FL3> 3. <https://www.amazon.com/Ai-Armor-Starry-Commander-Storage/dp/B0DSJQYWLG/ref=ast_sto_dp_puis?th=1|B0DSJQYWLG> 4. <https://www.amazon.com/Black-Lotus-Trading-Portable-Holding100/dp/B0F9XYRSFF/ref=sr_1_7?crid=2RK9HUY8CE4PD&amp;dib=eyJ2IjoiMSJ9.hW5YoRSVlBK-Oxx4KS8MFDiKimQFCwqSmX2xtNooyHKbhxBRQOuCWa819nGob9tsW6MNE_rQhP1xDKcgj_8T2jQi1yg778FxYUfcmD_WrFrv3Dh2Mb-L-g7QIq1H6WKA290XOVaSl2oHdCy7nUVaAiQrhNLEmuJgmPnEXe9z5r7LLqAc5XqlCx-i4uuEInnq0WDvgJSbD-qThTzw28pWaN0ZfDjHZRCvKUH_yEfXuhw2QPStgAg4xdSLUgCgJ5blfBTEsHd1yb0dsMR8Hhyp_D6gCXJ5_W8j8eWyIO-eop4.JOCoU9tNtGtJPCk303Qq3yEcHylvr_xYOf9lSTplnEk&amp;dib_tag=se&amp;keywords=art+tcg+deck+box&amp;qid=1770892370&amp;sprefix=art+tcg+deck+b%2Caps%2C364&amp;sr=8-7|B0F9XYRSFF> - very weak product - find 5 more in addition to it • <https://www.amazon.com/UAONO-Trading-Storage-Commander-Dividers/dp/B0D264D63X/ref=sr_1_17?crid=2RK9HUY8CE4PD&amp;dib=eyJ2IjoiMSJ9.hW5YoRSVlBK-Oxx4KS8MFDiKimQFCwqSmX2xtNooyHKbhxBRQOuCWa819nGob9tsW6MNE_rQhP1xDKcgj_8T2jQi1yg778FxYUfcmD_WrFrv3Dh2Mb-L-g7QIq1H6WKA290XOVaSl2oHdCy7nUVaAiQrhNLEmuJgmPnEXe9z5r7LLqAc5XqlCx-i4uuEInnq0WDvgJSbD-qThTzw28pWaN0ZfDjHZRCvKUH_yEfXuhw2QPStgAg4xdSLUgCgJ5blfBTEsHd1yb0dsMR8Hhyp_D6gCXJ5_W8j8eWyIO-eop4.JOCoU9tNtGtJPCk303Qq3yEcHylvr_xYOf9lSTplnEk&amp;dib_tag=se&amp;keywords=art%2Btcg%2Bdeck%2Bbox&amp;qid=1770892370&amp;sprefix=art%2Btcg%2Bdeck%2Bb%2Caps%2C364&amp;sr=8-17&amp;th=1|B0D264D63X>
 
 ---
 
 **[11:09 UTC] DragonBot:**
 
-Got it — great context on the MagBox features. Let me pull data on all 5 example ASINs first, then search for more competitors.
+Got it — great context on the MagVault features. Let me pull data on all 5 example ASINs first, then search for more competitors.
 
 ---
 
@@ -324,7 +324,7 @@ Here's what I found — I'll be straight with you:
 1. Include a few **non-art** competitors with those features (like [B0CDFZPFRV](https://amazon.com/dp/B0CDFZPFRV) Mage Tech, 600/mo, $26.99 — window + dice tray) since they'll rank for the same feature keywords
 2. Or accept that the window/dice tray art niche is so small that fewer competitors is fine
 
-Want me to pull any of these up in more detail, or want to browse Amazon yourself to fill the window/dice tray gaps? Also — do you have the MagBox ASIN(s) yet?
+Want me to pull any of these up in more detail, or want to browse Amazon yourself to fill the window/dice tray gaps? Also — do you have the MagVault ASIN(s) yet?
 
 ---
 
@@ -587,9 +587,9 @@ Good, cleaner now. Let me send the summary to Slack.
 
 **[11:18 UTC] DragonBot:**
 
-📊 **MagBox Keyword Research Workbook Complete**
+📊 **MagVault Keyword Research Workbook Complete**
 
-Created `magbox-kw-research.xlsx` with 6 tabs from 4,658 Cerebro keywords:
+Created `magvault-kw-research.xlsx` with 6 tabs from 4,658 Cerebro keywords:
 
 **Tab 1: Raw Data** — All 4,658 keywords with full Cerebro columns
 
@@ -623,7 +623,7 @@ Top keywords: "magic the gathering" (171K SV), "mtg" (75K), "display case" (64K)
 
 Done. Here's what was accomplished:
 
-**Created `/home/node/.openclaw/workspace/magbox-kw-research.xlsx`** with 6 tabs:
+**Created `/home/node/.openclaw/workspace/magvault-kw-research.xlsx`** with 6 tabs:
 
 1. **Raw Data** — 4,658 keywords, all Cerebro columns
 2. **Filtered Keywords** — 1,776 keywords (SV ≥ 100, irrelevant removed, sorted by SV)
@@ -638,13 +638,13 @@ Key finding: MTG/Commander deck box keywords are the primary opportunity, with m
 
 **[11:18 UTC] DragonBot:**
 
-MagBox keyword research is ready — **4,658 keywords** processed down to **1,776 filtered**, **245 exact match PPC candidates**, and **1,392 negatives**. File's at `magbox-kw-research.xlsx` with 6 tabs. "Deck box" cluster dominates at 103K combined search volume. 🐉
+MagVault keyword research is ready — **4,658 keywords** processed down to **1,776 filtered**, **245 exact match PPC candidates**, and **1,392 negatives**. File's at `magvault-kw-research.xlsx` with 6 tabs. "Deck box" cluster dominates at 103K combined search volume. 🐉
 
 ---
 
 **[11:20 UTC] DragonBot:**
 
-Here's the MagBox keyword research workbook 🐉
+Here's the MagVault keyword research workbook 🐉
 
 ---
 
@@ -662,13 +662,13 @@ exactly. plz find the paramint brand folder and where specifically we should put
 
 **[12:35 UTC] Gershon:**
 
-we're not that exact - you might as well saved it to the "Product line - MagBox" folder. in face I'd prefer it there for this one. plz update your memory about our g drive structure and note that we're not always that exact. then, actually upload your magbox kw research sheet to the "Product line - MagBox" folder.
+we're not that exact - you might as well saved it to the "Product line - MagVault" folder. in face I'd prefer it there for this one. plz update your memory about our g drive structure and note that we're not always that exact. then, actually upload your magvault kw research sheet to the "Product line - MagVault" folder.
 
 ---
 
 **[12:35 UTC] DragonBot:**
 
-Now let me find the MagBox keyword data I generated earlier and upload it as a Google Sheet.
+Now let me find the MagVault keyword data I generated earlier and upload it as a Google Sheet.
 
 ---
 
@@ -676,7 +676,7 @@ Now let me find the MagBox keyword data I generated earlier and upload it as a G
 
 Done! ✅
 
-**Keyword research - MagBox deck boxes** is now in `Product line - MagBox/` and shared with you:
+**Keyword research - MagVault deck boxes** is now in `Product line - MagVault/` and shared with you:
 
 📎 https://docs.google.com/spreadsheets/d/11kv3iHqi-KdHpDQrhtFcPxDW78BRzZhVeE5crLSuwGA
 
@@ -875,7 +875,7 @@ Now let me update the skill and rebuild the Never Keywords sheet:
 
 **[11:02 UTC] DragonBot:**
 
-Now let me rebuild the Never Keywords sheet properly for MagBox:
+Now let me rebuild the Never Keywords sheet properly for MagVault:
 
 ---
 
@@ -891,7 +891,7 @@ Interesting — the TitanWay template has different sheet names. I can see the N
 
 The page confirms exactly what you said about the PPC structure. I also notice the Notion SOP mentions some steps I should incorporate — like the Cerebro "Exclude variations" option and using Frankenstein for single words.
 
-Memory and skill are already updated with the NKW logic and PPC structure. Want me to do anything else with this Notion page, or should we keep refining the MagBox sheet?
+Memory and skill are already updated with the NKW logic and PPC structure. Want me to do anything else with this Notion page, or should we keep refining the MagVault sheet?
 
 ---
 
@@ -963,13 +963,13 @@ amazing. now let's create another sheet named "Amazon listing" where you suggest
 
 **[11:50 UTC] DragonBot:**
 
-Now let me understand the MagBox product better:
+Now let me understand the MagVault product better:
 
 ---
 
 **[11:51 UTC] DragonBot:**
 
-Good — now I have a clear picture of MagBox. Let me create the listing sheet:
+Good — now I have a clear picture of MagVault. Let me create the listing sheet:
 
 ---
 
@@ -982,7 +982,7 @@ The coverage is reasonable for a real listing — 27% of single words is actuall
 Here's what's in the sheet now:
 
 **Title (193 chars):**
-> Paramint MagBox Magnetic Deck Box for MTG Commander – Holds 100+ Sleeved Cards – Premium TCG Card Case & Storage Organizer for Magic The Gathering, Pokemon, Yu-Gi-Oh, Lorcana Trading Card Games
+> Paramint MagVault Magnetic Deck Box for MTG Commander – Holds 100+ Sleeved Cards – Premium TCG Card Case & Storage Organizer for Magic The Gathering, Pokemon, Yu-Gi-Oh, Lorcana Trading Card Games
 
 **5 Bullet Points** covering:
 1. Product specs (magnetic, 100+ cards, game compatibility)
@@ -1043,7 +1043,7 @@ Done ✅ — every unused word now has a note in column E explaining why it's un
 - **"Competitor brand"** — ultra, pro, mage, tech, etc.
 - **"Color"** — white, black, blue, etc. (listing covers multiple variants)
 - **"Material not applicable"** — leather, plastic, waterproof
-- **Feature-specific notes** — dice, tray, window (flagged to check if MagBox has these features)
+- **Feature-specific notes** — dice, tray, window (flagged to check if MagVault has these features)
 - **"Already in listing"** — lorcana, 100, dragon, carrying, etc.
 
 ---
@@ -1062,15 +1062,15 @@ Done ✅ — skill updated with the full Amazon Listing sheet spec including lay
 
 **[12:02 UTC] Gershon:**
 
-absolutely amazing. now add/modify the bullet points to also include info about the optional MagDiceBox magnetically attached dice tray that we sell separately. this will cover any other words like "dice" and "tray".
+absolutely amazing. now add/modify the bullet points to also include info about the optional MagDiceTray magnetically attached dice tray that we sell separately. this will cover any other words like "dice" and "tray".
 
 ---
 
 **[12:04 UTC] DragonBot:**
 
-Done ✅ — Bullet 3 is now about the MagDiceBox:
+Done ✅ — Bullet 3 is now about the MagDiceTray:
 
-> **ADD A MAGNETIC DICE TRAY** – Pair your MagBox with our MagDiceBox, a magnetically attached dice tray sold separately. It snaps right onto the side of your deck box for a complete setup — cards and dice in one portable, organized package. Perfect for commander players who roll dice at the table.
+> **ADD A MAGNETIC DICE TRAY** – Pair your MagVault with our MagDiceTray, a magnetically attached dice tray sold separately. It snaps right onto the side of your deck box for a complete setup — cards and dice in one portable, organized package. Perfect for commander players who roll dice at the table.
 
 Coverage went from 27% → 28%, picking up "dice" and "tray" plus reinforcing "magnetic". All formatting and color coding reapplied cleanly.
 
@@ -1078,35 +1078,35 @@ Coverage went from 27% → 28%, picking up "dice" and "tray" plus reinforcing "m
 
 **[12:07 UTC] Gershon:**
 
-okay. now completely unrelated note (unrelated to kw research specifically). I want absolutely EVERYTHING that you do - that you verify beforehand that it is amazon TOS-compliant. if I ask you to do something that is not amazon TOS-compliant - then you have to inform me. for example - I'm not sure it's allowed to advertise about another product from within the bullet points of my product. if I ask you to do that (e.g. advertise the magdicebox on the bullet points of the magbox product) - you have to check if it's amazon TOS-compliant and inform me if it isn't. this is applicable to ANYTHING that you as a bot do. plz make sure to update that in your memory in a place that is very much core to what it is that you do (i.e. not in the "kw research" skill - but something that you'd remember that you have to do always).
+okay. now completely unrelated note (unrelated to kw research specifically). I want absolutely EVERYTHING that you do - that you verify beforehand that it is amazon TOS-compliant. if I ask you to do something that is not amazon TOS-compliant - then you have to inform me. for example - I'm not sure it's allowed to advertise about another product from within the bullet points of my product. if I ask you to do that (e.g. advertise the magdicetray on the bullet points of the magvault product) - you have to check if it's amazon TOS-compliant and inform me if it isn't. this is applicable to ANYTHING that you as a bot do. plz make sure to update that in your memory in a place that is very much core to what it is that you do (i.e. not in the "kw research" skill - but something that you'd remember that you have to do always).
 
 ---
 
 **[12:07 UTC] DragonBot:**
 
-You're absolutely right — I should have flagged that before writing it. Let me check the MagDiceBox cross-promotion specifically, and update my core memory.
+You're absolutely right — I should have flagged that before writing it. Let me check the MagDiceTray cross-promotion specifically, and update my core memory.
 
 ---
 
 **[12:08 UTC] DragonBot:**
 
-Seller Central is blocking the content. Let me update core memory first, then address the MagDiceBox question:
+Seller Central is blocking the content. Let me update core memory first, then address the MagDiceTray question:
 
 ---
 
 **[12:08 UTC] DragonBot:**
 
-Now about the MagDiceBox bullet — here's my assessment:
+Now about the MagDiceTray bullet — here's my assessment:
 
 **⚠️ TOS Flag: Cross-promoting another product in bullet points**
 
-Amazon's product detail page policies state that bullet points should describe the **listed product's features and benefits**. Mentioning a separately sold product (MagDiceBox) is a gray area:
+Amazon's product detail page policies state that bullet points should describe the **listed product's features and benefits**. Mentioning a separately sold product (MagDiceTray) is a gray area:
 
-- **Allowed:** Mentioning compatibility — e.g., "Compatible with our MagDiceBox magnetic dice tray (sold separately)"
-- **Risky:** Actively advertising/promoting another product — e.g., "Pair your MagBox with our MagDiceBox!"
+- **Allowed:** Mentioning compatibility — e.g., "Compatible with our MagDiceTray magnetic dice tray (sold separately)"
+- **Risky:** Actively advertising/promoting another product — e.g., "Pair your MagVault with our MagDiceTray!"
 - **Not allowed:** Including links, ASINs, or directing customers to other listings
 
-The way I wrote it ("Pair your MagBox with our MagDiceBox, a magnetically attached dice tray sold separately") leans promotional. Many sellers do this, but it could technically trigger a listing review.
+The way I wrote it ("Pair your MagVault with our MagDiceTray, a magnetically attached dice tray sold separately") leans promotional. Many sellers do this, but it could technically trigger a listing review.
 
 **Safer alternatives:**
 1. Mention it as a compatibility note: "Compatible with magnetically attached dice trays (sold separately)"

@@ -4,12 +4,10 @@ import ChatWindow from './ChatWindow';
 
 const conversations = {
   'Keyword research': [
-    { role: 'user', text: 'Do Amazon keyword research for our new product. Use these competitor ASIN\'s for your research - B0C7X9LQ2M, B09Q4T7K8R, B0B2M5N8P3, B08Z6R1V4L, B0C1H8J7K2, B09L3W6X5T' },
+    { role: 'user', text: 'Do Amazon keyword research based on these competitor ASIN\'s:\nB0C7X9LQ2M, B09Q4T7K8R, B0B2M5N8P3, B08Z6R1V4L, B0C1H8J7K2, B09L3W6X5T' },
     { role: 'bot', text: 'Researching competitors...' },
     { role: 'bot', text: 'Creating sheet...' },
     { role: 'bot', text: 'Done! 🐉 Here\'s your sheet: docs.google.com/spreadsheet/d/... — Complete KW research including suggested PPC setup. Want me to suggest the listing text for your product?' },
-    { role: 'user', text: 'Yes please!' },
-    { role: 'bot', text: 'Done! 🐉 Added it in another tab on the same sheet. Check it out and let me know if you have any feedback!' },
   ],
   'Customer support': [
     { role: 'user', text: 'Automatically respond to customer messages coming from Amazon and Shopify. You can find response templates on our Notion. If you are not sure, ask me how to respond.' },

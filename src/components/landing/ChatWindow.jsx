@@ -1,6 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const urlRegex = /(https?:\/\/[^\s]+|[a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,}(?:\/[^\s]*)?)/g;
+
+function linkify(text, isUser) {
+  const linkClass = `underline ${isUser ? 'text-white/80 hover:text-white' : 'text-[#2F7D4F] hover:text-[#256B42]'}`;
+  const parts = text.split(urlRegex);
+  return parts.map((part, i) => {
+    if (urlRegex.test(part)) {
+      urlRegex.lastIndex = 0;
+      const href = part.startsWith('http') ? part : `https://${part}`;
+      return (
+        <a key={i} href={href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+}
+
 const TypingIndicator = () => (
   <div className="flex items-center gap-1 px-4 py-3">
     <div className="flex items-center gap-1.5 bg-[#f0f0f0] rounded-2xl rounded-bl-md px-4 py-3">
@@ -130,7 +149,7 @@ export default function ChatWindow({ messages, className = "", title = "DragonBo
               transition={{ duration: 0.25 }}
               className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
-              <div className={`max-w-[80%] px-4 py-2.5 text-sm leading-relaxed font-satoshi ${
+              <div className={`max-w-[80%] px-4 py-2.5 text-sm leading-relaxed font-satoshi whitespace-pre-line break-words ${
                 msg.role === 'user'
                   ? 'bg-[#2F7D4F] text-white rounded-2xl rounded-br-md'
                   : 'bg-[#f0f0f0] text-[#1A1A1A] rounded-2xl rounded-bl-md'
@@ -138,7 +157,7 @@ export default function ChatWindow({ messages, className = "", title = "DragonBo
                 {msg.role === 'bot' && msg.animating ? (
                   <TypewriterText text={msg.text} onComplete={handleTypewriterComplete} speed={18} />
                 ) : (
-                  msg.text
+                  linkify(msg.text, msg.role === 'user')
                 )}
               </div>
             </motion.div>
