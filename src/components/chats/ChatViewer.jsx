@@ -163,6 +163,16 @@ function ThemeDropdown({ dark, theme, onSetTheme, onClose }) {
   );
 }
 
+function getYouTubeThumbnail(url) {
+  try {
+    const u = new URL(url);
+    const id = u.searchParams.get('v') || u.pathname.split('/').pop();
+    return `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
+  } catch {
+    return null;
+  }
+}
+
 export default function ChatViewer({ chat, dark, theme, onSetTheme }) {
   const [shareOpen, setShareOpen] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
@@ -212,7 +222,7 @@ export default function ChatViewer({ chat, dark, theme, onSetTheme }) {
     );
   }
 
-  const { title, messages } = chat;
+  const { title, messages, demoInfo } = chat;
 
   const scrollToSection = (sectionIdx) => {
     const msgIdx = sections[sectionIdx].messageIndex;
@@ -254,11 +264,42 @@ export default function ChatViewer({ chat, dark, theme, onSetTheme }) {
 
       {/* Content area — chat + TOC side by side */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Messages area — scrolls independently */}
-        <div
-          ref={chatScrollRef}
-          className={`flex-1 overflow-y-auto p-4 space-y-3 ${dark ? 'bg-[#0f0f0f]' : 'bg-[#fafafa]'}`}
-        >
+        {/* Left column: demo info + messages */}
+        <div className="flex-1 flex flex-col min-w-0">
+          {/* Demo info bar */}
+          {demoInfo && (
+            <a
+              href={demoInfo.video}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center gap-4 pl-2 pr-5 py-2 border-b shrink-0 cursor-pointer transition-colors ${dark ? 'bg-[#1a1a1a] border-white/10 hover:bg-[#222]' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
+            >
+              <div className="relative w-44 shrink-0">
+                <img
+                  src={getYouTubeThumbnail(demoInfo.video)}
+                  alt="Demo video"
+                  className="w-full h-auto rounded-md"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                {demoInfo.title && <strong className={`text-sm font-satoshi ${dark ? 'text-white/90' : 'text-[#1A1A1A]'}`}>{demoInfo.title}</strong>}
+                {demoInfo.text && <span className={`text-sm font-satoshi ${dark ? 'text-white/70' : 'text-[#1A1A1A]/70'}`}>{demoInfo.text}</span>}
+              </div>
+            </a>
+          )}
+
+          {/* Messages area — scrolls independently */}
+          <div
+            ref={chatScrollRef}
+            className={`flex-1 overflow-y-auto p-4 space-y-3 ${dark ? 'bg-[#0f0f0f]' : 'bg-[#fafafa]'}`}
+          >
           {messages.map((msg, i) => {
             const isUser = msg.role === 'user';
             const showName = i === 0 || messages[i - 1].role !== msg.role;
@@ -291,6 +332,7 @@ export default function ChatViewer({ chat, dark, theme, onSetTheme }) {
               </div>
             );
           })}
+        </div>
         </div>
 
         {/* Summary TOC — right sidebar */}

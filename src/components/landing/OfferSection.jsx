@@ -75,7 +75,7 @@ export default function OfferSection() {
               <h3 className="font-clash font-semibold text-xl text-[#1A1A1A] leading-snug mb-3">
                 {item.title}
               </h3>
-              <p className="text-[15px] text-[#1A1A1A]/50 font-satoshi leading-relaxed">
+              {/* <p className="text-[15px] text-[#1A1A1A]/50 font-satoshi leading-relaxed">
                 {item.description}
               </p>
               {item.link && (
@@ -87,10 +87,40 @@ export default function OfferSection() {
                 >
                   {item.link.label} →
                 </a>
-              )}
+              )} */}
             </motion.div>
           ))}
         </div>
+
+        {/* Demo thumbnails */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="mt-12 flex flex-wrap gap-6"
+        >
+          <a
+            href="/chats/magvault-keyword-research"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative w-72 rounded-xl overflow-hidden border border-gray-200 bg-white hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
+          >
+            <div className="relative">
+              <img src="/images/thumbnail_kw_research.png" alt="Amazon Keyword research using DragonBot" className="w-full h-auto" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center group-hover:bg-black/70 transition-colors">
+                  <svg className="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div className="px-4 py-3">
+              <p className="font-satoshi font-semibold text-sm text-[#1A1A1A]">Amazon Keyword research using DragonBot</p>
+            </div>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
