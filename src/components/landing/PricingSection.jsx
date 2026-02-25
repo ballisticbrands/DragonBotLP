@@ -35,7 +35,7 @@ const plans = [
       'Placeholder feature 4',
       'Placeholder feature 5',
     ],
-    cta: 'Book call',
+    cta: 'Book Call',
     ctaStyle: 'bg-[#2F7D4F] text-white hover:bg-[#256B42] shadow-xl shadow-[#2F7D4F]/25',
   },
   {
@@ -55,7 +55,7 @@ const plans = [
       'Placeholder feature 4',
       'Placeholder feature 5',
     ],
-    cta: 'Book call',
+    cta: 'Book Call',
     ctaStyle: 'border border-[#2F7D4F] text-[#2F7D4F] hover:bg-[#2F7D4F]/5',
   },
 ];

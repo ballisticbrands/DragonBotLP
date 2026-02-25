@@ -237,28 +237,42 @@ export default function ChatViewer({ chat, dark, theme, onSetTheme }) {
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       {/* Header — locked to top */}
-      <div className={`border-b px-5 py-4 flex items-center shrink-0 ${dark ? 'bg-[#1a1a1a] border-white/10' : 'bg-white border-gray-200'}`}>
+      <div className={`border-b px-5 py-2 flex items-center shrink-0 ${dark ? 'bg-[#1a1a1a] border-white/10' : 'bg-white border-gray-200'}`}>
         <h1 className={`font-clash font-semibold text-lg ${dark ? 'text-white' : 'text-[#1A1A1A]'}`}>{title}</h1>
-        <div className="ml-auto flex items-center gap-1">
-          <div className="relative">
-            <button
-              onClick={() => setShareOpen(!shareOpen)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-satoshi font-medium rounded-lg transition-colors ${dark ? 'text-white/50 hover:text-white hover:bg-white/10' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-gray-100'}`}
-            >
-              <Share2 size={15} />
-              Share
-            </button>
-            {shareOpen && <SharePopup dark={dark} onClose={() => setShareOpen(false)} />}
+        <div className="ml-auto flex items-center gap-3">
+          <div className="flex items-center gap-1">
+            <div className="relative">
+              <button
+                onClick={() => setShareOpen(!shareOpen)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-satoshi font-medium rounded-lg transition-colors ${dark ? 'text-white/50 hover:text-white hover:bg-white/10' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-gray-100'}`}
+              >
+                <Share2 size={15} />
+                Share
+              </button>
+              {shareOpen && <SharePopup dark={dark} onClose={() => setShareOpen(false)} />}
+            </div>
+            <div className="relative">
+              <button
+                onClick={() => setThemeOpen(!themeOpen)}
+                className={`p-1.5 rounded-lg transition-colors ${dark ? 'text-white/50 hover:text-white hover:bg-white/10' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-gray-100'}`}
+              >
+                {theme === 'system' ? <Monitor size={18} /> : theme === 'light' ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+              {themeOpen && <ThemeDropdown dark={dark} theme={theme} onSetTheme={onSetTheme} onClose={() => setThemeOpen(false)} />}
+            </div>
           </div>
-          <div className="relative">
-            <button
-              onClick={() => setThemeOpen(!themeOpen)}
-              className={`p-1.5 rounded-lg transition-colors ${dark ? 'text-white/50 hover:text-white hover:bg-white/10' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-gray-100'}`}
-            >
-              {theme === 'system' ? <Monitor size={18} /> : theme === 'light' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-            {themeOpen && <ThemeDropdown dark={dark} theme={theme} onSetTheme={onSetTheme} onClose={() => setThemeOpen(false)} />}
-          </div>
+          <span className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 rounded-full text-xs font-satoshi font-medium text-red-500">
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            This is a DEMO account
+          </span>
+          <a
+            href="https://calendly.com/ggballas"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-1.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white text-sm font-satoshi font-medium rounded-full transition-all shadow-lg shadow-[#2F7D4F]/20 hover:shadow-[#2F7D4F]/30"
+          >
+            Book Call
+          </a>
         </div>
       </div>
 

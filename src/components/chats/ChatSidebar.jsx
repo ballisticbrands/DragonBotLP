@@ -77,7 +77,7 @@ export default function ChatSidebar({ channels, chats, activeSlug, onSelect, dar
   return (
     <aside className={`w-72 border-r flex flex-col shrink-0 h-full ${dark ? 'bg-[#1a1a1a] border-white/10' : 'bg-white border-gray-200'}`}>
       {/* Logo header */}
-      <div className={`px-5 py-4 border-b flex items-center gap-2.5 shrink-0 ${dark ? 'border-white/10' : 'border-gray-200'}`}>
+      <div className={`px-5 py-2 border-b flex items-center gap-2.5 shrink-0 ${dark ? 'border-white/10' : 'border-gray-200'}`}>
         <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="h-8" />
         <span className={`font-clash font-bold text-lg ${dark ? 'text-white' : 'text-[#1A1A1A]'}`}>DragonBot</span>
       </div>
@@ -169,10 +169,10 @@ export default function ChatSidebar({ channels, chats, activeSlug, onSelect, dar
           <div>
             {[
               { name: 'Gershon', color: 'bg-[#2F7D4F]' },
-              { name: 'Maya', color: 'bg-[#6366F1]' },
-              { name: 'Daniel', color: 'bg-[#F59E0B]' },
-              { name: 'Sofia', color: 'bg-[#EC4899]' },
-              { name: 'Liam', color: 'bg-[#3B82F6]' },
+              { name: 'Elhanan', color: 'bg-[#6366F1]' },
+              { name: 'Ronna', color: 'bg-[#F59E0B]' },
+              { name: 'Lana', color: 'bg-[#EC4899]' },
+              { name: 'Ian', color: 'bg-[#3B82F6]' },
             ].map((member) => (
               <div
                 key={member.name}

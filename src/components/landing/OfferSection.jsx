@@ -107,7 +107,7 @@ export default function OfferSection() {
             className="group relative w-72 rounded-xl overflow-hidden border border-gray-200 bg-white hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
           >
             <div className="relative">
-              <img src="/images/thumbnail_kw_research.png" alt="Amazon Keyword research using DragonBot" className="w-full h-auto" />
+              <img src="/images/thumbnail_kw_research.png" alt="Amazon Keyword Research Using DragonBot" className="w-full h-auto" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center group-hover:bg-black/70 transition-colors">
                   <svg className="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
@@ -117,7 +117,7 @@ export default function OfferSection() {
               </div>
             </div>
             <div className="px-4 py-3">
-              <p className="font-satoshi font-semibold text-sm text-[#1A1A1A]">Amazon Keyword research using DragonBot</p>
+              <p className="font-satoshi font-semibold text-sm text-[#1A1A1A]">Amazon Keyword Research Using DragonBot</p>
             </div>
           </a>
         </motion.div>

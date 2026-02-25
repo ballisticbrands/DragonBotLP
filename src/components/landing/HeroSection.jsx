@@ -51,7 +51,7 @@ export default function HeroSection() {
                   rel="noopener noreferrer"
                   className="px-7 py-3.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white font-satoshi font-semibold rounded-full transition-all shadow-xl shadow-[#2F7D4F]/25 hover:shadow-[#2F7D4F]/35 hover:-translate-y-0.5"
                 >
-                  Book call →
+                  Book Call →
                 </a>
                 <a
                   href="#features"
