@@ -26,7 +26,7 @@ export default function IntegrationOrbit() {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#2F7D4F] to-[#0F3D2E] flex items-center justify-center shadow-xl shadow-[#2F7D4F]/30"
         >
-          <img src="/emoji_dragon.png" alt="DragonBot" className="w-12 h-12 md:w-14 md:h-14" />
+          <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="w-12 h-12 md:w-14 md:h-14" />
         </motion.div>
       </div>
 

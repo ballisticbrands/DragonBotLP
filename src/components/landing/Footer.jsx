@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo */}
           <div className="flex items-center gap-2.5">
-            <img src="/emoji_dragon.png" alt="DragonBot" className="h-8" />
+            <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="h-8" />
             <span className="font-clash font-bold text-lg text-white">DragonBot</span>
           </div>
 

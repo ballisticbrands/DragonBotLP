@@ -23,7 +23,7 @@ function linkify(text, isUser) {
 const TypingIndicator = () => (
   <div className="flex items-center gap-1 px-4 py-3">
     <div className="flex items-center gap-1.5 bg-[#f0f0f0] rounded-2xl rounded-bl-md px-4 py-3">
-      <img src="/emoji_dragon.png" alt="" className="w-5 h-5 mr-1" />
+      <img src="/logos/dragonbot_fire.png" alt="" className="w-5 h-5 mr-1" />
       <motion.div className="w-2 h-2 bg-[#2F7D4F] rounded-full" animate={{ y: [0, -4, 0] }} transition={{ duration: 0.5, repeat: Infinity, delay: 0 }} />
       <motion.div className="w-2 h-2 bg-[#2F7D4F] rounded-full" animate={{ y: [0, -4, 0] }} transition={{ duration: 0.5, repeat: Infinity, delay: 0.15 }} />
       <motion.div className="w-2 h-2 bg-[#2F7D4F] rounded-full" animate={{ y: [0, -4, 0] }} transition={{ duration: 0.5, repeat: Infinity, delay: 0.3 }} />
@@ -129,7 +129,7 @@ export default function ChatWindow({ messages, className = "", title = "DragonBo
           <div className="w-3 h-3 rounded-full bg-[#28c840]" />
         </div>
         <div className="flex items-center gap-2 ml-2">
-          <img src="/emoji_dragon.png" alt="DragonBot" className="w-5 h-5" />
+          <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="w-5 h-5" />
           <span className="text-white font-clash font-semibold text-sm">{title}</span>
         </div>
         <div className="ml-auto flex items-center gap-1.5">
