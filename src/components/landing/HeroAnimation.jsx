@@ -163,7 +163,7 @@ export default function HeroAnimation() {
         {/* === CENTER DRAGON === */}
         <circle cx={centerX} cy={dragonCY} r={dragonR} fill="white" stroke="#e5e7eb" strokeWidth="1.5" />
         <image
-          href="/logos/dragonbot_fire.png"
+          href="/emoji_dragon.png"
           x={centerX - iconSize} y={dragonCY - iconSize}
           width={iconSize * 2} height={iconSize * 2}
         />

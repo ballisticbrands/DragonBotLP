@@ -32,7 +32,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5">
-            <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="h-9" />
+            <img src="/emoji_dragon.png" alt="DragonBot" className="h-9" />
             <span className="font-clash font-bold text-xl text-[#1A1A1A]" style={{ lineHeight: '1', paddingTop: '2px' }}>
               DragonBot
             </span>

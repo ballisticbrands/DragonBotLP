@@ -78,7 +78,7 @@ export default function ChatSidebar({ channels, chats, activeSlug, onSelect, dar
     <aside className={`w-72 border-r flex flex-col shrink-0 h-full ${dark ? 'bg-[#1a1a1a] border-white/10' : 'bg-white border-gray-200'}`}>
       {/* Logo header */}
       <div className={`px-5 py-2 border-b flex items-center gap-2.5 shrink-0 ${dark ? 'border-white/10' : 'border-gray-200'}`}>
-        <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="h-8" />
+        <img src="/emoji_dragon.png" alt="DragonBot" className="h-8" />
         <span className={`font-clash font-bold text-lg ${dark ? 'text-white' : 'text-[#1A1A1A]'}`}>DragonBot</span>
       </div>
 

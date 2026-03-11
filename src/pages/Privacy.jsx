@@ -11,7 +11,7 @@ export default function Privacy() {
             Back to DragonBot
           </a>
           <div className="flex items-center gap-3 mb-4">
-            <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="h-8" />
+            <img src="/emoji_dragon.png" alt="DragonBot" className="h-8" />
             <span className="text-sm font-satoshi font-medium text-[#2F7D4F] bg-[#2F7D4F]/10 px-3 py-1 rounded-full">Legal</span>
           </div>
           <h1 className="font-clash font-semibold text-4xl text-[#1A1A1A]">Consent &amp; Privacy Notice</h1>
