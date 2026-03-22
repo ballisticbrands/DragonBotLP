@@ -128,7 +128,7 @@ export default function PricingSection() {
               </ul>
 
               <a
-                href="https://app.dragonsellerbot.com/signin"
+                href="https://app.dragonsellerbot.com/#/signin"
                 className={`block w-full py-3 rounded-full font-satoshi font-semibold text-sm text-center transition-all ${plan.ctaStyle}`}
               >
                 {plan.cta}

@@ -41,7 +41,7 @@ function NavbarV2() {
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <a href="https://app.dragonsellerbot.com/signin"
+            <a href="https://app.dragonsellerbot.com/#/signin"
               className="px-5 py-2.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white text-sm font-satoshi font-medium rounded-full transition-all shadow-lg shadow-[#2F7D4F]/20 hover:shadow-[#2F7D4F]/30">
               Get Started
             </a>
@@ -59,7 +59,7 @@ function NavbarV2() {
               {navLinks.map(l => (
                 <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-satoshi font-medium text-[#1A1A1A]">{l.label}</a>
               ))}
-              <a href="https://app.dragonsellerbot.com/signin" onClick={() => setMobileOpen(false)}
+              <a href="https://app.dragonsellerbot.com/#/signin" onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-[#2F7D4F] text-white text-center font-satoshi font-medium rounded-full">
                 Get Started
               </a>
@@ -269,7 +269,7 @@ export default function LandingV2() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-              <a href="https://app.dragonsellerbot.com/signin"
+              <a href="https://app.dragonsellerbot.com/#/signin"
                 className="px-7 py-3.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white font-satoshi font-semibold rounded-full transition-all shadow-xl shadow-[#2F7D4F]/25 hover:shadow-[#2F7D4F]/35 hover:-translate-y-0.5 flex items-center gap-2">
                 Get Started Free <ArrowRight className="w-4 h-4" />
               </a>
@@ -425,7 +425,7 @@ export default function LandingV2() {
           </div>
 
           <div className="text-center mt-10">
-            <a href="https://app.dragonsellerbot.com/signin"
+            <a href="https://app.dragonsellerbot.com/#/signin"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white font-satoshi font-semibold rounded-full transition-all shadow-xl shadow-[#2F7D4F]/25 hover:shadow-[#2F7D4F]/35 hover:-translate-y-0.5">
               Get Started <ArrowRight className="w-4 h-4" />
             </a>
@@ -463,7 +463,7 @@ export default function LandingV2() {
         </div>
 
         <div className="text-center">
-          <a href="https://app.dragonsellerbot.com/signin"
+          <a href="https://app.dragonsellerbot.com/#/signin"
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#0F3D2E] font-satoshi font-semibold rounded-full transition-all hover:bg-white/90 shadow-xl">
             Get Started <ArrowRight className="w-4 h-4" />
           </a>
