@@ -16,7 +16,7 @@ const plans = [
       'Get a custom ROI estimate',
       'No commitment, no pressure',
     ],
-    cta: 'Book Free Demo',
+    cta: 'Get Started',
     ctaStyle: 'border border-[#2F7D4F] text-[#2F7D4F] hover:bg-[#2F7D4F]/5',
   },
   {
@@ -35,7 +35,7 @@ const plans = [
       'Placeholder feature 4',
       'Placeholder feature 5',
     ],
-    cta: 'Book Call',
+    cta: 'Get Started',
     ctaStyle: 'bg-[#2F7D4F] text-white hover:bg-[#256B42] shadow-xl shadow-[#2F7D4F]/25',
   },
   {
@@ -55,7 +55,7 @@ const plans = [
       'Placeholder feature 4',
       'Placeholder feature 5',
     ],
-    cta: 'Book Call',
+    cta: 'Get Started',
     ctaStyle: 'border border-[#2F7D4F] text-[#2F7D4F] hover:bg-[#2F7D4F]/5',
   },
 ];
@@ -128,9 +128,7 @@ export default function PricingSection() {
               </ul>
 
               <a
-                href="https://calendly.com/ggballas"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://app.dragonsellerbot.com/signin"
                 className={`block w-full py-3 rounded-full font-satoshi font-semibold text-sm text-center transition-all ${plan.ctaStyle}`}
               >
                 {plan.cta}
