@@ -44,8 +44,10 @@ function NavbarV2() {
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="/v3" className="flex items-center gap-3">
-            <img src="/DragonBot-logo.png" alt="DragonBot" className="h-10" />
-            <span className="font-bold text-[28px] text-white" style={{ lineHeight: '1' }}>get<span className="text-[#2F7D4F]">DragonBot</span><span className="text-white">.com</span></span>
+            <motion.img src="/DragonBot-logo.png" alt="DragonBot" className="h-10"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} />
+            <span className="font-bold text-[28px] text-white" style={{ lineHeight: '1' }}>get<span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span><span className="text-white">.com</span></span>
           </a>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(l => (
@@ -54,7 +56,7 @@ function NavbarV2() {
           </div>
           <div className="hidden md:flex items-center gap-3">
             <a href="https://app.getdragonbot.com/#/signin"
-              className="px-5 py-2.5 bg-[#F5F3F1] text-[#2F7D4F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-lg hover:shadow-[#2F7D4F]/25">
+              className="px-5 py-2.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/25">
               Get Started For Free
             </a>
           </div>
@@ -72,7 +74,7 @@ function NavbarV2() {
                 <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-medium text-white">{l.label}</a>
               ))}
               <a href="https://app.getdragonbot.com/#/signin" onClick={() => setMobileOpen(false)}
-                className="mt-4 px-6 py-3 bg-[#F5F3F1] text-[#2F7D4F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white">
+                className="mt-4 px-6 py-3 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all">
                 Get Started For Free
               </a>
             </div>
@@ -95,8 +97,13 @@ function Section({ id, className = '', children }) {
 /* ─── Eyebrow label ─── */
 function Eyebrow({ children }) {
   return (
-    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2F7D4F]/10 rounded-full text-sm font-medium text-[#2F7D4F] mb-6">
-      <span className="w-2 h-2 rounded-full bg-[#98CC65] animate-pulse" />
+    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2F7D4F]/10 rounded-full text-sm font-medium text-white mb-6">
+      <svg className="w-4 h-4 shrink-0" viewBox="0 0 54 54">
+        <path d="M19.712.133a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386h5.376V5.52A5.381 5.381 0 0 0 19.712.133m0 14.365H5.376A5.381 5.381 0 0 0 0 19.884a5.381 5.381 0 0 0 5.376 5.387h14.336a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386" fill="#36C5F0"/>
+        <path d="M53.76 19.884a5.381 5.381 0 0 0-5.376-5.386 5.381 5.381 0 0 0-5.376 5.386v5.387h5.376a5.381 5.381 0 0 0 5.376-5.387m-14.336 0V5.52A5.381 5.381 0 0 0 34.048.133a5.381 5.381 0 0 0-5.376 5.387v14.364a5.381 5.381 0 0 0 5.376 5.387 5.381 5.381 0 0 0 5.376-5.387" fill="#2EB67D"/>
+        <path d="M34.048 54a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386h-5.376v5.386A5.381 5.381 0 0 0 34.048 54m0-14.365h14.336a5.381 5.381 0 0 0 5.376-5.386 5.381 5.381 0 0 0-5.376-5.387H34.048a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386" fill="#ECB22E"/>
+        <path d="M0 34.249a5.381 5.381 0 0 0 5.376 5.386 5.381 5.381 0 0 0 5.376-5.386v-5.387H5.376A5.381 5.381 0 0 0 0 34.25m14.336-.001v14.364A5.381 5.381 0 0 0 19.712 54a5.381 5.381 0 0 0 5.376-5.387V34.249a5.381 5.381 0 0 0-5.376-5.387 5.381 5.381 0 0 0-5.376 5.387" fill="#E01E5A"/>
+      </svg>
       {children}
     </span>
   );
@@ -112,6 +119,119 @@ function VideoPlaceholder({ label = 'Video coming soon' }) {
           <Play className="w-7 h-7 text-white ml-1" fill="white" />
         </div>
         <span className="text-sm text-[#1A1A1A]/40">{label}</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Slack demo animation ─── */
+const SLACK_MSGS = [
+  { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:07 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@here</span> — URGENT! Our Amazon listing got suppressed, we're losing $2K/hour</> },
+  // { who: 'Omer', initials: 'OB', color: '#E67E22', time: '10:08 AM', text: 'Busy' },
+  // { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '10:08 AM', text: "I'm on vacation 🏖️" },
+  { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:10 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> ?</>, reactions: ['⏳', '🐉'] },
+  { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '10:13 AM', isBot: true, text: <>Found it - backend image URL returned a 404, triggered an automated suppression. I've re-uploaded the image and submitted a reinstatement request. Listing should be back within 2 hours.<br/><span style={{ color: '#1264A3', fontSize: 13, fontWeight: 600, marginTop: 4, display: 'inline-block' }}>See more</span></> },
+];
+
+const SLACK_CHANNELS = ['#general', '#ppc', '#product-research', '#customer-support'];
+const SLACK_DMS = [
+  { name: 'Jake Morrison', initials: 'JM' },
+  { name: 'Lisa Kim', initials: 'LK' },
+  { name: 'Omer Ben-Ari', initials: 'OB' },
+  { name: 'DragonBot', initials: '🐉', isBot: true },
+];
+
+function SlackDemo() {
+  const visibleMsgs = SLACK_MSGS.length;
+  const typing = false;
+
+  return (
+    <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl text-left" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+      <div className="flex h-full w-full">
+        {/* Sidebar */}
+        <div className="shrink-0 flex flex-col py-3" style={{ width: '20%', backgroundColor: '#4A154B' }}>
+          <div className="px-3 pb-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+            <div className="text-white text-sm font-black">Garlic Presses LTD</div>
+          </div>
+          <div className="py-2">
+            <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.5)' }}>Channels</div>
+            {SLACK_CHANNELS.map(ch => (
+              <div key={ch} className="px-3 py-0.5 text-xs mx-1.5 rounded" style={{
+                color: ch === '#general' ? 'white' : 'rgba(255,255,255,0.5)',
+                backgroundColor: ch === '#general' ? 'rgba(255,255,255,0.12)' : 'transparent',
+                fontWeight: ch === '#general' ? 700 : 400,
+              }}>{ch}</div>
+            ))}
+          </div>
+          <div className="py-1">
+            <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.5)' }}>Direct Messages</div>
+            {SLACK_DMS.map(u => (
+              <div key={u.name} className="px-3 py-0.5 text-xs mx-1.5 flex items-center gap-1.5" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: u.isBot ? '#98cc65' : '#44B078' }} />
+                {u.name}
+                {u.isBot && <span className="text-[8px] px-1 rounded" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}>APP</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Main */}
+        <div className="flex-1 flex flex-col" style={{ backgroundColor: '#1A1D21' }}>
+          <div className="px-4 py-2.5" style={{ borderBottom: '1px solid #35373B' }}>
+            <span className="text-sm font-black" style={{ color: '#D1D2D3' }}>#general</span>
+          </div>
+
+          <div className="flex-1 flex flex-col justify-end gap-1 overflow-hidden py-2">
+            {SLACK_MSGS.slice(0, visibleMsgs).map((m, i) => (
+              <div key={i}
+                className="flex gap-3 px-4 py-1.5">
+                <div className="shrink-0 w-9 h-9 rounded-md flex items-center justify-center text-white text-sm font-bold overflow-hidden"
+                  style={{ backgroundColor: m.isBot ? '#F5F3F1' : m.color }}>
+                  {m.isBot ? <img src="/DragonBot-avatar.png" className="w-6 h-6 object-contain" /> : m.initials}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2 mb-0.5">
+                    <span className="font-black text-base" style={{ color: '#D1D2D3' }}>{m.who}</span>
+                    {m.isBot && <span className="text-xs font-bold text-white px-1.5 py-px rounded" style={{ backgroundColor: '#2F7D4F' }}>APP</span>}
+                    <span className="text-sm" style={{ color: '#9B9C9E' }}>{m.time}</span>
+                  </div>
+                  <div className="text-base leading-relaxed" style={{ color: '#D1D2D3' }}>{m.text}</div>
+                  {m.reactions && (
+                    <div className="flex gap-1.5 mt-1.5">
+                      {m.reactions.map((r, j) => (
+                        <span key={j} className="flex items-center gap-1 text-sm px-2 py-0.5 rounded-full" style={{ backgroundColor: '#2C2D30', border: '1px solid #3F4145' }}>
+                          {r} <span style={{ color: '#1264A3', fontWeight: 600 }}>1</span>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {typing && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-3 px-4 py-1.5 items-center">
+                <div className="shrink-0 w-9 h-9 rounded-md flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#2F7D4F' }}>
+                  <img src="/DragonBot-avatar.png" className="w-6 h-6 object-contain" />
+                </div>
+                <div className="flex gap-1.5 py-1">
+                  {[0, 1, 2].map(i => (
+                    <div key={i} className="w-2.5 h-2.5 rounded-full" style={{
+                      backgroundColor: '#868686',
+                      opacity: 0.3 + 0.7 * Math.abs(Math.sin((dotFrame + i * 3) * 0.3)),
+                    }} />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </div>
+
+          <div className="px-4 pb-3">
+            <div className="rounded-lg px-3 py-2 text-xs" style={{ border: '1px solid #565856', backgroundColor: '#222529', color: '#9B9C9E', minHeight: 50 }}>
+              Message #general
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -322,7 +442,7 @@ export default function LandingV3() {
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Eyebrow>Trusted by Amazon &amp; eCommerce brands</Eyebrow>
+            <Eyebrow>7000+ workspaces hired DragonBot</Eyebrow>
 
             <h1 className="font-extrabold text-[48px] sm:text-[64px] lg:text-[88px] text-[#1A1A1A] leading-[1.05] tracking-[-0.035em] mb-6">
               Not a tool.{' '}
@@ -336,7 +456,7 @@ export default function LandingV3() {
 
             <div className="flex items-center justify-center mb-8">
               <a href="https://app.getdragonbot.com/#/signin"
-                className="px-10 py-5 text-lg bg-[#F5F3F1] text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
+                className="px-10 py-5 text-lg bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
                 Get Started For Free <ArrowRight className="w-5 h-5" />
               </a>
             </div>
@@ -368,9 +488,48 @@ export default function LandingV3() {
             </div>
           </motion.div>
 
-          {/* Hero video */}
+          {/* Slack demos */}
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-14 mb-6">
+            <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center flex items-center justify-center gap-2">
+              This is your company's Slack with <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
+                className="inline-flex"
+              >
+                <svg width="24" height="28" viewBox="0 0 7 10" fill="none" style={{ imageRendering: 'pixelated' }}>
+                  {/* shaft */}
+                  <rect x="2" y="0" width="3" height="4" fill="#2E7E4F"/>
+                  {/* arrowhead: converges to a point at the bottom */}
+                  <rect x="0" y="4" width="7" height="1" fill="#2E7E4F"/>
+                  <rect x="1" y="5" width="5" height="1" fill="#2E7E4F"/>
+                  <rect x="2" y="6" width="3" height="1" fill="#2E7E4F"/>
+                  <rect x="3" y="7" width="1" height="1" fill="#2E7E4F"/>
+                </svg>
+              </motion.div>
+            </h2>
+          </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }}
-            className="mt-14">
+            className="flex flex-wrap justify-center gap-4">
+            <div className="w-[800px] relative">
+              <SlackDemo />
+              {/* Animated arrow pointing to #ppc */}
+              <motion.div
+                className="absolute flex items-center gap-1 text-[#98CC65] font-semibold text-sm whitespace-nowrap pointer-events-none"
+                style={{ top: '28%', left: '-140px' }}
+                animate={{ x: [0, 8, 0] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                Click #ppc
+                <ArrowRight className="w-4 h-4" />
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Hero video */}
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.45 }}
+            className="mt-8">
             <HeroVideo />
           </motion.div>
         </div>
@@ -501,7 +660,7 @@ export default function LandingV3() {
 
           <div className="text-center mt-10">
             <a href="https://app.getdragonbot.com/#/signin"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#F5F3F1] text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5">
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5">
               Get Started For Free <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -539,7 +698,7 @@ export default function LandingV3() {
 
         <div className="text-center">
           <a href="https://app.getdragonbot.com/#/signin"
-            className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#F5F3F1] text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl">
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl">
             Get Started For Free <ArrowRight className="w-4 h-4" />
           </a>
         </div>
