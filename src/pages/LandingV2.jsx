@@ -2,8 +2,17 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ChevronRight, Play, ArrowRight, Zap, Database, Brain, Check } from 'lucide-react';
 
-/* ─── System font stack (matches Viktor — SF Pro on Mac, Segoe UI on Windows) ─── */
+/* ─── Fonts ─── */
+const monoLink = document.querySelector('link[data-roboto-mono]');
+if (!monoLink) {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap';
+  link.dataset.robotoMono = '';
+  document.head.appendChild(link);
+}
 const sysFont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+const monoFont = "'Roboto Mono', monospace";
 
 /* ─── Navbar (self-contained for this page) ─── */
 const navLinks = [
@@ -40,7 +49,7 @@ function NavbarV2() {
           </a>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(l => (
-              <a key={l.label} href={l.href} className="text-[15px] font-normal text-[#1A1A1A]/60 hover:text-[#2F7D4F] transition-colors tracking-[-0.01em]">{l.label}</a>
+              <a key={l.label} href={l.href} className="text-[13px] font-medium text-[#1A1A1A]/50 hover:text-[#2F7D4F] transition-colors" style={{ fontFamily: monoFont }}>{l.label}</a>
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">

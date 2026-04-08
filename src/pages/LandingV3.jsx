@@ -2,8 +2,17 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ChevronRight, Play, ArrowRight, Zap, Database, Brain, Check } from 'lucide-react';
 
-/* ─── System font stack (matches Viktor — SF Pro on Mac, Segoe UI on Windows) ─── */
+/* ─── Fonts ─── */
+const monoLink = document.querySelector('link[data-roboto-mono]');
+if (!monoLink) {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap';
+  link.dataset.robotoMono = '';
+  document.head.appendChild(link);
+}
 const sysFont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+const monoFont = "'Roboto Mono', monospace";
 
 /* ─── Navbar (self-contained for this page) ─── */
 const navLinks = [
@@ -30,22 +39,22 @@ function NavbarV2() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-white/90 backdrop-blur-xl shadow-sm' : 'bg-transparent'
+          scrolled ? 'bg-[#0F0F0F]/90 backdrop-blur-xl shadow-sm' : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/v3" className="flex items-center gap-2.5">
-            <img src="/emoji_dragon.png" alt="DragonBot" className="h-9" />
-            <span className="font-bold text-xl" style={{ lineHeight: '1', paddingTop: '2px' }}>get<span className="text-[#2F7D4F]">DragonBot</span><span className="text-[#1A1A1A]">.com</span></span>
+          <a href="/v3" className="flex items-center gap-3">
+            <img src="/DragonBot-logo.png" alt="DragonBot" className="h-10" />
+            <span className="font-bold text-[28px] text-white" style={{ lineHeight: '1' }}>get<span className="text-[#2F7D4F]">DragonBot</span><span className="text-white">.com</span></span>
           </a>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(l => (
-              <a key={l.label} href={l.href} className="text-[15px] font-normal text-[#1A1A1A]/60 hover:text-[#2F7D4F] transition-colors tracking-[-0.01em]">{l.label}</a>
+              <a key={l.label} href={l.href} className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>{l.label}</a>
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
             <a href="https://app.dragonsellerbot.com/#/signin"
-              className="px-5 py-2.5 bg-[#2F7D4F]/10 text-[#2F7D4F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-lg hover:shadow-[#2F7D4F]/25">
+              className="px-5 py-2.5 bg-[#F5F3F1] text-[#2F7D4F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-lg hover:shadow-[#2F7D4F]/25">
               Get Started For Free
             </a>
           </div>
@@ -57,13 +66,13 @@ function NavbarV2() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-0 z-40 bg-white pt-20 px-6">
+            className="fixed inset-0 z-40 bg-[#0F0F0F] pt-20 px-6">
             <div className="flex flex-col gap-6">
               {navLinks.map(l => (
-                <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-medium text-[#1A1A1A]">{l.label}</a>
+                <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-medium text-white">{l.label}</a>
               ))}
               <a href="https://app.dragonsellerbot.com/#/signin" onClick={() => setMobileOpen(false)}
-                className="mt-4 px-6 py-3 bg-[#2F7D4F]/10 text-[#2F7D4F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white">
+                className="mt-4 px-6 py-3 bg-[#F5F3F1] text-[#2F7D4F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white">
                 Get Started For Free
               </a>
             </div>
@@ -281,8 +290,28 @@ export default function LandingV3() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="v2-page min-h-screen bg-white" style={{ fontFamily: sysFont }}>
-      <style>{`.v2-page h1,.v2-page h2,.v2-page h3,.v2-page h4,.v2-page h5,.v2-page h6{font-family:inherit!important}`}</style>
+    <div className="v2-page min-h-screen bg-[#0F0F0F] text-white" style={{ fontFamily: sysFont }}>
+      <style>{`
+        .v2-page h1,.v2-page h2,.v2-page h3,.v2-page h4,.v2-page h5,.v2-page h6{font-family:inherit!important}
+        .v2-page .text-\\[\\#1A1A1A\\]{color:#fff!important}
+        .v2-page .text-\\[\\#1A1A1A\\]\\/70{color:rgba(255,255,255,0.7)!important}
+        .v2-page .text-\\[\\#1A1A1A\\]\\/60{color:rgba(255,255,255,0.6)!important}
+        .v2-page .text-\\[\\#1A1A1A\\]\\/55{color:rgba(255,255,255,0.55)!important}
+        .v2-page .text-\\[\\#1A1A1A\\]\\/50{color:rgba(255,255,255,0.5)!important}
+        .v2-page .text-\\[\\#1A1A1A\\]\\/40{color:rgba(255,255,255,0.4)!important}
+        .v2-page .text-\\[\\#1A1A1A\\]\\/35{color:rgba(255,255,255,0.35)!important}
+        .v2-page .text-\\[\\#1A1A1A\\]\\/30{color:rgba(255,255,255,0.3)!important}
+        .v2-page .text-\\[\\#1A1A1A\\]\\/25{color:rgba(255,255,255,0.25)!important}
+        .v2-page .bg-white{background:rgba(255,255,255,0.05)!important}
+        .v2-page .bg-\\[\\#fafafa\\]{background:rgba(255,255,255,0.03)!important}
+        .v2-page .bg-gray-50{background:rgba(255,255,255,0.05)!important}
+        .v2-page .bg-gray-100{background:rgba(255,255,255,0.08)!important}
+        .v2-page .border-gray-200{border-color:rgba(255,255,255,0.1)!important}
+        .v2-page .border-gray-100{border-color:rgba(255,255,255,0.08)!important}
+        .v2-page .bg-\\[\\#2F7D4F\\]\\/5{background:rgba(47,125,79,0.15)!important}
+        .v2-page .bg-\\[\\#2F7D4F\\]\\/10{background:rgba(47,125,79,0.2)!important}
+        .v2-page .border-\\[\\#2F7D4F\\]\\/20{border-color:rgba(47,125,79,0.3)!important}
+      `}</style>
       <NavbarV2 />
 
       {/* ─── HERO ─── */}
@@ -307,7 +336,7 @@ export default function LandingV3() {
 
             <div className="flex items-center justify-center mb-8">
               <a href="https://app.dragonsellerbot.com/#/signin"
-                className="px-10 py-5 text-lg bg-[#2F7D4F]/10 text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
+                className="px-10 py-5 text-lg bg-[#F5F3F1] text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
                 Get Started For Free <ArrowRight className="w-5 h-5" />
               </a>
             </div>
@@ -472,8 +501,8 @@ export default function LandingV3() {
 
           <div className="text-center mt-10">
             <a href="https://app.dragonsellerbot.com/#/signin"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2F7D4F]/10 text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5">
-              Get Started <ArrowRight className="w-4 h-4" />
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#F5F3F1] text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5">
+              Get Started For Free <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -510,8 +539,8 @@ export default function LandingV3() {
 
         <div className="text-center">
           <a href="https://app.dragonsellerbot.com/#/signin"
-            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-white hover:text-[#0F3D2E] hover:shadow-xl">
-            Get Started <ArrowRight className="w-4 h-4" />
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#F5F3F1] text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl">
+            Get Started For Free <ArrowRight className="w-4 h-4" />
           </a>
         </div>
       </Section>
