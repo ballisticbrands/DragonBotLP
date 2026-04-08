@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ChevronRight, Play, ArrowRight, Zap, Database, Brain, Check } from 'lucide-react';
 
+/* ─── System font stack (matches Viktor — SF Pro on Mac, Segoe UI on Windows) ─── */
+const sysFont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
 /* ─── Navbar (self-contained for this page) ─── */
 const navLinks = [
   { label: 'The Shift', href: '#the-shift' },
@@ -33,17 +36,17 @@ function NavbarV2() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="/v2" className="flex items-center gap-2.5">
             <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="h-9" />
-            <span className="font-clash font-bold text-xl text-[#1A1A1A]" style={{ lineHeight: '1', paddingTop: '2px' }}>DragonBot</span>
+            <span className="font-bold text-xl text-[#1A1A1A]" style={{ lineHeight: '1', paddingTop: '2px' }}>DragonBot</span>
           </a>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(l => (
-              <a key={l.label} href={l.href} className="text-sm font-satoshi font-medium text-[#1A1A1A]/70 hover:text-[#2F7D4F] transition-colors">{l.label}</a>
+              <a key={l.label} href={l.href} className="text-[15px] font-normal text-[#1A1A1A]/60 hover:text-[#2F7D4F] transition-colors tracking-[-0.01em]">{l.label}</a>
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
             <a href="https://app.dragonsellerbot.com/#/signin"
-              className="px-5 py-2.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white text-sm font-satoshi font-medium rounded-full transition-all shadow-lg shadow-[#2F7D4F]/20 hover:shadow-[#2F7D4F]/30">
-              Get Started
+              className="px-5 py-2.5 bg-[#2F7D4F]/10 text-[#2F7D4F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-lg hover:shadow-[#2F7D4F]/25">
+              Get Started For Free
             </a>
           </div>
           <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -57,11 +60,11 @@ function NavbarV2() {
             className="fixed inset-0 z-40 bg-white pt-20 px-6">
             <div className="flex flex-col gap-6">
               {navLinks.map(l => (
-                <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-satoshi font-medium text-[#1A1A1A]">{l.label}</a>
+                <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-medium text-[#1A1A1A]">{l.label}</a>
               ))}
               <a href="https://app.dragonsellerbot.com/#/signin" onClick={() => setMobileOpen(false)}
-                className="mt-4 px-6 py-3 bg-[#2F7D4F] text-white text-center font-satoshi font-medium rounded-full">
-                Get Started
+                className="mt-4 px-6 py-3 bg-[#2F7D4F]/10 text-[#2F7D4F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white">
+                Get Started For Free
               </a>
             </div>
           </motion.div>
@@ -83,7 +86,7 @@ function Section({ id, className = '', children }) {
 /* ─── Eyebrow label ─── */
 function Eyebrow({ children }) {
   return (
-    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2F7D4F]/10 rounded-full text-sm font-satoshi font-medium text-[#2F7D4F] mb-6">
+    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2F7D4F]/10 rounded-full text-sm font-medium text-[#2F7D4F] mb-6">
       <span className="w-2 h-2 rounded-full bg-[#98CC65] animate-pulse" />
       {children}
     </span>
@@ -99,8 +102,41 @@ function VideoPlaceholder({ label = 'Video coming soon' }) {
         <div className="w-16 h-16 rounded-full bg-[#2F7D4F] flex items-center justify-center shadow-xl shadow-[#2F7D4F]/25">
           <Play className="w-7 h-7 text-white ml-1" fill="white" />
         </div>
-        <span className="text-sm font-satoshi text-[#1A1A1A]/40">{label}</span>
+        <span className="text-sm text-[#1A1A1A]/40">{label}</span>
       </div>
+    </div>
+  );
+}
+
+/* ─── Hero video with green play button ─── */
+function HeroVideo() {
+  const [playing, setPlaying] = useState(false);
+  const handlePlay = () => {
+    setPlaying(true);
+    // small delay so the video element renders with controls
+    setTimeout(() => {
+      const v = document.getElementById('hero-video');
+      if (v) { v.play(); }
+    }, 50);
+  };
+
+  return (
+    <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-gray-200 shadow-2xl shadow-[#2F7D4F]/10">
+      {!playing ? (
+        <>
+          <img src="/DragonBotAd-thumb.jpg" alt="Product demo" className="w-full h-full object-cover" />
+          <button onClick={handlePlay}
+            className="absolute inset-0 flex items-center justify-center bg-black/10 hover:bg-black/20 transition-colors cursor-pointer">
+            <div className="w-20 h-20 rounded-full bg-[#2F7D4F] flex items-center justify-center shadow-2xl shadow-[#2F7D4F]/40 hover:scale-105 transition-transform">
+              <Play className="w-8 h-8 text-white ml-1" fill="white" />
+            </div>
+          </button>
+        </>
+      ) : (
+        <video id="hero-video" className="w-full h-full object-cover" controls preload="metadata">
+          <source src="/DragonBotAd.mp4" type="video/mp4" />
+        </video>
+      )}
     </div>
   );
 }
@@ -109,7 +145,7 @@ function VideoPlaceholder({ label = 'Video coming soon' }) {
 function ImagePlaceholder({ label = 'Illustration' }) {
   return (
     <div className="w-full h-52 bg-gradient-to-br from-[#f4faf6] to-[#e8f5ed] rounded-xl border border-[#2F7D4F]/10 flex items-center justify-center">
-      <span className="text-sm font-satoshi text-[#1A1A1A]/30">{label}</span>
+      <span className="text-sm text-[#1A1A1A]/30">{label}</span>
     </div>
   );
 }
@@ -120,13 +156,13 @@ function FAQItem({ q, a }) {
   return (
     <div className="border-b border-gray-100">
       <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between py-5 text-left gap-4">
-        <span className="font-satoshi font-medium text-[#1A1A1A]">{q}</span>
+        <span className="font-medium text-[#1A1A1A]">{q}</span>
         <ChevronDown className={`w-5 h-5 text-[#1A1A1A]/40 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       <AnimatePresence>
         {open && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-            <p className="pb-5 font-satoshi text-[#1A1A1A]/60 leading-relaxed">{a}</p>
+            <p className="pb-5 text-[#1A1A1A]/60 leading-relaxed">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -146,23 +182,23 @@ const competitorLogos = {
 function ComparisonRow({ task, them, themLabel, us, usHighlight }) {
   return (
     <div className="mb-8 last:mb-0">
-      <p className="text-sm font-satoshi font-semibold text-[#1A1A1A]/50 uppercase tracking-widest mb-4">{task}</p>
+      <p className="text-sm font-semibold text-[#1A1A1A]/50 uppercase tracking-widest mb-4">{task}</p>
       <div className="grid md:grid-cols-2 gap-5">
         <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
           <div className="flex items-center gap-2.5 mb-3">
             {competitorLogos[themLabel] && (
               <img src={competitorLogos[themLabel]} alt={themLabel} className="w-5 h-5 object-contain" />
             )}
-            <p className="text-sm font-satoshi font-semibold text-[#1A1A1A]/70">{themLabel}</p>
+            <p className="text-sm font-semibold text-[#1A1A1A]/70">{themLabel}</p>
           </div>
-          <p className="font-satoshi text-[#1A1A1A]/70 text-base leading-relaxed">{them}</p>
+          <p className="text-[#1A1A1A]/70 text-base leading-relaxed">{them}</p>
         </div>
         <div className="bg-[#2F7D4F]/5 rounded-2xl p-6 border border-[#2F7D4F]/20 shadow-sm">
           <div className="flex items-center gap-2.5 mb-3">
             <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="w-5 h-5 object-contain" />
-            <p className="text-sm font-satoshi font-semibold text-[#2F7D4F]">DragonBot</p>
+            <p className="text-sm font-semibold text-[#2F7D4F]">DragonBot</p>
           </div>
-          <p className="font-satoshi text-[#1A1A1A] text-base leading-relaxed">
+          <p className="text-[#1A1A1A] text-base leading-relaxed">
             <span className="font-bold bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">{usHighlight}</span>{' '}{us}
           </p>
         </div>
@@ -245,7 +281,8 @@ export default function LandingV2() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="v2-page min-h-screen bg-white" style={{ fontFamily: sysFont }}>
+      <style>{`.v2-page h1,.v2-page h2,.v2-page h3,.v2-page h4,.v2-page h5,.v2-page h6{font-family:inherit!important}`}</style>
       <NavbarV2 />
 
       {/* ─── HERO ─── */}
@@ -258,37 +295,46 @@ export default function LandingV2() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <Eyebrow>Trusted by Amazon &amp; eCommerce brands</Eyebrow>
 
-            <h1 className="font-clash font-semibold text-5xl sm:text-6xl lg:text-7xl text-[#1A1A1A] leading-[1.1] mb-6">
+            <h1 className="font-extrabold text-[48px] sm:text-[64px] lg:text-[88px] text-[#1A1A1A] leading-[1.05] tracking-[-0.035em] mb-6">
               Not a tool.{' '}
               <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">A hire.</span>
             </h1>
 
-            <p className="font-satoshi text-lg sm:text-xl text-[#1A1A1A]/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-              DragonBot is the AI coworker that connects to your eCommerce stack and does the work.
+            <p className="text-[17px] sm:text-[19px] text-[#1A1A1A]/55 max-w-2xl mx-auto mb-10 leading-[1.6] tracking-[-0.01em]">
+              DragonBot is your <span className="underline decoration-[#2F7D4F]/40 decoration-2 underline-offset-4">AI Amazon operator</span> that connects to all your tools and does the work.
               Product research, PPC audits, reports, customer support.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <div className="flex items-center justify-center mb-8">
               <a href="https://app.dragonsellerbot.com/#/signin"
-                className="px-7 py-3.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white font-satoshi font-semibold rounded-full transition-all shadow-xl shadow-[#2F7D4F]/25 hover:shadow-[#2F7D4F]/35 hover:-translate-y-0.5 flex items-center gap-2">
-                Get Started Free <ArrowRight className="w-4 h-4" />
-              </a>
-              <a href="#the-shift"
-                className="px-7 py-3.5 border border-[#1A1A1A]/15 text-[#1A1A1A] font-satoshi font-medium rounded-full hover:border-[#2F7D4F]/40 hover:text-[#2F7D4F] transition-all">
-                See how it works
+                className="px-10 py-5 text-lg bg-[#2F7D4F]/10 text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
+                Get Started For Free <ArrowRight className="w-5 h-5" />
               </a>
             </div>
 
-            <p className="text-sm font-satoshi text-[#1A1A1A]/40">White-glove setup &bull; No credit card required &bull; Cancel anytime</p>
+            <div className="flex flex-wrap items-center justify-center gap-5 text-[13px] font-medium text-[#1A1A1A]/40 tracking-[-0.01em]">
+              <span className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[#2F7D4F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                $100 in Free Credits
+              </span>
+              <span className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[#2F7D4F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+                No Credit Card Required
+              </span>
+              <span className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[#2F7D4F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                SOC 2 Compliant
+              </span>
+            </div>
           </motion.div>
 
           {/* Logos strip */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-16">
-            <p className="text-xs font-satoshi font-medium text-[#1A1A1A]/30 uppercase tracking-widest mb-6">Built by eCommerce operators &amp; engineers from</p>
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-40">
+            className="mt-8">
+            <p className="text-[11px] font-medium text-[#1A1A1A]/25 uppercase tracking-[0.15em] mb-5">Built by eCommerce operators &amp; engineers from</p>
+            <div className="flex flex-wrap items-center justify-center gap-8 opacity-30">
               {['Amazon', 'Shopify', 'Meta', 'Google'].map(name => (
-                <span key={name} className="font-clash font-semibold text-lg text-[#1A1A1A]">{name}</span>
+                <span key={name} className="font-semibold text-lg text-[#1A1A1A]">{name}</span>
               ))}
             </div>
           </motion.div>
@@ -296,7 +342,7 @@ export default function LandingV2() {
           {/* Hero video */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }}
             className="mt-14">
-            <VideoPlaceholder label="Product demo — coming soon" />
+            <HeroVideo />
           </motion.div>
         </div>
       </section>
@@ -305,10 +351,10 @@ export default function LandingV2() {
       <Section id="the-shift" className="bg-[#fafafa]">
         <div className="text-center mb-14">
           <Eyebrow>The Shift</Eyebrow>
-          <h2 className="font-clash font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
+          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
             You&rsquo;ve tried the AI tools.<br />The work is still&nbsp;there.
           </h2>
-          <p className="mt-4 font-satoshi text-lg text-[#1A1A1A]/50 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-[#1A1A1A]/50 max-w-2xl mx-auto">
             ChatGPT. Claude. Zapier. Notion AI. You&rsquo;re already using AI. You&rsquo;re also still doing the work.
           </p>
         </div>
@@ -325,7 +371,7 @@ export default function LandingV2() {
       <Section id="solution">
         <div className="text-center mb-14">
           <Eyebrow>The Solution</Eyebrow>
-          <h2 className="font-clash font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
+          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
             One @mention.{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">
               DragonBot handles&nbsp;it.
@@ -348,10 +394,10 @@ export default function LandingV2() {
               <div className="w-12 h-12 rounded-xl bg-[#2F7D4F]/10 flex items-center justify-center text-[#2F7D4F] mb-5">
                 {f.icon}
               </div>
-              <h3 className="font-clash font-semibold text-lg text-[#1A1A1A] mb-2">{f.title}</h3>
-              <p className="font-satoshi text-[#1A1A1A]/60 text-sm leading-relaxed mb-3">{f.desc}</p>
+              <h3 className="font-semibold text-lg text-[#1A1A1A] mb-2">{f.title}</h3>
+              <p className="text-[#1A1A1A]/60 text-sm leading-relaxed mb-3">{f.desc}</p>
               {f.badge && (
-                <span className="inline-block px-3 py-1 bg-[#2F7D4F]/10 rounded-full text-xs font-satoshi font-medium text-[#2F7D4F]">{f.badge}</span>
+                <span className="inline-block px-3 py-1 bg-[#2F7D4F]/10 rounded-full text-xs font-medium text-[#2F7D4F]">{f.badge}</span>
               )}
               <ImagePlaceholder label={`${f.title} illustration`} />
             </div>
@@ -363,7 +409,7 @@ export default function LandingV2() {
       <Section id="how-it-works" className="bg-[#fafafa]">
         <div className="text-center mb-14">
           <Eyebrow>How It Works</Eyebrow>
-          <h2 className="font-clash font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
+          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
             Onboarding a new hire has never been this&nbsp;easy.
           </h2>
         </div>
@@ -375,9 +421,9 @@ export default function LandingV2() {
             { step: '03', title: 'DragonBot delivers', desc: 'DragonBot queries your tools, analyzes data, and delivers real outputs: PDFs, spreadsheets, dashboards, drafted responses. It also proposes automations you didn\'t think to ask for.' },
           ].map((s, i) => (
             <div key={i} className="bg-white rounded-2xl p-8 border border-gray-200">
-              <span className="font-clash font-bold text-[#2F7D4F] text-sm">/{s.step}</span>
-              <h3 className="font-clash font-semibold text-xl text-[#1A1A1A] mt-2 mb-3">{s.title}</h3>
-              <p className="font-satoshi text-[#1A1A1A]/60 text-sm leading-relaxed mb-5">{s.desc}</p>
+              <span className="font-bold text-[#2F7D4F] text-sm">/{s.step}</span>
+              <h3 className="font-semibold text-xl text-[#1A1A1A] mt-2 mb-3">{s.title}</h3>
+              <p className="text-[#1A1A1A]/60 text-sm leading-relaxed mb-5">{s.desc}</p>
               <ImagePlaceholder label={`Step ${s.step}`} />
             </div>
           ))}
@@ -388,7 +434,7 @@ export default function LandingV2() {
       <Section id="use-cases">
         <div className="text-center mb-14">
           <Eyebrow>Use Cases</Eyebrow>
-          <h2 className="font-clash font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
+          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
             What DragonBot can own for your&nbsp;team
           </h2>
         </div>
@@ -397,7 +443,7 @@ export default function LandingV2() {
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {useCaseTabs.map((tab, i) => (
             <button key={tab.label} onClick={() => setActiveTab(i)}
-              className={`px-5 py-2.5 rounded-full text-sm font-satoshi font-medium transition-all ${
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                 activeTab === i
                   ? 'bg-[#2F7D4F] text-white shadow-lg shadow-[#2F7D4F]/20'
                   : 'bg-white text-[#1A1A1A]/60 border border-gray-200 hover:border-[#2F7D4F]/30 hover:text-[#2F7D4F]'
@@ -409,7 +455,7 @@ export default function LandingV2() {
 
         {/* Tab content */}
         <div className="max-w-4xl mx-auto">
-          <p className="font-satoshi text-[#1A1A1A]/60 text-center mb-10 leading-relaxed">
+          <p className="text-[#1A1A1A]/60 text-center mb-10 leading-relaxed">
             {useCaseTabs[activeTab].intro}
           </p>
           <div className="grid sm:grid-cols-2 gap-6">
@@ -417,16 +463,16 @@ export default function LandingV2() {
               <div key={i} className="bg-[#fafafa] rounded-xl p-6 border border-gray-100 hover:border-[#2F7D4F]/20 transition-all">
                 <div className="flex items-start gap-3 mb-2">
                   <Check className="w-5 h-5 text-[#2F7D4F] mt-0.5 shrink-0" />
-                  <h4 className="font-satoshi font-semibold text-[#1A1A1A]">{f.title}</h4>
+                  <h4 className="font-semibold text-[#1A1A1A]">{f.title}</h4>
                 </div>
-                <p className="font-satoshi text-[#1A1A1A]/50 text-sm leading-relaxed ml-8">{f.desc}</p>
+                <p className="text-[#1A1A1A]/50 text-sm leading-relaxed ml-8">{f.desc}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center mt-10">
             <a href="https://app.dragonsellerbot.com/#/signin"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2F7D4F] hover:bg-[#256B42] text-white font-satoshi font-semibold rounded-full transition-all shadow-xl shadow-[#2F7D4F]/25 hover:shadow-[#2F7D4F]/35 hover:-translate-y-0.5">
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2F7D4F]/10 text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5">
               Get Started <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -436,7 +482,7 @@ export default function LandingV2() {
       {/* ─── SOCIAL PROOF ─── */}
       <Section className="bg-[#0F3D2E]">
         <div className="text-center mb-14">
-          <h2 className="font-clash font-semibold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
             Brands love{' '}
             <span className="inline-flex items-center gap-2">
               <img src="/logos/dragonbot_fire.png" alt="" className="h-10 inline" />
@@ -448,14 +494,14 @@ export default function LandingV2() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {testimonials.map((t, i) => (
             <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-              <p className="font-satoshi text-white/70 text-sm leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
+              <p className="text-white/70 text-sm leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#2F7D4F] flex items-center justify-center text-white text-xs font-satoshi font-bold">
+                <div className="w-8 h-8 rounded-full bg-[#2F7D4F] flex items-center justify-center text-white text-xs font-bold">
                   {t.name.charAt(0)}
                 </div>
                 <div>
-                  <p className="font-satoshi font-medium text-white text-sm">{t.name}</p>
-                  <p className="font-satoshi text-white/40 text-xs">{t.role}</p>
+                  <p className="font-medium text-white text-sm">{t.name}</p>
+                  <p className="text-white/40 text-xs">{t.role}</p>
                 </div>
               </div>
             </div>
@@ -464,7 +510,7 @@ export default function LandingV2() {
 
         <div className="text-center">
           <a href="https://app.dragonsellerbot.com/#/signin"
-            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#0F3D2E] font-satoshi font-semibold rounded-full transition-all hover:bg-white/90 shadow-xl">
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-white hover:text-[#0F3D2E] hover:shadow-xl">
             Get Started <ArrowRight className="w-4 h-4" />
           </a>
         </div>
@@ -474,7 +520,7 @@ export default function LandingV2() {
       <Section id="faq">
         <div className="text-center mb-14">
           <Eyebrow>FAQ</Eyebrow>
-          <h2 className="font-clash font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
+          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
             Frequently asked questions
           </h2>
         </div>
@@ -492,16 +538,16 @@ export default function LandingV2() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-2.5">
               <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="h-8" />
-              <span className="font-clash font-bold text-lg text-white">DragonBot</span>
+              <span className="font-bold text-lg text-white">DragonBot</span>
             </div>
             <div className="flex flex-wrap justify-center gap-8">
               {['The Shift', 'Solution', 'How It Works', 'Use Cases', 'FAQ'].map(label => (
                 <a key={label} href={`#${label.toLowerCase().replace(/\s/g, '-')}`}
-                  className="text-sm font-satoshi text-white/50 hover:text-white transition-colors">{label}</a>
+                  className="text-sm text-white/50 hover:text-white transition-colors">{label}</a>
               ))}
-              <a href="/privacy" className="text-sm font-satoshi text-white/50 hover:text-white transition-colors">Privacy</a>
+              <a href="/privacy" className="text-sm text-white/50 hover:text-white transition-colors">Privacy</a>
             </div>
-            <p className="text-sm font-satoshi text-white/30">&copy; 2026 DragonBot. All rights reserved.</p>
+            <p className="text-sm text-white/30">&copy; 2026 DragonBot. All rights reserved.</p>
           </div>
         </div>
       </footer>

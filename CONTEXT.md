@@ -3,6 +3,11 @@ This is the landing page for DragonBot.
 You can view the DragonBot project here:
 https://github.com/ballisticbrands/DragonBot
 
+## Branding
+For all style and branding decisions (tone of voice, colors, fonts, button styles, component patterns, writing rules), refer to and update:
+**`/Users/gershonballas/work/DragonBot/DragonBot-marketing/BRANDING.md`**
+This file is the single source of truth for DragonBot branding across all repos and assets. Any branding changes must be reflected there.
+
 ## Structure
 * header/hero section - clearly explaining what this is - a chatbox animation similar to the ones shown in more detail at the features section below showing the capabilities of dragonbot. this should be paired with an animation showing the dragonbot being connected to all of their services - Google drive/sheets, amazon seller central, the open web, their notion, their slack, and 266+ other services (we'll replace "266" with whatever random number - to give them ease of mind that it will connect to their service).
 * AI advantage section - tell them about AI adoption for ecommerce and scare them that their competitors already do it. put a placeholder here for now that will say "Your business NEEDS AI".
