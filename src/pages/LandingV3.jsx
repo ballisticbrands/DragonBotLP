@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ChevronRight, Play, ArrowRight, Zap, Database, Brain, Check } from 'lucide-react';
+import { tr } from 'framer-motion/client';
 
 /* ─── Fonts ─── */
 const monoLink = document.querySelector('link[data-roboto-mono]');
@@ -120,7 +121,7 @@ function VideoPlaceholder({ label = 'Video coming soon' }) {
 }
 
 /* ─── Slack demo — per-channel messages ─── */
-const SLACK_CHANNELS = ['#general', '#ppc', '#product-research', '#customer-support'];
+const SLACK_CHANNELS = ['#general', '#ppc', '#keyword-research', '#product-research', '#customer-support'];
 const SLACK_DMS = [
   { name: 'Jake Morrison', initials: 'JM' },
   { name: 'Lisa Kim', initials: 'LK' },
@@ -133,21 +134,37 @@ const CHANNEL_MSGS = {
     { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:07 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@here</span> — URGENT! Our Amazon listing got suppressed, we're losing $2K/hour</> },
     { who: 'Omer', initials: 'OB', color: '#E67E22', time: '10:08 AM', text: <>Busy</> },
     { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '10:08 AM', text: <>I'm on vacation 🏖️</> },
-    { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:10 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> ?</>, reactions: ['⏳', '🐉'] },
-    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '10:13 AM', isBot: true, text: <>Found it — backend image URL returned a 404, triggered an automated suppression. I've re-uploaded the image and submitted a reinstatement request. Listing should be back within 2 hours.<br/><span style={{ color: '#1264A3', fontSize: 13, fontWeight: 600, marginTop: 4, display: 'inline-block' }}>See more</span></> },
+    { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:10 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> ?</>, tagsBot: true },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '10:13 AM', isBot: true, isThread: true, text: <>Found it — backend image URL returned a 404, triggered an automated suppression. I've re-uploaded the image and submitted a reinstatement request. Listing should be back within 2 hours.<br/><span style={{ color: '#1264A3', fontSize: 13, fontWeight: 600, marginTop: 4, display: 'inline-block' }}>See more</span></> },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '10:14 AM', isBot: true, isThread: true, text: <>Want me to set up a scheduled task to check all your listings every hour? I'll ping you here immediately if anything goes down 🐉</> },
+    { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:15 AM', isThread: true, text: 'yes please', tagsBot: true },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '10:15 AM', isBot: true, isThread: true, text: <>Done. You can see all of my scheduled tasks on <span style={{ color: '#1264A3', fontWeight: 600, textDecoration: 'underline', cursor: 'pointer' }}>this page</span>. 🐉</> },
   ],
   '#ppc': [
     { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '2:15 PM', text: 'Our product launch ACOS is wayy too high, anyone got time to dig in?' },
-    { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '2:16 PM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> can you take a look?</>, reactions: ['⏳', '🐉'] },
-    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:22 PM', isBot: true, isThread: true, text: <>Found 23 bleeding keywords. Paused them. ACOS projected to go down from 38% to 26%.<br/>Want me to look into <span style={{ fontWeight: 700, textDecoration: 'underline' }}>Amazon SQP</span> data to suggest more relevant keywords for our PPC campaign?<br/><span style={{ color: '#1264A3', fontSize: 13, fontWeight: 600, marginTop: 4, display: 'inline-block' }}>See more</span><br/><span style={{ color: '#9B9C9E', fontSize: 13, fontStyle: 'italic' }}>I'll check again in 24h and report back.</span></> },
+    { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '2:16 PM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> can you take a look?</>, tagsBot: true },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:22 PM', isBot: true, isThread: true, text: <>Found 23 bleeding keywords. Paused them. ACOS projected to go down from 38% to 26%.<br/><span style={{ color: '#9B9C9E', fontSize: 13, fontStyle: 'italic' }}>I'll check again in 24h and report back.</span></> },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:22 PM', isBot: true, isThread: true, text: <><div style={{ fontWeight: 700, marginBottom: 4 }}>Here's what I did:</div><div style={{ borderLeft: '3px solid #3F4145', paddingLeft: 10, fontSize: 13, color: '#9B9C9E', display: 'flex', flexDirection: 'column', gap: 4 }}><div>🛑 Paused: "garlic press silicone", "garlic mincer cheap", "kitchen tool set garlic" — bleeding $42/day with 0 conversions</div><div>🛑 Paused: "garlic crusher bulk", "garlic peeler press combo" — high impressions, 0.3% CTR, $18/day wasted</div><div>✅ Reallocated $60/day to: "stainless steel garlic press", "garlic press easy clean", "premium garlic crusher", "large garlic press" — all converting at 12%+ ROAS</div></div><div style={{ marginTop: 6, color: '#9B9C9E', fontSize: 13, fontStyle: 'italic' }}>I'll check again in 24h and report back.</div></> },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:23 PM', isBot: true, isThread: true, text: <>Want me to look into Amazon SQP data to suggest more relevant keywords for our PPC campaign?</> },
+    { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '2:25 PM', isThread: true, text: 'yes please', tagsBot: true },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:25 PM', isBot: true, isThread: true, text: <>Give me a minute. Pulling SQP data from Amazon Seller Central.</> },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:28 PM', isBot: true, isThread: true, text: <><div style={{ fontWeight: 700, marginBottom: 4 }}>SQP analysis complete. Here's what I found:</div><div style={{ borderLeft: '3px solid #3F4145', paddingLeft: 10, fontSize: 13, color: '#9B9C9E', display: 'flex', flexDirection: 'column', gap: 4 }}><div><strong style={{ color: '#D1D2D3' }}>Top purchase drivers:</strong> "garlic press stainless steel" (23% purchase share), "garlic crusher heavy duty" (18%), "easy clean garlic press" (14%)</div><div><strong style={{ color: '#D1D2D3' }}>We're missing:</strong> "garlic press dishwasher safe" — 9,200 monthly searches, competitors converting at 15%, we have 0 bids on it</div><div><strong style={{ color: '#D1D2D3' }}>Brand comparison:</strong> Shoppers who viewed us also viewed Zulay (34%) and OXO (28%) — we're losing on "premium" keywords they dominate</div></div></> },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:29 PM', isBot: true, isThread: true, text: <>Want me to put all of this in a Google Sheet so you can share it with the team? I can also set up the new campaigns based on these findings. Just message me anytime 🐉</> },
+  ],
+  '#keyword-research': [
+    { who: 'Omer', initials: 'OB', color: '#E67E22', time: '11:30 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> do keyword research on these competitor ASINs:<br/>B0CK5LRQX7, B0D3FHYMN1, B0BX1GTNRV, B0CQXG71VB, B0DK7HM3RP</>, tagsBot: true },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '11:34 AM', isBot: true, isThread: true, text: <>Done. Full keyword research workbook ready — uploaded to Google Drive:<div style={{ marginTop: 8, border: '1px solid #3F4145', borderRadius: 8, overflow: 'hidden', maxWidth: 380 }}><div style={{ backgroundColor: '#0F9D58', padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 6 }}><div style={{ width: 18, height: 18, backgroundColor: 'white', borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 900, color: '#0F9D58' }}>S</div><span style={{ color: 'white', fontSize: 12, fontWeight: 700 }}>Competitor ASIN Analysis — Workbook</span></div><div style={{ padding: '6px 10px', backgroundColor: '#2C2D30', display: 'flex', gap: 3, fontSize: 10, color: '#9B9C9E' }}>{['Raw Data', 'Filtered', 'Root KWs', 'Master List', 'PPC Setup'].map((t, i) => <span key={i} style={{ padding: '2px 6px', backgroundColor: i === 0 ? '#3F4145' : 'transparent', borderRadius: 3, fontWeight: i === 0 ? 600 : 400 }}>{t}</span>)}</div></div><div style={{ marginTop: 6, fontSize: 13, color: '#9B9C9E' }}>1,847 relevant keywords across 5 ASINs. 312 root keywords identified. 89 negative match candidates flagged. PPC Setup tab has suggested campaign structure with bid estimates.</div></> },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '11:35 AM', isBot: true, isThread: true, text: <>Have a look and let me know if you want any changes — I can keep editing the sheet with you. Just message me here anytime 🐉</> },
   ],
   '#product-research': [
-    { who: 'Omer', initials: 'OB', color: '#E67E22', time: '11:30 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> do <span style={{ fontWeight: 700, textDecoration: 'underline' }}>keyword research</span> on these competitor ASINs:<br/>B0CK5LRQX7, B0D3FHYMN1, B0BX1GTNRV</>, reactions: ['⏳', '🐉'] },
-    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '11:34 AM', isBot: true, text: <>Done. Full keyword research workbook ready, including suggested PPC launch setup for our product:<div style={{ marginTop: 8, border: '1px solid #3F4145', borderRadius: 8, overflow: 'hidden', maxWidth: 380 }}><div style={{ backgroundColor: '#0F9D58', padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 6 }}><div style={{ width: 18, height: 18, backgroundColor: 'white', borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 900, color: '#0F9D58' }}>S</div><span style={{ color: 'white', fontSize: 12, fontWeight: 700 }}>Competitor ASIN Analysis — Workbook</span></div><div style={{ padding: '6px 10px', backgroundColor: '#2C2D30', display: 'flex', gap: 3, fontSize: 10, color: '#9B9C9E' }}>{['Raw Data', 'Filtered', 'Root KWs', 'Master List'].map((t, i) => <span key={i} style={{ padding: '2px 6px', backgroundColor: i === 0 ? '#3F4145' : 'transparent', borderRadius: 3, fontWeight: i === 0 ? 600 : 400 }}>{t}</span>)}</div></div><div style={{ marginTop: 6, fontSize: 13, color: '#9B9C9E' }}>1,847 relevant keywords. 312 root keywords. 89 negative match candidates.</div></> },
+    { who: 'Jake', initials: 'JM', color: '#1264A3', time: '9:15 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> we're thinking about launching a new garlic press. Can you analyze these 5 competitors?<br/>B0BXDMWJMG, B0CP8BRKJX, B09X1T9FWC, B0CG7GRMP2, B0DFDJFYRN</>, tagsBot: true },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '9:22 AM', isBot: true, isThread: true, text: <>Done. Full competitive analysis ready — uploaded to Google Drive:<div style={{ marginTop: 8, border: '1px solid #3F4145', borderRadius: 8, overflow: 'hidden', maxWidth: 420 }}><div style={{ backgroundColor: '#0F9D58', padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 6 }}><div style={{ width: 18, height: 18, backgroundColor: 'white', borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 900, color: '#0F9D58' }}>S</div><span style={{ color: 'white', fontSize: 12, fontWeight: 700 }}>Garlic Press — Competitor Analysis</span></div><div style={{ padding: '6px 10px', backgroundColor: '#2C2D30', display: 'flex', gap: 3, fontSize: 10, color: '#9B9C9E' }}>{['Overview', 'Reviews', 'Sales Est.', 'Opportunities'].map((t, i) => <span key={i} style={{ padding: '2px 6px', backgroundColor: i === 0 ? '#3F4145' : 'transparent', borderRadius: 3, fontWeight: i === 0 ? 600 : 400 }}>{t}</span>)}</div></div></> },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '9:22 AM', isBot: true, isThread: true, text: <><div style={{ fontSize: 13, lineHeight: 1.7, color: '#D1D2D3' }}><div style={{ fontWeight: 700, marginBottom: 4 }}>Quick summary:</div><div style={{ borderLeft: '3px solid #3F4145', paddingLeft: 10, color: '#9B9C9E', display: 'flex', flexDirection: 'column', gap: 6 }}><div><strong style={{ color: '#D1D2D3' }}>B0BXDMWJMG</strong> — ~4,200 units/mo · ⭐ 4.6 (12,847 reviews)<br/>Pros: ergonomic handle, built-in cleaner. Cons: rusts after 3-4 months per reviews.</div><div><strong style={{ color: '#D1D2D3' }}>B0CP8BRKJX</strong> — ~2,800 units/mo · ⭐ 4.4 (3,291 reviews)<br/>Pros: large chamber, dishwasher safe. Cons: hinge feels cheap, multiple complaints.</div><div><strong style={{ color: '#D1D2D3' }}>B09X1T9FWC</strong> — ~1,900 units/mo · ⭐ 4.7 (8,104 reviews)<br/>Pros: stainless steel, premium feel. Cons: priced high at $24.99, small garlic chamber.</div><div><strong style={{ color: '#D1D2D3' }}>B0CG7GRMP2</strong> — ~3,500 units/mo · ⭐ 4.3 (5,672 reviews)<br/>Pros: budget-friendly at $9.99, 2-pack. Cons: weak leverage, not for large cloves.</div></div><div style={{ marginTop: 8, color: '#D1D2D3' }}><strong>🔥 Opportunity:</strong> No one is offering a rust-proof, large-chamber press with a built-in cleaner under $18. That's your gap.</div></div></> },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '9:23 AM', isBot: true, isThread: true, text: <>Have a look at the sheet and let me know if you want any changes — I can keep editing it with you. Just message me here anytime 🐉</> },
   ],
   '#customer-support': [
     { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:47 PM', isBot: true, text: <><div style={{ fontWeight: 700 }}>🚨 Incoming buyer message — needs attention</div><div style={{ marginTop: 6, borderLeft: '3px solid #3F4145', paddingLeft: 10, fontSize: 13, lineHeight: 1.6, color: '#9B9C9E' }}><div><strong>Order:</strong> <span style={{ color: '#1264A3' }}>#112-4839201-7756812</span></div><div><strong>Product:</strong> Garlic Press Premium Case — 3-Pack</div><div style={{ marginTop: 4, fontStyle: 'italic' }}>"I received my order today but one of the three cases was cracked. I'd like a refund."</div></div><div style={{ marginTop: 6, fontSize: 13 }}><strong>Checked our Notion return policy</strong> — damaged items qualify for full refund, no return required.</div><div style={{ marginTop: 4, padding: '6px 10px', backgroundColor: '#2C2D30', borderRadius: 6, fontSize: 13, fontStyle: 'italic', lineHeight: 1.5, color: '#9B9C9E' }}>"Hi Rachel, I'm so sorry! I've issued a full refund of $29.99. No need to return the damaged item. 🙏"</div><div style={{ marginTop: 6, fontWeight: 700, fontSize: 13 }}>Shall I send this response and process the $29.99 refund?</div></> },
-    { who: 'Jake', initials: 'JM', color: '#1264A3', time: '2:49 PM', isThread: true, text: 'approved, please send' },
+    { who: 'Jake', initials: 'JM', color: '#1264A3', time: '2:49 PM', isThread: true, text: 'approved, please send', tagsBot: true },
     { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:49 PM', isBot: true, isThread: true, text: <>Done ✅ Response sent and refund processed.<div style={{ marginTop: 4, display: 'flex', flexDirection: 'column', gap: 3, fontSize: 13 }}><span style={{ color: '#1264A3' }}>📩 View reply on Amazon →</span><span style={{ color: '#1264A3' }}>💰 View refund → $29.99 refunded</span></div></> },
   ],
 };
@@ -180,7 +197,7 @@ function SlackMsg({ m }) {
   );
 }
 
-function SlackDemo({ activeChannel, setActiveChannel, onPinChange }) {
+function SlackDemo({ activeChannel, setActiveChannel, onPinChange, pinned }) {
   const msgs = CHANNEL_MSGS[activeChannel] || [];
   const wrapperRef = useRef(null);
   const chatRef = useRef(null);
@@ -252,10 +269,13 @@ function SlackDemo({ activeChannel, setActiveChannel, onPinChange }) {
 
   return (
     <div ref={pinRef}>
-    <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-4">
+    <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-4 mt-8">
       This is your company's <span className="bg-gradient-to-r from-[#9B59B6] to-[#B794F4] bg-clip-text text-transparent">Slack</span> with{' '}
       <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
     </h4>
+    <p className="text-center text-xs font-bold uppercase tracking-widest text-white/40 mb-4" style={{ fontFamily: monoFont }}>
+      Based on real customer conversations with <span className="text-[#2F7D4F]">DragonBot</span>
+    </p>
     <div className="flex flex-wrap justify-center gap-2 mb-4">
       {SLACK_CHANNELS.map(ch => (
         <button key={ch} onClick={() => setActiveChannel(ch)}
@@ -268,7 +288,8 @@ function SlackDemo({ activeChannel, setActiveChannel, onPinChange }) {
         </button>
       ))}
     </div>
-    <div ref={wrapperRef} className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl text-left" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+    <div className="relative">
+    <div ref={wrapperRef} className="w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl text-left" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       <div className="flex h-full w-full">
         {/* Sidebar */}
         <div className="shrink-0 flex flex-col py-3" style={{ width: '20%', backgroundColor: '#4A154B' }}>
@@ -306,11 +327,17 @@ function SlackDemo({ activeChannel, setActiveChannel, onPinChange }) {
           <div ref={chatRef} className="flex-1 flex flex-col justify-end gap-1 overflow-y-auto py-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
             {msgs.map((m, i) => {
               if (isAnimated && i >= visibleCount) return null;
+              // Compute reactions: if this message tags the bot, show ⏳+🐉 until bot replies, then just 🐉
+              let reactions = m.reactions;
+              if (m.tagsBot) {
+                const botReplied = msgs.slice(i + 1).some((next, j) => next.isBot && (i + 1 + j) < visibleCount);
+                reactions = botReplied ? ['🐉'] : ['⏳', '🐉'];
+              }
               return (
                 <div key={`${activeChannel}-${i}`} style={isAnimated ? {
                   animation: 'slackMsgIn 0.3s ease-out',
                 } : undefined}>
-                  <SlackMsg m={m} />
+                  <SlackMsg m={{ ...m, reactions }} />
                 </div>
               );
             })}
@@ -323,6 +350,32 @@ function SlackDemo({ activeChannel, setActiveChannel, onPinChange }) {
           </div>
         </div>
       </div>
+    </div>
+    <AnimatePresence>
+      {pinned && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-1/2 -translate-y-1/2 -right-32 flex-col items-center gap-2 pointer-events-none hidden lg:flex"
+        >
+          <span className="text-[#98CC65] text-lg font-medium uppercase tracking-widest leading-tight text-center" style={{ fontFamily: monoFont }}>Keep<br/>scrolling</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <svg width="20" height="24" viewBox="0 0 7 10" fill="none" style={{ imageRendering: 'pixelated' }}>
+              <rect x="2" y="0" width="3" height="4" fill="#2E7E4F"/>
+              <rect x="0" y="4" width="7" height="1" fill="#2E7E4F"/>
+              <rect x="1" y="5" width="5" height="1" fill="#2E7E4F"/>
+              <rect x="2" y="6" width="3" height="1" fill="#2E7E4F"/>
+              <rect x="3" y="7" width="1" height="1" fill="#2E7E4F"/>
+            </svg>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
     </div>
     </div>
   );
@@ -393,34 +446,65 @@ function FAQItem({ q, a }) {
 /* ─── Competitor logos ─── */
 const competitorLogos = {
   ChatGPT: 'https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg',
-  Spreadsheets: 'https://cdn.worldvectorlogo.com/logos/google-sheets-logo-icon.svg',
-  'Helpdesk AI': 'https://cdn.worldvectorlogo.com/logos/zendesk-1.svg',
-  Zapier: 'https://cdn.worldvectorlogo.com/logos/zapier-1.svg',
+  Claude: 'https://cdn.worldvectorlogo.com/logos/anthropic-1.svg',
+  'Jungle Scout': '/logo-junglescout.png',
+  'Helium 10': '/logo-helium10.png',
 };
 
 /* ─── Comparison row ─── */
-function ComparisonRow({ task, them, themLabel, us, usHighlight }) {
+function SplitSentences({ text }) {
+  if (!text) return null;
+  const sentences = text.split(/(?<=\.)\s+/);
+  return sentences.map((s, i) => <div key={i}>{s}</div>);
+}
+
+function ComparisonRow({ task, them, themLabel, themHighlight, us, usHighlight }) {
   return (
     <div className="mb-8 last:mb-0">
       <p className="text-sm font-semibold text-[#1A1A1A]/50 uppercase tracking-widest mb-4">{task}</p>
       <div className="grid md:grid-cols-2 gap-5">
-        <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-2.5 mb-3">
+        <div className="bg-red-950/20 rounded-2xl p-6 border border-red-900/20 shadow-sm">
+          <div className="flex items-center gap-2.5 mb-3 h-8">
             {competitorLogos[themLabel] && (
-              <img src={competitorLogos[themLabel]} alt={themLabel} className="w-5 h-5 object-contain" />
+              <img src={competitorLogos[themLabel]} alt={themLabel} className={`w-5 h-5 object-contain ${themLabel === 'ChatGPT' ? 'invert brightness-200' : ''}`} />
             )}
             <p className="text-sm font-semibold text-[#1A1A1A]/70">{themLabel}</p>
           </div>
-          <p className="text-[#1A1A1A]/70 text-base leading-relaxed">{them}</p>
+          <div className="text-[#1A1A1A]/70 text-base leading-relaxed">
+            {Array.isArray(them)
+              ? them.map((item, i) => (
+                  <div key={i}>{item.h
+                    ? <span className="font-bold text-[#F87171]">{item.t}</span>
+                    : item.t
+                  }</div>
+                ))
+              : them.split(/(?<=\.)\s+/).map((s, i) => (
+                  <div key={i}>{themHighlight && s.trim() === themHighlight.trim() ? <span className="font-bold text-[#F87171]">{s}</span> : s}</div>
+                ))
+            }
+          </div>
         </div>
         <div className="bg-[#2F7D4F]/5 rounded-2xl p-6 border border-[#2F7D4F]/20 shadow-sm">
-          <div className="flex items-center gap-2.5 mb-3">
-            <img src="/DragonBot-logo.png" alt="DragonBot" className="w-8 h-8 object-contain" />
+          <div className="flex items-center gap-2.5 mb-3 h-8">
+            <motion.img src="/DragonBot-logo.png" alt="DragonBot" className="w-8 h-8 object-contain"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} />
             <p className="text-sm font-semibold text-[#2F7D4F]">DragonBot</p>
           </div>
-          <p className="text-[#1A1A1A] text-base leading-relaxed">
-            <span className="font-bold bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">{usHighlight}</span>{' '}{us}
-          </p>
+          <div className="text-[#1A1A1A] text-base leading-relaxed">
+            {usHighlight && (Array.isArray(usHighlight)
+              ? usHighlight.map((item, i) => (
+                  <div key={i}>{item.h
+                    ? <span className="font-bold text-[#98CC65]">{item.t}</span>
+                    : item.t
+                  }</div>
+                ))
+              : usHighlight.split(/(?<=\.)\s+/).map((s, i) => (
+                  <div key={i}><span className="font-bold text-[#98CC65]">{s}</span></div>
+                ))
+            )}
+            {us && <SplitSentences text={us} />}
+          </div>
         </div>
       </div>
     </div>
@@ -504,33 +588,6 @@ export default function LandingV3() {
 
   return (
     <div className="v2-page min-h-screen bg-[#0F0F0F] text-white" style={{ fontFamily: sysFont }}>
-      {/* Fixed "Keep scrolling" indicator — visible only while Slack demo is pinned */}
-      <AnimatePresence>
-        {slackPinned && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-1/2 -translate-y-1/2 z-50 flex-col items-center gap-2 pointer-events-none hidden lg:flex"
-            style={{ left: 'calc(50% + 420px)' }}
-          >
-            <span className="text-[#98CC65] text-lg font-medium uppercase tracking-widest leading-tight text-center" style={{ fontFamily: monoFont }}>Keep<br/>scrolling</span>
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <svg width="20" height="24" viewBox="0 0 7 10" fill="none" style={{ imageRendering: 'pixelated' }}>
-                <rect x="2" y="0" width="3" height="4" fill="#2E7E4F"/>
-                <rect x="0" y="4" width="7" height="1" fill="#2E7E4F"/>
-                <rect x="1" y="5" width="5" height="1" fill="#2E7E4F"/>
-                <rect x="2" y="6" width="3" height="1" fill="#2E7E4F"/>
-                <rect x="3" y="7" width="1" height="1" fill="#2E7E4F"/>
-              </svg>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
       <style>{`
         .v2-page h1,.v2-page h2,.v2-page h3,.v2-page h4,.v2-page h5,.v2-page h6{font-family:inherit!important}
         @keyframes slackMsgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -571,7 +628,7 @@ export default function LandingV3() {
             </h1>
 
             <p className="text-[17px] sm:text-[19px] text-[#1A1A1A]/55 max-w-2xl mx-auto mb-10 leading-[1.6] tracking-[-0.01em]">
-              DragonBot is your <span className="underline decoration-[#2F7D4F]/40 decoration-2 underline-offset-4">AI Amazon operator</span> that connects to all your tools and does the work.
+              DragonBot is your <span className="underline decoration-[#98CC65]/60 decoration-[2px] underline-offset-4">AI Amazon operator</span> that connects to all your tools and does the work.
               Product research, PPC audits, reports, customer support.
             </p>
 
@@ -613,7 +670,7 @@ export default function LandingV3() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-14 flex justify-center">
             <div className="w-[800px]">
-              <SlackDemo activeChannel={slackChannel} setActiveChannel={setSlackChannel} onPinChange={setSlackPinned} />
+              <SlackDemo activeChannel={slackChannel} setActiveChannel={setSlackChannel} onPinChange={setSlackPinned} pinned={slackPinned} />
             </div>
           </motion.div>
 
@@ -648,35 +705,97 @@ export default function LandingV3() {
       </Section>
 
       {/* ─── THE SHIFT ─── */}
-      <Section id="the-shift" className="bg-[#fafafa]">
+      <Section id="the-shift">
         <div className="text-center mb-14">
-          <Eyebrow>The Shift</Eyebrow>
-          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
-            You&rsquo;ve tried the AI tools.<br />The work is still&nbsp;there.
-          </h2>
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+            You&rsquo;ve tried the other tools. <span className="bg-gradient-to-r from-[#DC2626] to-[#F87171] bg-clip-text text-transparent">The work is still there.</span>
+          </h4>
           <p className="mt-4 text-lg text-[#1A1A1A]/50 max-w-2xl mx-auto">
-            ChatGPT. Claude. Zapier. Notion AI. You&rsquo;re already using AI. You&rsquo;re also still doing the work.
+            ChatGPT. Claude. Zapier. Notion AI. You&rsquo;re already using AI.<br />You&rsquo;re also still doing the work.
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <ComparisonRow task="Product Research" themLabel="ChatGPT" them="Tells you how to research your competitors." usHighlight="Researches them." us="Hands you the spreadsheet." />
-          <ComparisonRow task="PPC Ad Audit" themLabel="Spreadsheets" them="You pull the data, pivot, and squint at ACoS columns for hours." usHighlight="Audits every campaign." us="Sends you the recommendations." />
-          <ComparisonRow task="Customer Support" themLabel="Helpdesk AI" them="Suggests canned responses you still have to send." usHighlight="Triages, drafts, routes, and follows up." us="You just review." />
-          <ComparisonRow task="Logistics & Ops" themLabel="Zapier" them="Follows rules you write. Breaks when something changes." usHighlight="Figures out what needs automating" us="and does it." />
+          <ComparisonRow task="PPC" themLabel="ChatGPT" them={[
+            { t: 'Manually download your PPC reports.', h: true },
+            { t: 'Gives you suggestions.' },
+            { t: 'Manually make the changes.', h: true },
+          ]} usHighlight={[
+            { t: 'Audits campaigns every day on its own.', h: true },
+            { t: 'Gives you suggestions.' },
+            { t: 'Makes the changes for you.', h: true },
+          ]} us="" />
+          <ComparisonRow task="Product Research" themLabel="Jungle Scout" them={[
+            { t: 'Manually browse hundreds of product pages.', h: true },
+            { t: 'Export CSVs.' },
+            { t: 'Pivot tables.' },
+            { t: 'Manually analyze the data.', h: true },
+          ]} usHighlight={[
+            { t: 'Pulls the data from Amazon.', h: true },
+            { t: 'Organizes it.' },
+            { t: 'Explains it to you.' },
+            { t: 'Brainstorms with you.', h: true },
+          ]} us="" />
+          <ComparisonRow task="Keyword Research" themLabel="Helium 10" them={[
+            { t: 'Manually find competitor ASINs.', h: true },
+            { t: 'Export raw keyword lists.' },
+            { t: 'Manually find root keywords, negative matches.', },
+            { t: 'Spend hours organizing sheets.', h: true },
+          ]} usHighlight={[
+            { t: 'Helps you find competitor ASINs.', h: true },
+            { t: 'Does the keyword research for you.' },
+            { t: 'Crafts root keywords, negative matches, PPC setup.' },
+            { t: 'Delivers you a Google Sheet.', h: true },
+          ]} us="" />
+          <ComparisonRow task="Customer Support" themLabel="Claude" them={[
+            { t: 'Manually copy/paste customer messages.', h: true },
+            { t: 'Drafts a response template.' },
+            { t: 'Manually copy/paste reply & process refund.', h: true },
+          ]} usHighlight={[
+            { t: 'Pulls the message from Amazon.', h: true },
+            { t: 'Checks your Notion.' },
+            { t: 'Drafts the response.' },
+            { t: 'Processes the refund.' },
+            { t: 'Sends you the links to the reply and refund.', h: true },
+          ]} us="" />
+        </div>
+      </Section>
+
+      {/* ─── SECURITY ─── */}
+      <Section id="security">
+        <div className="text-center mb-14">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+            Let's talk <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">security</span> and <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">accountability</span>
+          </h4>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+            <div className="text-2xl mb-3">🔒</div>
+            <h5 className="font-semibold text-lg mb-2">End-to-end encryption</h5>
+            <p className="text-sm text-white/50 leading-relaxed">All data is encrypted in transit and at rest. We never store your credentials — only secure OAuth tokens.</p>
+          </div>
+          <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+            <div className="text-2xl mb-3">🏢</div>
+            <h5 className="font-semibold text-lg mb-2">Isolated workspaces</h5>
+            <p className="text-sm text-white/50 leading-relaxed">Each company gets a fully isolated environment. Your data is never shared, mixed, or used for training.</p>
+          </div>
+          <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+            <div className="text-2xl mb-3">✅</div>
+            <h5 className="font-semibold text-lg mb-2">You stay in control</h5>
+            <p className="text-sm text-white/50 leading-relaxed">DragonBot asks before high-stakes actions. Revoke access to any tool at any time. Full audit log of everything it does.</p>
+          </div>
         </div>
       </Section>
 
       {/* ─── THE SOLUTION ─── */}
       <Section id="solution">
         <div className="text-center mb-14">
-          <Eyebrow>The Solution</Eyebrow>
-          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             One @mention.{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">
               DragonBot handles&nbsp;it.
             </span>
-          </h2>
+          </h4>
         </div>
 
         <div className="max-w-4xl mx-auto mb-16">
@@ -706,12 +825,11 @@ export default function LandingV3() {
       </Section>
 
       {/* ─── HOW IT WORKS ─── */}
-      <Section id="how-it-works" className="bg-[#fafafa]">
+      <Section id="how-it-works">
         <div className="text-center mb-14">
-          <Eyebrow>How It Works</Eyebrow>
-          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             Onboarding a new hire has never been this&nbsp;easy.
-          </h2>
+          </h4>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -733,10 +851,9 @@ export default function LandingV3() {
       {/* ─── USE CASES ─── */}
       <Section id="use-cases">
         <div className="text-center mb-14">
-          <Eyebrow>Use Cases</Eyebrow>
-          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             What DragonBot can own for your&nbsp;team
-          </h2>
+          </h4>
         </div>
 
         {/* Tab buttons */}
@@ -760,7 +877,7 @@ export default function LandingV3() {
           </p>
           <div className="grid sm:grid-cols-2 gap-6">
             {useCaseTabs[activeTab].features.map((f, i) => (
-              <div key={i} className="bg-[#fafafa] rounded-xl p-6 border border-gray-100 hover:border-[#2F7D4F]/20 transition-all">
+              <div key={i} className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-[#2F7D4F]/20 transition-all">
                 <div className="flex items-start gap-3 mb-2">
                   <Check className="w-5 h-5 text-[#2F7D4F] mt-0.5 shrink-0" />
                   <h4 className="font-semibold text-[#1A1A1A]">{f.title}</h4>
@@ -780,15 +897,15 @@ export default function LandingV3() {
       </Section>
 
       {/* ─── SOCIAL PROOF ─── */}
-      <Section className="bg-[#0F3D2E]">
+      <Section>
         <div className="text-center mb-14">
-          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             Brands love{' '}
             <span className="inline-flex items-center gap-2">
               <img src="/DragonBot-logo.png" alt="" className="h-10 inline" />
               DragonBot
             </span>
-          </h2>
+          </h4>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -819,10 +936,9 @@ export default function LandingV3() {
       {/* ─── FAQ ─── */}
       <Section id="faq">
         <div className="text-center mb-14">
-          <Eyebrow>FAQ</Eyebrow>
-          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] leading-tight">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             Frequently asked questions
-          </h2>
+          </h4>
         </div>
 
         <div className="max-w-3xl mx-auto">
