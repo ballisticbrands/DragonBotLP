@@ -180,7 +180,7 @@ function SlackMsg({ m }) {
   );
 }
 
-function SlackDemo({ activeChannel, setActiveChannel }) {
+function SlackDemo({ activeChannel, setActiveChannel, onPinChange }) {
   const msgs = CHANNEL_MSGS[activeChannel] || [];
   const wrapperRef = useRef(null);
   const chatRef = useRef(null);
@@ -211,7 +211,9 @@ function SlackDemo({ activeChannel, setActiveChannel }) {
         gsap.registerPlugin(ScrollTrigger);
 
         const channelMsgs = CHANNEL_MSGS[activeChannel] || [];
-        const scrollAmount = channelMsgs.length * 150;
+        const scrollPerMsg = 150;       // px of page scroll per message reveal
+        const scrollEndPause = 300;     // px of extra scroll after last message before unpin
+        const scrollAmount = channelMsgs.length * scrollPerMsg + scrollEndPause;
 
         ctx = gsap.context(() => {
           const st = ScrollTrigger.create({
@@ -222,8 +224,12 @@ function SlackDemo({ activeChannel, setActiveChannel }) {
             pinSpacing: true,
             scrub: 0.3,
             invalidateOnRefresh: true,
+            onToggle: (self) => onPinChange?.(self.isActive),
             onUpdate: (self) => {
-              const count = Math.min(channelMsgs.length, Math.floor(self.progress * channelMsgs.length) + 1);
+              // Messages reveal during the first portion of scroll; the rest is the end pause
+              const msgPortion = (channelMsgs.length * scrollPerMsg) / scrollAmount;
+              const msgProgress = Math.min(self.progress / msgPortion, 1);
+              const count = Math.min(channelMsgs.length, Math.floor(msgProgress * channelMsgs.length) + 1);
               setVisibleCount(count);
             },
           });
@@ -246,22 +252,10 @@ function SlackDemo({ activeChannel, setActiveChannel }) {
 
   return (
     <div ref={pinRef}>
-    <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center flex items-center justify-center gap-2 mb-3">
-      This is your company's Slack with <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
-      <motion.div
-        animate={{ y: [0, 6, 0] }}
-        transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
-        className="inline-flex"
-      >
-        <svg width="24" height="28" viewBox="0 0 7 10" fill="none" style={{ imageRendering: 'pixelated' }}>
-          <rect x="2" y="0" width="3" height="4" fill="#2E7E4F"/>
-          <rect x="0" y="4" width="7" height="1" fill="#2E7E4F"/>
-          <rect x="1" y="5" width="5" height="1" fill="#2E7E4F"/>
-          <rect x="2" y="6" width="3" height="1" fill="#2E7E4F"/>
-          <rect x="3" y="7" width="1" height="1" fill="#2E7E4F"/>
-        </svg>
-      </motion.div>
-    </h2>
+    <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-4">
+      This is your company's <span className="bg-gradient-to-r from-[#9B59B6] to-[#B794F4] bg-clip-text text-transparent">Slack</span> with{' '}
+      <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
+    </h4>
     <div className="flex flex-wrap justify-center gap-2 mb-4">
       {SLACK_CHANNELS.map(ch => (
         <button key={ch} onClick={() => setActiveChannel(ch)}
@@ -421,7 +415,7 @@ function ComparisonRow({ task, them, themLabel, us, usHighlight }) {
         </div>
         <div className="bg-[#2F7D4F]/5 rounded-2xl p-6 border border-[#2F7D4F]/20 shadow-sm">
           <div className="flex items-center gap-2.5 mb-3">
-            <img src="/emoji_dragon.png" alt="DragonBot" className="w-5 h-5 object-contain" />
+            <img src="/DragonBot-logo.png" alt="DragonBot" className="w-8 h-8 object-contain" />
             <p className="text-sm font-semibold text-[#2F7D4F]">DragonBot</p>
           </div>
           <p className="text-[#1A1A1A] text-base leading-relaxed">
@@ -506,9 +500,37 @@ const faqData = [
 export default function LandingV3() {
   const [activeTab, setActiveTab] = useState(0);
   const [slackChannel, setSlackChannel] = useState('#general');
+  const [slackPinned, setSlackPinned] = useState(false);
 
   return (
     <div className="v2-page min-h-screen bg-[#0F0F0F] text-white" style={{ fontFamily: sysFont }}>
+      {/* Fixed "Keep scrolling" indicator — visible only while Slack demo is pinned */}
+      <AnimatePresence>
+        {slackPinned && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-1/2 -translate-y-1/2 z-50 flex-col items-center gap-2 pointer-events-none hidden lg:flex"
+            style={{ left: 'calc(50% + 420px)' }}
+          >
+            <span className="text-[#98CC65] text-lg font-medium uppercase tracking-widest leading-tight text-center" style={{ fontFamily: monoFont }}>Keep<br/>scrolling</span>
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <svg width="20" height="24" viewBox="0 0 7 10" fill="none" style={{ imageRendering: 'pixelated' }}>
+                <rect x="2" y="0" width="3" height="4" fill="#2E7E4F"/>
+                <rect x="0" y="4" width="7" height="1" fill="#2E7E4F"/>
+                <rect x="1" y="5" width="5" height="1" fill="#2E7E4F"/>
+                <rect x="2" y="6" width="3" height="1" fill="#2E7E4F"/>
+                <rect x="3" y="7" width="1" height="1" fill="#2E7E4F"/>
+              </svg>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <style>{`
         .v2-page h1,.v2-page h2,.v2-page h3,.v2-page h4,.v2-page h5,.v2-page h6{font-family:inherit!important}
         @keyframes slackMsgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -591,12 +613,39 @@ export default function LandingV3() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-14 flex justify-center">
             <div className="w-[800px]">
-              <SlackDemo activeChannel={slackChannel} setActiveChannel={setSlackChannel} />
+              <SlackDemo activeChannel={slackChannel} setActiveChannel={setSlackChannel} onPinChange={setSlackPinned} />
             </div>
           </motion.div>
 
         </div>
       </section>
+
+      {/* ─── SELLER VIDEOS ─── */}
+      <Section id="seller-videos">
+        <div className="text-center mb-10">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+            See what <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">Amazon Sellers</span> have been building with{' '}
+            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
+          </h4>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="https://www.youtube.com/watch?v=o0-_6Vu3Kv4" target="_blank" rel="noopener noreferrer"
+            className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#2F7D4F]/40 transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/10 group">
+            <div className="relative aspect-video">
+              <img src="https://img.youtube.com/vi/o0-_6Vu3Kv4/mqdefault.jpg" alt="Amazon keyword research using DragonBot" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                <div className="w-12 h-12 rounded-full bg-[#2F7D4F] flex items-center justify-center shadow-lg">
+                  <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
+                </div>
+              </div>
+            </div>
+            <div className="p-3">
+              <p className="text-sm font-semibold text-white/80 leading-snug">Amazon keyword research using DragonBot</p>
+            </div>
+          </a>
+          {/* More videos will be added here */}
+        </div>
+      </Section>
 
       {/* ─── THE SHIFT ─── */}
       <Section id="the-shift" className="bg-[#fafafa]">
@@ -736,7 +785,7 @@ export default function LandingV3() {
           <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
             Brands love{' '}
             <span className="inline-flex items-center gap-2">
-              <img src="/emoji_dragon.png" alt="" className="h-10 inline" />
+              <img src="/DragonBot-logo.png" alt="" className="h-10 inline" />
               DragonBot
             </span>
           </h2>
@@ -788,7 +837,7 @@ export default function LandingV3() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-2.5">
-              <img src="/emoji_dragon.png" alt="DragonBot" className="h-8" />
+              <img src="/DragonBot-logo.png" alt="DragonBot" className="h-8" />
               <span className="font-bold text-lg text-white">DragonBot</span>
             </div>
             <div className="flex flex-wrap justify-center gap-8">
