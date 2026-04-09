@@ -9,13 +9,14 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingV3 />} />
+        <Route path="/v1" element={<Home />} />
         <Route path="/v2" element={<LandingV2 />} />
         <Route path="/v3" element={<LandingV3 />} />
         <Route path="/chats" element={<Chats />} />
         <Route path="/chats/:chatSlug" element={<Chats />} />
         <Route path="/privacy" element={<Privacy />} />
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<LandingV3 />} />
       </Routes>
     </Router>
   )

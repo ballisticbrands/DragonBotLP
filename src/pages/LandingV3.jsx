@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ChevronRight, Play, ArrowRight, Zap, Database, Brain, Check } from 'lucide-react';
 
@@ -98,12 +98,7 @@ function Section({ id, className = '', children }) {
 function Eyebrow({ children }) {
   return (
     <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2F7D4F]/10 rounded-full text-sm font-medium text-white mb-6">
-      <svg className="w-4 h-4 shrink-0" viewBox="0 0 54 54">
-        <path d="M19.712.133a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386h5.376V5.52A5.381 5.381 0 0 0 19.712.133m0 14.365H5.376A5.381 5.381 0 0 0 0 19.884a5.381 5.381 0 0 0 5.376 5.387h14.336a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386" fill="#36C5F0"/>
-        <path d="M53.76 19.884a5.381 5.381 0 0 0-5.376-5.386 5.381 5.381 0 0 0-5.376 5.386v5.387h5.376a5.381 5.381 0 0 0 5.376-5.387m-14.336 0V5.52A5.381 5.381 0 0 0 34.048.133a5.381 5.381 0 0 0-5.376 5.387v14.364a5.381 5.381 0 0 0 5.376 5.387 5.381 5.381 0 0 0 5.376-5.387" fill="#2EB67D"/>
-        <path d="M34.048 54a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386h-5.376v5.386A5.381 5.381 0 0 0 34.048 54m0-14.365h14.336a5.381 5.381 0 0 0 5.376-5.386 5.381 5.381 0 0 0-5.376-5.387H34.048a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386" fill="#ECB22E"/>
-        <path d="M0 34.249a5.381 5.381 0 0 0 5.376 5.386 5.381 5.381 0 0 0 5.376-5.386v-5.387H5.376A5.381 5.381 0 0 0 0 34.25m14.336-.001v14.364A5.381 5.381 0 0 0 19.712 54a5.381 5.381 0 0 0 5.376-5.387V34.249a5.381 5.381 0 0 0-5.376-5.387 5.381 5.381 0 0 0-5.376 5.387" fill="#E01E5A"/>
-      </svg>
+      <span className="w-2 h-2 rounded-full bg-[#98CC65] animate-pulse" />
       {children}
     </span>
   );
@@ -124,15 +119,7 @@ function VideoPlaceholder({ label = 'Video coming soon' }) {
   );
 }
 
-/* ─── Slack demo animation ─── */
-const SLACK_MSGS = [
-  { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:07 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@here</span> — URGENT! Our Amazon listing got suppressed, we're losing $2K/hour</> },
-  // { who: 'Omer', initials: 'OB', color: '#E67E22', time: '10:08 AM', text: 'Busy' },
-  // { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '10:08 AM', text: "I'm on vacation 🏖️" },
-  { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:10 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> ?</>, reactions: ['⏳', '🐉'] },
-  { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '10:13 AM', isBot: true, text: <>Found it - backend image URL returned a 404, triggered an automated suppression. I've re-uploaded the image and submitted a reinstatement request. Listing should be back within 2 hours.<br/><span style={{ color: '#1264A3', fontSize: 13, fontWeight: 600, marginTop: 4, display: 'inline-block' }}>See more</span></> },
-];
-
+/* ─── Slack demo — per-channel messages ─── */
 const SLACK_CHANNELS = ['#general', '#ppc', '#product-research', '#customer-support'];
 const SLACK_DMS = [
   { name: 'Jake Morrison', initials: 'JM' },
@@ -141,12 +128,153 @@ const SLACK_DMS = [
   { name: 'DragonBot', initials: '🐉', isBot: true },
 ];
 
-function SlackDemo() {
-  const visibleMsgs = SLACK_MSGS.length;
-  const typing = false;
+const CHANNEL_MSGS = {
+  '#general': [
+    { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:07 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@here</span> — URGENT! Our Amazon listing got suppressed, we're losing $2K/hour</> },
+    { who: 'Omer', initials: 'OB', color: '#E67E22', time: '10:08 AM', text: <>Busy</> },
+    { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '10:08 AM', text: <>I'm on vacation 🏖️</> },
+    { who: 'Jake', initials: 'JM', color: '#1264A3', time: '10:10 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> ?</>, reactions: ['⏳', '🐉'] },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '10:13 AM', isBot: true, text: <>Found it — backend image URL returned a 404, triggered an automated suppression. I've re-uploaded the image and submitted a reinstatement request. Listing should be back within 2 hours.<br/><span style={{ color: '#1264A3', fontSize: 13, fontWeight: 600, marginTop: 4, display: 'inline-block' }}>See more</span></> },
+  ],
+  '#ppc': [
+    { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '2:15 PM', text: 'Our product launch ACOS is wayy too high, anyone got time to dig in?' },
+    { who: 'Lisa', initials: 'LK', color: '#7C3AED', time: '2:16 PM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> can you take a look?</>, reactions: ['⏳', '🐉'] },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:22 PM', isBot: true, isThread: true, text: <>Found 23 bleeding keywords. Paused them. ACOS projected to go down from 38% to 26%.<br/>Want me to look into <span style={{ fontWeight: 700, textDecoration: 'underline' }}>Amazon SQP</span> data to suggest more relevant keywords for our PPC campaign?<br/><span style={{ color: '#1264A3', fontSize: 13, fontWeight: 600, marginTop: 4, display: 'inline-block' }}>See more</span><br/><span style={{ color: '#9B9C9E', fontSize: 13, fontStyle: 'italic' }}>I'll check again in 24h and report back.</span></> },
+  ],
+  '#product-research': [
+    { who: 'Omer', initials: 'OB', color: '#E67E22', time: '11:30 AM', text: <><span style={{ color: '#1264A3', fontWeight: 700 }}>@DragonBot</span> do <span style={{ fontWeight: 700, textDecoration: 'underline' }}>keyword research</span> on these competitor ASINs:<br/>B0CK5LRQX7, B0D3FHYMN1, B0BX1GTNRV</>, reactions: ['⏳', '🐉'] },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '11:34 AM', isBot: true, text: <>Done. Full keyword research workbook ready, including suggested PPC launch setup for our product:<div style={{ marginTop: 8, border: '1px solid #3F4145', borderRadius: 8, overflow: 'hidden', maxWidth: 380 }}><div style={{ backgroundColor: '#0F9D58', padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 6 }}><div style={{ width: 18, height: 18, backgroundColor: 'white', borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 900, color: '#0F9D58' }}>S</div><span style={{ color: 'white', fontSize: 12, fontWeight: 700 }}>Competitor ASIN Analysis — Workbook</span></div><div style={{ padding: '6px 10px', backgroundColor: '#2C2D30', display: 'flex', gap: 3, fontSize: 10, color: '#9B9C9E' }}>{['Raw Data', 'Filtered', 'Root KWs', 'Master List'].map((t, i) => <span key={i} style={{ padding: '2px 6px', backgroundColor: i === 0 ? '#3F4145' : 'transparent', borderRadius: 3, fontWeight: i === 0 ? 600 : 400 }}>{t}</span>)}</div></div><div style={{ marginTop: 6, fontSize: 13, color: '#9B9C9E' }}>1,847 relevant keywords. 312 root keywords. 89 negative match candidates.</div></> },
+  ],
+  '#customer-support': [
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:47 PM', isBot: true, text: <><div style={{ fontWeight: 700 }}>🚨 Incoming buyer message — needs attention</div><div style={{ marginTop: 6, borderLeft: '3px solid #3F4145', paddingLeft: 10, fontSize: 13, lineHeight: 1.6, color: '#9B9C9E' }}><div><strong>Order:</strong> <span style={{ color: '#1264A3' }}>#112-4839201-7756812</span></div><div><strong>Product:</strong> Garlic Press Premium Case — 3-Pack</div><div style={{ marginTop: 4, fontStyle: 'italic' }}>"I received my order today but one of the three cases was cracked. I'd like a refund."</div></div><div style={{ marginTop: 6, fontSize: 13 }}><strong>Checked our Notion return policy</strong> — damaged items qualify for full refund, no return required.</div><div style={{ marginTop: 4, padding: '6px 10px', backgroundColor: '#2C2D30', borderRadius: 6, fontSize: 13, fontStyle: 'italic', lineHeight: 1.5, color: '#9B9C9E' }}>"Hi Rachel, I'm so sorry! I've issued a full refund of $29.99. No need to return the damaged item. 🙏"</div><div style={{ marginTop: 6, fontWeight: 700, fontSize: 13 }}>Shall I send this response and process the $29.99 refund?</div></> },
+    { who: 'Jake', initials: 'JM', color: '#1264A3', time: '2:49 PM', isThread: true, text: 'approved, please send' },
+    { who: 'DragonBot', initials: '🐉', color: '#2F7D4F', time: '2:49 PM', isBot: true, isThread: true, text: <>Done ✅ Response sent and refund processed.<div style={{ marginTop: 4, display: 'flex', flexDirection: 'column', gap: 3, fontSize: 13 }}><span style={{ color: '#1264A3' }}>📩 View reply on Amazon →</span><span style={{ color: '#1264A3' }}>💰 View refund → $29.99 refunded</span></div></> },
+  ],
+};
+
+function SlackMsg({ m }) {
+  return (
+    <div className={`flex gap-3 px-4 py-1.5 ${m.isThread ? 'ml-8 border-l-2 border-[#2F7D4F] pl-3' : ''}`}>
+      <div className="shrink-0 w-9 h-9 rounded-md flex items-center justify-center text-white text-sm font-bold overflow-hidden"
+        style={{ backgroundColor: m.isBot ? '#F5F3F1' : m.color }}>
+        {m.isBot ? <img src="/DragonBot-avatar.png" className="w-6 h-6 object-contain" /> : m.initials}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-baseline gap-2 mb-0.5">
+          <span className="font-black text-base" style={{ color: '#D1D2D3' }}>{m.who}</span>
+          {m.isBot && <span className="text-xs font-bold text-white px-1.5 py-px rounded" style={{ backgroundColor: '#2F7D4F' }}>APP</span>}
+          <span className="text-sm" style={{ color: '#9B9C9E' }}>{m.time}</span>
+        </div>
+        <div className="text-base leading-relaxed" style={{ color: '#D1D2D3' }}>{m.text}</div>
+        {m.reactions && (
+          <div className="flex gap-1.5 mt-1.5">
+            {m.reactions.map((r, j) => (
+              <span key={j} className="flex items-center gap-1 text-sm px-2 py-0.5 rounded-full" style={{ backgroundColor: '#2C2D30', border: '1px solid #3F4145' }}>
+                {r} <span style={{ color: '#1264A3', fontWeight: 600 }}>1</span>
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function SlackDemo({ activeChannel, setActiveChannel }) {
+  const msgs = CHANNEL_MSGS[activeChannel] || [];
+  const wrapperRef = useRef(null);
+  const chatRef = useRef(null);
+  const pinRef = useRef(null);
+  const [visibleCount, setVisibleCount] = useState(1);
+  const isAnimated = true;
+  const prevChannelRef = useRef(activeChannel);
+  const needsResetRef = useRef(false);
+
+  // Track channel changes
+  useEffect(() => {
+    if (prevChannelRef.current !== activeChannel) {
+      needsResetRef.current = true;
+      prevChannelRef.current = activeChannel;
+      setVisibleCount(1);
+    }
+  }, [activeChannel]);
+
+  // GSAP ScrollTrigger: pin the slack demo and animate messages via scroll
+  useEffect(() => {
+    const pin = pinRef.current;
+    const chat = chatRef.current;
+    if (!pin || !chat) return;
+
+    let ctx;
+    import('gsap').then(({ gsap }) =>
+      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const channelMsgs = CHANNEL_MSGS[activeChannel] || [];
+        const scrollAmount = channelMsgs.length * 150;
+
+        ctx = gsap.context(() => {
+          const st = ScrollTrigger.create({
+            trigger: pin,
+            start: 'center center',
+            end: () => `+=${Math.max(scrollAmount, 1)}`,
+            pin: true,
+            pinSpacing: true,
+            scrub: 0.3,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const count = Math.min(channelMsgs.length, Math.floor(self.progress * channelMsgs.length) + 1);
+              setVisibleCount(count);
+            },
+          });
+
+          // After new ScrollTrigger is created, scroll to its start
+          if (needsResetRef.current) {
+            needsResetRef.current = false;
+            ScrollTrigger.refresh();
+            requestAnimationFrame(() => {
+              window.scrollTo({ top: st.start, behavior: 'instant' });
+              st.scroll(st.start);
+            });
+          }
+        });
+      })
+    );
+
+    return () => { if (ctx) ctx.revert(); };
+  }, [activeChannel]);
 
   return (
-    <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl text-left" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+    <div ref={pinRef}>
+    <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center flex items-center justify-center gap-2 mb-3">
+      This is your company's Slack with <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
+      <motion.div
+        animate={{ y: [0, 6, 0] }}
+        transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
+        className="inline-flex"
+      >
+        <svg width="24" height="28" viewBox="0 0 7 10" fill="none" style={{ imageRendering: 'pixelated' }}>
+          <rect x="2" y="0" width="3" height="4" fill="#2E7E4F"/>
+          <rect x="0" y="4" width="7" height="1" fill="#2E7E4F"/>
+          <rect x="1" y="5" width="5" height="1" fill="#2E7E4F"/>
+          <rect x="2" y="6" width="3" height="1" fill="#2E7E4F"/>
+          <rect x="3" y="7" width="1" height="1" fill="#2E7E4F"/>
+        </svg>
+      </motion.div>
+    </h2>
+    <div className="flex flex-wrap justify-center gap-2 mb-4">
+      {SLACK_CHANNELS.map(ch => (
+        <button key={ch} onClick={() => setActiveChannel(ch)}
+          className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+            activeChannel === ch
+              ? 'bg-[#2F7D4F] text-white shadow-lg shadow-[#2F7D4F]/20'
+              : 'bg-[#F5F3F1] text-[#0F0F0F] hover:bg-[#2F7D4F] hover:text-white'
+          }`} style={{ fontFamily: monoFont }}>
+          {ch}
+        </button>
+      ))}
+    </div>
+    <div ref={wrapperRef} className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl text-left" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       <div className="flex h-full w-full">
         {/* Sidebar */}
         <div className="shrink-0 flex flex-col py-3" style={{ width: '20%', backgroundColor: '#4A154B' }}>
@@ -156,10 +284,10 @@ function SlackDemo() {
           <div className="py-2">
             <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.5)' }}>Channels</div>
             {SLACK_CHANNELS.map(ch => (
-              <div key={ch} className="px-3 py-0.5 text-xs mx-1.5 rounded" style={{
-                color: ch === '#general' ? 'white' : 'rgba(255,255,255,0.5)',
-                backgroundColor: ch === '#general' ? 'rgba(255,255,255,0.12)' : 'transparent',
-                fontWeight: ch === '#general' ? 700 : 400,
+              <div key={ch} onClick={() => setActiveChannel(ch)} className="px-3 py-0.5 text-xs mx-1.5 rounded cursor-pointer hover:bg-white/5 transition-colors" style={{
+                color: ch === activeChannel ? 'white' : 'rgba(255,255,255,0.5)',
+                backgroundColor: ch === activeChannel ? 'rgba(255,255,255,0.12)' : 'transparent',
+                fontWeight: ch === activeChannel ? 700 : 400,
               }}>{ch}</div>
             ))}
           </div>
@@ -178,61 +306,30 @@ function SlackDemo() {
         {/* Main */}
         <div className="flex-1 flex flex-col" style={{ backgroundColor: '#1A1D21' }}>
           <div className="px-4 py-2.5" style={{ borderBottom: '1px solid #35373B' }}>
-            <span className="text-sm font-black" style={{ color: '#D1D2D3' }}>#general</span>
+            <span className="text-sm font-black" style={{ color: '#D1D2D3' }}>{activeChannel}</span>
           </div>
 
-          <div className="flex-1 flex flex-col justify-end gap-1 overflow-hidden py-2">
-            {SLACK_MSGS.slice(0, visibleMsgs).map((m, i) => (
-              <div key={i}
-                className="flex gap-3 px-4 py-1.5">
-                <div className="shrink-0 w-9 h-9 rounded-md flex items-center justify-center text-white text-sm font-bold overflow-hidden"
-                  style={{ backgroundColor: m.isBot ? '#F5F3F1' : m.color }}>
-                  {m.isBot ? <img src="/DragonBot-avatar.png" className="w-6 h-6 object-contain" /> : m.initials}
+          <div ref={chatRef} className="flex-1 flex flex-col justify-end gap-1 overflow-y-auto py-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
+            {msgs.map((m, i) => {
+              if (isAnimated && i >= visibleCount) return null;
+              return (
+                <div key={`${activeChannel}-${i}`} style={isAnimated ? {
+                  animation: 'slackMsgIn 0.3s ease-out',
+                } : undefined}>
+                  <SlackMsg m={m} />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-2 mb-0.5">
-                    <span className="font-black text-base" style={{ color: '#D1D2D3' }}>{m.who}</span>
-                    {m.isBot && <span className="text-xs font-bold text-white px-1.5 py-px rounded" style={{ backgroundColor: '#2F7D4F' }}>APP</span>}
-                    <span className="text-sm" style={{ color: '#9B9C9E' }}>{m.time}</span>
-                  </div>
-                  <div className="text-base leading-relaxed" style={{ color: '#D1D2D3' }}>{m.text}</div>
-                  {m.reactions && (
-                    <div className="flex gap-1.5 mt-1.5">
-                      {m.reactions.map((r, j) => (
-                        <span key={j} className="flex items-center gap-1 text-sm px-2 py-0.5 rounded-full" style={{ backgroundColor: '#2C2D30', border: '1px solid #3F4145' }}>
-                          {r} <span style={{ color: '#1264A3', fontWeight: 600 }}>1</span>
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-
-            {typing && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-3 px-4 py-1.5 items-center">
-                <div className="shrink-0 w-9 h-9 rounded-md flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#2F7D4F' }}>
-                  <img src="/DragonBot-avatar.png" className="w-6 h-6 object-contain" />
-                </div>
-                <div className="flex gap-1.5 py-1">
-                  {[0, 1, 2].map(i => (
-                    <div key={i} className="w-2.5 h-2.5 rounded-full" style={{
-                      backgroundColor: '#868686',
-                      opacity: 0.3 + 0.7 * Math.abs(Math.sin((dotFrame + i * 3) * 0.3)),
-                    }} />
-                  ))}
-                </div>
-              </motion.div>
-            )}
+              );
+            })}
           </div>
 
           <div className="px-4 pb-3">
             <div className="rounded-lg px-3 py-2 text-xs" style={{ border: '1px solid #565856', backgroundColor: '#222529', color: '#9B9C9E', minHeight: 50 }}>
-              Message #general
+              Message {activeChannel}
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
@@ -408,11 +505,13 @@ const faqData = [
    ═══════════════════════════════════════════════════════════════ */
 export default function LandingV3() {
   const [activeTab, setActiveTab] = useState(0);
+  const [slackChannel, setSlackChannel] = useState('#general');
 
   return (
     <div className="v2-page min-h-screen bg-[#0F0F0F] text-white" style={{ fontFamily: sysFont }}>
       <style>{`
         .v2-page h1,.v2-page h2,.v2-page h3,.v2-page h4,.v2-page h5,.v2-page h6{font-family:inherit!important}
+        @keyframes slackMsgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
         .v2-page .text-\\[\\#1A1A1A\\]{color:#fff!important}
         .v2-page .text-\\[\\#1A1A1A\\]\\/70{color:rgba(255,255,255,0.7)!important}
         .v2-page .text-\\[\\#1A1A1A\\]\\/60{color:rgba(255,255,255,0.6)!important}
@@ -442,7 +541,7 @@ export default function LandingV3() {
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Eyebrow>7000+ workspaces hired DragonBot</Eyebrow>
+            <Eyebrow>Connects to <span style={{ fontWeight: 700, textDecoration: 'underline' }}>Amazon Seller Central</span> and 3000+ other tools</Eyebrow>
 
             <h1 className="font-extrabold text-[48px] sm:text-[64px] lg:text-[88px] text-[#1A1A1A] leading-[1.05] tracking-[-0.035em] mb-6">
               Not a tool.{' '}
@@ -472,7 +571,7 @@ export default function LandingV3() {
               </span>
               <span className="flex items-center gap-2">
                 <svg className="w-4 h-4 text-[#2F7D4F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                SOC 2 Compliant
+                Amazon TOS Compliant
               </span>
             </div>
           </motion.div>
@@ -490,48 +589,12 @@ export default function LandingV3() {
 
           {/* Slack demos */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-14 mb-6">
-            <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center flex items-center justify-center gap-2">
-              This is your company's Slack with <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
-                className="inline-flex"
-              >
-                <svg width="24" height="28" viewBox="0 0 7 10" fill="none" style={{ imageRendering: 'pixelated' }}>
-                  {/* shaft */}
-                  <rect x="2" y="0" width="3" height="4" fill="#2E7E4F"/>
-                  {/* arrowhead: converges to a point at the bottom */}
-                  <rect x="0" y="4" width="7" height="1" fill="#2E7E4F"/>
-                  <rect x="1" y="5" width="5" height="1" fill="#2E7E4F"/>
-                  <rect x="2" y="6" width="3" height="1" fill="#2E7E4F"/>
-                  <rect x="3" y="7" width="1" height="1" fill="#2E7E4F"/>
-                </svg>
-              </motion.div>
-            </h2>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }}
-            className="flex flex-wrap justify-center gap-4">
-            <div className="w-[800px] relative">
-              <SlackDemo />
-              {/* Animated arrow pointing to #ppc */}
-              <motion.div
-                className="absolute flex items-center gap-1 text-[#98CC65] font-semibold text-sm whitespace-nowrap pointer-events-none"
-                style={{ top: '28%', left: '-140px' }}
-                animate={{ x: [0, 8, 0] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                Click #ppc
-                <ArrowRight className="w-4 h-4" />
-              </motion.div>
+            className="mt-14 flex justify-center">
+            <div className="w-[800px]">
+              <SlackDemo activeChannel={slackChannel} setActiveChannel={setSlackChannel} />
             </div>
           </motion.div>
 
-          {/* Hero video */}
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.45 }}
-            className="mt-8">
-            <HeroVideo />
-          </motion.div>
         </div>
       </section>
 
@@ -568,7 +631,7 @@ export default function LandingV3() {
         </div>
 
         <div className="max-w-4xl mx-auto mb-16">
-          <VideoPlaceholder label="DragonBot in action — coming soon" />
+          <HeroVideo />
         </div>
 
         {/* 3 feature cards */}
