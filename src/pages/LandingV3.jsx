@@ -173,7 +173,7 @@ function SlackMsg({ m }) {
   return (
     <div className={`flex gap-3 px-4 py-1.5 ${m.isThread ? 'ml-8 border-l-2 border-[#2F7D4F] pl-3' : ''}`}>
       <div className="shrink-0 w-9 h-9 rounded-md flex items-center justify-center text-white text-sm font-bold overflow-hidden"
-        style={{ backgroundColor: m.isBot ? '#F5F3F1' : m.color }}>
+        style={{ backgroundColor: m.isBot ? '#3A3A3A' : m.color }}>
         {m.isBot ? <img src="/DragonBot-avatar.png" className="w-6 h-6 object-contain" /> : m.initials}
       </div>
       <div className="flex-1 min-w-0">
