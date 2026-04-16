@@ -451,6 +451,308 @@ const competitorLogos = {
   'Helium 10': '/logo-helium10.png',
 };
 
+/* ─── Approval animation for security card ─── */
+/* ─── Audit trail demo for security card ─── */
+const AUDIT_ENTRIES = [
+  { time: '3:41 PM', action: 'Created FBA shipping plan 6XUQQQ5L', status: 'done' },
+  { time: '3:42 PM', action: 'Rejected: Reduce price B001CUWUO7 → $26.99', status: 'rejected' },
+  { time: '3:45 PM', action: 'Paused keyword "garlic press silicone"', status: 'done' },
+  { time: '3:46 PM', action: 'Sent refund $29.99 to Rachel Thompson', status: 'done' },
+  { time: '3:48 PM', action: 'Updated listing images for B0CK5LRQX7', status: 'done' },
+  { time: '3:51 PM', action: 'Generated PPC report — uploaded to Drive', status: 'done' },
+];
+
+/* ─── SP-API connection visual: DragonBot <-> Amazon with secure line ─── */
+function SPAPIConnectionDemo() {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#1A1D21', borderRadius: '0 0 16px 16px' }}>
+      {/* Subtle grid background */}
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+        }}
+      />
+
+      <div className="relative flex items-start justify-between w-full px-6 pb-5" style={{ marginTop: -12 }}>
+        {/* DragonBot node (static) */}
+        <div className="relative flex flex-col items-center gap-1.5 z-10">
+          <div className="w-12 h-12 rounded-xl bg-[#F5F3F1] flex items-center justify-center shadow-lg shadow-[#2F7D4F]/20 p-2">
+            <img src="/DragonBot-avatar.png" alt="DragonBot" className="w-full h-full object-contain" />
+          </div>
+          <span className="text-[10px] font-semibold text-white/70">DragonBot</span>
+        </div>
+
+        {/* Connection line — neon green with glow + lock — absolutely positioned so it touches the icons */}
+        <div className="absolute left-[4.5rem] right-[4.5rem] top-6 h-[2px] -translate-y-1/2">
+          {/* Neon green glowing line */}
+          <div
+            className="absolute inset-0 rounded-full bg-[#98CC65]"
+            style={{ boxShadow: '0 0 6px #98CC65, 0 0 12px #98CC65, 0 0 20px rgba(152,204,101,0.6)' }}
+          />
+
+          {/* Lock in the middle */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#0F0F0F] border border-[#2F7D4F]/40 flex items-center justify-center shadow-lg shadow-[#2F7D4F]/30">
+            <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3 6V4a3 3 0 016 0v2"
+                stroke="#98CC65"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <rect x="1.5" y="6" width="9" height="7" rx="1.5" fill="#98CC65" />
+              <circle cx="6" cy="9.5" r="0.9" fill="#0F0F0F" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Amazon node (static) */}
+        <div className="relative flex flex-col items-center gap-1.5 z-10">
+          <div className="w-12 h-12 rounded-xl bg-[#0F0F0F] border border-[#0F0F0F] flex items-center justify-center shadow-lg p-1">
+            {/* Amazon "a>" mark — compact SVG that fits inside the square */}
+            <svg viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+              <text
+                x="20"
+                y="16"
+                fill="white"
+                fontSize="11"
+                fontWeight="800"
+                fontFamily="system-ui, -apple-system, sans-serif"
+                textAnchor="middle"
+                letterSpacing="-0.4"
+              >
+                amazon
+              </text>
+              <path
+                d="M6 22 Q 20 27, 34 22"
+                stroke="#FF9900"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <path
+                d="M31 19.5 L 34 22 L 31.5 24.5"
+                stroke="#FF9900"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+              />
+            </svg>
+          </div>
+          <span className="text-[10px] font-semibold text-white/70">Seller Central</span>
+        </div>
+      </div>
+
+      {/* Bottom label — single line */}
+      <div className="absolute left-1/2 -translate-x-1/2 text-[9px] font-bold uppercase tracking-[0.15em] text-[#98CC65]/70 whitespace-nowrap" style={{ fontFamily: monoFont, bottom: '22%' }}>
+        SP-API · OAuth · Encrypted
+      </div>
+    </div>
+  );
+}
+
+function AuditTrailDemo() {
+  return (
+    <div className="w-full h-full flex flex-col py-2 px-3" style={{ backgroundColor: '#2C2A25', borderRadius: '0 0 16px 16px', fontFamily: "'Roboto Mono', monospace" }}>
+      {AUDIT_ENTRIES.map((entry, i) => (
+        <div key={i} className="flex items-start gap-2 py-1 border-b border-white/10 last:border-0">
+          <span className="text-[9px] text-white/70 shrink-0 w-[46px]">{entry.time}</span>
+          <span className="text-[9px] text-white flex-1 leading-snug">{entry.action}</span>
+          <span className={`text-[8px] font-bold shrink-0 px-1.5 py-px rounded ${
+            entry.status === 'done' ? 'bg-[#2F7D4F] text-white' : 'bg-[#DC2626] text-white'
+          }`}>
+            {entry.status === 'done' ? '✓' : '✗'}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* steps: 0=show first msg, 1=cursor moves to approve, 2=first approved, 3=show second msg, 4=cursor moves to reject, 5=second rejected, 6=pause then loop */
+/* ─── Permissions demo for security card ─── */
+const PERMISSION_MODES = [
+  { id: 'read-only', label: 'Read-only', desc: 'DragonBot can only pull data and generate reports. It cannot make any changes to your accounts.' },
+  { id: 'supervised', label: 'Supervised', desc: 'DragonBot can take actions, but asks for your approval first. Nothing happens without your say-so.' },
+  { id: 'autonomous', label: 'Autonomous', desc: 'DragonBot handles routine tasks on its own. It only escalates edge cases and high-stakes decisions.' },
+];
+
+function PermissionsDemo() {
+  const [selected, setSelected] = useState('read-only');
+  const mode = PERMISSION_MODES.find(m => m.id === selected);
+
+  const [clicked, setClicked] = useState(false);
+
+  return (
+    <div className="relative w-full h-full flex flex-col px-4 py-3" style={{ backgroundColor: '#1A1D21', borderRadius: '0 0 16px 16px', fontFamily: "system-ui, -apple-system, sans-serif" }}>
+      <AnimatePresence>
+        {!clicked && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute -top-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none z-10"
+          >
+            <span className="text-[#98CC65] text-[10px] font-bold uppercase tracking-widest" style={{ fontFamily: monoFont }}>Click here</span>
+            <motion.div
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <svg width="16" height="18" viewBox="0 0 7 10" fill="none" style={{ imageRendering: 'pixelated' }}>
+                <rect x="2" y="0" width="3" height="4" fill="#2E7E4F"/>
+                <rect x="0" y="4" width="7" height="1" fill="#2E7E4F"/>
+                <rect x="1" y="5" width="5" height="1" fill="#2E7E4F"/>
+                <rect x="2" y="6" width="3" height="1" fill="#2E7E4F"/>
+                <rect x="3" y="7" width="1" height="1" fill="#2E7E4F"/>
+              </svg>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div className="flex rounded-lg overflow-hidden border border-white/10 mb-3">
+        {PERMISSION_MODES.map(m => (
+          <button
+            key={m.id}
+            onClick={() => { setSelected(m.id); setClicked(true); }}
+            className={`flex-1 py-1.5 text-[10px] font-semibold transition-all ${
+              selected === m.id
+                ? 'bg-[#2F7D4F] text-white'
+                : 'bg-white/5 text-white/40 hover:text-white/60'
+            }`}
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={selected}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.2 }}
+          className="text-[11px] leading-relaxed text-white/50"
+        >
+          {mode.desc}
+        </motion.p>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+const APPROVAL_ACTIONS = [
+  { text: 'Creating FBA shipping plan 6XUQQQ5L', time: '3:41 PM' },
+  { text: 'Reducing price for "Premium Garlic Pre..." ASIN B001CUWUO7 to $26.99', time: '3:42 PM' },
+];
+
+function ApprovalDemo() {
+  const [step, setStep] = useState(0);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    const delays = [1500, 800, 600, 1500, 800, 600, 2000];
+    const advance = () => {
+      setStep(s => {
+        const next = s >= 6 ? 0 : s + 1;
+        timerRef.current = setTimeout(advance, delays[next] || 1500);
+        return next;
+      });
+    };
+    timerRef.current = setTimeout(advance, delays[0]);
+    return () => clearTimeout(timerRef.current);
+  }, []);
+
+  const containerRef = useRef(null);
+  const approveRef = useRef(null);
+  const rejectRef = useRef(null);
+  const [cursorXY, setCursorXY] = useState({ x: 0, y: 0 });
+  const cursorVisible = step === 1 || step === 4;
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const container = containerRef.current.getBoundingClientRect();
+    if (step === 1 && approveRef.current) {
+      const btn = approveRef.current.getBoundingClientRect();
+      setCursorXY({ x: btn.left - container.left + btn.width / 2, y: btn.top - container.top + btn.height / 2 });
+    } else if (step === 4 && rejectRef.current) {
+      const btn = rejectRef.current.getBoundingClientRect();
+      setCursorXY({ x: btn.left - container.left + btn.width / 2, y: btn.top - container.top + btn.height / 2 });
+    }
+  }, [step]);
+
+  const renderAction = (idx, action, decided, isApproved) => (
+    <div className="flex gap-2 px-3 py-1.5" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+      <div className="shrink-0 w-7 h-7 rounded flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#3A3A3A' }}>
+        <img src="/DragonBot-avatar.png" className="w-5 h-5 object-contain" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-baseline gap-1.5 mb-0.5">
+          <span className="font-black text-[11px]" style={{ color: '#D1D2D3' }}>DragonBot</span>
+          <span className="text-[9px] font-bold text-white px-1 py-px rounded" style={{ backgroundColor: '#2F7D4F' }}>APP</span>
+          <span className="text-[9px]" style={{ color: '#9B9C9E' }}>{action.time}</span>
+        </div>
+        <div className="text-[11px] leading-relaxed mb-1.5" style={{ color: '#D1D2D3' }}>{action.text}</div>
+        <div className="flex gap-1.5">
+          {decided ? (
+            isApproved ? (
+              <>
+                <span className="px-3 py-1 rounded text-[10px] font-bold text-white" style={{ backgroundColor: '#2F7D4F' }}>✓ Approved</span>
+                <span className="px-3 py-1 rounded text-[10px] font-bold" style={{ backgroundColor: '#3A3A3A', color: '#6B6B6B' }}>Reject</span>
+              </>
+            ) : (
+              <>
+                <span className="px-3 py-1 rounded text-[10px] font-bold" style={{ backgroundColor: '#3A3A3A', color: '#6B6B6B' }}>Approve</span>
+                <span className="px-3 py-1 rounded text-[10px] font-bold text-white" style={{ backgroundColor: '#DC2626' }}>✗ Rejected</span>
+              </>
+            )
+          ) : (
+            <>
+              <button ref={idx === 0 ? approveRef : null} className="px-3 py-1 rounded text-[10px] font-bold text-white cursor-default" style={{ backgroundColor: '#2F7D4F' }}>Approve</button>
+              <button ref={idx === 1 ? rejectRef : null} className="px-3 py-1 rounded text-[10px] font-bold text-white cursor-default" style={{ backgroundColor: '#DC2626' }}>Reject</button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div ref={containerRef} className="relative w-full h-full flex flex-col justify-end gap-1 py-2" style={{ backgroundColor: '#1A1D21', borderRadius: '0 0 16px 16px' }}>
+      <AnimatePresence mode="popLayout">
+        {step >= 0 && (
+          <motion.div key="action-0" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            {renderAction(0, APPROVAL_ACTIONS[0], step >= 2, true)}
+          </motion.div>
+        )}
+        {step >= 3 && (
+          <motion.div key="action-1" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            {renderAction(1, APPROVAL_ACTIONS[1], step >= 5, false)}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* Animated cursor */}
+      <motion.div
+        className="absolute pointer-events-none z-10"
+        style={{ left: 0, top: 0 }}
+        animate={{
+          x: cursorXY.x,
+          y: cursorXY.y,
+          opacity: cursorVisible ? 1 : 0,
+        }}
+        transition={{ type: 'spring', damping: 20, stiffness: 150 }}
+      >
+        <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
+          <path d="M1 1L1 14.5L4.5 11L8.5 18L10.5 17L6.5 10L11 10L1 1Z" fill="white" stroke="#222" strokeWidth="1"/>
+        </svg>
+      </motion.div>
+    </div>
+  );
+}
+
 /* ─── Comparison row ─── */
 function SplitSentences({ text }) {
   if (!text) return null;
@@ -767,23 +1069,40 @@ export default function LandingV3() {
           <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             Let's talk <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">security</span> and <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">accountability</span>
           </h4>
+          <p className="mt-4 text-lg text-white/50 max-w-2xl mx-auto">
+            Your Amazon account is your business. We treat it that way.
+          </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-            <div className="text-2xl mb-3">🔒</div>
-            <h5 className="font-semibold text-lg mb-2">End-to-end encryption</h5>
-            <p className="text-sm text-white/50 leading-relaxed">All data is encrypted in transit and at rest. We never store your credentials — only secure OAuth tokens.</p>
-          </div>
-          <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-            <div className="text-2xl mb-3">🏢</div>
-            <h5 className="font-semibold text-lg mb-2">Isolated workspaces</h5>
-            <p className="text-sm text-white/50 leading-relaxed">Each company gets a fully isolated environment. Your data is never shared, mixed, or used for training.</p>
-          </div>
-          <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-            <div className="text-2xl mb-3">✅</div>
-            <h5 className="font-semibold text-lg mb-2">You stay in control</h5>
-            <p className="text-sm text-white/50 leading-relaxed">DragonBot asks before high-stakes actions. Revoke access to any tool at any time. Full audit log of everything it does.</p>
-          </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { icon: <Check className="w-6 h-6" />, title: 'Amazon SP-API Authorized Connection', desc: '100% Amazon terms-of-service compliant. Official SP-API only. No scraping. No gray areas.', badge: 'SP-API certified' },
+            { icon: <Brain className="w-6 h-6" />, title: 'Permissions you control', subtitle: '✓ Read-only by default', desc: 'Read-only, supervised, or autonomous. You choose.', badge: 'Read-only → Supervised → Autonomous' },
+            { icon: <Zap className="w-6 h-6" />, title: 'Supervised mode', desc: 'DragonBot asks before touching your account. Send a refund? Pause a campaign? You decide.', badge: null },
+            { icon: <Database className="w-6 h-6" />, title: 'Full audit trail', desc: 'Every action logged — what, when, and why.', badge: null },
+          ].map((f, i) => (
+            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-[#2F7D4F]/30 hover:shadow-lg hover:shadow-[#2F7D4F]/5 transition-all flex flex-col">
+              <div className="p-6 pb-4">
+                <h3 className="font-bold text-xl mb-1">{f.title}</h3>
+                {f.subtitle && <p className="text-[#98CC65] text-sm font-semibold mb-1">{f.subtitle}</p>}
+                <p className="text-white/50 text-sm leading-relaxed">{f.desc}</p>
+              </div>
+              <div className="mt-auto">
+                {f.title === 'Supervised mode' ? (
+                  <div className="w-full h-44"><ApprovalDemo /></div>
+                ) : f.title === 'Permissions you control' ? (
+                  <div className="w-full h-36"><PermissionsDemo /></div>
+                ) : f.title === 'Full audit trail' ? (
+                  <div className="w-full h-52"><AuditTrailDemo /></div>
+                ) : f.title === 'Amazon SP-API Authorized Connection' ? (
+                  <div className="w-full h-36"><SPAPIConnectionDemo /></div>
+                ) : (
+                  <div className="w-full h-36 bg-gradient-to-b from-white/5 to-white/10 flex items-end justify-center">
+                    <span className="text-xs text-white/20 mb-4">Illustration</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </Section>
 
