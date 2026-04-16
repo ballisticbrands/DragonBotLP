@@ -554,6 +554,93 @@ function SPAPIConnectionDemo() {
   );
 }
 
+/* ─── Final dragon CTA with alternating speech bubble ─── */
+const BUBBLE_PHRASES = [
+  'What are you waiting for?',
+  'See you on Slack!',
+  // 'Let’s get to work 🫡',
+  'A Dragon\’s work is never done... 🐉',
+  'Ready to slay some tasks?',
+  // 'Your new team member is here!',
+  // 'Efficiency, meet DragonBot.',
+  // 'Unleash the power of automation!',
+  // 'From chaos to control with DragonBot.',
+  'Let’s conquer your to-do list!',
+  // 'DragonBot: your secret weapon for success.',
+  // 'Time to level up your workflow!',
+  'DragonBot: because you have better things to do.',
+  // 'Work smarter, not harder, with DragonBot.',
+  // 'Your productivity just found its new best friend.',
+];
+
+function DragonFinalCTA() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIdx(i => (i + 1) % BUBBLE_PHRASES.length), 4500);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <>
+      <div className="relative mb-2">
+        <div
+          className="px-10 py-6 text-2xl font-black uppercase tracking-widest"
+          style={{
+            backgroundColor: '#FFFFFF',
+            color: '#0F0F0F',
+            fontFamily: monoFont,
+            border: '6px solid #0F0F0F',
+            boxShadow: '0 8px 0 0 rgba(0,0,0,0.3)',
+            minWidth: '420px',
+            textAlign: 'center',
+          }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={idx}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.25 }}
+              className="inline-block"
+            >
+              {BUBBLE_PHRASES[idx]}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+        {/* 8-bit tail at 80% horizontal mark */}
+        <svg
+          width="48" height="36" viewBox="0 0 12 9" fill="none"
+          className="absolute -bottom-[30px]"
+          style={{ left: '80%', transform: 'translateX(-50%)', imageRendering: 'pixelated' }}
+        >
+          <rect x="3" y="0" width="6" height="2" fill="#FFFFFF" />
+          <rect x="4" y="2" width="4" height="1" fill="#FFFFFF" />
+          <rect x="5" y="3" width="2" height="1" fill="#FFFFFF" />
+          <rect x="3" y="0" width="1" height="2" fill="#0F0F0F" />
+          <rect x="8" y="0" width="1" height="2" fill="#0F0F0F" />
+          <rect x="3" y="2" width="1" height="1" fill="#0F0F0F" />
+          <rect x="4" y="2" width="1" height="1" fill="#0F0F0F" />
+          <rect x="7" y="2" width="1" height="1" fill="#0F0F0F" />
+          <rect x="8" y="2" width="1" height="1" fill="#0F0F0F" />
+          <rect x="4" y="3" width="1" height="1" fill="#0F0F0F" />
+          <rect x="5" y="3" width="1" height="1" fill="#0F0F0F" />
+          <rect x="6" y="3" width="1" height="1" fill="#0F0F0F" />
+          <rect x="7" y="3" width="1" height="1" fill="#0F0F0F" />
+          <rect x="5" y="4" width="1" height="1" fill="#0F0F0F" />
+          <rect x="6" y="4" width="1" height="1" fill="#0F0F0F" />
+        </svg>
+      </div>
+      <img
+        src="/DragonBot-logo.png"
+        alt="DragonBot"
+        className="w-auto"
+        style={{ height: '168px' }}
+      />
+    </>
+  );
+}
+
 function AuditTrailDemo() {
   return (
     <div className="w-full h-full flex flex-col py-2 px-3" style={{ backgroundColor: '#2C2A25', borderRadius: '0 0 16px 16px', fontFamily: "'Roboto Mono', monospace" }}>
@@ -859,12 +946,12 @@ const useCaseTabs = [
 
 /* ─── Testimonial placeholder ─── */
 const testimonials = [
-  { name: 'Sarah M.', role: 'Amazon Seller', text: 'DragonBot audited our PPC in 10 minutes. Took our agency a week to do the same thing — and they missed half the wasted spend.' },
-  { name: 'James L.', role: 'eCommerce Founder', text: 'I asked DragonBot to research a new product niche. It came back with keyword data, competitor analysis, and a margin estimate. Insane.' },
-  { name: 'Priya K.', role: 'Operations Lead', text: 'Our weekly ops report used to take 4 hours. Now DragonBot sends it to Slack every Monday morning. Zero effort.' },
-  { name: 'Mike R.', role: 'Brand Manager', text: 'Customer support triage was drowning us. DragonBot drafts first responses and routes tickets instantly. Game changer.' },
-  { name: 'Elena V.', role: 'D2C Founder', text: 'It connected to our Seller Central, pulled the data, built the report, and sent it to my investor. I didn\'t touch a spreadsheet.' },
-  { name: 'David T.', role: 'Supply Chain Manager', text: 'DragonBot caught a restock issue 3 days before we would have noticed. Saved us from going out of stock on our top SKU.' },
+  { name: 'Sarah M.', role: 'Amazon Seller', text: 'DragonBot audited our PPC in 10 minutes. Took our agency a week to do the same thing — and they missed half the wasted spend.', saved: '40 hrs/month', linkedin: 'https://www.linkedin.com/' },
+  { name: 'James L.', role: 'eCommerce Founder', text: 'I asked DragonBot to research a new product niche. It came back with keyword data, competitor analysis, and a margin estimate. Insane.', saved: '25 hrs/month', linkedin: 'https://www.linkedin.com/' },
+  { name: 'Priya K.', role: 'Operations Lead', text: 'Our weekly ops report used to take 4 hours. Now DragonBot sends it to Slack every Monday morning. Zero effort.', saved: '16 hrs/month', linkedin: 'https://www.linkedin.com/' },
+  { name: 'Mike R.', role: 'Brand Manager', text: 'Customer support triage was drowning us. DragonBot drafts first responses and routes tickets instantly. Game changer.', saved: '30 hrs/month', linkedin: 'https://www.linkedin.com/' },
+  { name: 'Elena V.', role: 'D2C Founder', text: 'It connected to our Seller Central, pulled the data, built the report, and sent it to my investor. I didn\'t touch a spreadsheet.', saved: '20 hrs/month', linkedin: 'https://www.linkedin.com/' },
+  { name: 'David T.', role: 'Supply Chain Manager', text: 'DragonBot caught a restock issue 3 days before we would have noticed. Saved us from going out of stock on our top SKU.', saved: '$18K/month', linkedin: 'https://www.linkedin.com/' },
 ];
 
 /* ─── FAQ data ─── */
@@ -884,7 +971,6 @@ const faqData = [
    MAIN PAGE
    ═══════════════════════════════════════════════════════════════ */
 export default function LandingV3() {
-  const [activeTab, setActiveTab] = useState(0);
   const [slackChannel, setSlackChannel] = useState('#general');
   const [slackPinned, setSlackPinned] = useState(false);
 
@@ -1106,150 +1192,50 @@ export default function LandingV3() {
         </div>
       </Section>
 
-      {/* ─── THE SOLUTION ─── */}
-      <Section id="solution">
-        <div className="text-center mb-14">
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
-            One @mention.{' '}
-            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">
-              DragonBot handles&nbsp;it.
-            </span>
-          </h4>
-        </div>
-
-        <div className="max-w-4xl mx-auto mb-16">
-          <HeroVideo />
-        </div>
-
-        {/* 3 feature cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            { icon: <Zap className="w-6 h-6" />, title: 'Real Deliverables', desc: 'Board-ready PDFs, Excel reports, keyword spreadsheets, PPC audits, and full dashboards. Not suggestions — finished work.', badge: null },
-            { icon: <Database className="w-6 h-6" />, title: 'Deep Integrations', desc: 'Amazon Seller Central, Google Ads, Meta Ads, Shopify, Slack, Notion, Google Sheets, and hundreds more.', badge: null },
-            { icon: <Brain className="w-6 h-6" />, title: 'Deep Memory', desc: 'Every conversation makes DragonBot smarter about your business. It remembers what worked, what didn\'t, and how you like things done.', badge: 'Never repeat yourself' },
-          ].map((f, i) => (
-            <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-[#2F7D4F]/30 hover:shadow-lg hover:shadow-[#2F7D4F]/5 transition-all">
-              <div className="w-12 h-12 rounded-xl bg-[#2F7D4F]/10 flex items-center justify-center text-[#2F7D4F] mb-5">
-                {f.icon}
-              </div>
-              <h3 className="font-semibold text-lg text-[#1A1A1A] mb-2">{f.title}</h3>
-              <p className="text-[#1A1A1A]/60 text-sm leading-relaxed mb-3">{f.desc}</p>
-              {f.badge && (
-                <span className="inline-block px-3 py-1 bg-[#2F7D4F]/10 rounded-full text-xs font-medium text-[#2F7D4F]">{f.badge}</span>
-              )}
-              <ImagePlaceholder label={`${f.title} illustration`} />
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ─── HOW IT WORKS ─── */}
-      <Section id="how-it-works">
-        <div className="text-center mb-14">
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
-            Onboarding a new hire has never been this&nbsp;easy.
-          </h4>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            { step: '01', title: 'Connect', desc: 'Add DragonBot to Slack. Connect your tools — Seller Central, Google Ads, Shopify, whatever you use. Takes 2 minutes.' },
-            { step: '02', title: 'Ask', desc: 'Talk to DragonBot like a colleague. "Audit our PPC spend for last month." "Pull competitor keywords for ASIN B0C7X9LQ2M." "Build me a restock report."' },
-            { step: '03', title: 'DragonBot delivers', desc: 'DragonBot queries your tools, analyzes data, and delivers real outputs: PDFs, spreadsheets, dashboards, drafted responses. It also proposes automations you didn\'t think to ask for.' },
-          ].map((s, i) => (
-            <div key={i} className="bg-white rounded-2xl p-8 border border-gray-200">
-              <span className="font-bold text-[#2F7D4F] text-sm">/{s.step}</span>
-              <h3 className="font-semibold text-xl text-[#1A1A1A] mt-2 mb-3">{s.title}</h3>
-              <p className="text-[#1A1A1A]/60 text-sm leading-relaxed mb-5">{s.desc}</p>
-              <ImagePlaceholder label={`Step ${s.step}`} />
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ─── USE CASES ─── */}
-      <Section id="use-cases">
-        <div className="text-center mb-14">
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
-            What DragonBot can own for your&nbsp;team
-          </h4>
-        </div>
-
-        {/* Tab buttons */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {useCaseTabs.map((tab, i) => (
-            <button key={tab.label} onClick={() => setActiveTab(i)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                activeTab === i
-                  ? 'bg-[#2F7D4F] text-white shadow-lg shadow-[#2F7D4F]/20'
-                  : 'bg-white text-[#1A1A1A]/60 border border-gray-200 hover:border-[#2F7D4F]/30 hover:text-[#2F7D4F]'
-              }`}>
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Tab content */}
-        <div className="max-w-4xl mx-auto">
-          <p className="text-[#1A1A1A]/60 text-center mb-10 leading-relaxed">
-            {useCaseTabs[activeTab].intro}
-          </p>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {useCaseTabs[activeTab].features.map((f, i) => (
-              <div key={i} className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-[#2F7D4F]/20 transition-all">
-                <div className="flex items-start gap-3 mb-2">
-                  <Check className="w-5 h-5 text-[#2F7D4F] mt-0.5 shrink-0" />
-                  <h4 className="font-semibold text-[#1A1A1A]">{f.title}</h4>
-                </div>
-                <p className="text-[#1A1A1A]/50 text-sm leading-relaxed ml-8">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <a href="https://app.getdragonbot.com/#/signin"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5">
-              Get Started For Free <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </Section>
-
       {/* ─── SOCIAL PROOF ─── */}
       <Section>
-        <div className="text-center mb-14">
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
-            Brands love{' '}
-            <span className="inline-flex items-center gap-2">
-              <img src="/DragonBot-logo.png" alt="" className="h-10 inline" />
-              DragonBot
-            </span>
+        <div className="text-center mb-8">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] flex items-center justify-center gap-3 mb-6">
+            Brands love
+            <motion.img src="/DragonBot-logo.png" alt="" className="h-10 inline"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} />
+            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
           </h4>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {testimonials.map((t, i) => (
-            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-              <p className="text-white/70 text-sm leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#2F7D4F] flex items-center justify-center text-white text-xs font-bold">
-                  {t.name.charAt(0)}
-                </div>
-                <div>
-                  <p className="font-medium text-white text-sm">{t.name}</p>
-                  <p className="text-white/40 text-xs">{t.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center">
           <a href="https://app.getdragonbot.com/#/signin"
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl">
             Get Started For Free <ArrowRight className="w-4 h-4" />
           </a>
         </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {testimonials.map((t, i) => (
+            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm flex flex-col">
+              <div className="mb-4">
+                <div className="text-[11px] font-bold text-white/40 uppercase tracking-widest mb-1" style={{ fontFamily: monoFont }}>Saved</div>
+                <div className="text-2xl font-extrabold bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">{t.saved}</div>
+              </div>
+              <p className="text-white/70 text-sm leading-relaxed mb-6 flex-1">&ldquo;{t.text}&rdquo;</p>
+              <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                <div className="w-9 h-9 rounded-full bg-[#2F7D4F] flex items-center justify-center text-white text-sm font-bold shrink-0">
+                  {t.name.charAt(0)}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold text-white text-sm">{t.name}</p>
+                  <p className="text-white/40 text-xs">{t.role}</p>
+                </div>
+                {t.linkedin && (
+                  <a href={t.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[#0A66C2] transition-colors shrink-0">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
       </Section>
 
       {/* ─── FAQ ─── */}
@@ -1266,6 +1252,59 @@ export default function LandingV3() {
           ))}
         </div>
       </Section>
+
+      {/* ─── PRICING ─── */}
+      <Section id="pricing">
+        <div className="text-center mb-12">
+          <h4 className="font-extrabold text-3xl sm:text-4xl tracking-[-0.03em] leading-tight">
+            Start free.{' '}
+            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Pay only when you're ready.</span>
+          </h4>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-center">
+          {/* Left: copy + CTAs */}
+          <div className="max-w-md">
+            <p className="text-lg text-white/55 mb-8 leading-relaxed">
+              Every feature. Every integration. $100 in credits on the house.
+              No credit card, no sales call, no catch. When you need more, it starts at $50/month.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a href="https://app.getdragonbot.com/#/signin"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25">
+                Get Started For Free <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="/pricing"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">
+                See all plans
+              </a>
+            </div>
+          </div>
+
+          {/* Right: Features list (no card) */}
+          <ul className="space-y-4">
+            {[
+              '$100 in free credits',
+              'Every feature, no limits',
+              '3,000+ integrations',
+              'Amazon SP-API authorized connection',
+              'Lives on Slack',
+            ].map((f, i) => (
+              <li key={i} className="flex items-start gap-3 text-base text-white/80">
+                <Check className="w-5 h-5 text-[#98CC65] mt-0.5 shrink-0" />
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      {/* ─── FINAL DRAGON CTA ─── */}
+      <section className="pt-0 pb-24">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center">
+          <DragonFinalCTA />
+        </div>
+      </section>
 
       {/* ─── FOOTER ─── */}
       <footer className="bg-[#0F3D2E] py-16">
