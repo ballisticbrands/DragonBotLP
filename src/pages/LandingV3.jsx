@@ -479,7 +479,7 @@ function SPAPIConnectionDemo() {
       <div className="relative flex items-start justify-between w-full px-6 pb-5" style={{ marginTop: -12 }}>
         {/* DragonBot node (static) */}
         <div className="relative flex flex-col items-center gap-1.5 z-10">
-          <div className="w-12 h-12 rounded-xl bg-[#F5F3F1] flex items-center justify-center shadow-lg shadow-[#2F7D4F]/20 p-2">
+          <div className="w-12 h-12 rounded-xl bg-[#3A3A3A] flex items-center justify-center shadow-lg shadow-[#2F7D4F]/20 p-2">
             <img src="/DragonBot-avatar.png" alt="DragonBot" className="w-full h-full object-contain" />
           </div>
           <span className="text-[10px] font-semibold text-white/70">DragonBot</span>
