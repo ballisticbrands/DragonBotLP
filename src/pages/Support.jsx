@@ -2,7 +2,8 @@ const sysFont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robot
 
 export default function Support() {
   return (
-    <div className="min-h-screen bg-[#0F0F0F] text-white" style={{ fontFamily: sysFont }}>
+    <div className="db-page min-h-screen bg-[#0F0F0F] text-white" style={{ fontFamily: sysFont }}>
+      <style>{`.db-page h1,.db-page h2,.db-page h3,.db-page h4,.db-page h5,.db-page h6{font-family:inherit!important}`}</style>
       {/* Header */}
       <div className="border-b border-white/10">
         <div className="max-w-3xl mx-auto px-6 py-16">
@@ -35,8 +36,8 @@ export default function Support() {
                 <h3 className="font-semibold text-lg mb-2">Email</h3>
                 <p className="text-white/70 leading-relaxed">
                   Send us an email at{' '}
-                  <a href="mailto:help@getdragonbot.com" className="text-[#98CC65] hover:text-[#2F7D4F] underline transition-colors font-semibold">
-                    help@getdragonbot.com
+                  <a href="mailto:info@getdragonbot.com" className="text-[#98CC65] hover:text-[#2F7D4F] underline transition-colors font-semibold">
+                    info@getdragonbot.com
                   </a>
                 </p>
               </div>
@@ -89,8 +90,8 @@ export default function Support() {
           <h2 className="font-bold text-2xl mb-4">Urgent issues</h2>
           <p className="text-white/70 leading-relaxed">
             If you're experiencing a critical issue with your Amazon account or believe DragonBot took an unintended action, email us at{' '}
-            <a href="mailto:help@getdragonbot.com" className="text-[#98CC65] hover:text-[#2F7D4F] underline transition-colors font-semibold">
-              help@getdragonbot.com
+            <a href="mailto:info@getdragonbot.com" className="text-[#98CC65] hover:text-[#2F7D4F] underline transition-colors font-semibold">
+              info@getdragonbot.com
             </a>{' '}
             with "URGENT" in the subject line. We prioritize these and aim to respond within 1 hour during business hours.
           </p>
@@ -98,8 +99,9 @@ export default function Support() {
 
         <div className="mt-16 pt-8 border-t border-white/10 text-center">
           <p className="text-sm text-white/30">
-            &copy; {new Date().getFullYear()} DragonBot. All rights reserved.
+            &copy; {new Date().getFullYear()} Chacha Advisory LLC. All rights reserved.
           </p>
+          <p className="text-xs text-white/20 mt-1">30 N Gould St Ste R, Sheridan, WY 82801, USA</p>
         </div>
       </div>
     </div>

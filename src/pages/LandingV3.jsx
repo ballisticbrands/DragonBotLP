@@ -17,11 +17,10 @@ const monoFont = "'Roboto Mono', monospace";
 
 /* ─── Navbar (self-contained for this page) ─── */
 const navLinks = [
-  { label: 'The Shift', href: '#the-shift' },
-  { label: 'Solution', href: '#solution' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Use Cases', href: '#use-cases' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Product', href: '/' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Privacy', href: '/privacy', newTab: true },
+  { label: 'Support', href: '/support', newTab: true },
 ];
 
 function NavbarV2() {
@@ -52,7 +51,7 @@ function NavbarV2() {
           </a>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(l => (
-              <a key={l.label} href={l.href} className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>{l.label}</a>
+              <a key={l.label} href={l.href} {...(l.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>{l.label}</a>
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
@@ -1161,7 +1160,8 @@ export default function LandingV3() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { icon: <Check className="w-6 h-6" />, title: 'Amazon SP-API Authorized Connection', desc: '100% Amazon terms-of-service compliant. Official SP-API only. No scraping. No gray areas.', badge: 'SP-API certified' },
+            { icon: <Check className="w-6 h-6" />, title: 'Amazon SP-API Connection', desc: '100% Amazon terms-of-service compliant. Official SP-API only. No scraping. No gray areas.', badge: 'SP-API certified' },
+            // { icon: <Check className="w-6 h-6" />, title: 'Amazon SP-API Authorized Connection', desc: '100% Amazon terms-of-service compliant. Official SP-API only. No scraping. No gray areas.', badge: 'SP-API certified' },
             { icon: <Brain className="w-6 h-6" />, title: 'Permissions you control', subtitle: '✓ Read-only by default', desc: 'Read-only, supervised, or autonomous. You choose.', badge: 'Read-only → Supervised → Autonomous' },
             { icon: <Zap className="w-6 h-6" />, title: 'Supervised mode', desc: 'DragonBot asks before touching your account. Send a refund? Pause a campaign? You decide.', badge: null },
             { icon: <Database className="w-6 h-6" />, title: 'Full audit trail', desc: 'Every action logged — what, when, and why.', badge: null },
@@ -1179,7 +1179,8 @@ export default function LandingV3() {
                   <div className="w-full h-36"><PermissionsDemo /></div>
                 ) : f.title === 'Full audit trail' ? (
                   <div className="w-full h-52"><AuditTrailDemo /></div>
-                ) : f.title === 'Amazon SP-API Authorized Connection' ? (
+                ) : f.title === 'Amazon SP-API Connection' ? (
+                // ) : f.title === 'Amazon SP-API Authorized Connection' ? (
                   <div className="w-full h-36"><SPAPIConnectionDemo /></div>
                 ) : (
                   <div className="w-full h-36 bg-gradient-to-b from-white/5 to-white/10 flex items-end justify-center">
@@ -1287,7 +1288,8 @@ export default function LandingV3() {
               '$100 in free credits',
               'Every feature, no limits',
               '3,000+ integrations',
-              'Amazon SP-API authorized connection',
+              'Amazon SP-API connection',
+              // 'Amazon SP-API authorized connection',
               'Lives on Slack',
             ].map((f, i) => (
               <li key={i} className="flex items-start gap-3 text-base text-white/80">
@@ -1315,13 +1317,16 @@ export default function LandingV3() {
               <span className="font-bold text-lg text-white">DragonBot</span>
             </div>
             <div className="flex flex-wrap justify-center gap-8">
-              {['The Shift', 'Solution', 'How It Works', 'Use Cases', 'FAQ'].map(label => (
-                <a key={label} href={`#${label.toLowerCase().replace(/\s/g, '-')}`}
-                  className="text-sm text-white/50 hover:text-white transition-colors">{label}</a>
-              ))}
-              <a href="/privacy" className="text-sm text-white/50 hover:text-white transition-colors">Privacy</a>
+              <a href="/" className="text-sm text-white/50 hover:text-white transition-colors">Product</a>
+              <a href="/pricing" className="text-sm text-white/50 hover:text-white transition-colors">Pricing</a>
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Privacy</a>
+              <a href="/support" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Support</a>
+              <a href="mailto:info@getdragonbot.com" className="text-sm text-white/50 hover:text-white transition-colors">info@getdragonbot.com</a>
             </div>
-            <p className="text-sm text-white/30">&copy; 2026 DragonBot. All rights reserved.</p>
+            <div className="text-center md:text-right">
+              <p className="text-sm text-white/30">&copy; {new Date().getFullYear()} Chacha Advisory LLC. All rights reserved.</p>
+              <p className="text-xs text-white/20 mt-1">30 N Gould St Ste R, Sheridan, WY 82801, USA</p>
+            </div>
           </div>
         </div>
       </footer>
