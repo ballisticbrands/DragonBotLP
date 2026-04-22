@@ -62,17 +62,17 @@ export default function Support() {
           <h2 className="font-bold text-2xl mb-6">Common topics</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { title: 'Getting started', desc: 'How to connect DragonBot to Slack, link your Amazon account, and start your first task.' },
-              { title: 'Billing & credits', desc: 'Questions about your $100 free credits, plan pricing, or payment methods.' },
-              { title: 'Amazon integration', desc: 'Setting up the Amazon SP-API connection, permissions, and troubleshooting access issues.' },
-              { title: 'Security & privacy', desc: 'How we handle your data, TOS compliance, and permission controls.' },
-              { title: 'Account management', desc: 'Updating your profile, managing team members, or deleting your account.' },
-              { title: 'Feature requests', desc: 'Have an idea for DragonBot? We\'d love to hear it — send us a message.' },
+              { title: 'Getting started', desc: 'How to connect DragonBot to Slack, link your Amazon account, and start your first task.', href: '/support/getting-started' },
+              { title: 'Billing & credits', desc: 'Questions about your $100 free credits, plan pricing, or payment methods.', href: '/support/billing-credits' },
+              { title: 'Amazon integration', desc: 'Setting up the Amazon SP-API connection, permissions, and troubleshooting access issues.', href: '/support/amazon-integration' },
+              { title: 'Security & privacy', desc: 'How we handle your data, TOS compliance, and permission controls.', href: '/support/security-privacy' },
+              { title: 'Account management', desc: 'Updating your profile, managing team members, or deleting your account.', href: '/support/account-management' },
+              { title: 'Feature requests', desc: 'Have an idea for DragonBot? We\'d love to hear it — send us a message.', href: '/support/feature-requests' },
             ].map((topic, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-5 hover:border-[#2F7D4F]/30 transition-colors">
+              <a key={i} href={topic.href} className="bg-white/5 border border-white/10 rounded-xl p-5 hover:border-[#2F7D4F]/30 transition-colors block">
                 <h3 className="font-semibold mb-1">{topic.title}</h3>
                 <p className="text-sm text-white/50 leading-relaxed">{topic.desc}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>
