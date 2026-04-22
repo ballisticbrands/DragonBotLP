@@ -60,7 +60,9 @@ export default function Pricing() {
       <nav className="border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="/" className="flex items-center gap-3">
-            <img src="/DragonBot-logo.png" alt="DragonBot" className="h-10" />
+            <motion.img src="/DragonBot-logo.png" alt="DragonBot" className="h-10"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} />
             <span className="font-bold text-[28px] text-white" style={{ lineHeight: '1' }}>get<span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span><span className="text-white">.com</span></span>
           </a>
           <div className="hidden md:flex items-center gap-8">
@@ -226,6 +228,7 @@ export default function Pricing() {
               <a href="/" className="text-sm text-white/50 hover:text-white transition-colors">Product</a>
               <a href="/pricing" className="text-sm text-white/50 hover:text-white transition-colors">Pricing</a>
               <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Privacy</a>
+              <a href="/tos" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Terms</a>
               <a href="/support" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Support</a>
               <a href="mailto:info@getdragonbot.com" className="text-sm text-white/50 hover:text-white transition-colors">info@getdragonbot.com</a>
             </div>

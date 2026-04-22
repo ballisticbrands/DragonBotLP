@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Chats from './pages/Chats';
 import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 import Support from './pages/Support';
 import Pricing from './pages/Pricing';
 import GettingStarted from './pages/help/GettingStarted';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/chats" element={<Chats />} />
         <Route path="/chats/:chatSlug" element={<Chats />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/tos" element={<Terms />} />
         <Route path="/support" element={<Support />} />
         <Route path="/support/getting-started" element={<GettingStarted />} />
         <Route path="/support/billing-credits" element={<BillingCredits />} />

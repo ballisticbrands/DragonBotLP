@@ -1320,6 +1320,7 @@ export default function LandingV3() {
               <a href="/" className="text-sm text-white/50 hover:text-white transition-colors">Product</a>
               <a href="/pricing" className="text-sm text-white/50 hover:text-white transition-colors">Pricing</a>
               <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Privacy</a>
+              <a href="/tos" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Terms</a>
               <a href="/support" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Support</a>
               <a href="mailto:info@getdragonbot.com" className="text-sm text-white/50 hover:text-white transition-colors">info@getdragonbot.com</a>
             </div>
