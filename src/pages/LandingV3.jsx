@@ -17,7 +17,7 @@ const monoFont = "'Roboto Mono', monospace";
 
 /* ─── Navbar (self-contained for this page) ─── */
 const navLinks = [
-  { label: 'Product', href: '/' },
+  { label: 'Product', href: '/', active: true },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Privacy', href: '/privacy', newTab: true },
   { label: 'Support', href: '/support', newTab: true },
@@ -51,7 +51,7 @@ function NavbarV2() {
           </a>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(l => (
-              <a key={l.label} href={l.href} {...(l.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>{l.label}</a>
+              <a key={l.label} href={l.href} {...(l.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className={`text-[13px] font-medium transition-colors ${l.active ? 'text-white bg-white/10 px-3 py-1.5 rounded-md' : 'text-white/50 hover:text-[#98CC65]'}`} style={{ fontFamily: monoFont }}>{l.label}</a>
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">

@@ -65,7 +65,7 @@ export default function Pricing() {
           </a>
           <div className="hidden md:flex items-center gap-8">
             <a href="/" className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>Product</a>
-            <a href="/pricing" className="text-[13px] font-medium text-white hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>Pricing</a>
+            <a href="/pricing" className="text-[13px] font-medium text-white bg-white/10 px-3 py-1.5 rounded-md" style={{ fontFamily: monoFont }}>Pricing</a>
             <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>Privacy</a>
             <a href="/support" target="_blank" rel="noopener noreferrer" className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>Support</a>
           </div>
@@ -81,7 +81,7 @@ export default function Pricing() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="font-extrabold text-[48px] sm:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.035em] mb-6">
             We'll front you <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">$100.</span>
-            <br />Put DragonBot to work.
+            <br />Put <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span> to work.
           </h1>
           <div className="flex flex-wrap items-center justify-center gap-5 text-[13px] font-medium text-white/40 tracking-[-0.01em] mb-4">
             <span className="flex items-center gap-2">
