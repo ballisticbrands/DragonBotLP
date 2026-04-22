@@ -945,12 +945,12 @@ const useCaseTabs = [
 
 /* ─── Testimonial placeholder ─── */
 const testimonials = [
-  { name: 'Sarah M.', role: 'Amazon Seller', text: 'DragonBot audited our PPC in 10 minutes. Took our agency a week to do the same thing — and they missed half the wasted spend.', saved: '40 hrs/month', linkedin: 'https://www.linkedin.com/' },
-  { name: 'James L.', role: 'eCommerce Founder', text: 'I asked DragonBot to research a new product niche. It came back with keyword data, competitor analysis, and a margin estimate. Insane.', saved: '25 hrs/month', linkedin: 'https://www.linkedin.com/' },
-  { name: 'Priya K.', role: 'Operations Lead', text: 'Our weekly ops report used to take 4 hours. Now DragonBot sends it to Slack every Monday morning. Zero effort.', saved: '16 hrs/month', linkedin: 'https://www.linkedin.com/' },
-  { name: 'Mike R.', role: 'Brand Manager', text: 'Customer support triage was drowning us. DragonBot drafts first responses and routes tickets instantly. Game changer.', saved: '30 hrs/month', linkedin: 'https://www.linkedin.com/' },
-  { name: 'Elena V.', role: 'D2C Founder', text: 'It connected to our Seller Central, pulled the data, built the report, and sent it to my investor. I didn\'t touch a spreadsheet.', saved: '20 hrs/month', linkedin: 'https://www.linkedin.com/' },
-  { name: 'David T.', role: 'Supply Chain Manager', text: 'DragonBot caught a restock issue 3 days before we would have noticed. Saved us from going out of stock on our top SKU.', saved: '$18K/month', linkedin: 'https://www.linkedin.com/' },
+  { name: 'Sarah M.', role: 'Amazon Seller', avatar: '/avatar-sarah.jpg', text: 'DragonBot audited our PPC in 10 minutes. Took our agency a week to do the same thing — and they missed half the wasted spend.', saved: '40 hrs/month' /*, linkedin: 'https://www.linkedin.com/' */ },
+  { name: 'James L.', role: 'eCommerce Founder', avatar: '/avatar-james.jpg', text: 'I asked DragonBot to research a new product niche. It came back with keyword data, competitor analysis, and a margin estimate. Insane.', saved: '25 hrs/month' /*, linkedin: 'https://www.linkedin.com/' */ },
+  { name: 'Priya K.', role: 'Operations Lead', avatar: '/avatar-priya.jpg', text: 'Our weekly ops report used to take 4 hours. Now DragonBot sends it to Slack every Monday morning. Zero effort.', saved: '16 hrs/month' /*, linkedin: 'https://www.linkedin.com/' */ },
+  { name: 'Mike R.', role: 'Brand Manager', avatar: '/avatar-mike.jpg', text: 'Customer support triage was drowning us. DragonBot drafts first responses and routes tickets instantly. Game changer.', saved: '30 hrs/month' /*, linkedin: 'https://www.linkedin.com/' */ },
+  { name: 'Elena V.', role: 'D2C Founder', avatar: '/avatar-elena.jpg', text: 'It connected to our Seller Central, pulled the data, built the report, and sent it to my investor. I didn\'t touch a spreadsheet.', saved: '20 hrs/month' /*, linkedin: 'https://www.linkedin.com/' */ },
+  { name: 'David T.', role: 'Supply Chain Manager', avatar: '/avatar-david.jpg', text: 'DragonBot caught a restock issue 3 days before we would have noticed. Saved us from going out of stock on our top SKU.', saved: '$18K/month' /*, linkedin: 'https://www.linkedin.com/' */ },
 ];
 
 /* ─── FAQ data ─── */
@@ -1218,13 +1218,12 @@ export default function LandingV3() {
               </div>
               <p className="text-white/70 text-sm leading-relaxed mb-6 flex-1">&ldquo;{t.text}&rdquo;</p>
               <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                <div className="w-9 h-9 rounded-full bg-[#2F7D4F] flex items-center justify-center text-white text-sm font-bold shrink-0">
-                  {t.name.charAt(0)}
-                </div>
+                <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover shrink-0" />
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-white text-sm">{t.name}</p>
                   <p className="text-white/40 text-xs">{t.role}</p>
                 </div>
+                {/* LinkedIn links — uncomment when ready
                 {t.linkedin && (
                   <a href={t.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[#0A66C2] transition-colors shrink-0">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -1232,6 +1231,7 @@ export default function LandingV3() {
                     </svg>
                   </a>
                 )}
+                */}
               </div>
             </div>
           ))}

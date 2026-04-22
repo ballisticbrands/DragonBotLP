@@ -43,7 +43,16 @@ const pricingFaq = [
   { q: 'How does DragonBot reduce my costs?', a: 'Smart caching reuses context across conversations, so repeated questions about the same data cost almost nothing. Scheduled tasks run efficiently by batching operations.' },
 ];
 
+const teamPlans = [
+  { credits: '20,000', price: 50 },
+  { credits: '50,000', price: 100 },
+  { credits: '100,000', price: 180 },
+  { credits: '250,000', price: 400 },
+  { credits: '500,000', price: 700 },
+];
+
 export default function Pricing() {
+  const [selectedPlan, setSelectedPlan] = useState(0);
   return (
     <div className="db-page min-h-screen bg-[#0F0F0F] text-white" style={{ fontFamily: sysFont }}>
       <style>{`.db-page h1,.db-page h2,.db-page h3,.db-page h4,.db-page h5,.db-page h6{font-family:inherit!important}`}</style>
@@ -97,13 +106,34 @@ export default function Pricing() {
           <div className="grid md:grid-cols-2 gap-6">
             {/* Team */}
             <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
-              <h3 className="font-bold text-2xl mb-1">Team</h3>
-              <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-4xl font-extrabold">$50</span>
+              <h3 className="font-bold text-2xl mb-3">Team</h3>
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-4xl font-extrabold">${teamPlans[selectedPlan].price}</span>
                 <span className="text-white/50">/month</span>
               </div>
-              <p className="text-white/50 text-sm mb-6 leading-relaxed">20,000 credits/month. Shared across your workspace. No per-seat charges.</p>
-              <ul className="space-y-3 mb-8 flex-1">
+              <p className="text-white/50 text-sm mb-4 leading-relaxed">Shared across your workspace. No per-seat charges.</p>
+              {/* Plan selector dropdown */}
+              <div className="relative mb-5">
+                <select
+                  value={selectedPlan}
+                  onChange={(e) => setSelectedPlan(Number(e.target.value))}
+                  className="w-full appearance-none bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white font-semibold text-sm cursor-pointer hover:border-white/20 transition-colors focus:outline-none focus:border-[#2F7D4F]"
+                  style={{ fontFamily: monoFont }}
+                >
+                  {teamPlans.map((p, i) => (
+                    <option key={i} value={i} className="bg-[#1A1A1A] text-white">
+                      {p.credits} credits/mo — ${p.price}/month
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
+              </div>
+              <a href="https://app.getdragonbot.com/#/signin"
+                className="flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 mb-3">
+                Get Started For Free <ArrowRight className="w-4 h-4" />
+              </a>
+              <p className="text-center text-xs text-white/30 mb-6">$100 in free credits included — no card required</p>
+              <ul className="space-y-3 flex-1">
                 {[
                   'Every feature, every integration',
                   'Slack-native — works in threads & mentions',
@@ -119,11 +149,6 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a href="https://app.getdragonbot.com/#/signin"
-                className="flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25">
-                Get Started For Free <ArrowRight className="w-4 h-4" />
-              </a>
-              <p className="text-center text-xs text-white/30 mt-3">$100 in free credits included — no card required</p>
             </div>
 
             {/* Enterprise */}
