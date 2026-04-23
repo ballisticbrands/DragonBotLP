@@ -337,15 +337,11 @@ export default function LandingV2() {
             </div>
           </motion.div>
 
-          {/* Logos strip */}
+          {/* Built by sellers strip */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-8">
-            <p className="text-[11px] font-medium text-[#1A1A1A]/25 uppercase tracking-[0.15em] mb-5">Built by eCommerce operators &amp; engineers from</p>
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-30">
-              {['Amazon', 'Shopify', 'Meta', 'Google'].map(name => (
-                <span key={name} className="font-semibold text-lg text-[#1A1A1A]">{name}</span>
-              ))}
-            </div>
+            className="mt-8 text-center">
+            <p className="text-[15px] font-semibold text-[#1A1A1A]/50 mb-2">We sell on Amazon too</p>
+            <p className="text-[11px] font-medium text-[#1A1A1A]/35 uppercase tracking-[0.15em]">10 years on Amazon · 8 figures sold · DragonBot is the employee we always wanted</p>
           </motion.div>
 
           {/* Hero video */}
