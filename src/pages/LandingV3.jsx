@@ -1069,20 +1069,26 @@ export default function LandingV3() {
           </h4>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <a href="https://www.youtube.com/watch?v=o0-_6Vu3Kv4" target="_blank" rel="noopener noreferrer"
-            className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#2F7D4F]/40 transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/10 group">
-            <div className="relative aspect-video">
-              <img src="https://img.youtube.com/vi/o0-_6Vu3Kv4/mqdefault.jpg" alt="Amazon keyword research using DragonBot" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-[#2F7D4F] flex items-center justify-center shadow-lg">
-                  <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
+          {[
+            { id: 'o0-_6Vu3Kv4', title: 'Why I Stopped Using Helium 10 for Amazon Keyword Research' },
+            { id: '2KT6nMu2LQg', title: 'Why I Stopped Doing Amazon Product Research Manually' },
+          ].map(v => (
+            <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer"
+              className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#2F7D4F]/40 transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/10 group">
+              <div className="relative aspect-video">
+                <img src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} className="w-full h-full object-cover"
+                  onError={(e) => { e.currentTarget.src = `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`; }} />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-[#2F7D4F] flex items-center justify-center shadow-lg">
+                    <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="p-3">
-              <p className="text-sm font-semibold text-white/80 leading-snug">Amazon keyword research using DragonBot</p>
-            </div>
-          </a>
+              <div className="p-3">
+                <p className="text-sm font-semibold text-white/80 leading-snug">{v.title}</p>
+              </div>
+            </a>
+          ))}
           {/* More videos will be added here */}
         </div>
       </Section>
