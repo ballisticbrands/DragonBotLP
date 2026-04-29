@@ -1070,8 +1070,8 @@ export default function LandingV3() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { id: 'o0-_6Vu3Kv4', title: 'Why I Stopped Using Helium 10 for Amazon Keyword Research' },
-            { id: '2KT6nMu2LQg', title: 'Why I Stopped Doing Amazon Product Research Manually' },
+            { id: 'o0-_6Vu3Kv4', title: 'Why I Stopped Using Helium 10 for Amazon Keyword Research', duration: '20:45' },
+            { id: '2KT6nMu2LQg', title: 'Why I Stopped Doing Amazon Product Research Manually', duration: '6:33' },
           ].map(v => (
             <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer"
               className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#2F7D4F]/40 transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/10 group">
@@ -1083,6 +1083,11 @@ export default function LandingV3() {
                     <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
                   </div>
                 </div>
+                {v.duration && (
+                  <span className="absolute bottom-2 left-2 text-[11px] font-semibold text-white bg-black/80 px-1.5 py-0.5 rounded">
+                    {v.duration}
+                  </span>
+                )}
               </div>
               <div className="p-3">
                 <p className="text-sm font-semibold text-white/80 leading-snug">{v.title}</p>
