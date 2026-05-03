@@ -97,9 +97,9 @@ function Section({ id, className = '', children }) {
 /* ─── Eyebrow label ─── */
 function Eyebrow({ children }) {
   return (
-    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2F7D4F]/10 rounded-full text-sm font-medium text-white mb-6">
-      <span className="w-2 h-2 rounded-full bg-[#98CC65] animate-pulse" />
-      {children}
+    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2F7D4F]/10 rounded-full text-sm font-medium text-white mb-6 max-w-[90vw]">
+      <span className="w-2 h-2 rounded-full bg-[#98CC65] animate-pulse shrink-0" />
+      <span>{children}</span>
     </span>
   );
 }
@@ -170,22 +170,22 @@ const CHANNEL_MSGS = {
 
 function SlackMsg({ m }) {
   return (
-    <div className={`flex gap-3 px-4 py-1.5 ${m.isThread ? 'ml-8 border-l-2 border-[#2F7D4F] pl-3' : ''}`}>
-      <div className="shrink-0 w-9 h-9 rounded-md flex items-center justify-center text-white text-sm font-bold overflow-hidden"
+    <div className={`flex gap-2 md:gap-3 px-3 md:px-4 py-1.5 ${m.isThread ? 'ml-4 md:ml-8 border-l-2 border-[#2F7D4F] pl-2 md:pl-3' : ''}`}>
+      <div className="shrink-0 w-[18px] h-[18px] md:w-9 md:h-9 rounded md:rounded-md flex items-center justify-center text-white text-[8px] md:text-sm font-bold overflow-hidden"
         style={{ backgroundColor: m.isBot ? '#3A3A3A' : m.color }}>
-        {m.isBot ? <img src="/DragonBot-avatar.png" className="w-6 h-6 object-contain" /> : m.initials}
+        {m.isBot ? <img src="/DragonBot-avatar.png" className="w-3 h-3 md:w-6 md:h-6 object-contain" /> : m.initials}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="flex items-baseline gap-2 mb-0.5">
-          <span className="font-black text-base" style={{ color: '#D1D2D3' }}>{m.who}</span>
-          {m.isBot && <span className="text-xs font-bold text-white px-1.5 py-px rounded" style={{ backgroundColor: '#2F7D4F' }}>APP</span>}
-          <span className="text-sm" style={{ color: '#9B9C9E' }}>{m.time}</span>
+        <div className="flex items-baseline gap-1.5 md:gap-2 mb-0.5">
+          <span className="font-black text-[14px] md:text-base" style={{ color: '#D1D2D3' }}>{m.who}</span>
+          {m.isBot && <span className="text-[10px] md:text-xs font-bold text-white px-1.5 py-px rounded" style={{ backgroundColor: '#2F7D4F' }}>APP</span>}
+          <span className="text-[12px] md:text-sm" style={{ color: '#9B9C9E' }}>{m.time}</span>
         </div>
-        <div className="text-base leading-relaxed" style={{ color: '#D1D2D3' }}>{m.text}</div>
+        <div className="text-[14px] md:text-base leading-relaxed" style={{ color: '#D1D2D3' }}>{m.text}</div>
         {m.reactions && (
           <div className="flex gap-1.5 mt-1.5">
             {m.reactions.map((r, j) => (
-              <span key={j} className="flex items-center gap-1 text-sm px-2 py-0.5 rounded-full" style={{ backgroundColor: '#2C2D30', border: '1px solid #3F4145' }}>
+              <span key={j} className="flex items-center gap-1 text-[12px] md:text-sm px-2 py-0.5 rounded-full" style={{ backgroundColor: '#2C2D30', border: '1px solid #3F4145' }}>
                 {r} <span style={{ color: '#1264A3', fontWeight: 600 }}>1</span>
               </span>
             ))}
@@ -278,7 +278,7 @@ function SlackDemo({ activeChannel, setActiveChannel, onPinChange, pinned }) {
     <div className="flex flex-wrap justify-center gap-2 mb-4">
       {SLACK_CHANNELS.map(ch => (
         <button key={ch} onClick={() => setActiveChannel(ch)}
-          className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+          className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md text-[11px] sm:text-xs font-semibold transition-all ${
             activeChannel === ch
               ? 'bg-[#2F7D4F] text-white shadow-lg shadow-[#2F7D4F]/20'
               : 'bg-[#F5F3F1] text-[#0F0F0F] hover:bg-[#2F7D4F] hover:text-white'
@@ -288,10 +288,10 @@ function SlackDemo({ activeChannel, setActiveChannel, onPinChange, pinned }) {
       ))}
     </div>
     <div className="relative">
-    <div ref={wrapperRef} className="w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl text-left" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+    <div ref={wrapperRef} className="w-full aspect-[4/5] md:aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl text-left" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       <div className="flex h-full w-full">
-        {/* Sidebar */}
-        <div className="shrink-0 flex flex-col py-3" style={{ width: '20%', backgroundColor: '#4A154B' }}>
+        {/* Sidebar — desktop only */}
+        <div className="shrink-0 hidden md:flex flex-col py-3" style={{ width: '20%', backgroundColor: '#4A154B' }}>
           <div className="px-3 pb-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
             <div className="text-white text-sm font-black">Garlic Presses LTD</div>
           </div>
@@ -318,8 +318,14 @@ function SlackDemo({ activeChannel, setActiveChannel, onPinChange, pinned }) {
         </div>
 
         {/* Main */}
-        <div className="flex-1 flex flex-col" style={{ backgroundColor: '#1A1D21' }}>
-          <div className="px-4 py-2.5" style={{ borderBottom: '1px solid #35373B' }}>
+        <div className="flex-1 flex flex-col min-w-0" style={{ backgroundColor: '#1A1D21' }}>
+          {/* Mobile header — purple workspace bar */}
+          <div className="md:hidden px-4 py-2 text-white" style={{ backgroundColor: '#4A154B' }}>
+            <div className="text-[11px] font-black opacity-90 mb-0.5">Garlic Presses LTD</div>
+            <div className="text-sm font-black">{activeChannel}</div>
+          </div>
+          {/* Desktop header */}
+          <div className="hidden md:block px-4 py-2.5" style={{ borderBottom: '1px solid #35373B' }}>
             <span className="text-sm font-black" style={{ color: '#D1D2D3' }}>{activeChannel}</span>
           </div>
 
@@ -665,6 +671,165 @@ const PERMISSION_MODES = [
   { id: 'supervised', label: 'Supervised', desc: 'DragonBot can take actions, but asks for your approval first. Nothing happens without your say-so.' },
   { id: 'autonomous', label: 'Autonomous', desc: 'DragonBot handles routine tasks on its own. It only escalates edge cases and high-stakes decisions.' },
 ];
+
+/* ─── Built-for-Amazon connection diagram ─── */
+/* 6 nodes placed on a circle around the DragonBot center, evenly spaced at 60°.
+   Angles in degrees: 0° = right, 90° = down, 180° = left, 270° = up. */
+const BUILT_SOURCES = [
+  { logos: ['/logo-keepa.png', '/logo-junglescout.png'], label: 'Historical sales data', source: 'Keepa, Jungle Scout', angle: 220 }, // top-left (180 + 40)
+  { logo: '/logo-keepa.png',       label: 'Reviews & sentiment',       source: 'Keepa',         angle: 180, rMul: 1.3 },  // left
+  { logo: '/logo-junglescout.png', label: 'Keyword rankings',          source: 'Jungle Scout',  angle: 140 },             // bot-left   (180 - 40)
+  { logo: '/logo-junglescout.png', label: 'Reverse keyword research',  source: 'Jungle Scout',  angle: 320 },             // top-right  (360 - 40)
+  { logo: '/logo-amazon.png',      label: 'Your sales & inventory',    source: 'Amazon SP-API', angle: 0,   rMul: 1.3 },  // right
+  { logo: '/logo-amazon.png',      label: 'Your ads data',             source: 'Amazon SP-API', angle: 40  },             // bot-right  (0 + 40)
+];
+
+function BuiltForAmazonDiagram() {
+  const SVG_W = 1000;
+  const SVG_H = 400;
+  const CENTER_X = SVG_W / 2;
+  const CENTER_Y = SVG_H / 2;
+  const RADIUS = 220;
+  const LINE_W = 1.5;
+
+  const sources = BUILT_SOURCES.map((s, i) => {
+    const rad = (s.angle * Math.PI) / 180;
+    const r = RADIUS * (s.rMul || 1);
+    const x = CENTER_X + r * Math.cos(rad);
+    const cy = CENTER_Y + r * Math.sin(rad);
+    // label sits to the right side of the node if node is on the right half
+    const side = Math.cos(rad) >= 0 ? 'right' : 'left';
+    return { ...s, x, cy, side, pid: `bfa-path-${i}` };
+  });
+
+  return (
+    <div className="w-full max-w-5xl mx-auto">
+      {/* Mobile layout — stacked cards (option A) */}
+      <div className="md:hidden">
+        <div className="flex flex-col items-center mb-6">
+          <div className="relative w-24 h-24 rounded-full flex items-center justify-center" style={{ backgroundColor: '#0F0F0F', border: '2px solid rgba(152,204,101,0.4)' }}>
+            <motion.img
+              src="/DragonBot-logo.png"
+              alt="DragonBot"
+              className="w-16 h-16 object-contain"
+              animate={{ scale: [1, 1.15, 1] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+              style={{ transformOrigin: 'center' }}
+            />
+          </div>
+          <p className="mt-3 text-xs font-bold text-white/40 uppercase tracking-widest" style={{ fontFamily: monoFont }}>
+            Pulls data from ↓
+          </p>
+        </div>
+        <div className="space-y-3">
+          {BUILT_SOURCES.map((s, i) => (
+            <div key={`m-${i}`} className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4">
+              {(s.logos || [s.logo]).length > 1 ? (
+                <div className="flex items-center -space-x-2 shrink-0">
+                  {s.logos.map((src, j) => (
+                    <div key={j} className="relative w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#1A1A1A', zIndex: j + 1 }}>
+                      <img src={src} alt="" className="w-6 h-6 object-contain" />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                  <img src={s.logo} alt={s.source} className="w-7 h-7 object-contain" />
+                </div>
+              )}
+              <div className="min-w-0 flex-1">
+                <div className="text-sm font-semibold text-white leading-tight">{s.label}</div>
+                <div className="text-[11px] font-medium text-white/40 uppercase tracking-wider mt-0.5" style={{ fontFamily: monoFont }}>{s.source}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop layout — radial diagram */}
+      <div className="relative hidden md:block">
+        <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} className="w-full" style={{ display: 'block' }}>
+          <defs>
+            <filter id="bfa-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Connection lines + animated pulses */}
+          {sources.map((s, i) => (
+            <g key={`line-${i}`}>
+              <line x1={s.x} y1={s.cy} x2={CENTER_X} y2={CENTER_Y} stroke="rgba(152,204,101,0.25)" strokeWidth={LINE_W} />
+              <path id={s.pid} d={`M${s.x},${s.cy} L${CENTER_X},${CENTER_Y}`} fill="none" stroke="none" />
+              <motion.circle r="4" fill="#98CC65" filter="url(#bfa-glow)"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 1, 0] }}
+                transition={{ duration: 2.4, delay: i * 0.4, repeat: Infinity, ease: 'linear' }}
+              >
+                <animateMotion dur="2.4s" begin={`${i * 0.4}s`} repeatCount="indefinite">
+                  <mpath href={`#${s.pid}`} />
+                </animateMotion>
+              </motion.circle>
+            </g>
+          ))}
+
+          {/* Center DragonBot — pulses as if consuming the data */}
+          <circle cx={CENTER_X} cy={CENTER_Y} r="56" fill="#0F0F0F" stroke="rgba(152,204,101,0.4)" strokeWidth="2">
+            <animate attributeName="r" values="56;66;56" dur="1.6s" repeatCount="indefinite" />
+          </circle>
+          <image href="/DragonBot-logo.png" x={CENTER_X - 50} y={CENTER_Y - 50} width="100" height="100">
+            <animate attributeName="width" values="100;120;100" dur="1.6s" repeatCount="indefinite" />
+            <animate attributeName="height" values="100;120;100" dur="1.6s" repeatCount="indefinite" />
+            <animate attributeName="x" values={`${CENTER_X - 50};${CENTER_X - 60};${CENTER_X - 50}`} dur="1.6s" repeatCount="indefinite" />
+            <animate attributeName="y" values={`${CENTER_Y - 50};${CENTER_Y - 60};${CENTER_Y - 50}`} dur="1.6s" repeatCount="indefinite" />
+          </image>
+        </svg>
+
+        {/* Source nodes — overlay HTML on top of SVG so we can render real logos + labels */}
+        {sources.map((s, i) => {
+          const xPct = (s.x / SVG_W) * 100;
+          const yPct = (s.cy / SVG_H) * 100;
+          const isLeft = s.side === 'left';
+          return (
+            <div
+              key={`node-${i}`}
+              className="absolute"
+              style={{
+                left: `${xPct}%`,
+                top: `${yPct}%`,
+                transform: 'translate(-50%, -50%)',
+              }}
+            >
+              <div className={`flex items-center gap-3 ${isLeft ? '' : 'flex-row-reverse'}`}>
+                {(s.logos || [s.logo]).length > 1 ? (
+                  <div className="flex items-center -space-x-2 shrink-0">
+                    {s.logos.map((src, j) => (
+                      <div key={j} className="relative w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#1A1A1A', zIndex: j + 1 }}>
+                        <img src={src} alt="" className="w-6 h-6 object-contain" />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                    <img src={s.logo} alt={s.source} className="w-7 h-7 object-contain" />
+                  </div>
+                )}
+                <div className={`${isLeft ? 'text-left' : 'text-right'} min-w-0`} style={{ width: '160px' }}>
+                  <div className="text-sm font-semibold text-white leading-tight">{s.label}</div>
+                  <div className="text-[11px] font-medium text-white/40 uppercase tracking-wider mt-0.5" style={{ fontFamily: monoFont }}>{s.source}</div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+      </div>
+    </div>
+  );
+}
 
 function PermissionsDemo() {
   const [selected, setSelected] = useState('read-only');
@@ -1052,7 +1217,7 @@ export default function LandingV3() {
           {/* Slack demos */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-14 flex justify-center">
-            <div className="w-[800px]">
+            <div className="w-full max-w-[800px] px-4 md:px-0">
               <SlackDemo activeChannel={slackChannel} setActiveChannel={setSlackChannel} onPinChange={setSlackPinned} pinned={slackPinned} />
             </div>
           </motion.div>
@@ -1098,7 +1263,47 @@ export default function LandingV3() {
         </div>
       </Section>
 
-      {/* ─── THE SHIFT ─── */}
+      {/* ─── BUILT FOR AMAZON ─── */}
+      <Section id="built-for-amazon">
+        <div className="text-center mb-2">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+            AI that's <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">BUILT</span> for <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">Amazon</span>
+          </h4>
+          <p className="mt-4 text-lg text-white/55 max-w-2xl mx-auto leading-relaxed">
+            DragonBot doesn't just <em>talk</em> about Amazon. It's plugged into the same data the pros pay thousands a month for — and your own seller account.
+          </p>
+        </div>
+
+        <BuiltForAmazonDiagram />
+
+        <p className="text-center text-xs font-medium text-white/30 uppercase tracking-[0.15em] mt-2" style={{ fontFamily: monoFont }}>
+          And 3,000+ more integrations
+        </p>
+
+        {/* vs the alternative callout */}
+        <div className="max-w-3xl mx-auto mt-12 bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+          <p className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-2" style={{ fontFamily: monoFont }}>vs. the alternative</p>
+          <p className="text-lg text-white/80 leading-relaxed">
+            Helium 10 + Jungle Scout + Keepa subscriptions = <span className="text-[#F87171] font-bold">$200+/mo</span>.
+            <br />
+            DragonBot bundles them into one plan starting at <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent font-bold">$50/mo</span>.
+          </p>
+        </div>
+
+        {/* Concrete example */}
+        <div className="max-w-3xl mx-auto mt-6 bg-[#1A1D21] border border-white/10 rounded-2xl p-6 text-center">
+          <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-3" style={{ fontFamily: monoFont }}>For example</p>
+          <p className="text-base text-white/80 leading-relaxed mb-4">
+            Ask DragonBot: <em className="text-white">"Why did our BSR drop on B0CK5LRQX7 last week?"</em>
+          </p>
+          <p className="text-sm text-white/55 leading-relaxed">
+            DragonBot pulls Keepa history, your ads data, and recent reviews. <span className="text-[#98CC65] font-semibold">Answers in 30 seconds.</span>
+          </p>
+        </div>
+      </Section>
+
+      {/* ─── THE SHIFT (commented out — kept for reference) ─── */}
+      {/*
       <Section id="the-shift">
         <div className="text-center mb-14">
           <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
@@ -1154,6 +1359,7 @@ export default function LandingV3() {
           ]} us="" />
         </div>
       </Section>
+      */}
 
       {/* ─── SECURITY ─── */}
       <Section id="security">
