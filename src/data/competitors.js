@@ -1992,6 +1992,195 @@ export const competitors = {
     ],
   },
 
+  'openclaw': {
+    name: 'OpenClaw',
+    category: 'ai',
+    logo: '/logo-openclaw.png',
+    metaTitle: 'DragonBot vs OpenClaw: Managed AI Operator vs Open-Source DIY (2026)',
+    metaDescription:
+      "Honest comparison of DragonBot and OpenClaw. OpenClaw is a brilliant open-source self-hosted AI. DragonBot is a managed AI operator built for Amazon sellers — ready in minutes.",
+    eyebrow: 'DragonBot vs OpenClaw',
+    h1: { plain: 'OpenClaw is open-source DIY.', accent: 'DragonBot is the managed Amazon operator.' },
+    subhead:
+      "OpenClaw is a powerful open-source personal AI assistant — free, self-hosted, runs on your own machine, integrates with any chat app. DragonBot is a managed AI operator built specifically for Amazon sellers — Amazon SP-API, PPC skills, customer support, refunds, all working in minutes. Different products for different priorities. Here's the honest breakdown.",
+    pricing: { monthly: 'free + LLM costs', plan: 'open-source' },
+    tldr: {
+      them:
+        "Choose OpenClaw if you value open-source flexibility, want to self-host on your own machine, need general-purpose automation across many domains, and have the technical comfort to run, maintain, and extend the system yourself.",
+      us:
+        "Choose DragonBot if you're an Amazon seller who wants a managed AI operator with Amazon SP-API, PPC, customer support, and refund workflows built in — ready in minutes, no setup, no maintenance.",
+    },
+    comparisonTable: [
+      { feature: 'Open source / hackable', them: 'yes', us: 'no' },
+      { feature: 'Self-hosted (runs on your machine)', them: 'yes', us: 'no' },
+      { feature: 'Managed cloud SaaS', them: 'no', us: 'yes' },
+      { feature: 'Time to value', them: 'hours-days', us: 'minutes' },
+      { feature: 'Lives in chat (Slack, etc.)', them: 'yes', us: 'yes' },
+      { feature: 'Custom skills', them: 'yes', us: 'yes' },
+      { feature: 'Model-agnostic (Claude / GPT / local)', them: 'yes', us: 'partial' },
+      { feature: 'General-purpose automation', them: 'yes', us: 'partial' },
+      { feature: 'Built-in Amazon SP-API connection', them: 'no', us: 'yes' },
+      { feature: 'Pre-built Amazon-specific skills (PPC, FBA, listings)', them: 'no', us: 'yes' },
+      { feature: 'Built by experienced Amazon sellers', them: 'no', us: 'yes' },
+      { feature: 'Buyer-message + refund automation', them: 'no', us: 'yes' },
+      { feature: 'Audit trail of every action', them: 'partial', us: 'yes' },
+      { feature: 'Maintenance / updates', them: 'you', us: 'us' },
+      { feature: 'Starting price', them: 'free + LLM API costs', us: { main: '$50/mo', sub: '+ $100 in free credits' } },
+    ],
+    workflows: [
+      {
+        task: 'Getting Started',
+        them: [
+          { t: 'Clone the repo, install dependencies on your machine.', h: true },
+          { t: 'Configure LLM credentials (Claude / OpenAI / local).' },
+          { t: 'Set up integrations one by one (Gmail, Slack, etc.).' },
+          { t: 'Hours to days to be operational.', h: true },
+        ],
+        us: [
+          { t: 'Connect DragonBot to your Slack workspace.', h: true },
+          { t: 'OAuth into Amazon Seller Central.' },
+          { t: 'Start asking questions immediately.' },
+          { t: 'Minutes to value.', h: true },
+        ],
+      },
+      {
+        task: 'Amazon-Specific Skills',
+        them: [
+          { t: 'OpenClaw is general-purpose.', h: true },
+          { t: 'No Amazon SP-API connection out of the box.' },
+          { t: 'You build PPC, listing, FBA, customer-support skills yourself.', h: true },
+          { t: 'Powerful — but you bring the Amazon expertise.' },
+        ],
+        us: [
+          { t: 'DragonBot ships with Amazon SP-API connection.', h: true },
+          { t: 'PPC audits, listing optimization, FBA reimbursements, buyer-message handling — pre-built.' },
+          { t: 'Built by sellers who hit 8 figures on Amazon over 10 years.', h: true },
+        ],
+      },
+      {
+        task: 'Maintenance',
+        them: [
+          { t: 'OpenClaw runs on your machine — you maintain it.', h: true },
+          { t: 'Updates, integration changes, LLM provider issues — your problem.' },
+          { t: 'Privacy and control are real benefits of self-hosting.' },
+          { t: 'But ops work is a real cost too.', h: true },
+        ],
+        us: [
+          { t: 'DragonBot is managed cloud SaaS.', h: true },
+          { t: 'Updates, security patches, integration maintenance handled.' },
+          { t: 'You focus on selling, we handle the platform.', h: true },
+        ],
+      },
+      {
+        task: 'Cost Reality',
+        them: [
+          { t: 'OpenClaw is free — but you pay for LLM API usage.', h: true },
+          { t: 'Heavy use can mean $50-$300+/mo in LLM API costs.' },
+          { t: 'Plus your time setting up and maintaining.', h: true },
+        ],
+        us: [
+          { t: 'DragonBot is $50/mo + $100 in free credits to start.', h: true },
+          { t: 'LLM costs included.' },
+          { t: 'No setup or maintenance overhead.', h: true },
+        ],
+      },
+    ],
+    themWins: [
+      {
+        title: 'Genuinely open source',
+        desc:
+          "OpenClaw is fully open-source — hackable, model-agnostic, community-driven. If you value seeing exactly how your AI works (and modifying it), nothing managed can compete with that.",
+      },
+      {
+        title: 'Privacy by self-hosting',
+        desc:
+          "Everything runs on your machine. No data goes to a third-party cloud. For users with strict privacy requirements or distrust of SaaS, that's a real advantage.",
+      },
+      {
+        title: 'General-purpose flexibility',
+        desc:
+          "OpenClaw isn't limited to Amazon — it can manage email, calendar, research, scripts, smart home, anything. If your needs span far beyond Amazon, that breadth matters.",
+      },
+      {
+        title: 'Free (no subscription)',
+        desc:
+          "No monthly fee. You pay for your own LLM API usage. For technically comfortable users, that's a meaningfully cheaper path.",
+      },
+    ],
+    usWins: [
+      {
+        title: 'Built specifically for Amazon sellers',
+        desc:
+          "OpenClaw is general-purpose; you'd build the Amazon expertise yourself. DragonBot is purpose-built — SP-API, PPC, listing, FBA, customer-support, refunds — all baked in by people who've sold 8 figures on Amazon.",
+      },
+      {
+        title: 'Ready in minutes, not days',
+        desc:
+          "OpenClaw requires self-hosting setup, dependency management, integration configuration. DragonBot: connect Slack, OAuth into Amazon, start working. Time-to-value is measured in minutes.",
+      },
+      {
+        title: 'No maintenance overhead',
+        desc:
+          "OpenClaw is your responsibility — updates, security patches, LLM provider drift, integration breakage. DragonBot is managed; you focus on selling.",
+      },
+      {
+        title: 'Pre-built Amazon skills',
+        desc:
+          "PPC audits, listing optimization, keyword research, FBA reimbursements, buyer-message workflows, refund automation — all ready out of the box. With OpenClaw, you'd build these from scratch.",
+      },
+      {
+        title: 'Fixed, predictable pricing',
+        desc:
+          "OpenClaw is free but LLM API usage adds up — heavy use can mean $50-$300+/mo unpredictably. DragonBot is a flat $50/mo with $100 free credits to start. No surprises.",
+      },
+      {
+        title: 'Audit trail and permission modes',
+        desc:
+          "Read-only, supervised, autonomous — pick what each skill is allowed to do. Full audit trail of every action. Hardened defaults for high-stakes Amazon work.",
+      },
+    ],
+    pricingComparison: {
+      themItems: [
+        { label: 'OpenClaw software', price: 'free' },
+        { label: 'LLM API costs (your bill)', price: '$50-$300+/mo' },
+        { label: 'Your setup + maintenance time', price: 'hours/month' },
+      ],
+      usItem: { label: 'DragonBot', price: '$50/mo', note: '+ $100 in free credits to start' },
+      footnote:
+        "OpenClaw can be cheaper or more expensive than DragonBot depending on your LLM usage and how you value your time. The bigger trade-off is what you get for the price: a general-purpose toolkit you build into an Amazon system, vs. a managed Amazon operator that already works.",
+    },
+    faq: [
+      {
+        q: "Is OpenClaw a competitor to DragonBot?",
+        a: "Not really — they serve different needs. OpenClaw is open-source DIY infrastructure for self-hosters. DragonBot is a managed product for Amazon sellers who want results without setup. The same person could use OpenClaw for personal automation and DragonBot for their Amazon business.",
+      },
+      {
+        q: 'Why pay for DragonBot if OpenClaw is free?',
+        a: "Three reasons: (1) Time-to-value — DragonBot works in minutes; OpenClaw is hours-to-days of setup. (2) Amazon specialization — DragonBot ships with SP-API, PPC, listing, FBA, customer-support skills built in by experienced Amazon sellers. (3) Maintenance — DragonBot is managed; OpenClaw is your responsibility forever.",
+      },
+      {
+        q: 'Can I just self-host OpenClaw and add Amazon skills?',
+        a: "Technically, yes. Practically, you'd be writing the Amazon SP-API integration, PPC management logic, listing-optimization workflows, customer-support automation, and refund handling yourself — and maintaining all of it. DragonBot is the finished product if your goal is Amazon results, not infrastructure projects.",
+      },
+      {
+        q: "Will my data stay private with DragonBot?",
+        a: "DragonBot is a managed service, so data flows through our cloud — but each workspace is isolated, encrypted in transit and at rest, and we never train on your data. For users with strict on-premise requirements, OpenClaw's self-hosted model offers more direct control.",
+      },
+      {
+        q: 'Is DragonBot Amazon-compliant?',
+        a: 'Yes. DragonBot uses the official Amazon Selling-Partner API (SP-API). 100% Amazon Terms of Service compliant.',
+      },
+      {
+        q: 'How long does it take to set up DragonBot?',
+        a: 'Minutes. Connect DragonBot to your Slack workspace, link Amazon Seller Central via the official OAuth flow, and start asking questions.',
+      },
+      {
+        q: 'Can I try DragonBot before paying?',
+        a: 'Yes. $100 in free credits to start. No credit card required. No sales call.',
+      },
+    ],
+  },
+
   // Add more competitors here using the same structure:
   // 'perpetua': { ... },
 };
