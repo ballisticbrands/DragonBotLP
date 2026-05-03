@@ -385,6 +385,32 @@ function SlackDemo({ activeChannel, setActiveChannel, onPinChange, pinned }) {
         </motion.div>
       )}
     </AnimatePresence>
+    {/* Mobile keep-scrolling — below the demo, arrow inline with text */}
+    <AnimatePresence>
+      {pinned && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="lg:hidden flex flex-row items-center justify-center gap-2 mt-4 pointer-events-none"
+        >
+          <span className="text-[#98CC65] text-sm font-medium uppercase tracking-widest" style={{ fontFamily: monoFont }}>Keep scrolling</span>
+          <motion.div
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <svg width="14" height="18" viewBox="0 0 7 10" fill="none" style={{ imageRendering: 'pixelated' }}>
+              <rect x="2" y="0" width="3" height="4" fill="#2E7E4F"/>
+              <rect x="0" y="4" width="7" height="1" fill="#2E7E4F"/>
+              <rect x="1" y="5" width="5" height="1" fill="#2E7E4F"/>
+              <rect x="2" y="6" width="3" height="1" fill="#2E7E4F"/>
+              <rect x="3" y="7" width="1" height="1" fill="#2E7E4F"/>
+            </svg>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
     </div>
     </div>
   );
