@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ChevronRight, Play, ArrowRight, Zap, Database, Brain, Check } from 'lucide-react';
 import { tr } from 'framer-motion/client';
+import { sellerVideos } from '../data/sellerVideos';
+import CompareDropdown, { CompareDropdownMobile } from '../components/CompareDropdown';
 
 /* ─── Fonts ─── */
 const monoLink = document.querySelector('link[data-roboto-mono]');
@@ -53,6 +55,7 @@ function NavbarV2() {
             {navLinks.map(l => (
               <a key={l.label} href={l.href} {...(l.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className={`text-[13px] font-medium transition-colors ${l.active ? 'text-white bg-white/10 px-3 py-1.5 rounded-md' : 'text-white/50 hover:text-[#98CC65]'}`} style={{ fontFamily: monoFont }}>{l.label}</a>
             ))}
+            <CompareDropdown />
           </div>
           <div className="hidden md:flex items-center gap-3">
             <a href="https://app.getdragonbot.com/#/signin"
@@ -73,6 +76,7 @@ function NavbarV2() {
               {navLinks.map(l => (
                 <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-medium text-white">{l.label}</a>
               ))}
+              <CompareDropdownMobile onItemClick={() => setMobileOpen(false)} />
               <a href="https://app.getdragonbot.com/#/signin" onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all">
                 Get Started For Free
@@ -759,20 +763,30 @@ function BuiltForAmazonDiagram() {
             </filter>
           </defs>
 
-          {/* Connection lines + animated pulses */}
+          {/* Animated pulses traveling toward the center (no visible lines) */}
           {sources.map((s, i) => (
             <g key={`line-${i}`}>
-              <line x1={s.x} y1={s.cy} x2={CENTER_X} y2={CENTER_Y} stroke="rgba(152,204,101,0.25)" strokeWidth={LINE_W} />
               <path id={s.pid} d={`M${s.x},${s.cy} L${CENTER_X},${CENTER_Y}`} fill="none" stroke="none" />
-              <motion.circle r="4" fill="#98CC65" filter="url(#bfa-glow)"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1, 1, 0] }}
-                transition={{ duration: 2.4, delay: i * 0.4, repeat: Infinity, ease: 'linear' }}
-              >
-                <animateMotion dur="2.4s" begin={`${i * 0.4}s`} repeatCount="indefinite">
-                  <mpath href={`#${s.pid}`} />
-                </animateMotion>
-              </motion.circle>
+              {[0, 1, 2, 3].map((j) => {
+                const dur = 3.6; // 50% slower than before
+                const stagger = dur / 4; // 0.9s between pulses on the same path
+                const delay = i * 0.45 + j * stagger;
+                return (
+                  <motion.circle
+                    key={`pulse-${i}-${j}`}
+                    r="4"
+                    fill="#98CC65"
+                    filter="url(#bfa-glow)"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1, 1, 0] }}
+                    transition={{ duration: dur, delay, repeat: Infinity, ease: 'linear' }}
+                  >
+                    <animateMotion dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite">
+                      <mpath href={`#${s.pid}`} />
+                    </animateMotion>
+                  </motion.circle>
+                );
+              })}
             </g>
           ))}
 
@@ -1234,10 +1248,7 @@ export default function LandingV3() {
           </h4>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { id: 'o0-_6Vu3Kv4', title: 'Why I Stopped Using Helium 10 for Amazon Keyword Research', duration: '20:45' },
-            { id: '2KT6nMu2LQg', title: 'Why I Stopped Doing Amazon Product Research Manually', duration: '6:33' },
-          ].map(v => (
+          {sellerVideos.map(v => (
             <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer"
               className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#2F7D4F]/40 transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/10 group">
               <div className="relative aspect-video">

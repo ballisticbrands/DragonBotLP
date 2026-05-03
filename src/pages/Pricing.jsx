@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, ChevronDown } from 'lucide-react';
+import CompareDropdown from '../components/CompareDropdown';
 
 const sysFont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 const monoFont = "'Roboto Mono', monospace";
@@ -70,6 +71,7 @@ export default function Pricing() {
             <a href="/pricing" className="text-[13px] font-medium text-white bg-white/10 px-3 py-1.5 rounded-md" style={{ fontFamily: monoFont }}>Pricing</a>
             <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>Privacy</a>
             <a href="/support" target="_blank" rel="noopener noreferrer" className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>Support</a>
+            <CompareDropdown />
           </div>
           <a href="https://app.getdragonbot.com/#/signin"
             className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all">

@@ -13,6 +13,7 @@ import AccountManagement from './pages/help/AccountManagement';
 import FeatureRequests from './pages/help/FeatureRequests';
 import LandingV2 from './pages/LandingV2';
 import LandingV3 from './pages/LandingV3';
+import VsCompetitor from './pages/VsCompetitor';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/support/account-management" element={<AccountManagement />} />
         <Route path="/support/feature-requests" element={<FeatureRequests />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/vs/:slug" element={<VsCompetitor />} />
         <Route path="*" element={<LandingV3 />} />
       </Routes>
     </Router>
