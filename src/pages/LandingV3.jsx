@@ -1265,8 +1265,7 @@ export default function LandingV3() {
         </div>
       </section>
 
-      {/* ─── SELLER VIDEOS (commented out — kept for reference) ─── */}
-      {/*
+      {/* ─── SELLER VIDEOS ─── */}
       <Section id="seller-videos">
         <div className="text-center mb-10">
           <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
@@ -1299,7 +1298,6 @@ export default function LandingV3() {
           ))}
         </div>
       </Section>
-      */}
 
       {/* ─── BUILT FOR AMAZON ─── */}
       <Section id="built-for-amazon">
