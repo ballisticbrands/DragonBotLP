@@ -73,9 +73,9 @@ export default function Pricing() {
             <a href="/support" target="_blank" rel="noopener noreferrer" className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors" style={{ fontFamily: monoFont }}>Support</a>
             <CompareDropdown />
           </div>
-          <a href="https://app.getdragonbot.com/#/signin"
+          <a href="/beta"
             className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all">
-            Get Started For Free
+            Request Access
           </a>
         </div>
       </nav>
@@ -132,9 +132,9 @@ export default function Pricing() {
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
               </div>
-              <a href="https://app.getdragonbot.com/#/signin"
+              <a href="/beta"
                 className="flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 mb-3">
-                Get Started For Free <ArrowRight className="w-4 h-4" />
+                Request Access <ArrowRight className="w-4 h-4" />
               </a>
               <p className="text-center text-xs text-white/30 mb-6">$100 in free credits included — no card required</p>
               <ul className="space-y-3 flex-1">

@@ -14,6 +14,7 @@ import FeatureRequests from './pages/help/FeatureRequests';
 import LandingV2 from './pages/LandingV2';
 import LandingV3 from './pages/LandingV3';
 import VsCompetitor from './pages/VsCompetitor';
+import Beta from './pages/Beta';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/support/feature-requests" element={<FeatureRequests />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/vs/:slug" element={<VsCompetitor />} />
+        <Route path="/beta" element={<Beta />} />
         <Route path="*" element={<LandingV3 />} />
       </Routes>
     </Router>

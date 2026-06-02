@@ -58,9 +58,9 @@ function NavbarV2() {
             <CompareDropdown />
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <a href="https://app.getdragonbot.com/#/signin"
+            <a href="/beta"
               className="px-5 py-2.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/25">
-              Get Started For Free
+              Request Access
             </a>
           </div>
           <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -77,9 +77,9 @@ function NavbarV2() {
                 <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-medium text-white">{l.label}</a>
               ))}
               <CompareDropdownMobile onItemClick={() => setMobileOpen(false)} />
-              <a href="https://app.getdragonbot.com/#/signin" onClick={() => setMobileOpen(false)}
+              <a href="/beta" onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all">
-                Get Started For Free
+                Request Access
               </a>
             </div>
           </motion.div>
@@ -1225,9 +1225,9 @@ export default function LandingV3() {
             </p>
 
             <div className="flex items-center justify-center mb-8">
-              <a href="https://app.getdragonbot.com/#/signin"
+              <a href="/beta"
                 className="px-10 py-5 text-lg bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
-                Get Started For Free <ArrowRight className="w-5 h-5" />
+                Request Access <ArrowRight className="w-5 h-5" />
               </a>
             </div>
 
@@ -1454,9 +1454,9 @@ export default function LandingV3() {
               transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} />
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
           </h4>
-          <a href="https://app.getdragonbot.com/#/signin"
+          <a href="/beta"
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl">
-            Get Started For Free <ArrowRight className="w-4 h-4" />
+            Request Access <ArrowRight className="w-4 h-4" />
           </a>
         </div>
 
@@ -1522,9 +1522,9 @@ export default function LandingV3() {
               No credit card, no sales call, no catch. When you need more, it starts at $50/month.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a href="https://app.getdragonbot.com/#/signin"
+              <a href="/beta"
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25">
-                Get Started For Free <ArrowRight className="w-4 h-4" />
+                Request Access <ArrowRight className="w-4 h-4" />
               </a>
               <a href="/pricing"
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">

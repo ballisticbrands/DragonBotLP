@@ -53,9 +53,9 @@ function NavbarV2() {
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <a href="https://app.getdragonbot.com/#/signin"
+            <a href="/beta"
               className="px-5 py-2.5 bg-[#2F7D4F]/10 text-[#2F7D4F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-lg hover:shadow-[#2F7D4F]/25">
-              Get Started For Free
+              Request Access
             </a>
           </div>
           <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -71,9 +71,9 @@ function NavbarV2() {
               {navLinks.map(l => (
                 <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-medium text-[#1A1A1A]">{l.label}</a>
               ))}
-              <a href="https://app.getdragonbot.com/#/signin" onClick={() => setMobileOpen(false)}
+              <a href="/beta" onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-[#2F7D4F]/10 text-[#2F7D4F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white">
-                Get Started For Free
+                Request Access
               </a>
             </div>
           </motion.div>
@@ -315,9 +315,9 @@ export default function LandingV2() {
             </p>
 
             <div className="flex items-center justify-center mb-8">
-              <a href="https://app.getdragonbot.com/#/signin"
+              <a href="/beta"
                 className="px-10 py-5 text-lg bg-[#2F7D4F]/10 text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
-                Get Started For Free <ArrowRight className="w-5 h-5" />
+                Request Access <ArrowRight className="w-5 h-5" />
               </a>
             </div>
 
@@ -476,7 +476,7 @@ export default function LandingV2() {
           </div>
 
           <div className="text-center mt-10">
-            <a href="https://app.getdragonbot.com/#/signin"
+            <a href="/beta"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2F7D4F]/10 text-[#2F7D4F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-[#2F7D4F] hover:text-white hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5">
               Get Started <ArrowRight className="w-4 h-4" />
             </a>
@@ -514,7 +514,7 @@ export default function LandingV2() {
         </div>
 
         <div className="text-center">
-          <a href="https://app.getdragonbot.com/#/signin"
+          <a href="/beta"
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold uppercase tracking-wide rounded-lg transition-all hover:bg-white hover:text-[#0F3D2E] hover:shadow-xl">
             Get Started <ArrowRight className="w-4 h-4" />
           </a>
