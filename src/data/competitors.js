@@ -77,7 +77,7 @@ export const competitors = {
         ],
         us: [
           { t: 'Describe the niche or category to DragonBot.', h: true },
-          { t: 'It crawls competitors, pulls sales/review/keyword data.' },
+          { t: 'It pulls your Search Query Performance and Brand Analytics via SP-API.' },
           { t: 'Builds a finished competitive analysis.' },
           { t: 'Highlights the actual gap to exploit.', h: true },
         ],
@@ -163,7 +163,7 @@ export const competitors = {
     faq: [
       {
         q: 'Can I import my Helium 10 data into DragonBot?',
-        a: "Not directly — and you don't need to. DragonBot pulls fresh data from Amazon's official SP-API and from Jungle Scout's API. You can drop Helium 10 entirely without losing access to keyword data, sales estimates, or competitor intel.",
+        a: "Not directly — and you don't need to. DragonBot pulls fresh data from Amazon's official SP-API. You can drop Helium 10 entirely without losing access to your sales, ads, inventory, customer messages, reviews, or Search Query Performance data.",
       },
       {
         q: 'Is DragonBot Amazon-compliant like Helium 10?',
@@ -198,7 +198,7 @@ export const competitors = {
     eyebrow: 'DragonBot vs Jungle Scout',
     h1: { plain: 'Jungle Scout finds the products.', accent: 'DragonBot runs the business.' },
     subhead:
-      'Jungle Scout is one of the best product-research tools on the market. DragonBot is an AI operator that uses tools — including the same data sources Jungle Scout pulls from — and finishes whole workflows. Here is an honest, side-by-side breakdown.',
+      'Jungle Scout is one of the best product-research tools on the market. DragonBot is an AI operator that connects to your Amazon Seller Central via the official SP-API and finishes whole workflows. Here is an honest, side-by-side breakdown.',
     pricing: { monthly: '$129/mo', plan: 'Brand Owner plan' },
     tldr: {
       them:
@@ -234,7 +234,7 @@ export const competitors = {
         ],
         us: [
           { t: 'Describe the niche or category to DragonBot.', h: true },
-          { t: 'It crawls competitors, pulls sales/review/keyword data.' },
+          { t: 'It pulls your Search Query Performance and Brand Analytics via SP-API.' },
           { t: 'Builds a finished competitive analysis.' },
           { t: 'Highlights the actual gap to exploit.', h: true },
         ],
@@ -347,7 +347,7 @@ export const competitors = {
     faq: [
       {
         q: 'Can I import my Jungle Scout data into DragonBot?',
-        a: "Not directly — and you don't need to. DragonBot pulls fresh data from Amazon's official SP-API and from Jungle Scout's own API. You can drop the Jungle Scout subscription entirely without losing access to keyword data, sales estimates, or competitor intel.",
+        a: "Not directly — and you don't need to. DragonBot pulls fresh data from Amazon's official SP-API. You can drop the Jungle Scout subscription entirely without losing access to your sales, ads, inventory, customer messages, reviews, or Search Query Performance data.",
       },
       {
         q: 'Is DragonBot Amazon-compliant like Jungle Scout?',
@@ -617,7 +617,7 @@ export const competitors = {
         ],
         us: [
           { t: 'Describe the niche or category to DragonBot.', h: true },
-          { t: 'It crawls competitors, pulls sales/review/keyword data.' },
+          { t: 'It pulls your Search Query Performance and Brand Analytics via SP-API.' },
           { t: 'Builds a finished competitive analysis.' },
           { t: 'Highlights the actual gap to exploit.', h: true },
         ],
@@ -793,7 +793,7 @@ export const competitors = {
         ],
         us: [
           { t: 'Describe the niche or category to DragonBot.', h: true },
-          { t: 'It crawls competitors, pulls sales/review/keyword data.' },
+          { t: 'It pulls your Search Query Performance and Brand Analytics via SP-API.' },
           { t: 'Builds a finished competitive analysis.' },
           { t: 'Highlights the actual gap to exploit.', h: true },
         ],
@@ -986,7 +986,7 @@ export const competitors = {
           { t: 'You make the changes in Seller Central.', h: true },
         ],
         us: [
-          { t: 'DragonBot pulls keyword data the same way.', h: true },
+          { t: 'DragonBot pulls Search Query Performance via SP-API.', h: true },
           { t: 'Drafts optimized titles, bullets, backend.' },
           { t: 'Asks for approval, then makes changes via SP-API.' },
           { t: 'Logs every change with full audit trail.', h: true },
@@ -1070,7 +1070,7 @@ export const competitors = {
     faq: [
       {
         q: 'Is DragonBot as deep as DataDive on keyword research?',
-        a: "DragonBot pulls the same kinds of data DataDive does (reverse-ASIN keywords, search volume, competition metrics) and turns it into finished deliverables — Google Sheets, PPC negative lists, listing copy. DataDive's UI gives a power user more granular ad-hoc control. DragonBot delivers more finished output with less hands-on work.",
+        a: "DragonBot delivers finished keyword research deliverables — Google Sheets, PPC negative lists, listing copy — pulled from Amazon's SP-API (Search Query Performance, Brand Analytics, your own search-term reports). DataDive's UI gives a power user more granular ad-hoc control. DragonBot delivers more finished output with less hands-on work.",
       },
       {
         q: 'Can I use both DataDive and DragonBot?',
@@ -1164,8 +1164,8 @@ export const competitors = {
         ],
         us: [
           { t: 'Describe what you want to research in plain English.', h: true },
-          { t: 'DragonBot crawls competitors, pulls data, builds analysis.' },
-          { t: "It can use Tactical-Arbitrage-style logic where it makes sense." },
+          { t: 'DragonBot pulls your Amazon data via SP-API, builds the analysis.' },
+          { t: "It applies arbitrage-style logic where it makes sense." },
           { t: 'Delivers a finished sheet, not raw data.', h: true },
         ],
       },
@@ -1263,6 +1263,111 @@ export const competitors = {
       {
         q: 'How do you compare on price?',
         a: 'The Threecolts suite typically runs $99-$299+/mo. DragonBot starts at $50/mo and includes $100 in free credits.',
+      },
+      {
+        q: 'How long does it take to set up?',
+        a: 'Minutes. Connect DragonBot to your Slack workspace, link Amazon Seller Central via the official OAuth flow, and start asking questions.',
+      },
+    ],
+  },
+  'keepa': {
+    name: 'Keepa',
+    category: 'amazon',
+    logo: '/logo-keepa.png',
+    metaTitle: 'DragonBot vs Keepa: AI Amazon Operator vs Price Tracker (2026)',
+    metaDescription:
+      "Honest comparison of DragonBot and Keepa. Keepa is a price/sales-history tracker. DragonBot is an AI operator that connects to your Amazon Seller Central and runs the work in Slack.",
+    eyebrow: 'DragonBot vs Keepa',
+    h1: { plain: 'Keepa tracks prices.', accent: 'DragonBot runs your business.' },
+    subhead:
+      "Keepa is a well-known browser extension and database for Amazon price and sales-rank history. DragonBot is something different — an AI operator that connects to your authorized Amazon Seller Central via the official SP-API and actually runs workflows. They solve different problems; here is an honest comparison.",
+    pricing: { monthly: '$19/mo', plan: 'Keepa subscription' },
+    tldr: {
+      them:
+        "Choose Keepa if you want a browser extension that overlays charts on Amazon product pages for ad-hoc lookups.",
+      us:
+        "Choose DragonBot if you want an AI operator connected to your Amazon Seller Central — running research, optimizing PPC, handling customer support, all in Slack.",
+    },
+    bullets: [
+      {
+        title: 'Connects to your Amazon account',
+        desc:
+          "DragonBot connects via the official SP-API. It pulls your orders, ads, inventory, customer messages, reviews, and Search Query Performance — and acts on them.",
+      },
+      {
+        title: 'Runs workflows, not just lookups',
+        desc:
+          "Keepa is a data-viewing tool. DragonBot runs workflows: PPC audits, keyword research, customer support triage, listing optimization, weekly reports.",
+      },
+      {
+        title: 'Works where your team already lives',
+        desc:
+          "Keepa is a browser extension. DragonBot lives in Slack — anyone on your team can @mention it. Alerts, approvals, and conversations all happen in one place.",
+      },
+      {
+        title: 'Takes actions with your approval',
+        desc:
+          "DragonBot can pause keywords, update listings, process refunds, and send customer responses — always with your approval (or autonomously if you prefer).",
+      },
+    ],
+    comparison: [
+      {
+        task: 'Day-to-day Amazon workflows',
+        them: [
+          { t: 'Keepa is a browser extension and database.', h: true },
+          { t: 'You do the work after seeing the data.', h: true },
+        ],
+        us: [
+          { t: 'DragonBot is an AI operator in Slack.', h: true },
+          { t: 'It runs PPC, research, customer support, listing optimization.' },
+          { t: 'Connected directly to your Amazon Seller Central.', h: true },
+        ],
+      },
+      {
+        task: 'PPC management',
+        them: [
+          { t: 'Keepa does not manage PPC.', h: true },
+        ],
+        us: [
+          { t: 'Pulls PPC data via Amazon Ads API.', h: true },
+          { t: 'Audits campaigns, pauses bleeding keywords, reports back daily.' },
+        ],
+      },
+      {
+        task: 'Customer support',
+        them: [
+          { t: 'Keepa does not handle this.', h: true },
+        ],
+        us: [
+          { t: 'Reads buyer messages via SP-API.', h: true },
+          { t: 'Drafts replies, checks your Notion for policies, processes refunds on approval.', h: true },
+        ],
+      },
+    ],
+    pricingComparison: {
+      themItems: [
+        { label: 'Keepa subscription', price: '$19/mo' },
+      ],
+      usItem: { label: 'DragonBot', price: '$50/mo', note: '+ $100 in free credits to start' },
+      footnote:
+        "Keepa is cheaper because it is a data-viewing tool. DragonBot is an AI operator that runs workflows. Different products, different price points.",
+    },
+    faq: [
+      {
+        q: 'Does DragonBot replace Keepa?',
+        a: "Not exactly — they solve different problems. Keepa is a browser extension for ad-hoc price/sales-rank lookups. DragonBot is an AI operator that connects to your Amazon Seller Central and runs workflows. Many sellers use both.",
+      },
+      {
+        q: 'Is DragonBot Amazon-compliant?',
+        a: "Yes. DragonBot uses the official Amazon Selling-Partner API (SP-API). No scraping, no gray areas. 100% Amazon Terms of Service compliant.",
+      },
+      {
+        q: 'Can DragonBot give me the Keepa browser-extension experience?',
+        a: "No — DragonBot lives in Slack. You ask conversational questions about your business and get answers based on your Seller Central data. For at-a-glance charts overlaid on Amazon product pages while browsing, Keepa's extension is unmatched.",
+      },
+      {
+        q: 'How do you compare on price?',
+        a: "Keepa is $19/mo for the browser extension and database. DragonBot starts at $50/mo with $100 in free credits — but it actually runs the work, not just shows data.",
       },
       {
         q: 'How long does it take to set up?',
