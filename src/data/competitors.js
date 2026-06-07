@@ -6,6 +6,7 @@
 export const competitors = {
   'helium-10': {
     name: 'Helium 10',
+    hidden: true,
     category: 'amazon',
     logo: '/logo-helium10.png',
     metaTitle: 'DragonBot vs Helium 10: AI Amazon Operator vs Tools Suite (2026)',
@@ -190,6 +191,7 @@ export const competitors = {
 
   'jungle-scout': {
     name: 'Jungle Scout',
+    hidden: true,
     category: 'amazon',
     logo: '/logo-junglescout.png',
     metaTitle: 'DragonBot vs Jungle Scout: AI Amazon Operator vs Tools Suite (2026)',
@@ -374,6 +376,7 @@ export const competitors = {
 
   'sellerise': {
     name: 'Sellerise',
+    hidden: true,
     category: 'amazon',
     logo: '/logo-sellerise.png',
     metaTitle: 'DragonBot vs Sellerise: AI Amazon Operator vs AI-Assisted Tools (2026)',
@@ -559,6 +562,7 @@ export const competitors = {
 
   'sellerapp': {
     name: 'SellerApp',
+    hidden: true,
     category: 'amazon',
     logo: '/logo-sellerapp.svg',
     metaTitle: 'DragonBot vs SellerApp: AI Amazon Operator vs Analytics Platform (2026)',
@@ -737,6 +741,7 @@ export const competitors = {
 
   'sellerboard': {
     name: 'Sellerboard',
+    hidden: true,
     category: 'amazon',
     logo: '/logo-sellerboard.png',
     metaTitle: 'DragonBot vs Sellerboard: AI Operator vs Profit Analytics (2026)',
@@ -915,6 +920,7 @@ export const competitors = {
 
   'datadive': {
     name: 'DataDive',
+    hidden: true,
     category: 'amazon',
     logo: '/logo-datadive.png',
     metaTitle: 'DragonBot vs DataDive: AI Amazon Operator vs Keyword Research (2026)',
@@ -1093,6 +1099,7 @@ export const competitors = {
 
   'threecolts': {
     name: 'Threecolts',
+    hidden: true,
     category: 'amazon',
     logo: '/logo-threecolts.png',
     metaTitle: 'DragonBot vs Threecolts: AI Operator vs Tools Suite (2026)',
@@ -1272,6 +1279,7 @@ export const competitors = {
   },
   'keepa': {
     name: 'Keepa',
+    hidden: true,
     category: 'amazon',
     logo: '/logo-keepa.png',
     metaTitle: 'DragonBot vs Keepa: AI Amazon Operator vs Price Tracker (2026)',
@@ -1439,21 +1447,6 @@ export const competitors = {
           { t: 'Drafts a reply based on YOUR policies (from Notion).' },
           { t: 'Asks for approval, then sends and processes refund directly.' },
           { t: 'Logs every action with full audit trail.', h: true },
-        ],
-      },
-      {
-        task: 'Listing Optimization',
-        them: [
-          { t: 'Manually pull keyword data and competitor info.', h: true },
-          { t: 'Paste it into ChatGPT, ask for a better title and bullets.' },
-          { t: 'Copy the result back to Seller Central.', h: true },
-          { t: 'Repeat for every listing.' },
-        ],
-        us: [
-          { t: 'DragonBot pulls keyword data and competitor analysis.', h: true },
-          { t: 'Drafts optimized title, bullets, backend keywords.' },
-          { t: 'Asks for approval, then makes changes via SP-API.' },
-          { t: 'Logs every change with full audit trail.', h: true },
         ],
       },
       {
@@ -2112,9 +2105,11 @@ export const competitors = {
 };
 
 export function getCompetitor(slug) {
-  return competitors[slug] || null;
+  const c = competitors[slug];
+  if (!c || c.hidden) return null;
+  return c;
 }
 
 export function getAllCompetitorSlugs() {
-  return Object.keys(competitors);
+  return Object.keys(competitors).filter(slug => !competitors[slug].hidden);
 }

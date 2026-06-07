@@ -66,11 +66,11 @@ export default function CompareDropdown({ activeSlug }) {
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: -8, x: '-50%' }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full left-1/2 pt-3 w-[440px]"
+            className={`absolute top-full left-1/2 pt-3 ${(amazon.length && ai.length) ? 'w-[440px]' : 'w-[240px]'}`}
           >
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl shadow-2xl p-2 grid grid-cols-2 gap-x-2 divide-x divide-white/5">
-              <Column title="Amazon Tools" items={amazon} activeSlug={activeSlug} />
-              <Column title="AI Tools" items={ai} activeSlug={activeSlug} />
+            <div className={`bg-[#1A1A1A] border border-white/10 rounded-xl shadow-2xl p-2 grid ${(amazon.length && ai.length) ? 'grid-cols-2 gap-x-2 divide-x divide-white/5' : 'grid-cols-1'}`}>
+              {amazon.length > 0 && <Column title="Amazon Tools" items={amazon} activeSlug={activeSlug} />}
+              {ai.length > 0 && <Column title="AI Tools" items={ai} activeSlug={activeSlug} />}
             </div>
           </motion.div>
         )}
@@ -103,7 +103,7 @@ export function CompareDropdownMobile({ activeSlug, onItemClick }) {
               {[
                 { title: 'Amazon Tools', items: amazon },
                 { title: 'AI Tools', items: ai },
-              ].map(section => (
+              ].filter(s => s.items.length > 0).map(section => (
                 <div key={section.title}>
                   <p className="text-[10px] font-semibold text-white/35 uppercase tracking-[0.15em] mb-2" style={{ fontFamily: monoFont }}>{section.title}</p>
                   <div className="flex flex-col gap-3">
