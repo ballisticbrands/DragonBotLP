@@ -706,10 +706,12 @@ const PERMISSION_MODES = [
 /* 6 nodes placed on a circle around the DragonBot center, evenly spaced at 60°.
    Angles in degrees: 0° = right, 90° = down, 180° = left, 270° = up. */
 const BUILT_SOURCES = [
-  { logos: ['/logo-keepa.png', '/logo-junglescout.png'], label: 'Historical sales data', source: 'Keepa, Jungle Scout', angle: 220 }, // top-left (180 + 40)
-  { logo: '/logo-keepa.png',       label: 'Reviews & sentiment',       source: 'Keepa',         angle: 180, rMul: 1.3 },  // left
-  { logo: '/logo-junglescout.png', label: 'Keyword rankings',          source: 'Jungle Scout',  angle: 140 },             // bot-left   (180 - 40)
-  { logo: '/logo-junglescout.png', label: 'Reverse keyword research',  source: 'Jungle Scout',  angle: 320 },             // top-right  (360 - 40)
+  // Left side — Jungle Scout (public market data)
+  { logo: '/logo-junglescout.png', label: 'Historical sales data',     source: 'Jungle Scout',  angle: 220 },             // top-left   (180 + 40)
+  { logo: '/logo-junglescout.png', label: 'Keyword rankings',          source: 'Jungle Scout',  angle: 180, rMul: 1.3 },  // left
+  { logo: '/logo-junglescout.png', label: 'Reverse keyword research',  source: 'Jungle Scout',  angle: 140 },             // bot-left   (180 - 40)
+  // Right side — Amazon SP-API (your account data)
+  { logo: '/logo-amazon.png',      label: 'Your reviews & feedback',   source: 'Amazon SP-API', angle: 320 },             // top-right  (360 - 40)
   { logo: '/logo-amazon.png',      label: 'Your sales & inventory',    source: 'Amazon SP-API', angle: 0,   rMul: 1.3 },  // right
   { logo: '/logo-amazon.png',      label: 'Your ads data',             source: 'Amazon SP-API', angle: 40  },             // bot-right  (0 + 40)
 ];
@@ -1322,7 +1324,7 @@ export default function LandingV3() {
         <div className="max-w-3xl mx-auto mt-12 bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
           <p className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-2" style={{ fontFamily: monoFont }}>vs. the alternative</p>
           <p className="text-lg text-white/80 leading-relaxed">
-            Helium 10 + Jungle Scout + Keepa subscriptions = <span className="text-[#F87171] font-bold">$200+/mo</span>.
+            Helium 10 + Jungle Scout subscriptions = <span className="text-[#F87171] font-bold">$150+/mo</span>.
             <br />
             DragonBot bundles them into one plan starting at <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent font-bold">$50/mo</span>.
           </p>
@@ -1335,7 +1337,7 @@ export default function LandingV3() {
             Ask DragonBot: <em className="text-white">"Why did our BSR drop on B0CK5LRQX7 last week?"</em>
           </p>
           <p className="text-sm text-white/55 leading-relaxed">
-            DragonBot pulls Keepa history, your ads data, and recent reviews. <span className="text-[#98CC65] font-semibold">Answers in 30 seconds.</span>
+            DragonBot pulls competitor pricing trends, your ads data, and recent reviews. <span className="text-[#98CC65] font-semibold">Answers in 30 seconds.</span>
           </p>
         </div>
       </Section>

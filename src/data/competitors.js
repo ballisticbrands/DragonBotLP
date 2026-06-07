@@ -142,15 +142,15 @@ export const competitors = {
           'Every business is different. DragonBot lets you define custom skills — "audit my listings every Monday," "research 5 new niches a week" — that match your actual workflow.',
       },
       {
-        title: 'Cheaper than the H10 + JS + Keepa stack',
+        title: 'Cheaper than the H10 + JS stack',
         desc:
-          'Most serious sellers stack Helium 10 + Jungle Scout + Keepa = $200+/mo. DragonBot bundles equivalent capabilities starting at $50/mo.',
+          'Most serious sellers stack Helium 10 + Jungle Scout = $150+/mo. DragonBot bundles equivalent capabilities starting at $50/mo.',
       },
     ],
     pricingComparison: {
       themItems: [
         { label: 'Helium 10 Diamond', price: '$279/mo' },
-        { label: 'Helium 10 + Jungle Scout + Keepa stack', price: '$400+/mo' },
+        { label: 'Helium 10 + Jungle Scout stack', price: '$330+/mo' },
         { label: 'Adtomic (PPC add-on)', price: '+$200/mo' },
       ],
       usItem: { label: 'DragonBot', price: '$50/mo', note: '+ $100 in free credits to start' },
@@ -329,16 +329,16 @@ export const competitors = {
           'Every business is different. DragonBot lets you define custom skills — "audit my listings every Monday," "research 5 new niches a week" — that match your actual workflow.',
       },
       {
-        title: 'Cheaper than the Jungle Scout + Helium 10 + Keepa stack',
+        title: 'Cheaper than the Jungle Scout + Helium 10 stack',
         desc:
-          'Most serious sellers stack Jungle Scout + Helium 10 + Keepa = $300+/mo. DragonBot bundles equivalent capabilities starting at $50/mo.',
+          'Most serious sellers stack Jungle Scout + Helium 10 = $150+/mo. DragonBot bundles equivalent capabilities starting at $50/mo.',
       },
     ],
     pricingComparison: {
       themItems: [
         { label: 'Jungle Scout Starter', price: '$49/mo' },
         { label: 'Jungle Scout Brand Owner', price: '$129/mo' },
-        { label: 'Jungle Scout + Helium 10 + Keepa stack', price: '$400+/mo' },
+        { label: 'Jungle Scout + Helium 10 stack', price: '$330+/mo' },
       ],
       usItem: { label: 'DragonBot', price: '$50/mo', note: '+ $100 in free credits to start' },
       footnote:
@@ -1270,185 +1270,6 @@ export const competitors = {
       },
     ],
   },
-
-  'keepa': {
-    name: 'Keepa',
-    category: 'amazon',
-    logo: '/logo-keepa.png',
-    metaTitle: 'DragonBot vs Keepa: AI Amazon Operator vs Price Tracker (2026)',
-    metaDescription:
-      "Honest comparison of DragonBot and Keepa. Keepa is best-in-class price/sales data. DragonBot uses Keepa-style data to actually run the work — in Slack.",
-    eyebrow: 'DragonBot vs Keepa',
-    h1: { plain: 'Keepa is the data feed.', accent: 'DragonBot uses it to do the work.' },
-    subhead:
-      "Keepa is the gold standard for Amazon historical price, sales rank, and product data — used as a data source by virtually every other tool in the space, including DragonBot. They're not really competitors. Here's the honest breakdown so you can pick the right tool (or both).",
-    pricing: { monthly: '$19/mo', plan: 'standard subscription' },
-    tldr: {
-      them:
-        "Choose Keepa if you want the most accurate, longest-running historical Amazon data — price history, sales rank, review counts — surfaced through a browser extension and API for power users to consume.",
-      us:
-        "Choose DragonBot if you want an AI operator that uses Keepa-style data (we pull from Keepa internally) and acts on it — running research, optimizing PPC, handling customer support, all in Slack.",
-    },
-    comparisonTable: [
-      { feature: 'Historical price data', them: 'yes', us: 'yes' },
-      { feature: 'Sales rank tracking', them: 'yes', us: 'yes' },
-      { feature: 'Browser extension for ad-hoc lookup', them: 'yes', us: 'no' },
-      { feature: 'Public API access', them: 'yes', us: 'no' },
-      { feature: 'Does the work for you (not just data)', them: 'no', us: 'yes' },
-      { feature: 'Product research workflows', them: 'no', us: 'yes' },
-      { feature: 'PPC management', them: 'no', us: 'yes' },
-      { feature: 'Customer support automation', them: 'no', us: 'yes' },
-      { feature: 'Process refunds', them: 'no', us: 'yes' },
-      { feature: 'Listing optimization workflows', them: 'no', us: 'yes' },
-      { feature: 'Daily/weekly automated reports', them: 'no', us: 'yes' },
-      { feature: 'Lives in Slack', them: 'no', us: 'yes' },
-      { feature: 'Connects to non-Amazon tools', them: 'no', us: 'yes' },
-      { feature: 'Custom skills for your business', them: 'no', us: 'yes' },
-      { feature: 'Starting price', them: '$19/mo', us: { main: '$50/mo', sub: '+ $100 in free credits' } },
-    ],
-    workflows: [
-      {
-        task: 'Price History Lookup',
-        them: [
-          { t: "Keepa's browser extension overlays charts on Amazon pages.", h: true },
-          { t: 'Best-in-class for ad-hoc product research.' },
-          { t: "API access for power users / developers.", h: true },
-        ],
-        us: [
-          { t: '"@DragonBot — what\'s the BSR history for B0CK5LRQX7?"', h: true },
-          { t: 'DragonBot pulls Keepa data and summarizes in Slack.' },
-          { t: "Useful for conversational lookup — but Keepa's chart UI is more visual.", h: true },
-        ],
-      },
-      {
-        task: 'Product Research',
-        them: [
-          { t: 'Keepa gives you the data feed.', h: true },
-          { t: "You combine it with other tools (Helium 10, Jungle Scout) to build a research workflow." },
-          { t: 'Manually analyze, decide, document.', h: true },
-        ],
-        us: [
-          { t: 'DragonBot runs the entire research workflow.', h: true },
-          { t: 'Pulls Keepa-style data + competitor analysis + keyword research.' },
-          { t: 'Builds a finished competitive analysis.' },
-          { t: 'Highlights the actual gap to exploit.', h: true },
-        ],
-      },
-      {
-        task: 'PPC Management',
-        them: [
-          { t: 'Keepa does not manage PPC.', h: true },
-          { t: "You use Seller Central or a separate PPC tool." },
-        ],
-        us: [
-          { t: 'DragonBot audits campaigns on a schedule.', h: true },
-          { t: 'Surfaces bleeding keywords, suggests negations.' },
-          { t: 'Pauses underperformers and rebalances bids.' },
-          { t: 'Reports back in Slack with what changed and why.', h: true },
-        ],
-      },
-      {
-        task: 'Customer Support',
-        them: [
-          { t: 'Keepa does not handle this.', h: true },
-          { t: 'You log into Seller Central.' },
-          { t: 'Manually read and reply to each buyer message.' },
-          { t: 'Manually issue refunds.', h: true },
-        ],
-        us: [
-          { t: 'DragonBot reads incoming buyer messages.', h: true },
-          { t: 'Drafts a reply based on your policies (from Notion).' },
-          { t: 'Asks for approval, then sends and processes refund.' },
-          { t: 'Logs every action with full audit trail.', h: true },
-        ],
-      },
-    ],
-    themWins: [
-      {
-        title: 'The gold standard for Amazon historical data',
-        desc:
-          "Keepa has been tracking Amazon prices, BSR, and review counts since 2011. The depth and accuracy of their historical data is genuinely unmatched — most other tools (including DragonBot) pull from Keepa under the hood.",
-      },
-      {
-        title: 'Browser extension is incredibly useful',
-        desc:
-          "Overlaying Keepa charts directly on Amazon product pages is a brilliant UX. For ad-hoc \"is this product worth selling?\" lookups while you're already browsing Amazon, nothing beats it.",
-      },
-      {
-        title: 'Unbeatable price for raw data',
-        desc:
-          "Keepa is $19/mo. For what you get — the most reliable Amazon data feed in existence — it's almost absurdly affordable.",
-      },
-    ],
-    usWins: [
-      {
-        title: "Different kind of tool",
-        desc:
-          "Keepa shows you data. DragonBot does the work. Many sellers run both — Keepa for ad-hoc browser-overlay lookups, DragonBot for actual workflows like research, PPC, and customer support.",
-      },
-      {
-        title: 'DragonBot uses Keepa-style data internally',
-        desc:
-          "When DragonBot does product research or pulls historical price/BSR data, it uses Keepa data under the hood (alongside SP-API and other sources). You're not choosing between Keepa data and DragonBot — DragonBot uses it.",
-      },
-      {
-        title: 'Lives in Slack',
-        desc:
-          'Keepa is a browser extension and API. DragonBot lives where your team already works. Alerts, approvals, reports, and conversations all happen in Slack.',
-      },
-      {
-        title: 'Goes far beyond data',
-        desc:
-          "Keepa is data only. DragonBot does product research, keyword research, PPC management, listing optimization, customer support, refunds, and weekly reports.",
-      },
-      {
-        title: 'Custom skills for your business',
-        desc:
-          'Keepa is the same for everyone. DragonBot lets you define custom skills in plain English — workflows specific to your business.',
-      },
-      {
-        title: 'Conversational data access',
-        desc:
-          'Ask DragonBot in Slack: "What\'s the BSR trend on B0CK5LRQX7 over the last 90 days?" — and get a summary. No browser extension required.',
-      },
-    ],
-    pricingComparison: {
-      themItems: [
-        { label: 'Keepa subscription', price: '$19/mo' },
-        { label: 'Keepa Standard API key', price: 'tokens-based' },
-      ],
-      usItem: { label: 'DragonBot', price: '$50/mo', note: '+ $100 in free credits to start' },
-      footnote:
-        "Keepa is genuinely cheaper for what it does — but it's a data feed, not a workflow engine. Many serious sellers keep their Keepa subscription for browser-overlay lookups while running DragonBot for actual workflows.",
-    },
-    faq: [
-      {
-        q: 'Does DragonBot replace Keepa?',
-        a: "Not exactly — they solve different problems. Keepa is a data feed (with a great browser extension). DragonBot is an AI operator that uses data (including Keepa data) to run workflows. Many sellers keep Keepa for ad-hoc browser-overlay lookups and run DragonBot for actual workflows.",
-      },
-      {
-        q: 'Does DragonBot use Keepa data?',
-        a: "Yes. When DragonBot does product research, sales-rank trend analysis, or competitor evaluation, it pulls historical data from Keepa under the hood (alongside SP-API and other sources). You don't have to choose between them.",
-      },
-      {
-        q: 'Can I get the Keepa browser-extension experience with DragonBot?',
-        a: "Not in the same form factor. DragonBot's interface is Slack — you ask conversational questions and get summaries. If you want at-a-glance charts overlaid on Amazon product pages while you browse, Keepa's extension is unmatched.",
-      },
-      {
-        q: 'Is DragonBot Amazon-compliant like Keepa?',
-        a: 'Yes. DragonBot uses the official Amazon Selling-Partner API (SP-API). 100% Amazon Terms of Service compliant.',
-      },
-      {
-        q: 'How do you compare on price?',
-        a: "Keepa is $19/mo for raw data. DragonBot starts at $50/mo with $100 in free credits — but it does the work, not just shows data.",
-      },
-      {
-        q: 'How long does it take to set up?',
-        a: 'Minutes. Connect DragonBot to your Slack workspace, link Amazon Seller Central via the official OAuth flow, and start asking questions.',
-      },
-    ],
-  },
-
   'chatgpt': {
     name: 'ChatGPT',
     category: 'ai',
