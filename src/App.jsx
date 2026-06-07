@@ -13,6 +13,7 @@ import AccountManagement from './pages/help/AccountManagement';
 import FeatureRequests from './pages/help/FeatureRequests';
 import LandingV2 from './pages/LandingV2';
 import LandingV3 from './pages/LandingV3';
+import LandingV4 from './pages/LandingV4';
 import VsCompetitor from './pages/VsCompetitor';
 import Beta from './pages/Beta';
 
@@ -22,7 +23,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingV3 />} />
         <Route path="/v1" element={<Home />} />
-        <Route path="/v2" element={<LandingV2 />} />
+        <Route path="/v2" element={<LandingV4 />} />
+        <Route path="/v2-old" element={<LandingV2 />} />
         <Route path="/v3" element={<LandingV3 />} />
         <Route path="/chats" element={<Chats />} />
         <Route path="/chats/:chatSlug" element={<Chats />} />
