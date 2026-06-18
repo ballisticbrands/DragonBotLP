@@ -384,45 +384,6 @@ function SkillsShowcase() {
   );
 }
 
-/* ─── Tutorials catalog ─── */
-const TUTORIALS = [
-  { title: 'Install DragonBot in Claude Desktop',     duration: '3 min', tag: 'Getting started' },
-  { title: 'Run your first PPC audit',                duration: '8 min', tag: 'PPC' },
-  { title: 'Keyword research from competitor ASINs',  duration: '12 min', tag: 'Research' },
-  { title: 'Set up hourly account health alerts',     duration: '5 min', tag: 'Ops' },
-  { title: 'Build a weekly board-ready report',       duration: '10 min', tag: 'Reporting' },
-  { title: 'Read SQP like a pro',                     duration: '14 min', tag: 'Research' },
-];
-
-function TutorialsShowcase() {
-  return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {TUTORIALS.map((t, i) => (
-        <a key={i} href="#" className="group block bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-[#2F7D4F]/30 transition-all">
-          <div className="relative aspect-video bg-gradient-to-br from-[#0F2A1E] via-[#0F0F0F] to-[#1A1A1A] flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 opacity-30" style={{
-              backgroundImage: 'linear-gradient(rgba(152,204,101,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(152,204,101,0.08) 1px, transparent 1px)',
-              backgroundSize: '24px 24px',
-            }} />
-            <div className="w-12 h-12 rounded-full bg-[#2F7D4F] flex items-center justify-center shadow-xl shadow-[#2F7D4F]/30 group-hover:scale-110 transition-transform z-10">
-              <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
-            </div>
-            <span className="absolute bottom-2 right-2 text-[10px] font-bold text-white/90 bg-black/60 px-1.5 py-0.5 rounded" style={{ fontFamily: monoFont }}>
-              {t.duration}
-            </span>
-            <span className="absolute top-2 left-2 text-[9px] font-bold uppercase tracking-widest text-[#98CC65] bg-[#0F0F0F]/80 border border-[#98CC65]/30 px-2 py-0.5 rounded-full" style={{ fontFamily: monoFont }}>
-              {t.tag}
-            </span>
-          </div>
-          <div className="p-4">
-            <p className="text-sm font-semibold text-white/85 leading-snug">{t.title}</p>
-          </div>
-        </a>
-      ))}
-    </div>
-  );
-}
-
 /* ═══════════════════════════════════════════════════════════════
    SECURITY DEMOS — copied from LandingV3 for self-containment
    ═══════════════════════════════════════════════════════════════ */
@@ -910,23 +871,6 @@ export default function LandingV4() {
         <SkillsShowcase />
       </Section>
 
-      {/* ─── TUTORIALS ─── */}
-      <Section id="tutorials">
-        <div className="text-center mb-12">
-          <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
-            Tutorials
-          </p>
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] mb-4">
-            Step-by-step,{' '}
-            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">grounded in your data.</span>
-          </h4>
-          <p className="text-base text-white/50 max-w-2xl mx-auto">
-            Pick a goal. Follow the tutorial. Ship the work. Tutorials teach the skills, not just the syntax.
-          </p>
-        </div>
-        <TutorialsShowcase />
-      </Section>
-
       {/* ─── SECURITY ─── */}
       <Section id="security">
         <div className="text-center mb-14">
@@ -967,6 +911,89 @@ export default function LandingV4() {
               </div>
             </div>
           ))}
+        </div>
+      </Section>
+
+      {/* ─── PLANS ─── */}
+      <Section id="plans">
+        <div className="text-center mb-12">
+          <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+            Plans
+          </p>
+          <h4 className="font-extrabold text-3xl sm:text-4xl tracking-[-0.03em] leading-tight">
+            Start free.{' '}
+            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Upgrade when you're ready.</span>
+          </h4>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {/* Free Forever */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+            <div className="mb-6">
+              <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>Basic</p>
+              <h3 className="font-extrabold text-2xl text-white mb-1">Free forever</h3>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-extrabold text-white">$0</span>
+                <span className="text-white/40 text-sm">/ month</span>
+              </div>
+              <p className="mt-3 text-sm text-white/55 leading-relaxed">
+                Read-only access. Pull data, run analyses, build reports — as much as you want.
+              </p>
+            </div>
+            <ul className="space-y-3 mb-8 flex-1">
+              {[
+                'Every skill, read-only',
+                'Always-fresh ETL\'d data',
+                'Amazon SP-API connection',
+                'Works with Claude, ChatGPT, Cursor, any MCP client',
+                'No credit card required',
+              ].map((f, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-sm text-white/75">
+                  <Check className="w-4 h-4 text-[#98CC65] mt-0.5 shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a href="/beta"
+              className="block text-center px-6 py-3 bg-white/10 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">
+              Start free
+            </a>
+          </div>
+
+          {/* Read + Write (Beta) — emphasized */}
+          <div className="relative bg-gradient-to-b from-[#2F7D4F]/15 to-[#0F0F0F] border-2 border-[#2F7D4F]/50 rounded-2xl p-8 flex flex-col shadow-2xl shadow-[#2F7D4F]/10">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] text-[#0F0F0F] text-[10px] font-bold uppercase tracking-widest rounded-full" style={{ fontFamily: monoFont }}>
+              Private beta
+            </div>
+            <div className="mb-6">
+              <p className="text-[11px] font-bold text-[#98CC65] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>Read + Write</p>
+              <h3 className="font-extrabold text-2xl text-white mb-1">Take actions on Amazon</h3>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-extrabold bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">$50</span>
+                <span className="text-white/40 text-sm">/ month</span>
+              </div>
+              <p className="mt-3 text-sm text-white/65 leading-relaxed">
+                Everything in Free, plus your AI can take action — pause campaigns, send refunds, edit listings, and more.
+              </p>
+            </div>
+            <ul className="space-y-3 mb-8 flex-1">
+              {[
+                'Everything in Free forever',
+                'Write operations on Seller Central',
+                'Supervised mode (approval-gated)',
+                'Autonomous mode for routine actions',
+                'Full audit trail',
+              ].map((f, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-sm text-white/80">
+                  <Check className="w-4 h-4 text-[#98CC65] mt-0.5 shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a href="/beta"
+              className="block text-center px-6 py-3 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25">
+              Request beta access
+            </a>
+          </div>
         </div>
       </Section>
 
