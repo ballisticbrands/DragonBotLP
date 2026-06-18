@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Menu, X, ChevronDown, ChevronRight, ArrowRight, Copy, Check,
+  Menu, X, ChevronDown, ArrowRight, Check,
   Database, Zap, BookOpen, Server, Brain, Sparkles, Clock, Shield,
-  TrendingUp, BarChart3, MessageSquare, Star, Package, FileText, Search, Bell, DollarSign, Play,
+  TrendingUp, BarChart3, MessageSquare, Star, Package, FileText, Search, DollarSign, Play,
 } from 'lucide-react';
+import { sellerVideos } from '../data/sellerVideos';
 
 /* ─── Fonts ─── */
 const monoLink = document.querySelector('link[data-roboto-mono]');
@@ -55,7 +56,7 @@ function WorksWithDropdown() {
               {HOSTS.map(h => (
                 <a
                   key={h.id}
-                  href="#install"
+                  href="/beta"
                   className="flex items-center gap-2.5 px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white rounded-md transition-colors"
                 >
                   <HostMark host={h} size={18} />
@@ -85,7 +86,7 @@ function WorksWithDropdownMobile({ onItemClick }) {
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
             <div className="pt-3 pl-3 flex flex-col gap-3 border-l border-white/10 ml-2">
               {HOSTS.map(h => (
-                <a key={h.id} href="#install" onClick={onItemClick} className="flex items-center gap-3 text-base text-white/70">
+                <a key={h.id} href="/beta" onClick={onItemClick} className="flex items-center gap-3 text-base text-white/70">
                   <HostMark host={h} size={20} />
                   <span>{h.label}</span>
                 </a>
@@ -218,59 +219,6 @@ function Eyebrow({ children }) {
       <span className="w-2 h-2 rounded-full bg-[#98CC65] animate-pulse shrink-0" />
       <span>{children}</span>
     </span>
-  );
-}
-
-/* ─── Install widget — copy snippet + per-host quick-install buttons ─── */
-const INSTALL_JSON = `{
-  "mcpServers": {
-    "dragonbot": {
-      "url": "https://mcp.getdragonbot.com",
-      "headers": { "Authorization": "Bearer YOUR_TOKEN" }
-    }
-  }
-}`;
-
-function InstallWidget() {
-  const [copied, setCopied] = useState(false);
-  const onCopy = async () => {
-    try { await navigator.clipboard.writeText(INSTALL_JSON); } catch {}
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
-
-  return (
-    <div id="install" className="w-full max-w-2xl mx-auto">
-      <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-        <div className="flex items-center justify-between px-4 py-2 border-b border-white/10">
-          <span className="text-[11px] font-bold text-white/40 uppercase tracking-widest" style={{ fontFamily: monoFont }}>
-            mcp config
-          </span>
-          <button onClick={onCopy} className="flex items-center gap-1.5 text-[11px] font-semibold text-white/60 hover:text-white transition-colors">
-            {copied ? <Check className="w-3.5 h-3.5 text-[#98CC65]" /> : <Copy className="w-3.5 h-3.5" />}
-            {copied ? 'Copied' : 'Copy'}
-          </button>
-        </div>
-        <pre className="px-4 py-3 text-[12px] leading-[1.6] text-white/80 overflow-x-auto" style={{ fontFamily: monoFont }}>
-          {INSTALL_JSON}
-        </pre>
-      </div>
-      <p className="text-center text-[11px] font-medium text-white/40 uppercase tracking-widest mt-5 mb-3" style={{ fontFamily: monoFont }}>
-        or one-click install
-      </p>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-        {HOSTS.map(h => (
-          <a
-            key={h.id}
-            href="/beta"
-            className="flex items-center justify-center gap-2 px-3 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#2F7D4F]/40 rounded-lg transition-all text-sm font-semibold text-white/80 hover:text-white"
-          >
-            <HostMark host={h} size={18} />
-            <span className="truncate">{h.label}</span>
-          </a>
-        ))}
-      </div>
-    </div>
   );
 }
 
@@ -771,37 +719,43 @@ export default function LandingV4() {
       <Navbar />
 
       {/* ─── HERO ─── */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
+      <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-[#98CC65]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-40 right-1/4 w-[400px] h-[400px] bg-[#2F7D4F]/8 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <Eyebrow>
-              MCP server · works with{' '}
+              Works with{' '}
               <span style={{ fontWeight: 700 }}>Claude</span>,{' '}
               <span style={{ fontWeight: 700 }}>ChatGPT</span>,{' '}
               <span style={{ fontWeight: 700 }}>Cursor</span>, and any AI
             </Eyebrow>
 
             <h1 className="font-extrabold text-[48px] sm:text-[64px] lg:text-[88px] text-white leading-[1.05] tracking-[-0.035em] mb-6">
-              The best Amazon seller MCP.{' '}
-              <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Free forever.</span>
+              Give your AI{' '}
+              <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Amazon superpowers.</span>
             </h1>
 
+            {/* Free forever — prominent badge */}
+            <div className="flex justify-center mb-6">
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border-2 border-[#98CC65]/40 bg-[#2F7D4F]/10">
+                <Sparkles className="w-4 h-4 text-[#98CC65]" />
+                <span className="text-base sm:text-lg font-extrabold uppercase tracking-widest bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent" style={{ fontFamily: monoFont }}>
+                  Free forever
+                </span>
+                <span className="text-[12px] sm:text-sm font-medium text-white/60">— no credit card, no catch</span>
+              </div>
+            </div>
+
             <p className="text-[17px] sm:text-[19px] text-white/55 max-w-2xl mx-auto mb-10 leading-[1.6] tracking-[-0.01em]">
-              DragonBot is an <span className="underline decoration-[#98CC65]/60 decoration-[2px] underline-offset-4">Amazon MCP server</span>{' '}
-              — always-fresh ETL'd data, pre-built skills, and tutorials. Plug it into Claude, ChatGPT, Cursor, or any MCP client.
+              DragonBot plugs into your AI and gives it always-fresh Amazon data, pre-built skills, and tutorials.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
               <a href="/beta"
-                className="px-8 py-4 text-base bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
+                className="px-10 py-4 text-base bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
                 Start free <ArrowRight className="w-5 h-5" />
-              </a>
-              <a href="#install"
-                className="px-8 py-4 text-base bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all flex items-center gap-3">
-                <Copy className="w-4 h-4" /> Install snippet
               </a>
             </div>
 
@@ -813,27 +767,64 @@ export default function LandingV4() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-8 text-center">
+            className="mt-10 text-center">
             <p className="text-[15px] font-semibold text-white/60 mb-2">We sell on Amazon too</p>
             <p className="text-[11px] font-medium text-white/50 uppercase tracking-[0.15em]">10 years on Amazon · 8 figures sold · DragonBot is the employee we always wanted</p>
           </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-14 flex justify-center">
-            <ChatDemo />
-          </motion.div>
         </div>
       </section>
+
+      {/* ─── YOUR AI WITH DRAGONBOT (chat demo) ─── */}
+      <Section id="your-ai" className="!py-16">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
+          className="flex justify-center">
+          <ChatDemo />
+        </motion.div>
+      </Section>
+
+      {/* ─── SELLER VIDEOS ─── */}
+      <Section id="seller-videos">
+        <div className="text-center mb-10">
+          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+            See what <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">Amazon Sellers</span> have been building with{' '}
+            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
+          </h4>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
+          {sellerVideos.map(v => (
+            <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer"
+              className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#2F7D4F]/40 transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/10 group">
+              <div className="relative aspect-video">
+                <img src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} className="w-full h-full object-cover"
+                  onError={(e) => { e.currentTarget.src = `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`; }} />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                  <div className="w-14 h-14 rounded-full bg-[#2F7D4F] flex items-center justify-center shadow-lg">
+                    <Play className="w-6 h-6 text-white ml-0.5" fill="white" />
+                  </div>
+                </div>
+                {v.duration && (
+                  <span className="absolute bottom-2 left-2 text-[11px] font-semibold text-white bg-black/80 px-1.5 py-0.5 rounded">
+                    {v.duration}
+                  </span>
+                )}
+              </div>
+              <div className="p-4">
+                <p className="text-sm font-semibold text-white/80 leading-snug">{v.title}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </Section>
 
       {/* ─── WHAT'S IN THE BOX ─── */}
       <Section id="whats-in-the-box">
         <div className="text-center mb-12">
           <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
-            What's in the box
+            What you get
           </p>
           <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
-            Fresh data. Pre-built skills.{' '}
-            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Tutorials to drive them.</span>
+            Here is what{' '}
+            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot gives you.</span>
           </h4>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
@@ -929,31 +920,6 @@ export default function LandingV4() {
         <TutorialsShowcase />
       </Section>
 
-      {/* ─── WORKS WITH ─── */}
-      <Section id="works-with">
-        <div className="text-center mb-10">
-          <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
-            Works with
-          </p>
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
-            Bring your{' '}
-            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">favorite AI.</span>
-          </h4>
-          <p className="mt-4 text-base text-white/50 max-w-2xl mx-auto">
-            DragonBot is a standard MCP server. If your client speaks MCP, it works.
-          </p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
-          {HOSTS.map(h => (
-            <div key={h.id} className="flex flex-col items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[#2F7D4F]/30 transition-all">
-              <HostMark host={h} size={40} />
-              <span className="text-sm font-semibold text-white">{h.label}</span>
-            </div>
-          ))}
-        </div>
-        <InstallWidget />
-      </Section>
-
       {/* ─── SECURITY ─── */}
       <Section id="security">
         <div className="text-center mb-14">
@@ -994,53 +960,6 @@ export default function LandingV4() {
               </div>
             </div>
           ))}
-        </div>
-      </Section>
-
-      {/* ─── PRICING ─── */}
-      <Section id="pricing">
-        <div className="text-center mb-12">
-          <h4 className="font-extrabold text-3xl sm:text-4xl tracking-[-0.03em] leading-tight">
-            Free forever.{' '}
-            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Pay only for writes.</span>
-          </h4>
-        </div>
-
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-center">
-          <div className="max-w-md">
-            <p className="text-lg text-white/55 mb-4 leading-relaxed">
-              Every skill. Every tutorial. <strong className="text-white/90">Read operations are free forever</strong> — pull data, run analyses, build reports as much as you want.
-            </p>
-            <p className="text-lg text-white/55 mb-8 leading-relaxed">
-              Write operations (pausing campaigns, sending refunds, editing listings) will cost a few cents each. <strong className="text-white/90">Currently free during beta.</strong>
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a href="/beta"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25">
-                Start free <ArrowRight className="w-4 h-4" />
-              </a>
-              <a href="/pricing"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">
-                See pricing
-              </a>
-            </div>
-          </div>
-
-          <ul className="space-y-4">
-            {[
-              { t: 'Free forever — read operations', em: true },
-              { t: 'Every skill, every tutorial' },
-              { t: 'Always-fresh ETL\'d data' },
-              { t: 'Amazon SP-API connection' },
-              { t: 'Works with Claude, ChatGPT, Cursor' },
-              { t: 'Write ops — free during beta', em: true },
-            ].map((f, i) => (
-              <li key={i} className="flex items-start gap-3 text-base text-white/80">
-                <Check className={`w-5 h-5 mt-0.5 shrink-0 ${f.em ? 'text-[#98CC65]' : 'text-[#98CC65]/70'}`} />
-                <span className={f.em ? 'font-semibold text-white' : ''}>{f.t}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </Section>
 
