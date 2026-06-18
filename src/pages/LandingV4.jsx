@@ -172,7 +172,7 @@ function Navbar() {
             <WorksWithDropdown />
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <a href="/beta"
+            <a href="https://app.getdragonbot.com/sign-up"
               className="px-5 py-2.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/25">
               Start free
             </a>
@@ -191,7 +191,7 @@ function Navbar() {
                 <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-medium text-white">{l.label}</a>
               ))}
               <WorksWithDropdownMobile onItemClick={() => setMobileOpen(false)} />
-              <a href="/beta" onClick={() => setMobileOpen(false)}
+              <a href="https://app.getdragonbot.com/sign-up" onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all">
                 Start free
               </a>
@@ -706,11 +706,11 @@ export default function LandingV4() {
             {/* 4 connect buttons */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto mb-10">
               {HOSTS.map(h => (
-                <button key={h.id} type="button"
+                <a key={h.id} href="https://app.getdragonbot.com/sign-up"
                   className="flex items-center justify-center gap-2.5 px-4 py-3.5 bg-white/5 hover:bg-[#2F7D4F]/15 border border-white/15 hover:border-[#98CC65]/40 rounded-lg transition-all text-[13px] sm:text-sm font-semibold text-white/85 hover:text-white cursor-pointer">
                   <HostMark host={h} size={20} />
                   <span>Connect Amazon Seller Central to {h.id === 'other' ? 'any MCP client' : h.label}</span>
-                </button>
+                </a>
               ))}
             </div>
 
@@ -954,7 +954,7 @@ export default function LandingV4() {
                 </li>
               ))}
             </ul>
-            <a href="/beta"
+            <a href="https://app.getdragonbot.com/sign-up"
               className="block text-center px-6 py-3 bg-white/10 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">
               Start free
             </a>
