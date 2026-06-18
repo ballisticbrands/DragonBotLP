@@ -694,7 +694,8 @@ export default function LandingV4() {
             </Eyebrow>
 
             <h1 className="font-extrabold text-[40px] sm:text-[56px] lg:text-[72px] text-white leading-[1.05] tracking-[-0.035em] mb-6">
-              Connect your AI to Amazon Seller Central.{' '}
+              Connect your AI to{' '}
+              <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">Amazon Seller Central</span>.{' '}
               <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Free forever.</span>
             </h1>
 
