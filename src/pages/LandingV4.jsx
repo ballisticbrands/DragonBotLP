@@ -173,7 +173,7 @@ function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <a href="/beta"
               className="px-5 py-2.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/25">
-              Request Access
+              Start free
             </a>
           </div>
           <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -192,7 +192,7 @@ function Navbar() {
               <WorksWithDropdownMobile onItemClick={() => setMobileOpen(false)} />
               <a href="/beta" onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all">
-                Request Access
+                Start free
               </a>
             </div>
           </motion.div>
@@ -797,7 +797,7 @@ export default function LandingV4() {
             <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
               <a href="/beta"
                 className="px-8 py-4 text-base bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
-                Request Access <ArrowRight className="w-5 h-5" />
+                Start free <ArrowRight className="w-5 h-5" />
               </a>
               <a href="#install"
                 className="px-8 py-4 text-base bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all flex items-center gap-3">
@@ -808,7 +808,7 @@ export default function LandingV4() {
             <div className="flex flex-wrap items-center justify-center gap-5 text-[13px] font-medium text-white/40 tracking-[-0.01em]">
               <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-[#2F7D4F]" /> Sub-second responses</span>
               <span className="flex items-center gap-2"><Shield className="w-4 h-4 text-[#2F7D4F]" /> Amazon TOS Compliant</span>
-              <span className="flex items-center gap-2"><DollarSign className="w-4 h-4 text-[#2F7D4F]" /> $100 in free credits</span>
+              <span className="flex items-center gap-2"><DollarSign className="w-4 h-4 text-[#2F7D4F]" /> Free forever</span>
             </div>
           </motion.div>
 
@@ -1001,40 +1001,43 @@ export default function LandingV4() {
       <Section id="pricing">
         <div className="text-center mb-12">
           <h4 className="font-extrabold text-3xl sm:text-4xl tracking-[-0.03em] leading-tight">
-            Start free.{' '}
-            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Pay only when you're ready.</span>
+            Free forever.{' '}
+            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Pay only for writes.</span>
           </h4>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-center">
           <div className="max-w-md">
+            <p className="text-lg text-white/55 mb-4 leading-relaxed">
+              Every skill. Every tutorial. <strong className="text-white/90">Read operations are free forever</strong> — pull data, run analyses, build reports as much as you want.
+            </p>
             <p className="text-lg text-white/55 mb-8 leading-relaxed">
-              Every skill. Every tutorial. $100 in credits on the house.
-              No credit card, no sales call, no catch. When you need more, it starts at $50/month.
+              Write operations (pausing campaigns, sending refunds, editing listings) will cost a few cents each. <strong className="text-white/90">Currently free during beta.</strong>
             </p>
             <div className="flex flex-wrap gap-3">
               <a href="/beta"
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25">
-                Request Access <ArrowRight className="w-4 h-4" />
+                Start free <ArrowRight className="w-4 h-4" />
               </a>
               <a href="/pricing"
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">
-                See all plans
+                See pricing
               </a>
             </div>
           </div>
 
           <ul className="space-y-4">
             {[
-              '$100 in free credits',
-              'Every skill, no limits',
-              'Always-fresh ETL\'d data',
-              'Amazon SP-API connection',
-              'Works with Claude, ChatGPT, Cursor',
+              { t: 'Free forever — read operations', em: true },
+              { t: 'Every skill, every tutorial' },
+              { t: 'Always-fresh ETL\'d data' },
+              { t: 'Amazon SP-API connection' },
+              { t: 'Works with Claude, ChatGPT, Cursor' },
+              { t: 'Write ops — free during beta', em: true },
             ].map((f, i) => (
               <li key={i} className="flex items-start gap-3 text-base text-white/80">
-                <Check className="w-5 h-5 text-[#98CC65] mt-0.5 shrink-0" />
-                {f}
+                <Check className={`w-5 h-5 mt-0.5 shrink-0 ${f.em ? 'text-[#98CC65]' : 'text-[#98CC65]/70'}`} />
+                <span className={f.em ? 'font-semibold text-white' : ''}>{f.t}</span>
               </li>
             ))}
           </ul>
