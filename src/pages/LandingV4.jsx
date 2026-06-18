@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Menu, X, ChevronDown, ArrowRight, Check,
+  Menu, X, ChevronDown, ArrowRight, Check, BadgeCheck, ExternalLink,
   Database, Zap, BookOpen, Server, Brain, Sparkles, Clock, Shield,
   TrendingUp, BarChart3, MessageSquare, Star, Package, FileText, Search, DollarSign, Play,
 } from 'lucide-react';
@@ -732,37 +732,44 @@ export default function LandingV4() {
               <span style={{ fontWeight: 700 }}>Cursor</span>, and any AI
             </Eyebrow>
 
-            <h1 className="font-extrabold text-[48px] sm:text-[64px] lg:text-[88px] text-white leading-[1.05] tracking-[-0.035em] mb-6">
-              Give your AI{' '}
-              <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Amazon superpowers.</span>
+            <h1 className="font-extrabold text-[40px] sm:text-[56px] lg:text-[72px] text-white leading-[1.05] tracking-[-0.035em] mb-6">
+              Connect your AI to Amazon Seller Central.{' '}
+              <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Free forever.</span>
             </h1>
 
-            {/* Free forever — prominent badge */}
-            <div className="flex justify-center mb-6">
-              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border-2 border-[#98CC65]/40 bg-[#2F7D4F]/10">
-                <Sparkles className="w-4 h-4 text-[#98CC65]" />
-                <span className="text-base sm:text-lg font-extrabold uppercase tracking-widest bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent" style={{ fontFamily: monoFont }}>
-                  Free forever
-                </span>
-                <span className="text-[12px] sm:text-sm font-medium text-white/60">— no credit card, no catch</span>
-              </div>
-            </div>
-
             <p className="text-[17px] sm:text-[19px] text-white/55 max-w-2xl mx-auto mb-10 leading-[1.6] tracking-[-0.01em]">
-              DragonBot plugs into your AI and gives it always-fresh Amazon data, pre-built skills, and tutorials.
+              Give your AI chat secure access to your Amazon data — orders, ads, inventory, reviews, customer messages, and more. Plug DragonBot into Claude, ChatGPT, Cursor, or any MCP client in seconds.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
-              <a href="/beta"
-                className="px-10 py-4 text-base bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
-                Start free <ArrowRight className="w-5 h-5" />
-              </a>
+            {/* 4 connect buttons */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto mb-10">
+              {HOSTS.map(h => (
+                <button key={h.id} type="button"
+                  className="flex items-center justify-center gap-2.5 px-4 py-3.5 bg-white/5 hover:bg-[#2F7D4F]/15 border border-white/15 hover:border-[#98CC65]/40 rounded-lg transition-all text-[13px] sm:text-sm font-semibold text-white/85 hover:text-white cursor-pointer">
+                  <HostMark host={h} size={20} />
+                  <span>Connect Amazon Seller Central to {h.id === 'other' ? 'any MCP client' : h.label}</span>
+                </button>
+              ))}
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-5 text-[13px] font-medium text-white/40 tracking-[-0.01em]">
-              <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-[#2F7D4F]" /> Sub-second responses</span>
-              <span className="flex items-center gap-2"><Shield className="w-4 h-4 text-[#2F7D4F]" /> Amazon TOS Compliant</span>
-              <span className="flex items-center gap-2"><DollarSign className="w-4 h-4 text-[#2F7D4F]" /> Free forever</span>
+            {/* Trust strip — legit reassurance */}
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[13px] font-medium tracking-[-0.01em]">
+              <a href="https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.d78b7343-017b-4e68-92e4-a1defb51aa6f"
+                target="_blank" rel="noopener noreferrer"
+                title="View DragonBot on Amazon.com"
+                className="flex items-center gap-2 text-[#98CC65] hover:text-white transition-colors">
+                <BadgeCheck className="w-4 h-4" />
+                <span className="underline decoration-[#98CC65]/40 underline-offset-2">Amazon approved</span>
+                <ExternalLink className="w-3 h-3 opacity-60" />
+              </a>
+              <span className="flex items-center gap-2 text-white/50">
+                <Shield className="w-4 h-4 text-[#2F7D4F]" />
+                Amazon ToS Compliant
+              </span>
+              <span className="flex items-center gap-2 text-white/50">
+                <DollarSign className="w-4 h-4 text-[#2F7D4F]" />
+                Basic plan is <strong className="font-bold text-[#98CC65]" style={{ fontFamily: monoFont }}>FREE FOREVER</strong>
+              </span>
             </div>
           </motion.div>
 
