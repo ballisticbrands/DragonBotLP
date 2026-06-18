@@ -21,7 +21,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingV3 />} />
+        <Route path="/" element={<LandingV4 />} />
         <Route path="/v1" element={<Home />} />
         <Route path="/v2" element={<LandingV4 />} />
         <Route path="/v2-old" element={<LandingV2 />} />
@@ -40,7 +40,7 @@ function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/vs/:slug" element={<VsCompetitor />} />
         <Route path="/beta" element={<Beta />} />
-        <Route path="*" element={<LandingV3 />} />
+        <Route path="*" element={<LandingV4 />} />
       </Routes>
     </Router>
   )

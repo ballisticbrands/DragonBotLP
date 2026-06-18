@@ -132,7 +132,7 @@ function HostMark({ host, size = 20 }) {
 
 /* ─── Navbar ─── */
 const navLinks = [
-  { label: 'Product', href: '/v2', active: true },
+  { label: 'Product', href: '/', active: true },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Privacy', href: '/privacy', newTab: true },
   { label: 'Support', href: '/support', newTab: true },
@@ -158,7 +158,7 @@ function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/v2" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <motion.img src="/DragonBot-logo.png" alt="DragonBot" className="h-10"
               animate={{ y: [0, -4, 0] }}
               transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} />
@@ -785,8 +785,8 @@ export default function LandingV4() {
             </Eyebrow>
 
             <h1 className="font-extrabold text-[48px] sm:text-[64px] lg:text-[88px] text-white leading-[1.05] tracking-[-0.035em] mb-6">
-              Give your AI{' '}
-              <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Amazon superpowers.</span>
+              The best Amazon seller MCP.{' '}
+              <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Free forever.</span>
             </h1>
 
             <p className="text-[17px] sm:text-[19px] text-white/55 max-w-2xl mx-auto mb-10 leading-[1.6] tracking-[-0.01em]">
@@ -1060,7 +1060,7 @@ export default function LandingV4() {
               <span className="font-bold text-lg text-white">DragonBot</span>
             </div>
             <div className="flex flex-wrap justify-center gap-8">
-              <a href="/v2" className="text-sm text-white/50 hover:text-white transition-colors">Product</a>
+              <a href="/" className="text-sm text-white/50 hover:text-white transition-colors">Product</a>
               <a href="/pricing" className="text-sm text-white/50 hover:text-white transition-colors">Pricing</a>
               <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Privacy</a>
               <a href="/tos" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Terms</a>
