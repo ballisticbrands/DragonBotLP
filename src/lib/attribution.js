@@ -46,6 +46,15 @@ const CLICK_ID_KEYS = ["gclid", "fbclid", "msclkid"];
 
 const ALL_ATTR_KEYS = [...UTM_KEYS, ...CLICK_ID_KEYS];
 
+// First-touch landing context — the visitor's REAL first page on
+// getdragonbot.com + the referrer that sent them. Stored in the SAME
+// cookie but kept OUT of ALL_ATTR_KEYS on purpose: the click-time URL
+// rewriter must not append these to outbound links (a full URL as a
+// query param bloats links and re-encodes awkwardly). The app reads them
+// straight from the cookie. This is what fixes User.landingPage, which
+// otherwise records the app's own /sign-up URL.
+const LANDING_KEYS = ["landing_page", "referrer"];
+
 // ─── Cookie helpers ─────────────────────────────────────────────────
 
 function readCookie(name) {
@@ -108,6 +117,37 @@ function readAttrFromCookie() {
   } catch {
     return {};
   }
+}
+
+/** Return { landing_page, referrer } stored in the cookie (first-touch). */
+function readLandingFromCookie() {
+  const raw = readCookie(COOKIE_NAME);
+  if (!raw) return {};
+  try {
+    const params = new URLSearchParams(raw);
+    const out = {};
+    for (const k of LANDING_KEYS) {
+      const v = params.get(k);
+      if (v) out[k] = v;
+    }
+    return out;
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Capture this page as the landing: full URL incl. query but minus the
+ * fragment (never carries attribution, can hold sensitive tokens), plus
+ * the referrer that sent the visitor here.
+ */
+function captureLandingFromLocation() {
+  const out = {};
+  const landing =
+    window.location.origin + window.location.pathname + window.location.search;
+  out.landing_page = landing.slice(0, 2048);
+  if (document.referrer) out.referrer = document.referrer.slice(0, 2048);
+  return out;
 }
 
 /** Persist an attribution object to the cross-subdomain cookie. */
@@ -210,10 +250,27 @@ export function initAttribution() {
         ? fromCookie
         : fromUrl;
 
-    if (Object.keys(attr).length > 0) {
-      saveAttrToCookie(attr);
+    // First-touch landing_page + referrer, tracked independently of the
+    // campaign params: the cookie's value wins if present, else capture
+    // this page. Independent because a visitor can land direct (no UTM,
+    // so `attr` is empty) yet we still want their real first page — and
+    // a later UTM visit shouldn't overwrite that original landing.
+    const landingFromCookie = readLandingFromCookie();
+    const landing =
+      Object.keys(landingFromCookie).length > 0
+        ? landingFromCookie
+        : captureLandingFromLocation();
+
+    // Persist campaign + landing together in the one cookie. Always
+    // re-save the merged blob so neither half drops the other's keys
+    // (readAttrFromCookie / readLandingFromCookie each read their own).
+    const merged = { ...attr, ...landing };
+    if (Object.keys(merged).length > 0) {
+      saveAttrToCookie(merged);
     }
 
+    // The URL rewriter carries ONLY campaign params to outbound links —
+    // never landing_page/referrer (see LANDING_KEYS note).
     attachClickHandler(attr);
   } catch {
     // Attribution is best-effort — never fail the page for it.
