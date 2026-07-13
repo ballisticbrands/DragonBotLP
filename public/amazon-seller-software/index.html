@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The free AI Amazon seller software — DragonBot</title>
+<meta name="description" content="DragonBot connects to Seller Central and Amazon Ads and runs your account — PPC, inventory, listings, messages. Free forever.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/DragonBot-avatar.png">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0F0F0F;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
+  .wrap{max-width:660px}
+  img.logo{height:56px;margin-bottom:32px}
+  h1{font-size:clamp(32px,6vw,56px);font-weight:800;line-height:1.06;letter-spacing:-0.03em;margin-bottom:20px}
+  .grad{background:linear-gradient(to right,#2F7D4F,#98CC65);-webkit-background-clip:text;background-clip:text;color:transparent}
+  p.sub{font-size:19px;line-height:1.6;color:rgba(255,255,255,.7);margin-bottom:36px}
+  a.cta{display:inline-block;background:#2F7D4F;color:#fff;text-decoration:none;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:16px 34px;border-radius:10px;transition:transform .2s,background .2s}
+  a.cta:hover{background:#256B42;transform:translateY(-2px)}
+  .foot{margin-top:26px;font-size:13px;color:rgba(255,255,255,.4)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="/"><img class="logo" src="/DragonBot-logo.png" alt="DragonBot"></a>
+    <h1>The <span class="grad">free</span> AI Amazon seller software</h1>
+    <p class="sub">Connects to Seller Central and Amazon Ads, then runs your account — PPC, inventory, listings, messages. <strong>Free forever.</strong></p>
+    <a class="cta" id="cta" href="https://app.getdragonbot.com/sign-up">Get started free</a>
+    <div class="foot">No credit card. Connect in 2 minutes.</div>
+  </div>
+  <script>
+  /* preserve ad attribution to the app — mirrors src/lib/attribution.js */
+  (function(){
+    try{
+      var KEYS=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid","msclkid"];
+      var p=new URLSearchParams(location.search),found={};
+      KEYS.forEach(function(k){var v=p.get(k);if(v)found[k]=v.slice(0,256);});
+      var name="dragonbot_attribution";
+      var ex=document.cookie.match(new RegExp("(?:^|; )"+name+"=([^;]*)"));
+      if(!ex&&Object.keys(found).length){
+        var sp=new URLSearchParams();for(var k in found)sp.set(k,found[k]);
+        var a=[name+"="+encodeURIComponent(sp.toString()),"Domain=.getdragonbot.com","Path=/","Max-Age="+(30*24*60*60),"SameSite=Lax"];
+        if(location.protocol==="https:")a.push("Secure");
+        document.cookie=a.join("; ");
+      }
+      var cta=document.getElementById("cta");
+      var carry=ex?decodeURIComponent(ex[1]):new URLSearchParams(found).toString();
+      if(cta&&carry){var u=new URL(cta.href);new URLSearchParams(carry).forEach(function(v,k){if(!u.searchParams.has(k))u.searchParams.set(k,v);});cta.href=u.toString();}
+    }catch(e){}
+  })();
+  </script>
+</body>
+</html>
