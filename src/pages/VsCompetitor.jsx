@@ -248,9 +248,9 @@ export default function VsCompetitor() {
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-              <a href="/beta"
+              <a href="https://app.getdragonbot.com/sign-up"
                 className="px-10 py-5 text-lg bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
-                Try DragonBot Free <ArrowRight className="w-5 h-5" />
+                Start Free <ArrowRight className="w-5 h-5" />
               </a>
               <a href="/"
                 className="px-10 py-5 text-lg bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all flex items-center gap-3">
@@ -259,7 +259,7 @@ export default function VsCompetitor() {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-5 text-[13px] font-medium text-white/40">
-              <span className="flex items-center gap-2"><Check className="w-4 h-4 text-[#2F7D4F]" />$100 in Free Credits</span>
+              <span className="flex items-center gap-2"><Check className="w-4 h-4 text-[#2F7D4F]" />Free Forever Plan</span>
               <span className="flex items-center gap-2"><Check className="w-4 h-4 text-[#2F7D4F]" />No Credit Card Required</span>
               <span className="flex items-center gap-2"><Check className="w-4 h-4 text-[#2F7D4F]" />Amazon TOS Compliant</span>
             </div>
@@ -491,12 +491,12 @@ export default function VsCompetitor() {
             Ready to stop doing the work?
           </h2>
           <p className="text-white/70 max-w-xl mx-auto mb-8">
-            Try DragonBot free with $100 in credits. No credit card. Connect to Amazon in 2 minutes.
+            Free forever. No credit card. Connect to Amazon in 2 minutes.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <a href="/beta"
+            <a href="https://app.getdragonbot.com/sign-up"
               className="inline-flex items-center gap-3 px-10 py-5 text-lg bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5">
-              Request Access <ArrowRight className="w-5 h-5" />
+              Start Free <ArrowRight className="w-5 h-5" />
             </a>
             <a href="/"
               className="inline-flex items-center gap-3 px-10 py-5 text-lg bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">

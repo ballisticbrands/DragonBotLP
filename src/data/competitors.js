@@ -2100,8 +2100,511 @@ export const competitors = {
     ],
   },
 
-  // Add more competitors here using the same structure:
-  // 'perpetua': { ... },
+  /* ═══════ Direct AI-operator rivals (Google Ads v2 campaign) ═══════ */
+
+  'jarvio': {
+    name: 'Jarvio',
+    category: 'amazon-ai',
+    logo: '/logos-vs/jarvio.svg',
+    metaTitle: 'DragonBot vs Jarvio: Free AI Amazon Operator Compared (2026)',
+    metaDescription:
+      'Honest comparison of DragonBot and Jarvio. Both are AI agents that work your Amazon account. Jarvio meters you with credits from $49/mo. DragonBot starts free forever.',
+    eyebrow: 'DragonBot vs Jarvio',
+    h1: { plain: 'Jarvio meters your AI.', accent: 'DragonBot starts free.' },
+    subhead:
+      'Both are AI agents for Amazon sellers. Jarvio sells credits — every task burns them, and heavier plans run $49 to $499/mo. DragonBot gives you unlimited read access free forever, and a flat $50/mo when you want it acting on your account.',
+    pricing: { monthly: '$49–$499/mo', plan: 'credit-based tiers' },
+    tldr: {
+      them: "Choose Jarvio if you want a polished chat-agent product with its own interface and don't mind credit-metered pricing that climbs as you use it more.",
+      us: 'Choose DragonBot if you want unlimited data, analyses, and reports free forever — in Slack or your own AI (Claude, ChatGPT, Cursor) — and a flat, predictable price when it starts taking actions.',
+    },
+    comparisonTable: [
+      { feature: 'AI agent that works your Amazon account', them: 'yes', us: 'yes' },
+      { feature: 'Free plan', them: { main: 'Credit-capped', sub: 'monthly credit allowance' }, us: { main: 'Free forever', sub: 'unlimited, read-only' } },
+      { feature: 'Unlimited questions, analyses, reports', them: 'no', us: 'yes' },
+      { feature: 'Works inside Claude / ChatGPT / Cursor (MCP)', them: 'partial', us: 'yes' },
+      { feature: 'Lives in Slack', them: 'partial', us: 'yes' },
+      { feature: 'PPC audits & management', them: 'yes', us: 'yes' },
+      { feature: 'Inventory & restock monitoring', them: 'yes', us: 'yes' },
+      { feature: 'Customer message handling', them: 'yes', us: 'yes' },
+      { feature: 'Approval-gated actions with audit trail', them: 'yes', us: 'yes' },
+      { feature: "Flat price that doesn't climb with usage", them: 'no', us: 'yes' },
+      { feature: 'Starting price', them: '$49–$499/mo', us: { main: 'Free forever', sub: 'action plan $50/mo' } },
+    ],
+    workflows: [
+      {
+        task: 'Weekly PPC cleanup',
+        them: [
+          { t: 'Ask Jarvio to audit your campaigns.', h: true },
+          { t: 'Each analysis and action burns plan credits.' },
+          { t: 'Run out mid-month? Upgrade a tier.', h: true },
+          { t: 'Review and approve the changes.' },
+        ],
+        us: [
+          { t: 'DragonBot audits campaigns on a schedule.', h: true },
+          { t: 'Unlimited analyses — no credit meter running.' },
+          { t: 'Flags bleeders, proposes negations and bid changes.' },
+          { t: 'You approve in Slack; every action is logged.', h: true },
+        ],
+      },
+      {
+        task: 'Daily business check-in',
+        them: [
+          { t: 'Open the Jarvio app and ask for a summary.', h: true },
+          { t: 'Summary consumes credits from your allowance.' },
+          { t: 'Deeper follow-up questions cost more credits.', h: true },
+        ],
+        us: [
+          { t: 'A scheduled report is already in Slack when you wake up.', h: true },
+          { t: 'Ask unlimited follow-ups — free tier included.' },
+          { t: 'Same data available in Claude or ChatGPT via MCP.', h: true },
+        ],
+      },
+    ],
+    themWins: [
+      { title: 'Polished dedicated chat app', desc: 'Jarvio ships its own refined chat interface. If you want a purpose-built app rather than Slack or your own AI client, theirs is slick.' },
+      { title: 'A taste is free', desc: "Jarvio's free credit allowance lets you trial an agent doing real tasks without paying — as long as your usage stays small." },
+      { title: 'Vendor Central coverage', desc: 'Jarvio advertises support for Vendor Central sellers alongside Seller Central. DragonBot is focused on Seller Central today.' },
+    ],
+    usWins: [
+      { title: 'Free forever, not free-until-you-use-it', desc: "DragonBot's free tier is unlimited read access — every skill, every report, no credit meter. Jarvio's free plan runs out the moment the agent gets useful." },
+      { title: 'Predictable flat pricing for actions', desc: "When you want DragonBot acting on your account, it's a flat $50/mo. No credit math, no usage anxiety, no surprise tier jumps to $499." },
+      { title: 'Meets you where you already work', desc: 'Slack, Claude, ChatGPT, Cursor — DragonBot plugs into the tools you already use instead of adding another app to check.' },
+      { title: 'Built by 8-figure Amazon sellers', desc: 'DragonBot is the employee its founders wanted for their own brands — 10 years selling on Amazon shaped every skill.' },
+    ],
+    pricingComparison: {
+      themItems: [
+        { label: 'Jarvio Starter', price: '$49/mo' },
+        { label: 'Jarvio Growth', price: '$149/mo' },
+        { label: 'Jarvio Scale', price: '$499/mo' },
+      ],
+      usItem: { label: 'DragonBot', price: '$0', note: 'Free forever (read-only) · $50/mo action plan. Competitor pricing per their site, July 2026.' },
+      footnote: "Credit-metered pricing punishes you for using the product. DragonBot's free tier has no meter — and the action plan is one flat price.",
+    },
+    faq: [
+      { q: 'Is DragonBot really free, or free like Jarvio is free?', a: "Different model. Jarvio's free plan is a monthly credit allowance — heavy use eats it fast. DragonBot's free tier is unlimited read access to every skill: pull data, run analyses, build reports, forever. You only pay ($50/mo flat) when you want DragonBot taking actions on your account." },
+      { q: 'Can DragonBot take actions like Jarvio does?', a: 'Yes — on the Read + Write plan ($50/mo, currently in private beta): pause campaigns, adjust bids, send refunds, edit listings. Supervised mode asks approval first; every action lands in a full audit trail.' },
+      { q: 'Do I have to use another chat app?', a: "No — that's the point. DragonBot lives in Slack and speaks MCP, so it also works inside Claude, ChatGPT, and Cursor. No new interface to learn." },
+      { q: 'Is it Amazon TOS compliant?', a: 'Yes. DragonBot uses the official Amazon Selling-Partner API and Advertising API via OAuth. No scraping, no gray areas.' },
+    ],
+  },
+
+  'datadoe': {
+    name: 'DataDoe',
+    category: 'amazon-ai',
+    logo: '/logos-vs/datadoe.svg',
+    metaTitle: 'DragonBot vs DataDoe: Free Amazon Data Layer + AI Operator (2026)',
+    metaDescription:
+      'Honest comparison of DragonBot and DataDoe. Both give AI clean Amazon data over MCP. DataDoe is $97/mo and stops at insights. DragonBot is free — and can act.',
+    eyebrow: 'DragonBot vs DataDoe',
+    h1: { plain: 'DataDoe shows you the data.', accent: 'DragonBot finishes the job.' },
+    subhead:
+      'DataDoe is a genuinely good AI-ready data layer for $97/mo. DragonBot does that part free — clean Seller Central + Ads data in Claude, ChatGPT, or Slack — and then goes further: it can actually work the account.',
+    pricing: { monthly: '$97/mo', plan: 'flat' },
+    tldr: {
+      them: 'Choose DataDoe if you want a polished, analytics-first data platform with prebuilt dashboards and are happy paying $97/mo for insight without action.',
+      us: "Choose DragonBot if you want the same clean-data-to-AI pipeline free forever — plus an agent that can act on what it finds when you're ready.",
+    },
+    comparisonTable: [
+      { feature: 'Clean, AI-ready Amazon data layer', them: 'yes', us: 'yes' },
+      { feature: 'MCP server (Claude, ChatGPT, Cursor)', them: 'yes', us: 'yes' },
+      { feature: 'Free plan', them: 'no', us: { main: 'Free forever', sub: 'unlimited, read-only' } },
+      { feature: 'Scheduled reports & briefs', them: 'yes', us: 'yes' },
+      { feature: 'Prebuilt analytics dashboards', them: 'yes', us: 'partial' },
+      { feature: 'Takes action (PPC, listings, refunds)', them: 'no', us: { main: 'Yes', sub: '$50/mo action plan' } },
+      { feature: 'Lives in Slack', them: 'no', us: 'yes' },
+      { feature: 'Customer message handling', them: 'no', us: 'yes' },
+      { feature: 'Vendor Central support', them: 'yes', us: 'no' },
+      { feature: 'Starting price', them: '$97/mo', us: { main: 'Free forever', sub: 'action plan $50/mo' } },
+    ],
+    workflows: [
+      {
+        task: 'Ask your AI about your business',
+        them: [
+          { t: "Connect DataDoe's MCP to Claude — $97/mo.", h: true },
+          { t: 'Ask questions, get clean answers from your data.' },
+          { t: 'Spot a bleeding PPC keyword? Now go fix it yourself in Seller Central.', h: true },
+        ],
+        us: [
+          { t: "Connect DragonBot's MCP to Claude — free.", h: true },
+          { t: 'Ask the same questions, get the same clean answers.' },
+          { t: 'Spot a bleeder? Tell DragonBot to pause it. Done, logged, reported.', h: true },
+        ],
+      },
+      {
+        task: 'Monday morning P&L review',
+        them: [
+          { t: "Open DataDoe's dashboard, review the prebuilt P&L.", h: true },
+          { t: 'Export or screenshot for your team.' },
+          { t: 'Discuss in Slack, then act manually.', h: true },
+        ],
+        us: [
+          { t: 'The P&L report is already posted in your Slack channel.', h: true },
+          { t: 'Team discusses it right there.' },
+          { t: "Approve DragonBot's suggested fixes in-thread.", h: true },
+        ],
+      },
+    ],
+    themWins: [
+      { title: 'Polished analytics suite', desc: 'DataDoe ships refined prebuilt dashboards — P&L, PPC, inventory, search terms. DragonBot builds reports on demand instead; if you want a classic BI dashboard, theirs is nicer.' },
+      { title: 'Vendor Central included', desc: 'DataDoe covers Vendor Central sellers alongside Seller Central. DragonBot is Seller Central-focused today.' },
+      { title: 'Transparent flat pricing', desc: 'One honest $97/mo plan, no revenue percentage, no tiers. We respect it — DragonBot just starts at $0 instead.' },
+    ],
+    usWins: [
+      { title: 'The $97/mo job, free', desc: "Clean Amazon data piped into your AI over MCP is exactly what DragonBot's free tier does — unlimited, forever, no card." },
+      { title: 'Insight AND action', desc: 'DataDoe stops at "here\'s what\'s wrong." DragonBot can fix it — pause the campaign, adjust the bid, send the refund — with approval gates and a full audit trail.' },
+      { title: 'Slack-native operations', desc: 'Reports, alerts, approvals, and Q&A all happen in the channel your team already reads.' },
+      { title: 'Customer messages handled', desc: "DragonBot triages buyer messages and drafts policy-based replies. A data layer can't answer your customers." },
+    ],
+    pricingComparison: {
+      themItems: [
+        { label: 'DataDoe', price: '$97/mo' },
+        { label: 'DataDoe, annually', price: '$1,164/yr' },
+      ],
+      usItem: { label: 'DragonBot', price: '$0', note: 'Free forever (read-only) · $50/mo action plan. Competitor pricing per their site, July 2026.' },
+      footnote: 'Same data-to-AI pipeline. One is $1,164 a year. The other is free and can also do the work.',
+    },
+    faq: [
+      { q: 'Does DragonBot really do what DataDoe does for free?', a: 'The core job — clean Seller Central + Ads data, exposed to Claude/ChatGPT/Cursor over MCP, plus reports — yes, free forever. DataDoe has more polished prebuilt dashboards; DragonBot answers questions and builds reports on demand instead.' },
+      { q: "What does DragonBot have that DataDoe doesn't?", a: 'Action. DataDoe is read-only by design — it informs you. DragonBot (on the $50/mo action plan) pauses campaigns, adjusts bids, edits listings, sends refunds, and handles buyer messages, with approvals and an audit trail.' },
+      { q: 'Is my data safe?', a: "DragonBot connects through Amazon's official SP-API OAuth flow — the same mechanism DataDoe uses. You can revoke access anytime from Seller Central." },
+      { q: 'Can I switch from DataDoe easily?', a: "Yes. There's nothing to migrate — DragonBot pulls fresh data directly from Amazon. Connect, and your history is there." },
+    ],
+  },
+
+  'profasee': {
+    name: 'Profasee',
+    category: 'amazon-ai',
+    logo: '/logos-vs/profasee.svg',
+    metaTitle: 'DragonBot vs Profasee: Free AI Operator vs $299+/mo AI Employees (2026)',
+    metaDescription:
+      "Honest comparison of DragonBot and Profasee Ultra. Profasee's AI employees start around $299/mo. DragonBot starts free forever. Where each one actually wins.",
+    eyebrow: 'DragonBot vs Profasee',
+    h1: { plain: 'Their AI employees cost $299+.', accent: 'Ours starts free.' },
+    subhead:
+      'Profasee built a strong AI repricer and now sells "AI employees" that run ads, inventory, and listings — application-gated, from roughly $299/mo. DragonBot covers the operations side free forever, with a flat $50/mo when you want it acting.',
+    pricing: { monthly: '$99–$698/mo', plan: 'repricer / Ultra tiers' },
+    tldr: {
+      them: "Choose Profasee if dynamic pricing is your #1 lever — their repricer for private-label brands is genuinely their specialty — and budget isn't the constraint.",
+      us: 'Choose DragonBot if you want AI running the day-to-day — PPC, inventory, listings, messages, reports — starting at $0 instead of an application form and a premium invoice.',
+    },
+    comparisonTable: [
+      { feature: 'Dynamic pricing / repricing', them: 'yes', us: 'no' },
+      { feature: 'AI PPC management', them: 'yes', us: 'yes' },
+      { feature: 'Inventory monitoring', them: 'yes', us: 'yes' },
+      { feature: 'Listing edits & optimization', them: 'yes', us: 'yes' },
+      { feature: 'Customer message handling', them: 'no', us: 'yes' },
+      { feature: 'Free plan', them: 'no', us: { main: 'Free forever', sub: 'unlimited, read-only' } },
+      { feature: 'Self-serve signup (no application)', them: 'no', us: 'yes' },
+      { feature: 'Works in Slack / Claude / ChatGPT', them: 'no', us: 'yes' },
+      { feature: 'Transparent flat pricing', them: 'partial', us: 'yes' },
+      { feature: 'Starting price', them: '$99–$698/mo', us: { main: 'Free forever', sub: 'action plan $50/mo' } },
+    ],
+    workflows: [
+      {
+        task: 'Getting started',
+        them: [
+          { t: 'Apply for Profasee Ultra access.', h: true },
+          { t: 'Sales call, onboarding, premium contract.' },
+          { t: 'AI employees configured per agent, ~$249–$399/mo each.', h: true },
+        ],
+        us: [
+          { t: 'Sign up free — no card, no call.', h: true },
+          { t: 'Connect Amazon via official OAuth in ~2 minutes.' },
+          { t: 'Ask your first question 60 seconds later.', h: true },
+        ],
+      },
+      {
+        task: 'Weekly ad + ops review',
+        them: [
+          { t: 'Ultra agents adjust pricing and ads on their models.', h: true },
+          { t: 'Review outcomes in their platform.' },
+          { t: 'Ops questions outside pricing/ads scope? Different tools.', h: true },
+        ],
+        us: [
+          { t: 'Scheduled PPC and P&L reports post to Slack.', h: true },
+          { t: 'Ask anything about sales, inventory, fees, messages.' },
+          { t: 'Approve suggested fixes in-thread — one agent, whole account.', h: true },
+        ],
+      },
+    ],
+    themWins: [
+      { title: 'Repricing is their craft', desc: "Profasee's dynamic-pricing engine for private-label brands is their founding specialty. DragonBot doesn't reprice today — if price optimization is your main lever, they win that battle." },
+      { title: 'Managed, hands-off setup', desc: 'Application-gated onboarding means their team configures things for you. If you want white-glove and will pay for it, that\'s their model.' },
+      { title: 'Established track record', desc: 'Years of repricing history and public case studies. DragonBot is the newer product here.' },
+    ],
+    usWins: [
+      { title: 'Start in minutes, at $0', desc: 'No application, no sales call, no premium invoice. Sign up, connect, ask — free forever on the read tier.' },
+      { title: 'The whole account, not two lanes', desc: 'PPC, inventory, listings, customer messages, refunds, reports — one agent across your operations, not specialized agents billed each.' },
+      { title: 'A price a small seller can say yes to', desc: 'Their entry runs ~$99/mo (repricer) to $299+/mo (Ultra). DragonBot: $0, then a flat $50/mo for actions.' },
+      { title: 'Your tools, not another platform', desc: 'Slack-native and MCP-open (Claude, ChatGPT, Cursor). No new dashboard to live in.' },
+    ],
+    pricingComparison: {
+      themItems: [
+        { label: 'Profasee repricer', price: '~$99/mo' },
+        { label: 'Profasee Ultra platform', price: '~$299/mo' },
+        { label: 'Additional AI employees', price: '~$249–$399/mo each' },
+      ],
+      usItem: { label: 'DragonBot', price: '$0', note: 'Free forever (read-only) · $50/mo action plan. Competitor pricing per public sources, July 2026.' },
+      footnote: "If repricing is your one big lever, Profasee earns its keep. For everything else an operator does, you don't need the premium invoice.",
+    },
+    faq: [
+      { q: 'Does DragonBot do repricing like Profasee?', a: "Not today — honest answer. Profasee's dynamic pricing is their specialty and DragonBot doesn't compete there yet. DragonBot covers PPC, inventory, listings, customer messages, refunds, and reporting." },
+      { q: 'Why is Profasee so much more expensive?', a: 'Premium managed positioning: application-gated onboarding and per-agent pricing. DragonBot is self-serve with a free tier — you pay only when you want actions, at a flat $50/mo.' },
+      { q: 'Can I use both?', a: "Yes — some brands keep a dedicated repricer and let DragonBot run everything else. They don't conflict; both use official Amazon APIs." },
+      { q: 'What happens after I connect?', a: 'DragonBot syncs your Seller Central and Ads data, then you can ask anything — in Slack or your AI client. Reports and alerts start immediately. Actions unlock on the $50/mo plan.' },
+    ],
+  },
+
+  'geenie': {
+    name: 'Geenie',
+    category: 'amazon-ai',
+    logo: '/logos-vs/geenie.svg',
+    metaTitle: 'DragonBot vs Geenie: Free Amazon MCP for Claude Compared (2026)',
+    metaDescription:
+      'Honest comparison of DragonBot and Geenie. Both run your Amazon business through Claude. Geenie is $97–$397/mo. DragonBot starts free forever.',
+    eyebrow: 'DragonBot vs Geenie',
+    h1: { plain: 'Same idea. Theirs is $97/mo.', accent: 'Ours is free.' },
+    subhead:
+      'Geenie pitches "run your entire Amazon business through Claude" — ads, listings, reporting, automations — from $97 to $397/mo after a 14-day trial. DragonBot does the run-it-through-your-AI job free forever, with a flat $50/mo when you want actions.',
+    pricing: { monthly: '$97–$397/mo', plan: 'Starter / Pro / Agency' },
+    tldr: {
+      them: "Choose Geenie if you want their specific packaged automations and prompts around the Claude workflow and the $97+/mo fee doesn't bother you.",
+      us: 'Choose DragonBot if you want your Amazon account in Claude (and ChatGPT, Cursor, Slack) with unlimited reads free forever — and approval-gated actions for a flat $50/mo.',
+    },
+    comparisonTable: [
+      { feature: 'Run your Amazon account through Claude', them: 'yes', us: 'yes' },
+      { feature: 'MCP connection to Seller Central + Ads', them: 'yes', us: 'yes' },
+      { feature: 'Free plan', them: { main: 'No', sub: '14-day trial' }, us: { main: 'Free forever', sub: 'unlimited, read-only' } },
+      { feature: 'Confirm-before-acting guardrails', them: 'yes', us: 'yes' },
+      { feature: 'Also lives in Slack', them: 'no', us: 'yes' },
+      { feature: 'Also works in ChatGPT / Cursor', them: 'partial', us: 'yes' },
+      { feature: 'Scheduled reports', them: 'yes', us: 'yes' },
+      { feature: 'Customer message handling', them: 'partial', us: 'yes' },
+      { feature: 'Starting price', them: '$97–$397/mo', us: { main: 'Free forever', sub: 'action plan $50/mo' } },
+    ],
+    workflows: [
+      {
+        task: 'Connect your account to Claude',
+        them: [
+          { t: "Start Geenie's 14-day trial.", h: true },
+          { t: 'Connect Amazon, add their MCP to Claude.' },
+          { t: 'Day 15: pay $97–$397/mo or lose access.', h: true },
+        ],
+        us: [
+          { t: 'Sign up free — no card, no clock.', h: true },
+          { t: "Connect Amazon, add DragonBot's MCP to Claude." },
+          { t: 'Day 15, day 150: still free.', h: true },
+        ],
+      },
+      {
+        task: 'PPC housekeeping',
+        them: [
+          { t: 'Ask Claude (via Geenie) for wasted spend.', h: true },
+          { t: 'Approve fixes with their guardrails.' },
+          { t: 'Capability gated by your plan tier.', h: true },
+        ],
+        us: [
+          { t: 'Ask Claude or Slack (via DragonBot) the same question — free.', h: true },
+          { t: 'On the action plan, approve fixes the same way.' },
+          { t: 'One flat $50/mo. No tiers to think about.', h: true },
+        ],
+      },
+    ],
+    themWins: [
+      { title: 'Packaged automations out of the box', desc: 'Geenie ships curated automation recipes around the Claude workflow. DragonBot gives you skills and lets you schedule them — slightly more DIY.' },
+      { title: 'Focused single-purpose product', desc: 'They do one thing — Amazon-through-Claude — and polish that path hard.' },
+      { title: 'Agency tier', desc: 'A packaged multi-account agency plan ($397/mo) if you manage many clients and want that structure.' },
+    ],
+    usWins: [
+      { title: 'Free forever vs 14-day trial', desc: "The core promise — your Amazon business in Claude — shouldn't cost $1,164+/yr. DragonBot's read tier is free with no clock." },
+      { title: 'Slack too, not Claude-only', desc: 'Your team gets reports and approvals in Slack while you use Claude, ChatGPT, or Cursor. One brain, every surface.' },
+      { title: 'Customer messages included', desc: 'DragonBot triages and drafts replies to buyer messages — the ops chore chat-first tools usually skip.' },
+      { title: 'Flat $50/mo for actions', desc: "One price when you're ready for writes. Not three tiers between $97 and $397." },
+    ],
+    pricingComparison: {
+      themItems: [
+        { label: 'Geenie Starter', price: '$97/mo' },
+        { label: 'Geenie Professional', price: '$249/mo' },
+        { label: 'Geenie Agency', price: '$397/mo' },
+      ],
+      usItem: { label: 'DragonBot', price: '$0', note: 'Free forever (read-only) · $50/mo action plan. Competitor pricing per their site, July 2026.' },
+      footnote: 'Both connect your Amazon account to Claude. One charges rent for the bridge.',
+    },
+    faq: [
+      { q: "Is DragonBot's MCP really equivalent to Geenie's?", a: 'Both expose your Seller Central + Ads data to Claude with guardrailed actions. Geenie packages more prebuilt automation recipes; DragonBot gives you unlimited free reads, Slack, and multi-client support (ChatGPT, Cursor) alongside Claude.' },
+      { q: 'Do I need a paid Claude plan?', a: "MCP connectors work best with Claude Pro — that's true for both products and is Anthropic's pricing, not ours. DragonBot also works in Slack with no Claude subscription at all." },
+      { q: 'What are the action guardrails like?', a: 'Supervised mode: DragonBot proposes, you approve, it executes and logs. Autonomous mode for routine actions you\'ve pre-approved. Full audit trail either way.' },
+      { q: 'Can I try actions before paying $50/mo?', a: 'The action plan is in private beta — sign up free and request access. Reads, reports, and analysis are free forever regardless.' },
+    ],
+  },
+
+  'agentcentral': {
+    name: 'AgentCentral',
+    category: 'amazon-ai',
+    logo: '/logos-vs/agentcentral.svg',
+    metaTitle: 'DragonBot vs AgentCentral: Free Amazon Seller MCP Compared (2026)',
+    metaDescription:
+      'Honest comparison of DragonBot and AgentCentral. Both are Amazon Seller MCPs with write-back. AgentCentral scales $39–$199/mo with your orders. DragonBot starts free.',
+    eyebrow: 'DragonBot vs AgentCentral',
+    h1: { plain: 'They bill by your order count.', accent: "We don't bill at all." },
+    subhead:
+      'AgentCentral is a well-built hosted Amazon MCP — 146 tools, audited write-back — priced $39 to $199/mo based on how many orders you do, plus add-ons per Ads profile. DragonBot gives you the MCP free forever, and never charges more because you grew.',
+    pricing: { monthly: '$39–$199/mo', plan: 'order-volume tiers' },
+    tldr: {
+      them: "Choose AgentCentral if you want neutral MCP plumbing for an agent stack you're building yourself, and your order volume sits comfortably in a cheap tier.",
+      us: 'Choose DragonBot if you want the same connect-AI-to-Amazon capability free forever — plus an agent with skills, schedules, and Slack, not just raw tools.',
+    },
+    comparisonTable: [
+      { feature: 'Hosted Amazon Seller MCP', them: 'yes', us: 'yes' },
+      { feature: 'Write actions with preview + audit trail', them: 'yes', us: 'yes' },
+      { feature: 'Free plan', them: { main: 'No', sub: '7-day trial' }, us: { main: 'Free forever', sub: 'unlimited, read-only' } },
+      { feature: 'Price independent of order volume', them: 'no', us: 'yes' },
+      { feature: 'Extra Ads profiles without add-on fees', them: 'no', us: 'yes' },
+      { feature: 'Built-in skills & scheduled reports', them: 'partial', us: 'yes' },
+      { feature: 'Lives in Slack', them: 'no', us: 'yes' },
+      { feature: 'Customer message handling', them: 'partial', us: 'yes' },
+      { feature: 'Starting price', them: '$39–$199/mo', us: { main: 'Free forever', sub: 'action plan $50/mo' } },
+    ],
+    workflows: [
+      {
+        task: 'Scaling from 1k to 10k orders/mo',
+        them: [
+          { t: 'Start on Starter at $39/mo (up to 1k orders).', h: true },
+          { t: 'Cross 1k orders: $69/mo. Cross 5k: $99/mo.' },
+          { t: 'Add a second Ads profile: +$19/mo.', h: true },
+          { t: 'Your bill grew with your success.' },
+        ],
+        us: [
+          { t: 'Start free.', h: true },
+          { t: '1k, 5k, 50k orders — still the same price.' },
+          { t: 'More Ads profiles? Included.' },
+          { t: 'Actions when you want them: flat $50/mo.', h: true },
+        ],
+      },
+      {
+        task: 'Weekly ops report',
+        them: [
+          { t: 'Your agent queries their MCP tools.', h: true },
+          { t: 'You build the reporting workflow yourself.' },
+          { t: 'Output lands wherever you wired it.', h: true },
+        ],
+        us: [
+          { t: 'Tell DragonBot "P&L and PPC summary every Monday."', h: true },
+          { t: 'It builds and schedules the report.' },
+          { t: 'Lands in Slack, formatted, on time.', h: true },
+        ],
+      },
+    ],
+    themWins: [
+      { title: 'Neutral plumbing for builders', desc: "AgentCentral deliberately stays a clean tool layer — your agent does the reasoning. If you're engineering your own agent stack, that neutrality is a feature." },
+      { title: 'Broad tool surface', desc: '146 tools across orders, catalog, finance, and fulfillment domains — a wide, well-documented API surface.' },
+      { title: 'Fast data reads', desc: 'They advertise sub-second reads on daily-synced data — solid engineering for dashboard-speed queries.' },
+    ],
+    usWins: [
+      { title: 'Free beats $39–$199/mo', desc: 'The core MCP job — your Amazon data in Claude/ChatGPT with guardrailed writes — is free forever on DragonBot. No trial clock, no card.' },
+      { title: "Growth isn't a pricing event", desc: "Order-volume tiers mean their invoice tracks your success. DragonBot's price doesn't know how many orders you do." },
+      { title: 'An agent, not just tools', desc: "DragonBot ships skills, schedules, reports, and message handling out of the box. You don't have to build the intelligence layer yourself." },
+      { title: 'Slack for the whole team', desc: 'Non-technical teammates get reports and approvals in Slack — no MCP client required.' },
+    ],
+    pricingComparison: {
+      themItems: [
+        { label: 'AgentCentral Starter (≤1k orders)', price: '$39/mo' },
+        { label: 'AgentCentral Scale (≤10k orders)', price: '$99/mo' },
+        { label: 'Each extra Ads profile', price: '+$19/mo' },
+      ],
+      usItem: { label: 'DragonBot', price: '$0', note: 'Free forever (read-only) · $50/mo action plan. Competitor pricing per their site, July 2026.' },
+      footnote: "Pricing that scales with your order count is a tax on growth. DragonBot doesn't meter your success.",
+    },
+    faq: [
+      { q: "Is DragonBot's MCP as capable as AgentCentral's 146 tools?", a: 'DragonBot covers the seller jobs — sales, ads, inventory, listings, finance, messages — as skills rather than raw tool endpoints. Builders who want bare-metal tool surfaces may prefer their approach; sellers who want finished work prefer ours.' },
+      { q: 'Does DragonBot support write actions like theirs?', a: 'Yes — approval-gated writes (bids, campaigns, listings, refunds) with a full audit trail, on the $50/mo action plan (private beta).' },
+      { q: 'Why is DragonBot free when they charge $39+?', a: 'Different model: our free read tier is the product\'s front door, and we charge one flat fee for actions instead of metering data access by your order volume.' },
+      { q: 'Can I connect multiple marketplaces and Ads profiles?', a: 'Yes — without per-profile add-on fees.' },
+    ],
+  },
+
+  'aakaar': {
+    name: 'Aakaar AI',
+    category: 'amazon-ai',
+    logo: '/logos-vs/aakaar.svg',
+    metaTitle: 'DragonBot vs Aakaar AI: Free Self-Serve AI Operator vs Managed Agents (2026)',
+    metaDescription:
+      'Honest comparison of DragonBot and Aakaar AI. Both run Amazon brands with AI agents. Aakaar is gated behind a sales process. DragonBot starts free, today.',
+    eyebrow: 'DragonBot vs Aakaar AI',
+    h1: { plain: 'Their AI starts with a sales call.', accent: 'Ours starts right now.' },
+    subhead:
+      'Aakaar pitches a "self-driving operating system for Amazon" — multi-agent AI with expert human oversight, gated behind a demo-and-onboarding process with unpublished pricing. DragonBot is the self-serve version: sign up free, connect in 2 minutes, see for yourself.',
+    pricing: { monthly: 'Unpublished', plan: 'contact / managed' },
+    tldr: {
+      them: "Choose Aakaar if you want a managed, white-glove program where their team plus AI agents run your ads and ops, and you're comfortable with sales-call pricing.",
+      us: 'Choose DragonBot if you want to try the AI-operator category yourself, today, free — and keep a flat, published price when you turn on actions.',
+    },
+    comparisonTable: [
+      { feature: 'AI agents across ads, inventory, listings', them: 'yes', us: 'yes' },
+      { feature: 'Free plan', them: 'no', us: { main: 'Free forever', sub: 'unlimited, read-only' } },
+      { feature: 'Published, transparent pricing', them: 'no', us: 'yes' },
+      { feature: 'Self-serve signup (no demo call)', them: 'no', us: 'yes' },
+      { feature: 'Human expert oversight included', them: 'yes', us: 'no' },
+      { feature: 'Works in Slack / Claude / ChatGPT', them: 'no', us: 'yes' },
+      { feature: 'Approval-gated actions + audit trail', them: 'partial', us: 'yes' },
+      { feature: 'Customer message handling', them: 'partial', us: 'yes' },
+      { feature: 'Starting price', them: { main: 'Contact sales', sub: 'unpublished' }, us: { main: 'Free forever', sub: 'action plan $50/mo' } },
+    ],
+    workflows: [
+      {
+        task: 'Day 1',
+        them: [
+          { t: 'Book a demo.', h: true },
+          { t: 'Sales call, scoping, onboarding plan.' },
+          { t: 'Pricing revealed somewhere along the way.', h: true },
+        ],
+        us: [
+          { t: 'Sign up free. No call.', h: true },
+          { t: 'Connect Amazon via official OAuth — 2 minutes.' },
+          { t: 'First insights in Slack before lunch.', h: true },
+        ],
+      },
+      {
+        task: 'Ongoing optimization',
+        them: [
+          { t: 'Their agents + human experts adjust your ads.', h: true },
+          { t: 'You review outcomes with their team.' },
+          { t: 'Scope changes go through account management.', h: true },
+        ],
+        us: [
+          { t: 'DragonBot monitors, reports, and proposes fixes.', h: true },
+          { t: 'You approve in Slack — or automate the routine ones.' },
+          { t: 'Change anything yourself, anytime.', h: true },
+        ],
+      },
+    ],
+    themWins: [
+      { title: 'Humans in the loop, professionally', desc: "Aakaar bundles expert oversight with its agents — closer to a tech-enabled agency. If you want people accountable for outcomes, that's a real service." },
+      { title: 'Ads-depth positioning', desc: 'Their public material leans hard into advertising optimization across Amazon, including DSP-level work — deeper ad specialization than a generalist operator.' },
+      { title: 'Managed onboarding', desc: "If you'd rather be configured than configure, a gated onboarding has upsides." },
+    ],
+    usWins: [
+      { title: 'Try before anyone calls you', desc: "No demo gate, no unpublished pricing. The product sells itself or it doesn't — free forever tier, connect today." },
+      { title: 'Pricing you can screenshot', desc: "$0 read tier. $50/mo action plan. On the website. That's the whole model." },
+      { title: 'Your workflow, not their program', desc: 'Slack, Claude, ChatGPT, Cursor — DragonBot joins your stack instead of enrolling you in a managed program.' },
+      { title: 'Whole-account scope', desc: 'Beyond ads: inventory, listings, customer messages, refunds, and reporting in one agent.' },
+    ],
+    pricingComparison: {
+      themItems: [
+        { label: 'Aakaar AI', price: 'Contact sales' },
+        { label: 'Pricing page', price: 'Unpublished' },
+      ],
+      usItem: { label: 'DragonBot', price: '$0', note: 'Free forever (read-only) · $50/mo action plan. Comparison as of July 2026.' },
+      footnote: "We can't compare numbers they don't publish. We can publish ours.",
+    },
+    faq: [
+      { q: 'Is Aakaar a software product or an agency?', a: 'From their public positioning: both — multi-agent AI software with expert human oversight, delivered through a gated onboarding. DragonBot is pure self-serve software.' },
+      { q: 'Does DragonBot offer human management too?', a: "No — DragonBot is the tool, you're the boss. It proposes, you approve (or automate). If you want a managed service, an agency or a hybrid like Aakaar fits that need." },
+      { q: 'How fast can I actually start?', a: 'Minutes. Free signup, official Amazon OAuth, and DragonBot starts syncing. First reports the same day.' },
+      { q: 'What does DragonBot cost at scale?', a: 'The same. $0 for unlimited reads, $50/mo flat for actions — regardless of revenue, orders, or ad spend.' },
+    ],
+  },
 };
 
 export function getCompetitor(slug) {

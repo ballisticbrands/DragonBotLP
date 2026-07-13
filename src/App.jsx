@@ -16,6 +16,8 @@ import LandingV3 from './pages/LandingV3';
 import LandingV4 from './pages/LandingV4';
 import VsCompetitor from './pages/VsCompetitor';
 import Beta from './pages/Beta';
+import LpPage from './pages/LpPage';
+import { lpPages } from './data/lpPages';
 
 function App() {
   return (
@@ -38,6 +40,12 @@ function App() {
         <Route path="/support/account-management" element={<AccountManagement />} />
         <Route path="/support/feature-requests" element={<FeatureRequests />} />
         <Route path="/pricing" element={<Pricing />} />
+        {/* Google Ads landing pages (data-driven; see data/lpPages.js).
+            Static /vs/* entries here (ai-operators, mcp-tools) outrank
+            the dynamic /vs/:slug route automatically in RRv6. */}
+        {lpPages.map(p => (
+          <Route key={p.path} path={p.path} element={<LpPage page={p} />} />
+        ))}
         <Route path="/vs/:slug" element={<VsCompetitor />} />
         <Route path="/beta" element={<Beta />} />
         <Route path="*" element={<LandingV4 />} />
