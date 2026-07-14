@@ -174,7 +174,7 @@ function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <a href="https://app.getdragonbot.com/sign-up"
               className="px-5 py-2.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/25">
-              Get now
+              Get it free
             </a>
           </div>
           <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -193,7 +193,7 @@ function Navbar() {
               <WorksWithDropdownMobile onItemClick={() => setMobileOpen(false)} />
               <a href="https://app.getdragonbot.com/sign-up" onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all">
-                Get now
+                Get it free
               </a>
             </div>
           </motion.div>
@@ -1009,7 +1009,7 @@ export default function LandingV4({ page = null }) {
             </ul>
             <a href="https://app.getdragonbot.com/sign-up"
               className="block text-center px-6 py-3 bg-white/10 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">
-              Get now
+              Get it free
             </a>
           </div>
 

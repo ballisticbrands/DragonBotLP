@@ -47,7 +47,7 @@ function Navbar() {
               <a key={l.label} href={l.href} className="text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors">{l.label}</a>
             ))}
             <a href={SIGNUP} className="px-5 py-2.5 bg-white/10 hover:bg-gradient-to-r hover:from-[#2F7D4F] hover:to-[#98CC65] text-white text-[13px] font-semibold uppercase tracking-wide rounded-lg transition-all">
-              Get now
+              Get it free
             </a>
           </div>
           <button className="md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -62,7 +62,7 @@ function Navbar() {
                 {links.map(l => (
                   <a key={l.label} href={l.href} className="text-sm text-white/60">{l.label}</a>
                 ))}
-                <a href={SIGNUP} className="px-5 py-3 bg-[#2F7D4F] text-white text-sm font-semibold uppercase tracking-wide rounded-lg text-center">Get now</a>
+                <a href={SIGNUP} className="px-5 py-3 bg-[#2F7D4F] text-white text-sm font-semibold uppercase tracking-wide rounded-lg text-center">Get it free</a>
               </div>
             </motion.div>
           )}
@@ -99,7 +99,7 @@ function CtaButtons({ big = false }) {
     <div className="flex flex-wrap items-center justify-center gap-3">
       <a href={SIGNUP}
         className={`${base} bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3`}>
-        Get now <ArrowRight className="w-5 h-5" />
+        Get it free <ArrowRight className="w-5 h-5" />
       </a>
       <a href="/"
         className={`${base} bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all flex items-center gap-3`}>
