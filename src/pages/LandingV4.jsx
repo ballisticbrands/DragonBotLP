@@ -222,52 +222,65 @@ function Eyebrow({ children }) {
   );
 }
 
-/* ─── Chat demo — host-agnostic chat with DragonBot tool calls ─── */
+/* ─── Chat demo — single unified DragonBot chat UI (host-agnostic).
+   Message shapes: {who:'user'|'host', text, stats?} and the tool-call
+   {who:'tool', text} where backtick-wrapped tokens become chips, e.g.
+   'Running the `PPC audit` skill for the last `30 days`'. ─── */
 const CHAT_SCRIPT = [
   { who: 'user', text: 'Audit my Amazon PPC for the last 30 days.' },
-  { who: 'host', text: 'On it. Calling DragonBot…', tool: { name: 'dragonbot.run_skill', args: 'audit_ppc(window="30d")' } },
+  { who: 'tool', text: 'Running the `PPC audit` skill for the last `30 days`' },
   { who: 'host', text: <>Done — pulled spend across 47 campaigns. <strong>Top finding:</strong> 23 keywords burning $1,840/mo with 0 conversions (paused, projected ACoS ↓ from 38% → 26%). Full breakdown:<div className="mt-2 grid grid-cols-2 gap-2 text-[12px]"><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">$1,840</div><div className="text-white/50">wasted/mo</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">−12pt</div><div className="text-white/50">projected ACoS</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">23</div><div className="text-white/50">keywords paused</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">$60/d</div><div className="text-white/50">reallocated</div></div></div></> },
   { who: 'user', text: 'Now check listing health — anything suppressed?' },
-  { who: 'host', text: 'Checking…', tool: { name: 'dragonbot.run_skill', args: 'account_health()' } },
+  { who: 'tool', text: 'Running the `account health` check' },
   { who: 'host', text: <>1 listing suppressed: <code className="px-1.5 py-0.5 rounded bg-white/10 text-[#98CC65] text-[11px]">B0CK5LRQX7</code> — backend image URL returned 404. Re-uploaded the image and submitted reinstatement. Should be back within 2 hours. Want me to schedule hourly health checks?</> },
 ];
 
-function HostHeader({ host }) {
+function ChatHeader() {
   return (
     <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10">
       <div className="flex items-center gap-2">
-        <HostMark host={host} size={18} />
-        <span className="text-[13px] font-semibold text-white/80">{host.label}</span>
+        <img src="/DragonBot-avatar.png" alt="DragonBot" className="w-[18px] h-[18px] object-contain" />
+        <span className="text-[13px] font-semibold text-white/80">DragonBot</span>
       </div>
-      <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest" style={{ fontFamily: monoFont }}>
-        with DragonBot MCP
+      <span className="flex items-center gap-1.5 text-[10px] font-bold text-white/30 uppercase tracking-widest" style={{ fontFamily: monoFont }}>
+        <span className="w-1.5 h-1.5 rounded-full bg-[#98CC65]" /> Amazon connected
       </span>
     </div>
   );
 }
 
-function ToolCallPill({ name, args }) {
+/* backtick `tokens` → green mono chips */
+function renderToolText(text) {
+  return text.split('`').map((seg, i) =>
+    i % 2 === 1
+      ? <code key={i} className="text-[#98CC65] bg-[#2F7D4F]/15 px-1 py-0.5 rounded" style={{ fontFamily: monoFont }}>{seg}</code>
+      : <span key={i}>{seg}</span>
+  );
+}
+
+function ToolMessage({ text }) {
   return (
-    <div className="my-1.5 inline-flex items-center gap-1.5 px-2 py-1 rounded-md border border-[#2F7D4F]/30 bg-[#2F7D4F]/10 max-w-full">
-      <Sparkles className="w-2.5 h-2.5 text-[#98CC65] shrink-0" />
-      <code className="text-[10px] text-white/70 break-all" style={{ fontFamily: monoFont }}>
-        {name}({args})
-      </code>
+    <div className="flex gap-2.5 px-4 py-1">
+      <div className="shrink-0 w-7" />
+      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[#2F7D4F]/25 bg-[#2F7D4F]/[0.08] max-w-full">
+        <Sparkles className="w-3 h-3 text-[#98CC65] shrink-0" />
+        <span className="text-[11px] text-white/60 leading-relaxed">{renderToolText(text)}</span>
+      </div>
     </div>
   );
 }
 
-function ChatBubble({ msg, host }) {
+function ChatBubble({ msg }) {
+  if (msg.who === 'tool') return <ToolMessage text={msg.text} />;
   const isUser = msg.who === 'user';
   return (
     <div className={`flex gap-2.5 px-4 py-2 ${isUser ? 'flex-row-reverse' : ''}`}>
       <div className="shrink-0 w-7 h-7 rounded-md flex items-center justify-center text-white text-xs font-bold overflow-hidden"
         style={{ backgroundColor: isUser ? '#3A3A3A' : '#0F0F0F', border: isUser ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(152,204,101,0.3)' }}>
-        {isUser ? 'You' : <HostMark host={host} size={16} />}
+        {isUser ? 'You' : <img src="/DragonBot-avatar.png" alt="DragonBot" className="w-5 h-5 object-contain" />}
       </div>
       <div className={`flex-1 min-w-0 max-w-[calc(100%-2.5rem)] ${isUser ? 'text-right' : ''}`}>
         <div className={`inline-block text-left rounded-xl px-3.5 py-2.5 text-[13px] leading-relaxed ${isUser ? 'bg-[#2F7D4F]/15 text-white' : 'bg-white/5 text-white/85 border border-white/10'}`}>
-          {msg.tool && <ToolCallPill {...msg.tool} />}
           {typeof msg.text === 'string' ? msg.text : <div>{msg.text}</div>}
           {msg.stats && (
             <div className="mt-2 grid grid-cols-2 gap-2 text-[12px]">
@@ -286,9 +299,7 @@ function ChatBubble({ msg, host }) {
 }
 
 function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
-  const [activeHost, setActiveHost] = useState('claude');
   const [visible, setVisible] = useState(1);
-  const host = HOSTS.find(h => h.id === activeHost);
 
   useEffect(() => {
     if (visible >= script.length) return;
@@ -299,7 +310,7 @@ function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-3">
+      <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-6">
         {feature ? (
           <>Your <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">{feature}</span> with{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span></>
@@ -308,36 +319,18 @@ function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span></>
         )}
       </h4>
-      {!feature && (
-        <p className="text-center text-xs font-bold uppercase tracking-widest text-white/40 mb-4" style={{ fontFamily: monoFont }}>
-          Same MCP server. Pick your host.
-        </p>
-      )}
-      <div className="flex flex-wrap justify-center gap-2 mb-4">
-        {HOSTS.map(h => (
-          <button key={h.id} onClick={() => { setActiveHost(h.id); setVisible(1); }}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
-              activeHost === h.id
-                ? 'bg-[#2F7D4F] text-white shadow-lg shadow-[#2F7D4F]/20'
-                : 'bg-[#F5F3F1] text-[#0F0F0F] hover:bg-[#2F7D4F] hover:text-white'
-            }`} style={{ fontFamily: monoFont }}>
-            <HostMark host={h} size={14} />
-            {h.label}
-          </button>
-        ))}
-      </div>
       <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#141618]" style={{ fontFamily: sysFont }}>
-        <HostHeader host={host} />
+        <ChatHeader />
         <div className="flex flex-col py-3 min-h-[420px] sm:min-h-[460px] max-h-[460px] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
           {script.slice(0, visible).map((msg, i) => (
-            <motion.div key={`${activeHost}-${i}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-              <ChatBubble msg={msg} host={host} />
+            <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+              <ChatBubble msg={msg} />
             </motion.div>
           ))}
         </div>
         <div className="px-4 pb-3 pt-1 border-t border-white/10">
           <div className="rounded-lg px-3 py-2 text-xs text-white/30 border border-white/10 bg-white/5">
-            Message {host.label}…
+            Message DragonBot…
           </div>
         </div>
       </div>
