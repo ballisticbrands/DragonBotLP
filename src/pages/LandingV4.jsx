@@ -248,12 +248,9 @@ function HostHeader({ host }) {
 
 function ToolCallPill({ name, args }) {
   return (
-    <div className="my-2 inline-flex flex-col gap-0.5 px-3 py-2 rounded-lg border border-[#2F7D4F]/30 bg-[#2F7D4F]/10 max-w-full">
-      <div className="flex items-center gap-1.5">
-        <Sparkles className="w-3 h-3 text-[#98CC65]" />
-        <span className="text-[10px] font-bold uppercase tracking-widest text-[#98CC65]" style={{ fontFamily: monoFont }}>tool call</span>
-      </div>
-      <code className="text-[12px] text-white/80 break-all" style={{ fontFamily: monoFont }}>
+    <div className="my-1.5 inline-flex items-center gap-1.5 px-2 py-1 rounded-md border border-[#2F7D4F]/30 bg-[#2F7D4F]/10 max-w-full">
+      <Sparkles className="w-2.5 h-2.5 text-[#98CC65] shrink-0" />
+      <code className="text-[10px] text-white/70 break-all" style={{ fontFamily: monoFont }}>
         {name}({args})
       </code>
     </div>
@@ -311,9 +308,11 @@ function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span></>
         )}
       </h4>
-      <p className="text-center text-xs font-bold uppercase tracking-widest text-white/40 mb-4" style={{ fontFamily: monoFont }}>
-        Same MCP server. Pick your host.
-      </p>
+      {!feature && (
+        <p className="text-center text-xs font-bold uppercase tracking-widest text-white/40 mb-4" style={{ fontFamily: monoFont }}>
+          Same MCP server. Pick your host.
+        </p>
+      )}
       <div className="flex flex-wrap justify-center gap-2 mb-4">
         {HOSTS.map(h => (
           <button key={h.id} onClick={() => { setActiveHost(h.id); setVisible(1); }}
@@ -756,16 +755,26 @@ export default function LandingV4({ page = null }) {
               {page?.hero?.paragraph || 'Give your AI chat secure access to your Amazon data — orders, ads, inventory, reviews, customer messages, and more. Plug DragonBot into Claude, ChatGPT, Cursor, or any MCP client in seconds.'}
             </p>
 
-            {/* 4 connect buttons */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto mb-10">
-              {HOSTS.map(h => (
-                <a key={h.id} href="https://app.getdragonbot.com/sign-up"
-                  className="flex items-center justify-center gap-2.5 px-4 py-3.5 bg-white/5 hover:bg-[#2F7D4F]/15 border border-white/15 hover:border-[#98CC65]/40 rounded-lg transition-all text-[13px] sm:text-sm font-semibold text-white/85 hover:text-white cursor-pointer">
-                  <HostMark host={h} size={20} />
-                  <span>Connect Amazon Seller Central to {h.id === 'other' ? 'any MCP client' : h.label}</span>
+            {/* Hero CTA: feature pages get a single "Get it free" button;
+                the homepage keeps the 4 host connect buttons. */}
+            {page ? (
+              <div className="flex justify-center mb-10">
+                <a href="https://app.getdragonbot.com/sign-up"
+                  className="px-10 py-5 text-lg bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
+                  Get it free <ArrowRight className="w-5 h-5" />
                 </a>
-              ))}
-            </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto mb-10">
+                {HOSTS.map(h => (
+                  <a key={h.id} href="https://app.getdragonbot.com/sign-up"
+                    className="flex items-center justify-center gap-2.5 px-4 py-3.5 bg-white/5 hover:bg-[#2F7D4F]/15 border border-white/15 hover:border-[#98CC65]/40 rounded-lg transition-all text-[13px] sm:text-sm font-semibold text-white/85 hover:text-white cursor-pointer">
+                    <HostMark host={h} size={20} />
+                    <span>Connect Amazon Seller Central to {h.id === 'other' ? 'any MCP client' : h.label}</span>
+                  </a>
+                ))}
+              </div>
+            )}
 
             {/* Trust strip — legit reassurance */}
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[13px] font-medium tracking-[-0.01em]">
