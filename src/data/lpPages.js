@@ -17,20 +17,8 @@
    DragonBot-marketing/landing_page_map_v2.csv.
    ═══════════════════════════════════════════════════════════════ */
 
-const STD_FAQ_FREE = {
-  q: 'Is it actually free?',
-  a: 'Yes. The Basic plan is free forever — unlimited data, analyses, and reports, no credit card. When you want DragonBot taking actions on your account (pausing campaigns, editing listings, sending refunds), that\'s a flat $50/mo — currently in private beta.',
-};
-const STD_FAQ_SAFE = {
-  q: 'Is it Amazon TOS compliant?',
-  a: 'Yes. DragonBot connects through Amazon\'s official Selling-Partner API and Advertising API via OAuth — the same mechanism every legitimate tool uses. No scraping, no gray areas. You can revoke access anytime from Seller Central.',
-};
-const STD_FAQ_SETUP = {
-  q: 'How long does setup take?',
-  a: 'About 2 minutes. Sign up free, connect your Amazon account through the official OAuth flow, and DragonBot starts syncing. First answers and reports the same day.',
-};
 
-/* ─── shared color shorthands ─── */
+
 const O = 'orange', W = 'white', G = 'green';
 
 export const lpPages = [
@@ -304,335 +292,228 @@ export const lpPages = [
     },
   },
 
-  /* ═══════════════════ C1 clusters + C2 — ALTERNATIVE PAGES ═══════════════════ */
+  /* ═══════════ C1 clusters + C2 — ALTERNATIVE pages (feature template,
+     switch-from-a-paid-tool angle: same outline as C3, demos framed as
+     replacing the incumbent) ═══════════ */
   {
     path: '/vs/ai-operators',
-    template: 'alt',
-    metaTitle: 'The Free AI Amazon Operator — DragonBot vs Paid AI Agents (2026)',
-    metaDescription: 'Every AI operator for Amazon sellers charges $49–$698/mo. DragonBot does the job free forever. See the comparison.',
-    eyebrow: 'AI operators, compared',
-    hero: { segments: [{ text: 'Every AI Amazon operator charges.', color: W }, { text: 'Except this one.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'The "AI that runs your Amazon account" category is exploding — and every player prices it $49 to $698+ a month. DragonBot gives you unlimited AI access to your account free forever, with a flat $50/mo when you want it taking actions.',
-    bullets: [
-      { t: 'PPC on autopilot', d: 'Audits campaigns, flags wasted spend, proposes negations and bid changes — you approve in Slack.' },
-      { t: 'Inventory watched', d: 'Restock alerts and demand forecasts before you stock out.' },
-      { t: 'Listings handled', d: 'Optimization suggestions and edits, grounded in your real search-term data.' },
-      { t: 'Messages answered', d: 'Buyer messages triaged with policy-based draft replies.' },
-      { t: 'Reports that arrive', d: 'P&L, PPC, and inventory summaries scheduled into Slack.' },
-      { t: 'Your AI, your choice', d: 'Works in Slack, Claude, ChatGPT, and Cursor via MCP.' },
-    ],
-    anchor: {
-      title: 'What the category charges',
-      items: [
-        { label: 'Typical AI-agent tools', price: '$49–$499/mo' },
-        { label: '"AI employee" platforms', price: '$299–$698/mo' },
-        { label: 'Managed AI programs', price: 'Contact sales' },
-      ],
-      usNote: 'DragonBot: free forever (unlimited reads) · flat $50/mo action plan.',
+    template: 'feature',
+    metaTitle: 'The AI Amazon Operator. Others Charge $49–$698/mo. Free Forever | DragonBot',
+    metaDescription: 'Every AI operator for Amazon sellers charges $49–$698/mo. DragonBot does the job free forever.',
+    hero: {
+      segments: [{ text: 'The AI Amazon operator.', color: 'orange' }, { text: 'Others charge $49–$698/mo.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'The "AI that runs your Amazon account" category is exploding — and every player prices it $49 to $698+ a month, metered by credits or usage tiers. DragonBot gives you unlimited AI access to your account free forever, with a flat $50/mo when you want it taking actions.',
     },
-    faq: [
-      { q: 'How is DragonBot different from other AI Amazon agents?', a: 'Two ways: price model (free forever read tier + one flat action price, instead of credits or usage tiers) and surface (it lives in Slack and speaks MCP, so it works inside Claude, ChatGPT, and Cursor rather than locking you into another app).' },
-      STD_FAQ_FREE, STD_FAQ_SAFE,
-    ],
+    demo: {
+      feature: 'AI operator',
+      script: [
+        { who: 'user', text: "I'm comparing AI agents for my Amazon business. What do you actually handle?" },
+        { who: 'host', text: 'Listing my skills…', tool: { name: 'dragonbot.list_skills', args: '' } },
+        { who: 'host', text: 'The whole account, one agent:', stats: [ { v: 'PPC', l: 'audits, bids, negations' }, { v: 'Inventory', l: 'forecasts & restocks' }, { v: 'Listings', l: 'optimization & edits' }, { v: 'Messages', l: 'triage & replies' } ] },
+        { who: 'user', text: 'And what does it cost as I scale?' },
+        { who: 'host', text: 'The same. Unlimited reads free forever — no credits to burn, no usage tiers. Actions are one flat $50/mo whether you do 100 orders or 100,000. Your growth is not a pricing event.' },
+      ],
+    },
   },
   {
     path: '/vs/mcp-tools',
-    template: 'alt',
-    metaTitle: 'Free Amazon MCP Server vs Paid MCP Tools — DragonBot (2026)',
+    template: 'feature',
+    metaTitle: 'Amazon MCP for Claude. Others Charge Rent. Free Forever | DragonBot',
     metaDescription: 'Paid Amazon MCPs charge $39–$397/mo to connect your seller account to Claude. DragonBot\'s Amazon MCP is free forever.',
-    eyebrow: 'Amazon MCPs, compared',
-    hero: { segments: [{ text: 'Paid Amazon MCPs charge rent.', color: W }, { text: 'Ours doesn\'t.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Connecting your Seller Central and Ads data to Claude or ChatGPT shouldn\'t cost $39–$397 a month. DragonBot\'s Amazon MCP is free forever — clean data, guardrailed write actions, and Slack on top.',
-    bullets: [
-      { t: 'Full MCP server', d: 'Sales, ads, inventory, listings, finance, and messages exposed to any MCP client.' },
-      { t: 'Claude, ChatGPT, Cursor', d: 'One connection, every AI client you use.' },
-      { t: 'Write-back with guardrails', d: 'Approval-gated actions with a full audit trail (action plan).' },
-      { t: 'Always-fresh data', d: 'ETL\'d and cleaned continuously from the official APIs.' },
-      { t: 'No per-order pricing', d: 'Your bill doesn\'t grow because your business did.' },
-      { t: 'Slack included', d: 'Teammates without an MCP client still get reports and approvals.' },
-    ],
-    anchor: {
-      title: 'What hosted Amazon MCPs charge',
-      items: [
-        { label: 'Order-tiered MCPs', price: '$39–$199/mo' },
-        { label: 'Flat-fee data layers', price: '$97/mo' },
-        { label: 'Claude-workflow suites', price: '$97–$397/mo' },
-      ],
-      usNote: 'DragonBot MCP: free forever · action plan $50/mo flat.',
+    hero: {
+      segments: [{ text: 'Amazon MCP for Claude.', color: 'orange' }, { text: 'Others charge rent.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Connecting Seller Central and Ads to Claude or ChatGPT shouldn\'t cost $39–$397 a month. DragonBot\'s Amazon MCP is free forever — clean ETL\'d data, guardrailed write actions, and Slack on top.',
     },
-    faq: [
-      { q: 'Which MCP clients are supported?', a: 'Anything that speaks MCP — Claude Desktop and claude.ai connectors, ChatGPT, Cursor, and custom agents. Setup is a copy-paste config.' },
-      STD_FAQ_FREE, STD_FAQ_SAFE,
-    ],
+    demo: {
+      feature: 'Amazon MCP',
+      script: [
+        { who: 'user', text: 'Other Amazon MCPs charge $39–$397/mo. What\'s the catch here?' },
+        { who: 'host', text: 'No catch — checking what\'s exposed…', tool: { name: 'dragonbot.list_tools', args: '' } },
+        { who: 'host', text: 'Everything, sub-second, free:', stats: [ { v: 'Orders', l: '+ sales & refunds' }, { v: 'Ads', l: 'campaigns & search terms' }, { v: 'Inventory', l: '+ fees & finance' }, { v: 'Listings', l: '+ reviews & messages' } ] },
+        { who: 'user', text: 'Can it write, or read-only like the cheap ones?' },
+        { who: 'host', text: 'Both. Reads are unlimited and free forever. Writes — bids, campaigns, listings, refunds — come with approval gates and a full audit trail on the flat $50/mo action plan. No per-order tiers, no per-profile add-on fees.' },
+      ],
+    },
   },
   {
     path: '/research-tools',
-    template: 'alt',
-    metaTitle: 'Free Alternative to Amazon Research Tools — Free Forever | DragonBot',
-    metaDescription: 'Keyword and product research tools charge $49–$279/mo. DragonBot answers the same questions from real Amazon data — free forever.',
-    eyebrow: 'Free research-tool alternative',
-    hero: { segments: [{ text: 'Research tools charge $50–$279/mo.', color: W }, { text: 'Get answers instead.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Keyword suites sell you dashboards and make you do the digging. DragonBot pulls your real Amazon data — Search Query Performance, Brand Analytics, search terms — and hands you finished research, free forever.',
-    bullets: [
-      { t: 'Keyword research, finished', d: 'Give it competitor ASINs — get back an organized keyword sheet with roots and negatives, not a raw export.' },
-      { t: 'Real data, not estimates', d: 'Your Search Query Performance and Brand Analytics via the official API — not modeled guesses.' },
-      { t: 'Competitive analysis', d: 'Describe a niche; DragonBot builds the landscape and highlights the actual gap.' },
-      { t: 'Ask follow-ups forever', d: 'It\'s a conversation, not an export. Unlimited questions on the free tier.' },
-      { t: 'Works in your AI', d: 'Slack, Claude, ChatGPT, Cursor — wherever you think.' },
-      { t: 'No seat, no meter', d: 'Free forever. No credit card. No trial clock.' },
-    ],
-    anchor: {
-      title: 'What research suites charge',
-      items: [
-        { label: 'Entry research plans', price: '$49–$99/mo' },
-        { label: 'Full-suite plans', price: '$129–$279/mo' },
-        { label: 'Suite + PPC add-ons', price: '$300+/mo' },
-      ],
-      usNote: 'DragonBot: free forever.',
+    template: 'feature',
+    metaTitle: 'Amazon Research Tools, Replaced by One AI. Free Forever | DragonBot',
+    metaDescription: 'Keyword and product research tools charge $49–$279/mo. DragonBot delivers finished research from real Amazon data — free forever.',
+    hero: {
+      segments: [{ text: 'Amazon research tools.', color: 'orange' }, { text: 'Replaced by one AI.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Research suites charge $49–$279/mo for dashboards and make you do the digging. DragonBot pulls your real Amazon data — Search Query Performance, Brand Analytics, search terms — and hands you finished research. Free forever.',
     },
-    faq: [
-      { q: 'Can DragonBot really replace my research tool?', a: 'For workflow research — keywords, competitors, niche analysis from your real account data — yes, and it finishes the work instead of handing you a CSV. If you love a specific dashboard for ad-hoc browsing, keep it; many sellers run both and let DragonBot do the recurring work.' },
-      STD_FAQ_FREE, STD_FAQ_SETUP,
-    ],
+    demo: {
+      feature: 'keyword research',
+      script: [
+        { who: 'user', text: "I'm dropping my $129/mo research suite. Can you cover keyword research? Here are 3 competitor ASINs." },
+        { who: 'host', text: 'Harvesting…', tool: { name: 'dragonbot.run_skill', args: 'keyword_harvest(asins=[3])' } },
+        { who: 'host', text: 'Finished sheet, not a raw export:', stats: [ { v: '847', l: 'keywords pulled' }, { v: '31', l: 'high-value roots' }, { v: '112', l: 'negatives identified' }, { v: '1', l: 'PPC-ready Google Sheet' } ] },
+        { who: 'user', text: 'Refresh this every week and flag new terms competitors start ranking for.' },
+        { who: 'host', text: 'Scheduled — every Monday, refreshed harvest with a "new this week" section, posted to Slack. Your suite charged $129/mo for the raw data. This is free, and it\'s finished work.' },
+      ],
+    },
   },
   {
     path: '/analytics',
-    template: 'alt',
-    metaTitle: 'Free Alternative to Amazon Analytics Tools — Free Forever | DragonBot',
+    template: 'feature',
+    metaTitle: 'Amazon Analytics Tools, Replaced by One AI. Free Forever | DragonBot',
     metaDescription: 'Profit dashboards charge $20–$100/mo. DragonBot tracks your real profit — every fee, ad, and cost — free forever.',
-    eyebrow: 'Free analytics alternative',
-    hero: { segments: [{ text: 'Profit dashboards charge monthly.', color: W }, { text: 'Yours shouldn\'t.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Sellerboard-style analytics run $20–$100/mo for numbers that come from your own account. DragonBot computes true profit — after every Amazon fee, ad dollar, and cost — and delivers it free, on schedule, in Slack.',
-    bullets: [
-      { t: 'True P&L per SKU', d: 'Revenue minus every fee, refund, ad dollar, and your COGS — the real margin, not the Seller Central illusion.' },
-      { t: 'Scheduled reports', d: '"P&L every Monday morning" — done. Posted to Slack, formatted.' },
-      { t: 'Ask anything', d: '"Which SKU lost margin this month and why?" — answered from your data in seconds.' },
-      { t: 'PPC economics included', d: 'TACOS, ACoS, and wasted-spend analysis in the same brain.' },
-      { t: 'Alerts that matter', d: 'Margin drops, fee changes, refund spikes — flagged before they compound.' },
-      { t: 'Free forever', d: 'Unlimited reads and reports. No credit card.' },
-    ],
-    anchor: {
-      title: 'What profit dashboards charge',
-      items: [
-        { label: 'Entry analytics plans', price: '$19–$40/mo' },
-        { label: 'Full-featured plans', price: '$60–$100/mo' },
-        { label: 'Multi-account tiers', price: '$150+/mo' },
-      ],
-      usNote: 'DragonBot: free forever.',
+    hero: {
+      segments: [{ text: 'Amazon analytics tools.', color: 'orange' }, { text: 'Replaced by one AI.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Profit dashboards charge $20–$100/mo for numbers that come from your own account. DragonBot computes true profit — after every Amazon fee, ad dollar, and cost — and delivers it on schedule, in Slack. Free forever.',
     },
-    faq: [
-      { q: 'How does DragonBot know my real profit?', a: 'It pulls every transaction, fee, and ad cost from the official APIs, and you add your COGS once. From there, true per-SKU profit is computed continuously.' },
-      STD_FAQ_FREE, STD_FAQ_SETUP,
-    ],
+    demo: {
+      feature: 'profit analytics',
+      script: [
+        { who: 'user', text: 'My dashboard tool charges $29/mo to show me my own profit. Show me yours.' },
+        { who: 'host', text: 'Computing true P&L…', tool: { name: 'dragonbot.run_skill', args: 'pnl(month="current")' } },
+        { who: 'host', text: 'After every fee, ad, and cost:', stats: [ { v: '$41.7k', l: 'revenue (MTD)' }, { v: '−$14.6k', l: 'Amazon fees' }, { v: '−$5.1k', l: 'ad spend' }, { v: '$8.2k', l: 'net profit (19.6%)' } ] },
+        { who: 'user', text: 'Why is that 2 points below last month?' },
+        { who: 'host', text: 'Two drivers: a June FBA fee change (+$0.42/unit on your top SKU) and $380 of ad-spend creep on one broad campaign. A dashboard shows you the dip — I just told you why, and I can fix the campaign half if you approve.' },
+      ],
+    },
   },
   {
     path: '/ppc-tools',
-    template: 'alt',
-    metaTitle: 'Free Alternative to Amazon PPC Tools — Free Forever | DragonBot',
+    template: 'feature',
+    metaTitle: 'Amazon PPC Tools, Replaced by One AI. Free Forever | DragonBot',
     metaDescription: 'Amazon PPC software charges $78–$799/mo. DragonBot audits and manages your ads with AI — free forever.',
-    eyebrow: 'Free PPC-tool alternative',
-    hero: { segments: [{ text: 'PPC tools cost $78–$799/mo.', color: W }, { text: 'This one doesn\'t.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Bid-management software charges hundreds a month — often a percentage of your ad spend. DragonBot audits your campaigns, finds the waste, and manages the fixes for a flat price that starts at $0.',
-    bullets: [
-      { t: 'Full-account PPC audits', d: 'Every campaign, ad group, and search term — waste surfaced automatically, free.' },
-      { t: 'Negation & bid proposals', d: 'Bleeding keywords flagged with proposed negations and bid changes.' },
-      { t: 'You approve, it executes', d: 'Approval-gated changes with a full audit trail (action plan).' },
-      { t: 'No % of ad spend', d: 'Your success isn\'t our billing model. Flat pricing, period.' },
-      { t: 'Search-term intelligence', d: 'Harvest winners into exact match, kill junk — on a schedule.' },
-      { t: 'Reports in Slack', d: 'ACoS, TACOS, and spend summaries where your team already is.' },
-    ],
-    anchor: {
-      title: 'What PPC software charges',
-      items: [
-        { label: 'Entry PPC tools', price: '$78–$199/mo' },
-        { label: 'Mid-market platforms', price: '$299–$799/mo' },
-        { label: 'Enterprise / % of spend', price: '3–4% of ad spend' },
-      ],
-      usNote: 'DragonBot: audits free forever · actions $50/mo flat.',
+    hero: {
+      segments: [{ text: 'Amazon PPC tools.', color: 'orange' }, { text: 'Replaced by one AI.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Bid-management software charges $78–$799 a month — often a percentage of your ad spend. DragonBot audits your campaigns, finds the waste, and manages the fixes. Free forever, never a % of spend.',
     },
-    faq: [
-      { q: 'Can it actually manage bids, or just report?', a: 'Both. The free tier gives you unlimited audits and analysis. The $50/mo action plan (private beta) lets DragonBot execute — pause keywords, adjust bids, add negatives — with your approval and a full log.' },
-      STD_FAQ_FREE, STD_FAQ_SAFE,
-    ],
+    demo: {
+      feature: 'PPC management',
+      script: [
+        { who: 'user', text: 'My PPC tool costs $249/mo. What would you do differently?' },
+        { who: 'host', text: 'Auditing your account…', tool: { name: 'dragonbot.run_skill', args: 'ppc_audit(window="30d")' } },
+        { who: 'host', text: 'Same job, different bill:', stats: [ { v: '$1,180', l: 'wasted spend found' }, { v: '16', l: 'negations proposed' }, { v: '38% → 27%', l: 'projected ACoS' }, { v: '$0', l: 'what this audit cost' } ] },
+        { who: 'user', text: 'Take over the weekly management.' },
+        { who: 'host', text: 'Done — every Monday: audit, negations, bid rebalancing, all posted to Slack for approval. You keep the $249/mo. When you want fully hands-off execution, that\'s the flat $50/mo action plan.' },
+      ],
+    },
   },
   {
     path: '/repricer',
-    template: 'alt',
-    metaTitle: 'Free Amazon Repricer Alternative — Free Forever | DragonBot',
+    template: 'feature',
+    metaTitle: 'Amazon Repricers, Replaced by One AI. Free Forever | DragonBot',
     metaDescription: 'Repricers charge $25–$800/mo. DragonBot reprices with margin guardrails — free forever.',
-    eyebrow: 'Free repricer alternative',
-    hero: { segments: [{ text: 'Repricers charge up to $800/mo.', color: W }, { text: 'Ours doesn\'t.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Rule-based repricers race you to the bottom and bill you monthly for it. DragonBot reprices with margin guardrails — it knows your true break-even after every fee, so it never wins the Buy Box at a loss. Free forever.',
-    bullets: [
-      { t: 'Margin-guarded repricing', d: 'Set a margin floor once — DragonBot never prices below your true break-even.' },
-      { t: 'Buy Box strategy', d: 'Win when it\'s profitable, hold when it isn\'t — and raise prices when competition disappears.' },
-      { t: 'Price-impact analysis', d: 'See exactly how every price change moved units, margin, and profit.' },
-      { t: 'Full audit trail', d: 'Every price move logged with the reasoning behind it.' },
-      { t: 'The rest of the account too', d: 'PPC, inventory, listings, messages — one AI, same free plan.' },
-    ],
-    anchor: {
-      title: 'What repricers charge',
-      items: [
-        { label: 'Budget repricers', price: '$25–$100/mo' },
-        { label: 'AI repricers', price: '$250–$800/mo' },
-        { label: 'Enterprise repricing', price: '$1,000+/mo' },
-      ],
-      usNote: 'DragonBot: free forever.',
+    hero: {
+      segments: [{ text: 'Amazon repricers.', color: 'orange' }, { text: 'Replaced by one AI.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Rule-based repricers race you to the bottom and bill $25–$800/mo for it. DragonBot reprices with margin guardrails — it knows your true break-even after every fee, so it never wins the Buy Box at a loss. Free forever.',
     },
-    faq: [
-      { q: 'How is this different from Amazon\'s free Automate Pricing?', a: 'Amazon\'s native tool follows simple rules with no idea what you actually keep per unit. DragonBot reprices against your true economics — every fee, ad cost, and your COGS — and explains every move it makes.' },
-      STD_FAQ_FREE, STD_FAQ_SAFE,
-    ],
+    demo: {
+      feature: 'Amazon repricing',
+      script: [
+        { who: 'user', text: 'I pay $250/mo for a repricer. Can you replace it — without ever pricing below 15% margin?' },
+        { who: 'host', text: 'Setting guardrails from your true unit economics…', tool: { name: 'dragonbot.run_skill', args: 'repricer(min_margin=15%)' } },
+        { who: 'host', text: 'Configured:', stats: [ { v: '84', l: 'SKUs monitored' }, { v: '15%', l: 'margin floor (after ALL fees)' }, { v: '12', l: 'price moves proposed' }, { v: '$250/mo', l: 'what you just saved' } ] },
+        { who: 'user', text: 'What did you change today?' },
+        { who: 'host', text: 'Three moves: Garlic Press down $1.50 (competitor restocked — Buy Box recovered), Peeler Set up $0.50 (no competition, free margin), Cutting Board held — the only path to the Buy Box was below your floor. Your old repricer would have taken that loss.' },
+      ],
+    },
   },
   {
     path: '/inventory',
-    template: 'alt',
-    metaTitle: 'Free Alternative to Amazon Inventory Tools — Free Forever | DragonBot',
+    template: 'feature',
+    metaTitle: 'Amazon Inventory Tools, Replaced by One AI. Free Forever | DragonBot',
     metaDescription: 'Restock and forecasting tools charge $97–$399/mo. DragonBot forecasts demand and flags restocks with AI — free forever.',
-    eyebrow: 'Free inventory-tool alternative',
-    hero: { segments: [{ text: 'Restock tools charge $97+/mo.', color: W }, { text: 'Never stock out.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Inventory software bills you monthly to watch your own stock levels. DragonBot forecasts demand from your real sales velocity, flags restocks before you run dry, and answers every inventory question — free.',
-    bullets: [
-      { t: 'Restock alerts', d: 'Days-of-cover computed per SKU from real velocity — flagged in Slack before it\'s urgent.' },
-      { t: 'Demand forecasting', d: 'Seasonality-aware projections from your actual sales history.' },
-      { t: 'Shipment planning', d: '"What should go in my next FBA shipment?" — answered with quantities.' },
-      { t: 'Stranded & aging stock', d: 'Excess, stranded, and aging inventory surfaced before the fees bite.' },
-      { t: 'Ask anything', d: '"How many units of X do I need for Q4?" — real answer, real data.' },
-      { t: 'Free forever', d: 'Unlimited inventory intelligence. No credit card.' },
-    ],
-    anchor: {
-      title: 'What inventory tools charge',
-      items: [
-        { label: 'Restock tools', price: '$97–$250/mo' },
-        { label: 'Forecasting platforms', price: '$249–$999/mo' },
-        { label: 'Bundled ops suites', price: '$69+/mo' },
-      ],
-      usNote: 'DragonBot: free forever.',
+    hero: {
+      segments: [{ text: 'Amazon inventory tools.', color: 'orange' }, { text: 'Replaced by one AI.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Inventory software bills $97–$399/mo to watch your own stock levels. DragonBot forecasts demand from your real sales velocity, flags restocks before you run dry, and answers every inventory question. Free forever.',
     },
-    faq: [
-      { q: 'Where does the forecast come from?', a: 'Your own sales history via the official SP-API — velocity, seasonality, and trend — not category averages. You can adjust assumptions in plain English.' },
-      STD_FAQ_FREE, STD_FAQ_SETUP,
-    ],
+    demo: {
+      feature: 'inventory management',
+      script: [
+        { who: 'user', text: "I'm replacing my $97/mo restock tool. What needs reordering?" },
+        { who: 'host', text: 'Forecasting from your live velocity…', tool: { name: 'dragonbot.run_skill', args: 'inventory_forecast(all)' } },
+        { who: 'host', text: 'Two need action:', stats: [ { v: '18 days', l: 'Garlic Press — cover left' }, { v: '320 units', l: 'reorder now (25d lead)' }, { v: '42 days', l: 'Peeler Set — safe' }, { v: 'Oct 3', l: 'projected stockout if idle' } ] },
+        { who: 'user', text: 'Draft the PO and watch everything going forward.' },
+        { who: 'host', text: 'PO drafted → your Slack for approval. I watch every SKU daily and flag when cover drops below lead time + 2 weeks — including seasonality. Your old tool did this for $1,164/yr. This is free.' },
+      ],
+    },
   },
   {
     path: '/listing-tools',
-    template: 'alt',
-    metaTitle: 'Free Alternative to Amazon Listing Tools — Free Forever | DragonBot',
-    metaDescription: 'Listing optimization tools charge $29–$165/mo. DragonBot optimizes titles, bullets, and keywords from your real search data — free forever.',
-    eyebrow: 'Free listing-tool alternative',
-    hero: { segments: [{ text: 'Listing tools charge monthly.', color: W }, { text: 'Optimize yours instead.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Listing software sells AI copy and keyword scores behind a subscription. DragonBot does listing optimization grounded in your real search-term and conversion data — and on the action plan, applies the edits too.',
-    bullets: [
-      { t: 'Data-grounded rewrites', d: 'Titles and bullets built from what actually converts in your niche — your search terms, not generic AI fluff.' },
-      { t: 'Keyword coverage audits', d: 'Which high-value terms your listing misses, ranked by opportunity.' },
-      { t: 'Conversion diagnostics', d: '"Clicks but no sales" — DragonBot finds why and proposes fixes.' },
-      { t: 'A+ content direction', d: 'Briefs for your designer grounded in customer language from reviews.' },
-      { t: 'Apply edits with approval', d: 'On the action plan, DragonBot pushes the edits — logged and reversible.' },
-      { t: 'Free forever', d: 'Unlimited audits and rewrites on the free tier.' },
-    ],
-    anchor: {
-      title: 'What listing tools charge',
-      items: [
-        { label: 'AI listing generators', price: '$29–$99/mo' },
-        { label: 'Optimization platforms', price: '$99–$165/mo' },
-        { label: 'Agency per-listing fees', price: '$300–$1,000/listing' },
-      ],
-      usNote: 'DragonBot: free forever · edits applied on the $50/mo action plan.',
+    template: 'feature',
+    metaTitle: 'Amazon Listing Tools, Replaced by One AI. Free Forever | DragonBot',
+    metaDescription: 'Listing optimization tools charge $29–$165/mo. DragonBot optimizes from your real search data — free forever.',
+    hero: {
+      segments: [{ text: 'Amazon listing tools.', color: 'orange' }, { text: 'Replaced by one AI.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Listing software sells AI copy and keyword scores for $29–$165/mo. DragonBot optimizes from your real search-term and conversion data — and on the action plan, applies the edits too. Free forever.',
     },
-    faq: [
-      { q: 'Is this just ChatGPT writing my listing?', a: 'No — that\'s the difference. DragonBot grounds every rewrite in your account\'s real search-term, conversion, and competitor data pulled from the official APIs. Generic AI writes plausible copy; DragonBot writes copy aimed at the queries you actually win.' },
-      STD_FAQ_FREE, STD_FAQ_SETUP,
-    ],
+    demo: {
+      feature: 'listing optimization',
+      script: [
+        { who: 'user', text: 'Before I cancel my listing tool — audit my whole catalog.' },
+        { who: 'host', text: 'Auditing all listings against your search data…', tool: { name: 'dragonbot.run_skill', args: 'catalog_audit()' } },
+        { who: 'host', text: 'Across 14 listings:', stats: [ { v: '61', l: 'high-value keywords missing' }, { v: '4', l: 'listings below niche CVR' }, { v: '2', l: 'weak main images flagged' }, { v: '#1', l: 'worst offender: Garlic Press' } ] },
+        { who: 'user', text: 'Rewrite the worst one first.' },
+        { who: 'host', text: 'Draft ready — title covers all 9 missing terms, bullets lead with what your reviews actually praise. Approve and I\'ll push it live with rollback. Then I\'ll work down the list, one approval at a time.' },
+      ],
+    },
   },
   {
     path: '/feedback-tools',
-    template: 'alt',
-    metaTitle: 'Free Alternative to Amazon Feedback & Review Tools — Free Forever | DragonBot',
+    template: 'feature',
+    metaTitle: 'Amazon Feedback Tools, Replaced by One AI. Free Forever | DragonBot',
     metaDescription: 'Review-request tools charge $10–$100/mo. DragonBot automates compliant review requests and buyer messages — free forever.',
-    eyebrow: 'Free feedback-tool alternative',
-    hero: { segments: [{ text: 'Review tools charge monthly.', color: W }, { text: 'Automate reviews instead.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Feedback software charges a subscription to click Amazon\'s own Request-a-Review button on a schedule. DragonBot automates that — plus the buyer messages the other tools ignore — free.',
-    bullets: [
-      { t: 'Request-a-Review automation', d: 'Compliant, official-API review requests on every eligible order.' },
-      { t: 'Buyer message triage', d: 'Incoming messages read, categorized, and drafted for reply from your policies.' },
-      { t: 'Negative feedback alerts', d: 'Flagged immediately with a recommended response path.' },
-      { t: 'Review intelligence', d: 'What your reviews say about your product — themes, complaints, copy angles.' },
-      { t: '100% TOS-compliant', d: 'Official Amazon mechanisms only. No incentivized-review gray areas.' },
-      { t: 'Free forever', d: 'No per-email pricing, no order-volume tiers.' },
-    ],
-    anchor: {
-      title: 'What feedback tools charge',
-      items: [
-        { label: 'Entry review tools', price: '$10–$34/mo' },
-        { label: 'Suite bundles', price: '$49–$100/mo' },
-        { label: 'Per-email pricing', price: 'scales with orders' },
-      ],
-      usNote: 'DragonBot: free forever.',
+    hero: {
+      segments: [{ text: 'Amazon feedback tools.', color: 'orange' }, { text: 'Replaced by one AI.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Feedback software charges $10–$100/mo to click Amazon\'s own Request-a-Review button on a schedule. DragonBot automates that — plus the buyer messages the other tools ignore. Free forever.',
     },
-    faq: [
-      { q: 'Is automated review requesting allowed?', a: 'Yes — DragonBot uses Amazon\'s official Request-a-Review mechanism through the API, which is explicitly TOS-compliant. It never sends incentivized or manipulative review solicitations.' },
-      STD_FAQ_FREE, STD_FAQ_SETUP,
-    ],
+    demo: {
+      feature: 'review automation',
+      script: [
+        { who: 'user', text: 'My feedback tool charges by email volume. Take over review requests — all accounts.' },
+        { who: 'host', text: 'Setting up…', tool: { name: 'dragonbot.run_skill', args: 'review_automation(accounts="all")' } },
+        { who: 'host', text: 'Live, no volume pricing:', stats: [ { v: '3', l: 'accounts covered' }, { v: '412', l: 'eligible orders this week' }, { v: 'Day 8', l: 'optimal request timing' }, { v: '$0', l: 'per 1,000 requests' } ] },
+        { who: 'user', text: 'And buyer messages? My old tool ignored those.' },
+        { who: 'host', text: 'Handled — incoming messages get triaged and drafted from your policies, waiting for one-click approval in Slack. Orders with open complaints are auto-excluded from review requests. Weekly summary lands Monday.' },
+      ],
+    },
   },
   {
     path: '/reimbursement',
-    template: 'alt',
-    metaTitle: 'Free FBA Reimbursement Alternative — Keep 100%. Free Forever | DragonBot',
+    template: 'feature',
+    metaTitle: 'FBA Reimbursement Services, Replaced by One AI. Keep 100%. Free Forever | DragonBot',
     metaDescription: 'Reimbursement services take 10–25% of your recovery. DragonBot finds what Amazon owes you and you keep everything. Free forever.',
-    eyebrow: 'Free reimbursement alternative',
-    hero: { segments: [{ text: 'They take 25% of your money.', color: W }, { text: 'Keep 100% instead.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Reimbursement services charge 10–25% commission on money Amazon already owes you. DragonBot scans your own data — lost inventory, damaged units, fee overcharges — and prepares the claims. You file, you keep every dollar.',
-    bullets: [
-      { t: 'Full-account scan', d: 'Lost inventory, damaged units, and fee overcharges surfaced from your inventory ledger and fee data.' },
-      { t: 'Keep 100%', d: 'No commission. The recovery is yours — you file with the evidence DragonBot prepares.' },
-      { t: 'Claim-ready evidence', d: 'Transaction IDs, shipment reconciliation, and fee documentation packaged per claim.' },
-      { t: 'Shipment reconciliation', d: 'Sent vs received quantities compared automatically — discrepancies flagged.' },
-      { t: 'The rest of the account too', d: 'PPC, inventory, listings, messages — one AI, same free plan.' },
-    ],
-    anchor: {
-      title: 'What reimbursement services take',
-      items: [
-        { label: 'Typical commission', price: '25% of recovery' },
-        { label: 'Discounted tiers', price: '10–18%' },
-        { label: 'On $100k recovered', price: 'they keep $25,000' },
-      ],
-      usNote: 'DragonBot: free — you keep 100%.',
+    hero: {
+      segments: [{ text: 'FBA reimbursement services.', color: 'orange' }, { text: 'Keep 100% instead.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Reimbursement services take 10–25% commission on money Amazon already owes you. DragonBot scans your own data — lost inventory, damaged units, fee overcharges — and prepares the claims. You file, you keep every dollar.',
     },
-    faq: [
-      { q: 'Why free when everyone charges commission?', a: 'Because it\'s your money. Detection from your own data is exactly what an AI operator should do as part of the job — and Amazon\'s 2025 policy changes squeezed the commission model anyway.' },
-      STD_FAQ_FREE, STD_FAQ_SAFE,
-    ],
+    demo: {
+      feature: 'Amazon reimbursements',
+      script: [
+        { who: 'user', text: 'GETIDA-style services want 25% of whatever they recover. Find what Amazon owes me instead.' },
+        { who: 'host', text: 'Scanning inventory ledger, fees, and shipments…', tool: { name: 'dragonbot.run_skill', args: 'reimbursement_scan(window="18mo")' } },
+        { who: 'host', text: 'Found it:', stats: [ { v: '23 units', l: 'lost in FC, never credited' }, { v: '11 units', l: 'damaged, no reimbursement' }, { v: '$3,912', l: 'total recoverable' }, { v: '$978', l: 'commission you just avoided' } ] },
+        { who: 'user', text: 'Prepare the claims.' },
+        { who: 'host', text: 'Done — 9 claim packets with transaction IDs, shipment reconciliation, and fee documentation, ready to submit from your account. You keep all $3,912.' },
+      ],
+    },
   },
   {
     path: '/discontinued',
-    template: 'alt',
-    metaTitle: 'Your Amazon Tool Shut Down? Free Replacement, Free Forever | DragonBot',
-    metaDescription: 'Viral Launch, Sellics, Fetcher, and more have shut down or been absorbed. Replace your discontinued Amazon tool with one free AI.',
-    eyebrow: 'For sellers whose tool died',
-    hero: { segments: [{ text: 'Your tool shut down.', color: W }, { text: 'Your replacement is here.', color: O }, { text: 'Free forever.', color: G }] },
-    subhead: 'Viral Launch closed. Sellics dissolved into Perpetua. Fetcher, Splitly, Sellzone, Quantify Ninja — gone or absorbed into bundles you didn\'t ask for. DragonBot replaces the job they did — research, analytics, PPC, alerts — with one free AI.',
-    bullets: [
-      { t: 'Research tools → covered', d: 'Keyword and competitor research from your real Amazon data, finished for you.' },
-      { t: 'Profit dashboards → covered', d: 'True per-SKU P&L after every fee, scheduled into Slack.' },
-      { t: 'PPC tools → covered', d: 'Audits, negations, and bid management with approval gates.' },
-      { t: 'Alert tools → covered', d: 'Listing changes, margin drops, restock warnings — flagged automatically.' },
-      { t: 'Nothing to migrate', d: 'DragonBot pulls fresh data straight from Amazon. Connect and your history is there.' },
-      { t: 'Free forever', d: 'The last migration you\'ll do because a subscription died.' },
-    ],
-    anchor: {
-      title: 'Recently discontinued or absorbed',
-      items: [
-        { label: 'Viral Launch', price: 'closed Jan 2026' },
-        { label: 'Sellics / Sonar', price: 'dissolved into Perpetua' },
-        { label: 'Fetcher, Splitly, Sellzone…', price: 'sunset' },
-      ],
-      usNote: 'DragonBot: free forever — and not going anywhere.',
+    template: 'feature',
+    metaTitle: 'Your Amazon Tool Shut Down? Meet Your Free Replacement. Free Forever | DragonBot',
+    metaDescription: 'Viral Launch, Sellics, Fetcher, and more have shut down. Replace your discontinued Amazon tool with one free AI.',
+    hero: {
+      segments: [{ text: 'Your tool shut down.', color: 'white' }, { text: 'Meet your free replacement.', color: 'orange' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Viral Launch closed. Sellics dissolved. Fetcher, Splitly, Sellzone, Quantify Ninja — gone or absorbed into bundles you didn\'t ask for. DragonBot replaces the job they did — research, analytics, PPC, alerts — with one AI that\'s free forever.',
     },
-    faq: [
-      { q: 'Can I import data from my dead tool?', a: 'You won\'t need to. DragonBot pulls your full history directly from Amazon\'s official APIs — sales, ads, inventory, messages. The moment you connect, the data your old tool showed you is back.' },
-      { q: 'How do I know DragonBot won\'t shut down too?', a: 'Fair question in this market. DragonBot is built by active 8-figure Amazon sellers who run their own brands on it — it exists because we need it ourselves.' },
-      STD_FAQ_FREE,
-    ],
+    demo: {
+      feature: 'tool migration',
+      script: [
+        { who: 'user', text: 'Viral Launch shut down on me. Can you take over what it did?' },
+        { who: 'host', text: 'Mapping its features to my skills…', tool: { name: 'dragonbot.run_skill', args: 'migration_map("viral launch")' } },
+        { who: 'host', text: 'Covered, plus what it never did:', stats: [ { v: 'Research', l: 'keywords & competitors ✓' }, { v: 'Tracking', l: 'rank & listing alerts ✓' }, { v: 'PPC', l: 'audits & management ✓' }, { v: 'Messages', l: 'buyer replies (they never did)' } ] },
+        { who: 'user', text: 'Do I lose my historical data?' },
+        { who: 'host', text: 'No — Amazon has your history, not the dead tool. Connect via the official API and your sales, ads, and search-term history is all here. This is also the last migration you\'ll do because a subscription died: free forever.' },
+      ],
+    },
   },
 ];
 
