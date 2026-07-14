@@ -282,6 +282,26 @@ function ChatBubble({ msg }) {
       <div className={`flex-1 min-w-0 max-w-[calc(100%-2.5rem)] ${isUser ? 'text-right' : ''}`}>
         <div className={`inline-block text-left rounded-xl px-3.5 py-2.5 text-[13px] leading-relaxed ${isUser ? 'bg-[#2F7D4F]/15 text-white' : 'bg-white/5 text-white/85 border border-white/10'}`}>
           {typeof msg.text === 'string' ? msg.text : <div>{msg.text}</div>}
+          {msg.quote && (
+            <div className="mt-2 border-l-2 border-white/20 pl-3 text-[12px] text-white/60 leading-relaxed">
+              {msg.quote.order && <div><span className="text-white/40">Order:</span> <span className="text-[#7BA9E0]">{msg.quote.order}</span></div>}
+              {msg.quote.product && <div><span className="text-white/40">Product:</span> {msg.quote.product}</div>}
+              {msg.quote.body && <div className="mt-1 italic">“{msg.quote.body}”</div>}
+            </div>
+          )}
+          {msg.note && <div className="mt-2 text-[12px] text-white/70">{msg.note}</div>}
+          {msg.draft && (
+            <div className="mt-2 rounded-md bg-[#2F7D4F]/10 border border-[#2F7D4F]/20 px-2.5 py-2 text-[12px] text-white/75 leading-relaxed">
+              <div className="text-[9px] font-bold uppercase tracking-widest text-[#98CC65]/70 mb-1" style={{ fontFamily: monoFont }}>Draft reply</div>
+              <span className="italic">“{msg.draft}”</span>
+            </div>
+          )}
+          {msg.ask && <div className="mt-2 text-[13px] font-semibold text-white">{msg.ask}</div>}
+          {msg.links && (
+            <div className="mt-2 flex flex-col gap-1 text-[12px]">
+              {msg.links.map((l, i) => <span key={i} className="text-[#7BA9E0]">{l}</span>)}
+            </div>
+          )}
           {msg.stats && (
             <div className="mt-2 grid grid-cols-2 gap-2 text-[12px]">
               {msg.stats.map((s, i) => (
@@ -300,6 +320,7 @@ function ChatBubble({ msg }) {
 
 function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
   const [visible, setVisible] = useState(1);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     if (visible >= script.length) return;
@@ -307,6 +328,10 @@ function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
     const t = setTimeout(() => setVisible(v => v + 1), delays[visible - 1] || 1200);
     return () => clearTimeout(t);
   }, [visible, script.length]);
+
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [visible]);
 
   return (
     <div className="w-full max-w-3xl mx-auto">
@@ -321,7 +346,7 @@ function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
       </h4>
       <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#141618]" style={{ fontFamily: sysFont }}>
         <ChatHeader />
-        <div className="flex flex-col py-3 min-h-[420px] sm:min-h-[460px] max-h-[460px] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+        <div ref={scrollRef} className="flex flex-col py-3 min-h-[420px] sm:min-h-[460px] max-h-[460px] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
           {script.slice(0, visible).map((msg, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
               <ChatBubble msg={msg} />
