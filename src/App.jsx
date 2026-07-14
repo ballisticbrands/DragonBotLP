@@ -41,10 +41,12 @@ function App() {
         <Route path="/support/feature-requests" element={<FeatureRequests />} />
         <Route path="/pricing" element={<Pricing />} />
         {/* Google Ads landing pages (data-driven; see data/lpPages.js).
-            Static /vs/* entries here (ai-operators, mcp-tools) outrank
-            the dynamic /vs/:slug route automatically in RRv6. */}
+            template 'feature' → the main-LP template (LandingV4) with a
+            custom hero + feature chat demo; 'alt' → LpPage comparison
+            layout. Static /vs/* entries here outrank /vs/:slug in RRv6. */}
         {lpPages.map(p => (
-          <Route key={p.path} path={p.path} element={<LpPage page={p} />} />
+          <Route key={p.path} path={p.path}
+            element={p.template === 'feature' ? <LandingV4 page={p} /> : <LpPage page={p} />} />
         ))}
         <Route path="/vs/:slug" element={<VsCompetitor />} />
         <Route path="/beta" element={<Beta />} />

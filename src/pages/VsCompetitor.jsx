@@ -63,9 +63,9 @@ function Navbar({ activeSlug }) {
             <CompareDropdown activeSlug={activeSlug} />
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <a href="/beta"
+            <a href="https://app.getdragonbot.com/sign-up"
               className="px-5 py-2.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/25">
-              Request Access
+              Get now
             </a>
           </div>
           <button className="md:hidden p-2 text-white" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -82,9 +82,9 @@ function Navbar({ activeSlug }) {
                 <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="text-lg font-medium text-white">{l.label}</a>
               ))}
               <CompareDropdownMobile activeSlug={activeSlug} onItemClick={() => setMobileOpen(false)} />
-              <a href="/beta" onClick={() => setMobileOpen(false)}
+              <a href="https://app.getdragonbot.com/sign-up" onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] text-[#0F0F0F] text-center font-semibold uppercase tracking-wide rounded-lg">
-                Request Access
+                Get now
               </a>
             </div>
           </motion.div>
@@ -250,7 +250,7 @@ export default function VsCompetitor() {
             <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
               <a href="https://app.getdragonbot.com/sign-up"
                 className="px-10 py-5 text-lg bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
-                Start Free <ArrowRight className="w-5 h-5" />
+                Get Now <ArrowRight className="w-5 h-5" />
               </a>
               <a href="/"
                 className="px-10 py-5 text-lg bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all flex items-center gap-3">
@@ -496,7 +496,7 @@ export default function VsCompetitor() {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a href="https://app.getdragonbot.com/sign-up"
               className="inline-flex items-center gap-3 px-10 py-5 text-lg bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5">
-              Start Free <ArrowRight className="w-5 h-5" />
+              Get Now <ArrowRight className="w-5 h-5" />
             </a>
             <a href="/"
               className="inline-flex items-center gap-3 px-10 py-5 text-lg bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">

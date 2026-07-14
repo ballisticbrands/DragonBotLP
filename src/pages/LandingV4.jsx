@@ -174,7 +174,7 @@ function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <a href="https://app.getdragonbot.com/sign-up"
               className="px-5 py-2.5 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-sm font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/25">
-              Start free
+              Get now
             </a>
           </div>
           <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -193,7 +193,7 @@ function Navbar() {
               <WorksWithDropdownMobile onItemClick={() => setMobileOpen(false)} />
               <a href="https://app.getdragonbot.com/sign-up" onClick={() => setMobileOpen(false)}
                 className="mt-4 px-6 py-3 bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] text-center font-semibold uppercase tracking-wide rounded-lg transition-all">
-                Start free
+                Get now
               </a>
             </div>
           </motion.div>
@@ -272,29 +272,44 @@ function ChatBubble({ msg, host }) {
         <div className={`inline-block text-left rounded-xl px-3.5 py-2.5 text-[13px] leading-relaxed ${isUser ? 'bg-[#2F7D4F]/15 text-white' : 'bg-white/5 text-white/85 border border-white/10'}`}>
           {msg.tool && <ToolCallPill {...msg.tool} />}
           {typeof msg.text === 'string' ? msg.text : <div>{msg.text}</div>}
+          {msg.stats && (
+            <div className="mt-2 grid grid-cols-2 gap-2 text-[12px]">
+              {msg.stats.map((s, i) => (
+                <div key={i} className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10">
+                  <div className="font-bold text-[#98CC65]">{s.v}</div>
+                  <div className="text-white/50">{s.l}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-function ChatDemo() {
+function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
   const [activeHost, setActiveHost] = useState('claude');
   const [visible, setVisible] = useState(1);
   const host = HOSTS.find(h => h.id === activeHost);
 
   useEffect(() => {
-    if (visible >= CHAT_SCRIPT.length) return;
+    if (visible >= script.length) return;
     const delays = [400, 1000, 1500, 500, 1000, 1800];
     const t = setTimeout(() => setVisible(v => v + 1), delays[visible - 1] || 1200);
     return () => clearTimeout(t);
-  }, [visible]);
+  }, [visible, script.length]);
 
   return (
     <div className="w-full max-w-3xl mx-auto">
       <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-3">
-        Your <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">AI</span> with{' '}
-        <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
+        {feature ? (
+          <>Your <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">{feature}</span> with{' '}
+            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span></>
+        ) : (
+          <>Your <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">AI</span> with{' '}
+            <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span></>
+        )}
       </h4>
       <p className="text-center text-xs font-bold uppercase tracking-widest text-white/40 mb-4" style={{ fontFamily: monoFont }}>
         Same MCP server. Pick your host.
@@ -315,7 +330,7 @@ function ChatDemo() {
       <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#141618]" style={{ fontFamily: sysFont }}>
         <HostHeader host={host} />
         <div className="flex flex-col py-3 min-h-[420px] sm:min-h-[460px] max-h-[460px] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
-          {CHAT_SCRIPT.slice(0, visible).map((msg, i) => (
+          {script.slice(0, visible).map((msg, i) => (
             <motion.div key={`${activeHost}-${i}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
               <ChatBubble msg={msg} host={host} />
             </motion.div>
@@ -669,9 +684,36 @@ function DragonFinalCTA() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   MAIN PAGE
+   MAIN PAGE — doubles as the template for Google Ads feature pages.
+
+   Pass a `page` object (from src/data/lpPages.js, template:'feature')
+   to override the hero + chat demo while keeping every other section
+   identical to the homepage:
+     page.hero.segments  → [{ text, color: 'orange'|'white'|'green' }]
+     page.hero.paragraph → hero subhead
+     page.demo.feature   → "Amazon repricing" (renders "Your X with DragonBot")
+     page.demo.script    → chat messages [{who, text, tool?, stats?}]
    ═══════════════════════════════════════════════════════════════ */
-export default function LandingV4() {
+const SEG_CLASS = {
+  orange: 'bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent',
+  green: 'bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent',
+  white: 'text-white',
+};
+
+export default function LandingV4({ page = null }) {
+  useEffect(() => {
+    if (!page) return;
+    document.title = page.metaTitle;
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', page.metaDescription);
+    window.scrollTo(0, 0);
+  }, [page]);
+
   return (
     <div className="v2-page min-h-screen bg-[#0F0F0F] text-white" style={{ fontFamily: sysFont }}>
       <style>{`
@@ -694,13 +736,24 @@ export default function LandingV4() {
             </Eyebrow>
 
             <h1 className="font-extrabold text-[40px] sm:text-[56px] lg:text-[72px] text-white leading-[1.05] tracking-[-0.035em] mb-6">
-              Connect your AI to{' '}
-              <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">Amazon Seller Central.</span>{' '}
-              <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Free forever.</span>
+              {page?.hero?.segments ? (
+                page.hero.segments.map((seg, i) => (
+                  <span key={i}>
+                    <span className={SEG_CLASS[seg.color] || SEG_CLASS.white}>{seg.text}</span>
+                    {i < page.hero.segments.length - 1 ? ' ' : ''}
+                  </span>
+                ))
+              ) : (
+                <>
+                  Connect your AI to{' '}
+                  <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">Amazon Seller Central.</span>{' '}
+                  <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Free forever.</span>
+                </>
+              )}
             </h1>
 
             <p className="text-[17px] sm:text-[19px] text-white/55 max-w-2xl mx-auto mb-10 leading-[1.6] tracking-[-0.01em]">
-              Give your AI chat secure access to your Amazon data — orders, ads, inventory, reviews, customer messages, and more. Plug DragonBot into Claude, ChatGPT, Cursor, or any MCP client in seconds.
+              {page?.hero?.paragraph || 'Give your AI chat secure access to your Amazon data — orders, ads, inventory, reviews, customer messages, and more. Plug DragonBot into Claude, ChatGPT, Cursor, or any MCP client in seconds.'}
             </p>
 
             {/* 4 connect buttons */}
@@ -747,7 +800,7 @@ export default function LandingV4() {
       <Section id="your-ai" className="!py-16">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
           className="flex justify-center">
-          <ChatDemo />
+          <ChatDemo key={page?.path || 'home'} script={page?.demo?.script || CHAT_SCRIPT} feature={page?.demo?.feature || null} />
         </motion.div>
       </Section>
 
@@ -956,7 +1009,7 @@ export default function LandingV4() {
             </ul>
             <a href="https://app.getdragonbot.com/sign-up"
               className="block text-center px-6 py-3 bg-white/10 hover:bg-white/15 text-white border border-white/15 hover:border-white/30 font-semibold uppercase tracking-wide rounded-lg transition-all">
-              Start free
+              Get now
             </a>
           </div>
 
