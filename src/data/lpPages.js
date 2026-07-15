@@ -253,23 +253,13 @@ export const lpPages = [
   {
     path: '/amazon-reimbursement',
     template: 'feature',
-    metaTitle: 'Amazon FBA Reimbursements — Keep 100%. Free Forever | DragonBot',
-    metaDescription: 'Find money Amazon owes you — lost inventory, damaged units, fee overcharges — and keep 100%. No commission. Free forever.',
+    metaTitle: 'Amazon FBA Reimbursements — Found by AI. Free Forever | DragonBot',
+    metaDescription: 'DragonBot tracks every shipment and fee across your regions and flags what Amazon owes you — lost inventory, damaged units, overcharges. File free with a step-by-step SOP and keep 100%, or let us file for 25%.',
     hero: {
-      segments: [{ text: 'Amazon FBA reimbursements.', color: O }, { text: 'Keep 100% of your money.', color: W }, { text: 'Free forever.', color: G }],
-      paragraph: 'Reimbursement services take 10–25% of every dollar they recover. DragonBot scans your own data for lost inventory, damaged units, and fee overcharges — you file with prepared evidence and keep everything.',
+      segments: [{ text: 'Amazon FBA reimbursements.', color: O }, { text: 'Every lost dollar, found.', color: W }, { text: 'Free forever.', color: G }],
+      paragraph: 'DragonBot watches every shipment, fee, and unit across your regions and programs — FBA and AWD, US, Canada, EU — and flags what Amazon owes you the moment it\'s recoverable: lost inventory, damaged units, short-received shipments, fee overcharges. File it yourself with a step-by-step SOP and keep 100%, or hand it off and we file for 25% of what we recover. Detection is free forever.',
     },
-    demo: {
-      feature: 'Amazon reimbursements',
-      script: [
-        { who: 'user', text: 'Is Amazon holding money they owe me?' },
-        { who: 'tool', text: 'Running the `reimbursement scan` for the past `18 months`' },
-        { who: 'host', text: 'Yes — here\'s what I found:', stats: [ { v: '23 units', l: 'lost in FC, never reimbursed' }, { v: '11 units', l: 'damaged, no credit' }, { v: '$1,284', l: 'fee overcharges' }, { v: '$3,912', l: 'total recoverable' } ] },
-        { who: 'user', text: 'Prepare the claims.' },
-        { who: 'tool', text: 'Running `prepare claims` for `all findings`' },
-        { who: 'host', text: 'Done — 9 claim packets with transaction IDs, shipment reconciliation, and fee documentation, ready to submit. A commission service would keep $978 of this. You keep all $3,912.' },
-      ],
-    },
+    demo: { type: 'dashboard', feature: 'Amazon reimbursements' },
   },
   {
     path: '/amazon-product-research',
@@ -491,22 +481,13 @@ export const lpPages = [
   {
     path: '/reimbursement',
     template: 'feature',
-    metaTitle: 'FBA Reimbursement Services, Replaced by One AI. Keep 100%. Free Forever | DragonBot',
-    metaDescription: 'Reimbursement services take 10–25% of your recovery. DragonBot finds what Amazon owes you and you keep everything. Free forever.',
+    metaTitle: 'FBA Reimbursement Services, Replaced by One Free Dashboard | DragonBot',
+    metaDescription: 'Reimbursement services take 25% — even on claims you could file yourself. DragonBot finds every recoverable dollar free and hands you the SOP to keep 100%, or files for 25% only if you choose.',
     hero: {
       segments: [{ text: 'FBA reimbursement services.', color: 'orange' }, { text: 'Keep 100% instead.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
-      paragraph: 'Reimbursement services take 10–25% commission on money Amazon already owes you. DragonBot scans your own data — lost inventory, damaged units, fee overcharges — and prepares the claims. You file, you keep every dollar.',
+      paragraph: 'Reimbursement services take 10–25% of every dollar — even the claims you could file in minutes yourself. DragonBot finds every recoverable shipment, fee, and lost unit for free, and hands you a step-by-step SOP to file and keep 100%. Prefer hands-off? We\'ll file for 25% of what we recover — your call, case by case.',
     },
-    demo: {
-      feature: 'Amazon reimbursements',
-      script: [
-        { who: 'user', text: 'GETIDA-style services want 25% of whatever they recover. Find what Amazon owes me instead.' },
-        { who: 'tool', text: 'Running the `reimbursement scan` for the past `18 months`' },
-        { who: 'host', text: 'Found it:', stats: [ { v: '23 units', l: 'lost in FC, never credited' }, { v: '11 units', l: 'damaged, no reimbursement' }, { v: '$3,912', l: 'total recoverable' }, { v: '$978', l: 'commission you just avoided' } ] },
-        { who: 'user', text: 'Prepare the claims.' },
-        { who: 'host', text: 'Done — 9 claim packets with transaction IDs, shipment reconciliation, and fee documentation, ready to submit from your account. You keep all $3,912.' },
-      ],
-    },
+    demo: { type: 'dashboard', feature: 'Amazon reimbursements' },
   },
   {
     path: '/discontinued',

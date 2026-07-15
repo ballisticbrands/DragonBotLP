@@ -363,6 +363,123 @@ function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
   );
 }
 
+/* ─── Reimbursements dashboard demo (per the DragonBot Reimbursements vision:
+   status buckets, per-region/program tables, opportunity detection with $
+   value, document submission, free self-file SOP vs 25% managed filing) ─── */
+const REIMB_TABS = ['US · FBA', 'US · AWD', 'Canada', 'EU'];
+const REIMB_KPIS = [
+  { label: 'Recoverable found', value: '$12,847', accent: true },
+  { label: 'Open opportunities', value: '23' },
+  { label: 'Cases filed', value: '8', warn: true },
+  { label: 'Recovered YTD', value: '$9,412', accent: true },
+];
+const REIMB_TONE = {
+  green: { text: 'text-[#98CC65]', dot: 'bg-[#98CC65]', chip: 'bg-[#2F7D4F]/15 border-[#2F7D4F]/30' },
+  yellow: { text: 'text-[#F5C451]', dot: 'bg-[#F5C451]', chip: 'bg-[#F5C451]/10 border-[#F5C451]/30' },
+  orange: { text: 'text-[#F59E0B]', dot: 'bg-[#F59E0B]', chip: 'bg-[#F59E0B]/10 border-[#F59E0B]/30' },
+  red: { text: 'text-[#F87171]', dot: 'bg-[#F87171]', chip: 'bg-[#F87171]/10 border-[#F87171]/30' },
+};
+const REIMB_BUCKETS = [
+  { label: 'Closed OK', n: 387, tone: 'green' },
+  { label: 'Receiving', n: 54, tone: 'yellow' },
+  { label: 'Under case', n: 12, tone: 'orange' },
+  { label: 'Not received', n: 4, tone: 'red' },
+  { label: 'Lost', n: 3, tone: 'red' },
+];
+const REIMB_ROWS = [
+  { id: 'FBA18GTFHBRQ', issue: 'Lost inventory', units: '42', value: '$17,522', status: 'Opportunity', tone: 'green', action: 'sop' },
+  { id: 'FBA195XJ7KWP', issue: 'Damaged, no credit', units: '11', value: '$1,328', status: 'Case filed', tone: 'yellow', action: 'details' },
+  { id: 'FBA19CBK7592', issue: 'Fee overcharge', units: '—', value: '$459', status: 'Opportunity', tone: 'green', action: 'sop' },
+  { id: 'FBA19HL0BQMW', issue: 'Short-received', units: '8', value: '$312', status: 'Docs needed', tone: 'red', action: 'upload' },
+  { id: 'FBA19WAB712', issue: 'Unreconciled', units: '15', value: '$588', status: 'Recovered', tone: 'green', action: 'recovered' },
+];
+
+function ReimbursementDashboard({ feature = 'Amazon reimbursements' }) {
+  return (
+    <div className="w-full max-w-5xl mx-auto">
+      <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-6">
+        Your <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">{feature}</span> with{' '}
+        <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
+      </h4>
+      <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#141618]" style={{ fontFamily: sysFont }}>
+        {/* header + region/program tabs */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
+          <div className="flex items-center gap-2">
+            <img src="/DragonBot-avatar.png" alt="DragonBot" className="w-[18px] h-[18px] object-contain" />
+            <span className="text-[13px] font-semibold text-white/80">Reimbursements</span>
+          </div>
+          <div className="flex items-center gap-1">
+            {REIMB_TABS.map((t, i) => (
+              <span key={t} className={`text-[10px] font-semibold px-2 py-1 rounded ${i === 0 ? 'bg-[#2F7D4F] text-white' : 'text-white/40'}`} style={{ fontFamily: monoFont }}>{t}</span>
+            ))}
+          </div>
+        </div>
+        {/* KPI cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/5">
+          {REIMB_KPIS.map(k => (
+            <div key={k.label} className="bg-[#141618] px-4 py-3">
+              <div className={`text-lg sm:text-xl font-extrabold ${k.accent ? 'text-[#98CC65]' : k.warn ? 'text-[#F5C451]' : 'text-white'}`}>{k.value}</div>
+              <div className="text-[11px] text-white/45 mt-0.5">{k.label}</div>
+            </div>
+          ))}
+        </div>
+        {/* status buckets */}
+        <div className="flex flex-wrap gap-1.5 px-4 py-3 border-t border-white/10">
+          {REIMB_BUCKETS.map(b => (
+            <span key={b.label} className={`inline-flex items-center gap-1.5 text-[11px] px-2 py-1 rounded border ${REIMB_TONE[b.tone].chip}`}>
+              <span className={`w-1.5 h-1.5 rounded-full ${REIMB_TONE[b.tone].dot}`} />
+              <span className="text-white/70">{b.label}</span>
+              <span className={`font-bold ${REIMB_TONE[b.tone].text}`}>{b.n}</span>
+            </span>
+          ))}
+        </div>
+        {/* opportunity / shipment table */}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-[12px] min-w-[560px]">
+            <thead>
+              <tr className="text-[10px] uppercase tracking-wider text-white/35" style={{ fontFamily: monoFont }}>
+                <th className="font-semibold px-4 py-2">Shipment</th>
+                <th className="font-semibold px-3 py-2">Issue</th>
+                <th className="font-semibold px-3 py-2 text-right">Units</th>
+                <th className="font-semibold px-3 py-2 text-right">Potential</th>
+                <th className="font-semibold px-3 py-2">Status</th>
+                <th className="font-semibold px-4 py-2 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {REIMB_ROWS.map(r => (
+                <tr key={r.id} className="border-t border-white/[0.06]">
+                  <td className="px-4 py-2.5"><span className="inline-flex items-center gap-1 text-[#7BA9E0] font-medium">{r.id}<ExternalLink className="w-3 h-3 opacity-60" /></span></td>
+                  <td className="px-3 py-2.5 text-white/70 whitespace-nowrap">{r.issue}</td>
+                  <td className="px-3 py-2.5 text-right text-white/60">{r.units}</td>
+                  <td className="px-3 py-2.5 text-right font-bold text-white">{r.value}</td>
+                  <td className="px-3 py-2.5 whitespace-nowrap"><span className={`inline-flex items-center gap-1.5 ${REIMB_TONE[r.tone].text}`}><span className={`w-1.5 h-1.5 rounded-full ${REIMB_TONE[r.tone].dot}`} />{r.status}</span></td>
+                  <td className="px-4 py-2.5 text-right whitespace-nowrap">
+                    {r.action === 'sop' && (
+                      <span className="inline-flex items-center gap-1.5">
+                        <span className="text-[11px] font-semibold text-white/80 border border-white/15 rounded px-2 py-0.5">Get SOP</span>
+                        <span className="text-[11px] font-semibold text-[#0F0F0F] bg-[#98CC65] rounded px-2 py-0.5">File for me</span>
+                      </span>
+                    )}
+                    {r.action === 'details' && <span className="text-[11px] font-semibold text-[#98CC65]">Details →</span>}
+                    {r.action === 'upload' && <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#0F0F0F] bg-[#F5C451] rounded px-2 py-0.5"><FileText className="w-3 h-3" />Upload POD</span>}
+                    {r.action === 'recovered' && <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#98CC65]"><Check className="w-3.5 h-3.5" />{r.value}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {/* free vs managed footer */}
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 px-4 py-3 border-t border-white/10 text-[11px]">
+          <span className="flex items-start gap-1.5 text-white/55"><span className="w-1.5 h-1.5 rounded-full bg-[#98CC65] mt-1 shrink-0" /><span><strong className="text-white/80">Free</strong> — opportunity report + step-by-step SOP to file it yourself. Keep 100%.</span></span>
+          <span className="flex items-start gap-1.5 text-white/55"><span className="w-1.5 h-1.5 rounded-full bg-white/40 mt-1 shrink-0" /><span><strong className="text-white/80">Optional</strong> — we file for you. 25% of what we recover, only if we win.</span></span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── What's in the box — three pillars ─── */
 const PILLARS = [
   {
@@ -827,7 +944,9 @@ export default function LandingV4({ page = null }) {
       <Section id="your-ai" className="!py-16">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
           className="flex justify-center">
-          <ChatDemo key={page?.path || 'home'} script={page?.demo?.script || CHAT_SCRIPT} feature={page?.demo?.feature || null} />
+          {page?.demo?.type === 'dashboard'
+            ? <ReimbursementDashboard feature={page.demo.feature} />
+            : <ChatDemo key={page?.path || 'home'} script={page?.demo?.script || CHAT_SCRIPT} feature={page?.demo?.feature || null} />}
         </motion.div>
       </Section>
 
