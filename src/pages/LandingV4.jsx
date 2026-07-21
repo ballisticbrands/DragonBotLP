@@ -143,9 +143,9 @@ const navLinks = [
 /* Reimbursements sandbox runs a self-contained nav: on-page anchors only, no
    cross-site links and no Works-with dropdown. */
 const REIMB_NAV_LINKS = [
-  { label: 'Product', href: '#top', active: true },
-  { label: 'Shipment reimbursements', href: '#your-ai' },
-  { label: 'More features', href: '#reimb-features' },
+  { label: 'Shipment refunds', href: '#shipment-refunds' },
+  { label: 'More refunds', href: '#more-refunds' },
+  { label: 'Automated workflow', href: '#automated-workflow' },
   { label: 'vs. others', href: '#vs-others' },
 ];
 
@@ -501,7 +501,7 @@ function ReimbursementDashboard({ feature = 'Amazon reimbursements' }) {
   );
 }
 
-/* ─── Reimbursements dashboard demo V2 (sandbox copy for /reimbursements2 —
+/* ─── Reimbursements dashboard demo V2 (sandbox copy for /refunds —
    independent data + component so it can be redesigned without touching the
    live /reimbursement page) ─── */
 const REIMB2_TABS = ['US · FBA', 'US · AWD', 'Canada', 'EU'];
@@ -537,6 +537,7 @@ const REIMB2_FBA = {
     { id: 'FBA19HL0BQMW', issue: 'Short-received',     expected: '20', located: '12', value: '$312',    status: 'Docs needed', tone: 'red',    action: 'upload' },
     { id: 'FBA19WAB712', issue: 'Customer return',     expected: '24', located: '24', value: '$588',    status: 'Recovered',   tone: 'green',  action: 'recovered', caseId: '21139480255' },
   ],
+  ghost: { id: 'FBA1KX7P0N4', expected: '30', located: '27', value: '$690' },
 };
 
 /* US · AWD — mirrors US FBA exactly (columns, issues, statuses); only the
@@ -565,6 +566,7 @@ const REIMB2_AWD = {
     { id: 'STAR-T26QXT43GDPDQ', issue: 'Customer return',    expected: '30', located: '26', value: '$1,540',  status: 'Recovered',   tone: 'green',  action: 'recovered', caseId: '21150339001' },
     { id: 'STAR-UBWAB2AKJ6WXG', issue: 'Receiving',          expected: '20', located: '0',  value: '—',       status: 'Receiving',   tone: 'green',  action: 'none' },
   ],
+  ghost: { id: 'STAR-K3XP7N4WQJYD2', expected: '14', located: '11', value: '$380' },
 };
 
 /* Canada · FBA — shipments from the Canada sheet (YEG2/YYZ7/YXU1/YOW3 FCs) */
@@ -591,6 +593,7 @@ const REIMB2_CANADA = {
     { id: 'FBA194T2M1H5', expected: '160', located: '150', value: '$1,540', status: 'Case filed',  tone: 'orange', action: 'details',   caseId: '21151003115' },
     { id: 'FBA194CJ815J', expected: '96',  located: '0',   value: '—',      status: 'Receiving',   tone: 'green',  action: 'none' },
   ],
+  ghost: { id: 'FBA193PK7T2Q', expected: '120', located: '112', value: '$540' },
 };
 
 /* EU · FBA — shipments from the EU sheet (WRO5/KTW5/LEJ3 FCs) */
@@ -616,6 +619,7 @@ const REIMB2_EU = {
     { id: 'FBA15K09W9XV', expected: '16',  located: '16',  value: '$220',  status: 'Case filed',  tone: 'orange', action: 'details',   caseId: '21152007742' },
     { id: 'FBA15K09N2Z8', expected: '240', located: '240', value: '$980',  status: 'Recovered',   tone: 'green',  action: 'recovered', caseId: '21152008190' },
   ],
+  ghost: { id: 'FBA15K08M4RJ', expected: '64', located: '58', value: '$310' },
 };
 
 const REIMB2_DATA = {
@@ -633,7 +637,7 @@ function ReimbursementDashboardV2({ feature = 'Amazon reimbursements', showHeadi
       {showHeading && (
         <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-6">
           Your <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">{feature}</span> with{' '}
-          <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Dragon Reimbursements</span>
+          <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Dragon Refunds</span>
         </h4>
       )}
       <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#141618]" style={{ fontFamily: sysFont }}>
@@ -641,7 +645,7 @@ function ReimbursementDashboardV2({ feature = 'Amazon reimbursements', showHeadi
         <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
           <div className="flex items-center gap-2">
             <img src="/DragonBot-avatar.png" alt="DragonBot" className="w-[18px] h-[18px] object-contain" />
-            <span className="text-[13px] font-semibold text-white/80">Shipment Reimbursements</span>
+            <span className="text-[13px] font-semibold text-white/80">Shipment Refunds</span>
           </div>
           <div className="flex items-center gap-1">
             {REIMB2_TABS.map(t => (
@@ -729,10 +733,10 @@ function ReimbursementDashboardV2({ feature = 'Amazon reimbursements', showHeadi
                   {/* faded ghost row — hints there are more shipments below */}
                   <tr aria-hidden="true" className="border-t border-white/[0.06] select-none"
                       style={{ maskImage: 'linear-gradient(to bottom, #000 0%, transparent 55%)', WebkitMaskImage: 'linear-gradient(to bottom, #000 0%, transparent 55%)' }}>
-                    <td className="px-4 py-2.5"><span className="inline-flex items-center gap-1 text-[#7BA9E0] font-medium">FBA1KX7P0N4<ExternalLink className="w-3 h-3 opacity-60" /></span></td>
-                    <td className="px-3 py-2.5 text-right text-white/60">30</td>
-                    <td className="px-3 py-2.5 text-right text-white/60">27</td>
-                    <td className="px-3 py-2.5 text-right font-bold text-white">$690</td>
+                    <td className="px-4 py-2.5"><span className="inline-flex items-center gap-1 text-[#7BA9E0] font-medium">{data.ghost.id}<ExternalLink className="w-3 h-3 opacity-60" /></span></td>
+                    <td className="px-3 py-2.5 text-right text-white/60">{data.ghost.expected}</td>
+                    <td className="px-3 py-2.5 text-right text-white/60">{data.ghost.located}</td>
+                    <td className="px-3 py-2.5 text-right font-bold text-white">{data.ghost.value}</td>
                     <td className="px-3 py-2.5 whitespace-nowrap"><span className="inline-flex items-center gap-1.5 text-[#F87171]"><span className="w-1.5 h-1.5 rounded-full bg-[#F87171]" />Opportunity</span></td>
                     <td className="px-3 py-2.5 text-white/25">—</td>
                     <td className="px-4 py-2.5 text-right"><span className="text-[11px] font-semibold text-white/80 border border-white/15 rounded px-2 py-0.5">Get SOP</span></td>
@@ -751,7 +755,7 @@ function ReimbursementDashboardV2({ feature = 'Amazon reimbursements', showHeadi
   );
 }
 
-/* ─── Seller credentials band (sandbox /reimbursements2 only) ───
+/* ─── Seller credentials band (sandbox /refunds only) ───
    The reimbursement pitch leans on "we're sellers too", so the track record gets
    real typographic weight instead of a line of small caps. The Software Partner
    badge is the one Appstore designation DragonBot actually holds — the <img>
@@ -767,12 +771,13 @@ function SellerCredBand() {
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 rounded-2xl border border-white/10 bg-white/[0.03] px-7 py-6">
         <a href={APPSTORE_URL} target="_blank" rel="noopener noreferrer"
-          title="Dragon Reimbursements on the Amazon Selling Partner Appstore" className="shrink-0">
+          title="Dragon Refunds on the Amazon Selling Partner Appstore" className="shrink-0">
           <img src="/logos/badge-amazon-software-partner.svg"
             alt="Amazon Selling Partner Appstore — Software Partner"
             className="h-[124px] w-auto rounded-lg"
             onError={e => { e.currentTarget.parentElement.style.display = 'none'; }} />
         </a>
+        <div className="hidden sm:block w-px h-16 bg-white/10" />
         <div className="flex items-center gap-7 sm:gap-9">
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-[-0.02em]">10 years</div>
@@ -789,7 +794,7 @@ function SellerCredBand() {
   );
 }
 
-/* ─── Free-audit intro (sandbox /reimbursements2 only). Sits directly above the
+/* ─── Free-audit intro (sandbox /refunds only). Sits directly above the
    V2 dashboard, which acts as the reveal — so the dashboard's own heading is
    suppressed via showHeading={false}. ─── */
 const AUDIT_POINTS = [
@@ -808,7 +813,7 @@ function ReimbursementAuditIntro() {
     <div className="max-w-4xl mx-auto mb-12">
       <div className="text-center">
         <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
-          Shipment reimbursements
+          Shipment refunds
         </p>
         <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
           Connect your account.{' '}
@@ -816,7 +821,7 @@ function ReimbursementAuditIntro() {
         </h4>
         <p className="mt-4 text-[15px] text-white/55 max-w-2xl mx-auto leading-relaxed">
           The best way to find out what FBA reimbursements are worth to you is to take a look together.
-          Connect in two minutes over Amazon's official API — read-only — and Dragon Reimbursements audits your entire history.
+          Connect in two minutes over Amazon's official API — read-only — and Dragon Refunds audits your entire history.
         </p>
       </div>
 
@@ -981,7 +986,7 @@ const REMOVAL_ROWS = [
       { t: 'Carrier tracking — last scan Jul 9', have: true },
       { t: 'Amazon requires 15 days from ship date before filing', have: false },
     ],
-    draft: 'Amazon requires 15 calendar days from the ship date before a lost-in-transit removal claim can be filed. This shipment left on Jul 9 with no carrier movement since. Dragon Reimbursements will open the dispute automatically on Jul 24, the first eligible day, and file well inside the 75-day limit.',
+    draft: 'Amazon requires 15 calendar days from the ship date before a lost-in-transit removal claim can be filed. This shipment left on Jul 9 with no carrier movement since. Dragon Refunds will open the dispute automatically on Jul 24, the first eligible day, and file well inside the 75-day limit.',
   },
   {
     id: '2511339DK8', type: 'Disposal', source: 'Amazon-initiated',
@@ -1274,14 +1279,14 @@ function ReimbursementFeatures() {
     <div className="w-full max-w-5xl mx-auto">
       <div className="text-center mb-8">
         <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
-          More features
+          More Refunds
         </p>
         <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
           Shipments was just the start.{' '}
           <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">4 more ways Amazon keeps your money.</span>
         </h4>
         <p className="mt-4 text-[15px] text-white/55 max-w-2xl mx-auto leading-relaxed">
-          You saw shipment reimbursements above. Amazon quietly holds onto money in four other places too —
+          You saw shipment refunds above. Amazon quietly holds onto money in four other places too —
           here’s each one, and how sure we are we can get it back.
         </p>
       </div>
@@ -1345,16 +1350,16 @@ const REPORT_CONTROLS = ['Channel', 'Cadence', 'Dollar threshold', 'Which region
 function ReimbursementReportsPanel() {
   return (
     <div className="w-full max-w-5xl mx-auto">
-      <div className="text-center mb-8">
-        <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+      <div className="text-center mb-7">
+        <p className="text-[10px] font-bold text-white/35 uppercase tracking-[0.2em] mb-2.5" style={{ fontFamily: monoFont }}>
           Reporting
         </p>
-        <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+        <h5 className="font-extrabold text-xl sm:text-2xl tracking-[-0.02em]">
           You shouldn't have to{' '}
           <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">remember to check.</span>
-        </h4>
+        </h5>
         <p className="mt-4 text-[15px] text-white/55 max-w-2xl mx-auto leading-relaxed">
-          A dashboard only helps the day you open it. Dragon Reimbursements pushes what changed to your inbox or your Slack —
+          A dashboard only helps the day you open it. Dragon Refunds pushes what changed to your inbox or your Slack —
           what's newly recoverable, what's about to expire, and what actually hit your account.
         </p>
         <div className="flex items-center justify-center gap-3 mt-6">
@@ -1426,17 +1431,17 @@ const CASE_ROWS = [
 function ReimbursementCasesPanel() {
   return (
     <div className="w-full max-w-5xl mx-auto">
-      <div className="text-center mb-8">
-        <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+      <div className="text-center mb-7">
+        <p className="text-[10px] font-bold text-white/35 uppercase tracking-[0.2em] mb-2.5" style={{ fontFamily: monoFont }}>
           Case follow-through
         </p>
-        <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+        <h5 className="font-extrabold text-xl sm:text-2xl tracking-[-0.02em]">
           Filing is the easy part.{' '}
           <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Getting paid isn't.</span>
-        </h4>
+        </h5>
         <p className="mt-4 text-[15px] text-white/55 max-w-2xl mx-auto leading-relaxed">
           Cases stall. Denials arrive as boilerplate. Most money is lost after the claim is filed, not before —
-          so Dragon Reimbursements watches every case until it closes, and tells you the move.
+          so Dragon Refunds watches every case until it closes, and tells you the move.
         </p>
       </div>
 
@@ -1473,6 +1478,124 @@ function ReimbursementCasesPanel() {
           ))}
         </div>
 
+      </div>
+    </div>
+  );
+}
+
+/* ─── Reimbursement competitor comparison ─── */
+const REIMB_COMPARE_COLS = ['Dragon Refunds', 'GetIDA', 'Seller Investigators'];
+const REIMB_COMPARE_GROUPS = [
+  {
+    label: 'Transparency',
+    rows: [
+      { feature: 'Shows the cause of each claim', note: 'lost / damaged / dimension / COGS',
+        values: [{ t: 'Itemized per claim' }, 'partial', 'partial'] },
+      { feature: 'Full claim ledger', note: 'found → filed → paid → denied',
+        values: ['yes', 'partial', 'partial'] },
+    ],
+  },
+  {
+    label: 'What we recover',
+    rows: [
+      { feature: 'Lost / damaged shipments', values: ['yes', 'yes', 'yes'] },
+      { feature: 'Warehouse-damaged & destroyed inventory', values: ['yes', 'no', 'yes'] },
+      { feature: 'FBA dimension / weight fee overcharges', values: ['yes', 'yes', 'yes'] },
+      { feature: 'COGS & sourcing-cost errors', values: ['yes', 'no', 'no'] },
+    ],
+  },
+  {
+    label: 'How it works',
+    rows: [
+      { feature: 'Free tier — find and file yourself at no cost', note: 'DIY',
+        values: ['yes', 'no', 'no'] },
+      { feature: 'Managed commission',
+        values: [{ t: '15%' }, { t: '~25%' }, { t: '~25%' }] },
+      { feature: 'Who files',
+        values: [{ t: 'You, or us' }, { t: 'They do' }, { t: 'They do' }] },
+    ],
+  },
+];
+
+function ReimbCompareCell({ value, isUs }) {
+  if (value === 'yes') {
+    return <Check className={`w-[18px] h-[18px] mx-auto ${isUs ? 'text-[#98CC65]' : 'text-white/60'}`} />;
+  }
+  if (value === 'no') {
+    return <span className="block text-center text-white/25 text-lg leading-none">–</span>;
+  }
+  if (value === 'partial') {
+    return <span className="block text-center text-[11px] font-semibold text-[#F5C451]">Partial</span>;
+  }
+  // text value
+  return (
+    <span className={`block text-center text-[12px] font-semibold ${isUs ? 'text-white' : 'text-white/60'}`}>
+      {value.t}
+    </span>
+  );
+}
+
+function ReimbursementComparePanel() {
+  return (
+    <div className="w-full max-w-4xl mx-auto">
+      <div className="text-center mb-8">
+        <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+          How we compare
+        </p>
+        <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+          Everyone claims to recover your money.{' '}
+          <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">We show you where it came from.</span>
+        </h4>
+        <p className="mt-4 text-[15px] text-white/55 max-w-2xl mx-auto leading-relaxed">
+          Most services hand you a number, take 25%, and ask you to trust it. Dragon Refunds pinpoints the exact
+          source of every claim — a lost shipment, damaged inventory, a dimension mismatch, a COGS error — keeps the
+          whole trail visible, and charges 15% only if you want it filed for you. For operators who want everything
+          tracked, not taken on faith.
+        </p>
+      </div>
+
+      <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#141618]" style={{ fontFamily: sysFont }}>
+        {/* Header row */}
+        <div className="grid grid-cols-[1.6fr_1fr_1fr_1fr] border-b border-white/10">
+          <div className="px-4 py-3.5" />
+          {REIMB_COMPARE_COLS.map((c, i) => (
+            <div key={c} className={`px-3 py-3.5 text-center ${i === 0 ? 'bg-[#2F7D4F]/15 border-x border-[#2F7D4F]/30' : ''}`}>
+              <span className={`text-[13px] font-bold ${i === 0 ? 'text-[#98CC65]' : 'text-white/70'}`}>{c}</span>
+            </div>
+          ))}
+        </div>
+
+        {REIMB_COMPARE_GROUPS.map(group => (
+          <div key={group.label}>
+            <div className="grid grid-cols-[1.6fr_1fr_1fr_1fr] bg-white/[0.02] border-b border-white/[0.06]">
+              <div className="px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-white/35" style={{ fontFamily: monoFont }}>
+                {group.label}
+              </div>
+              <div className="bg-[#2F7D4F]/[0.06] border-x border-[#2F7D4F]/20" />
+              <div /><div />
+            </div>
+            {group.rows.map(row => (
+              <div key={row.feature} className="grid grid-cols-[1.6fr_1fr_1fr_1fr] items-center border-b border-white/[0.06] last:border-b-0">
+                <div className="px-4 py-3.5">
+                  <div className="text-[13px] font-medium text-white/85 leading-snug">{row.feature}</div>
+                  {row.note && <div className="text-[11px] text-white/35 mt-0.5">{row.note}</div>}
+                </div>
+                {row.values.map((v, i) => (
+                  <div key={i} className={`px-3 py-3.5 self-stretch flex items-center justify-center ${i === 0 ? 'bg-[#2F7D4F]/[0.06] border-x border-[#2F7D4F]/20' : ''}`}>
+                    <div className="w-full"><ReimbCompareCell value={v} isUs={i === 0} /></div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <div className="flex justify-center mt-10">
+        <a href="https://app.getdragonbot.com/sign-up"
+          className="px-10 py-5 text-lg bg-gradient-to-r from-[#F5F3F1] to-[#F5F3F1] hover:from-[#2F7D4F] hover:to-[#98CC65] text-[#0F0F0F] font-semibold uppercase tracking-wide rounded-lg transition-all hover:shadow-xl hover:shadow-[#2F7D4F]/25 hover:-translate-y-0.5 flex items-center gap-3">
+          Connect your account <ArrowRight className="w-5 h-5" />
+        </a>
       </div>
     </div>
   );
@@ -1769,10 +1892,20 @@ const BUBBLE_PHRASES = [
   'DragonBot: because you have better things to do.',
 ];
 
-function DragonFinalCTA() {
+/* Refunds page gets its own reimbursement-flavored bubble phrases. */
+const REFUND_BUBBLE_PHRASES = [
+  'What are you waiting for?',
+  'Plug me into your workflow.',
+  'A Dragon\’s work is never done... 🐉',
+  'Ready to slay some tasks?',
+  'Let’s conquer the money Amazon owes you!',
+  'Dragon Refunds: because you have better things to do.',
+];
+
+function DragonFinalCTA({ phrases = BUBBLE_PHRASES }) {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
-    const id = setInterval(() => setIdx(i => (i + 1) % BUBBLE_PHRASES.length), 4500);
+    const id = setInterval(() => setIdx(i => (i + 1) % phrases.length), 4500);
     return () => clearInterval(id);
   }, []);
 
@@ -1787,7 +1920,7 @@ function DragonFinalCTA() {
           }}>
           <AnimatePresence mode="wait">
             <motion.span key={idx} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.25 }} className="inline-block">
-              {BUBBLE_PHRASES[idx]}
+              {phrases[idx]}
             </motion.span>
           </AnimatePresence>
         </div>
@@ -1833,7 +1966,8 @@ const SEG_CLASS = {
 };
 
 export default function LandingV4({ page = null }) {
-  const [light, setLight] = useState(false);
+  // Reimbursements sandbox opens in light theme by default; other pages stay dark.
+  const [light, setLight] = useState(page?.demo?.type === 'dashboard2');
   useEffect(() => {
     if (!page) return;
     document.title = page.metaTitle;
@@ -1860,7 +1994,7 @@ export default function LandingV4({ page = null }) {
         ctaLabel={page?.demo?.type === 'dashboard2' ? 'Connect your account' : 'Get it free'}
         brand={page?.demo?.type === 'dashboard2' ? (
           <span className="font-bold text-[22px] sm:text-[25px] text-white whitespace-nowrap" style={{ lineHeight: '1' }}>
-            Dragon <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Reimbursements</span>
+            Dragon <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Refunds</span>
           </span>
         ) : null} />
 
@@ -1882,6 +2016,12 @@ export default function LandingV4({ page = null }) {
               </Eyebrow>
             )}
 
+            {/* Keyword eyebrow (SEO): keeps the target term prominent above the
+                brand-forward headline. Rendered only when a page sets hero.eyebrow. */}
+            {page?.hero?.eyebrow && (
+              <Eyebrow>{page.hero.eyebrow}</Eyebrow>
+            )}
+
             <h1 className="font-extrabold text-[40px] sm:text-[56px] lg:text-[72px] text-white leading-[1.05] tracking-[-0.035em] mb-6">
               {page?.hero?.segments ? (
                 page.hero.segments.map((seg, i) => (
@@ -1900,7 +2040,10 @@ export default function LandingV4({ page = null }) {
             </h1>
 
             <p className="text-[17px] sm:text-[19px] text-white/55 max-w-2xl mx-auto mb-10 leading-[1.6] tracking-[-0.01em]">
-              {page?.hero?.paragraph || 'Give your AI chat secure access to your Amazon data — orders, ads, inventory, reviews, customer messages, and more. Plug DragonBot into Claude, ChatGPT, Cursor, or any MCP client in seconds.'}
+              {(page?.hero?.paragraph || 'Give your AI chat secure access to your Amazon data — orders, ads, inventory, reviews, customer messages, and more. Plug DragonBot into Claude, ChatGPT, Cursor, or any MCP client in seconds.')
+                .split('\n').map((line, i, arr) => (
+                  <span key={i}>{line}{i < arr.length - 1 ? <br /> : null}</span>
+                ))}
             </p>
 
             {/* Hero CTA: feature pages get a single "Get it free" button;
@@ -1960,7 +2103,7 @@ export default function LandingV4({ page = null }) {
       </section>
 
       {/* ─── YOUR AI WITH DRAGONBOT (chat demo) ─── */}
-      <Section id="your-ai" className="!py-16">
+      <Section id={page?.demo?.type === 'dashboard2' ? 'shipment-refunds' : 'your-ai'} className="!py-16">
         {page?.demo?.type === 'dashboard2' && (
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <ReimbursementAuditIntro />
@@ -1976,22 +2119,39 @@ export default function LandingV4({ page = null }) {
         </motion.div>
       </Section>
 
-      {/* ─── Reimbursement feature deep-dives (sandbox /reimbursements2 only) ─── */}
+      {/* ─── Reimbursement feature deep-dives (sandbox /refunds only) ─── */}
       {page?.demo?.type === 'dashboard2' && (
         <>
-          <Section id="reimb-features" className="!py-16">
+          <Section id="more-refunds" className="!py-16">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}>
               <ReimbursementFeatures />
             </motion.div>
           </Section>
-          <Section id="reimb-reports" className="!py-16">
+          <Section id="automated-workflow" className="!py-16">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}
+              className="text-center max-w-2xl mx-auto mb-14">
+              <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+                Automated workflow
+              </p>
+              <h4 className="font-extrabold text-3xl sm:text-4xl tracking-[-0.03em]">
+                On <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">autopilot.</span>
+              </h4>
+              <p className="mt-4 text-[15px] text-white/55 leading-relaxed">
+                The audit runs once. After that, Dragon Refunds becomes part of how you operate — surfacing what changed
+                the moment it changes, and chasing every filed case until it closes. You approve; it does the rest.
+              </p>
+            </motion.div>
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}>
               <ReimbursementReportsPanel />
             </motion.div>
-          </Section>
-          <Section id="reimb-cases" className="!py-16">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}>
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}
+              className="mt-16">
               <ReimbursementCasesPanel />
+            </motion.div>
+          </Section>
+          <Section id="vs-others" className="!py-16">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}>
+              <ReimbursementComparePanel />
             </motion.div>
           </Section>
         </>
@@ -2256,7 +2416,7 @@ export default function LandingV4({ page = null }) {
       {/* ─── FINAL DRAGON CTA ─── */}
       <section className="pt-0 pb-24">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center">
-          <DragonFinalCTA />
+          <DragonFinalCTA phrases={page?.demo?.type === 'dashboard2' ? REFUND_BUBBLE_PHRASES : undefined} />
         </div>
       </section>
 
@@ -2266,7 +2426,7 @@ export default function LandingV4({ page = null }) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-2.5">
               <img src="/DragonBot-logo.png" alt="DragonBot" className="h-8" />
-              <span className="font-bold text-lg text-white">{page?.demo?.type === 'dashboard2' ? 'Dragon Reimbursements' : 'DragonBot'}</span>
+              <span className="font-bold text-lg text-white">{page?.demo?.type === 'dashboard2' ? 'Dragon Refunds' : 'DragonBot'}</span>
             </div>
             <div className="flex flex-wrap justify-center gap-8">
               <a href="/" className="text-sm text-white/50 hover:text-white transition-colors">Product</a>
@@ -2274,7 +2434,10 @@ export default function LandingV4({ page = null }) {
               <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Privacy</a>
               <a href="/tos" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Terms</a>
               <a href="/support" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Support</a>
-              <a href="mailto:info@getdragonbot.com" className="text-sm text-white/50 hover:text-white transition-colors">info@getdragonbot.com</a>
+              {(() => {
+                const email = page?.demo?.type === 'dashboard2' ? 'info@dragonrefunds.com' : 'info@getdragonbot.com';
+                return <a href={`mailto:${email}`} className="text-sm text-white/50 hover:text-white transition-colors">{email}</a>;
+              })()}
             </div>
             <div className="text-center md:text-right">
               <p className="text-sm text-white/30">&copy; {new Date().getFullYear()} Chacha Advisory LLC. All rights reserved.</p>
