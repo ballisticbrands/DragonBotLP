@@ -490,6 +490,17 @@ export const lpPages = [
     demo: { type: 'dashboard', feature: 'Amazon reimbursements' },
   },
   {
+    path: '/reimbursements2',
+    template: 'feature',
+    metaTitle: 'FBA Reimbursement Services, Replaced by One Free Dashboard | Dragon Reimbursements',
+    metaDescription: 'Reimbursement services take 25% — even on claims you could file yourself. Dragon Reimbursements finds every recoverable dollar free and hands you the SOP to keep 100%, or files for 25% only if you choose.',
+    hero: {
+      segments: [{ text: 'FBA reimbursement services.', color: 'orange' }, { text: 'Keep 100% instead.', color: 'white' }, { text: 'Free forever.', color: 'green' }],
+      paragraph: 'Reimbursement services take 10–25% of every dollar — even the claims you could file in minutes yourself. Dragon Reimbursements finds every recoverable shipment, fee, and lost unit for free, and hands you a step-by-step SOP to file and keep 100%. Prefer hands-off? We\'ll file for 25% of what we recover — your call, case by case.',
+    },
+    demo: { type: 'dashboard2', feature: 'Amazon reimbursements' },
+  },
+  {
     path: '/discontinued',
     template: 'feature',
     metaTitle: 'Your Amazon Tool Shut Down? Meet Your Free Replacement. Free Forever | DragonBot',
