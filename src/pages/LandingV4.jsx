@@ -143,6 +143,7 @@ const navLinks = [
 /* Reimbursements sandbox runs a self-contained nav: on-page anchors only, no
    cross-site links and no Works-with dropdown. */
 const REIMB_NAV_LINKS = [
+  { label: 'Calculator', href: '#calculator' },
   { label: 'Shipment refunds', href: '#shipment-refunds' },
   { label: 'More refunds', href: '#more-refunds' },
   { label: 'Automated workflow', href: '#automated-workflow' },
@@ -1601,6 +1602,78 @@ function ReimbursementComparePanel() {
   );
 }
 
+/* ─── Reimbursement calculator (refunds page) ─── */
+function ReimbursementCalculator() {
+  const MIN = 100000, MAX = 10000000;
+  const [revenue, setRevenue] = useState(1000000);
+  const RATE = 0.015; // ~1.5% of FBA revenue is typically recoverable
+  const recoverable = revenue * RATE;
+  const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+  const shortUsd = n => n >= 1000000 ? `$${n / 1000000}M` : `$${Math.round(n / 1000)}K`;
+  const tiers = [
+    { label: 'DIY — file it yourself', fee: 'Free', keep: recoverable, highlight: false },
+    { label: 'Done-for-you', fee: '15% fee', keep: recoverable * 0.85, highlight: true },
+    { label: 'Typical service', fee: '25% fee', keep: recoverable * 0.75, highlight: false },
+  ];
+
+  return (
+    <div className="w-full max-w-3xl mx-auto">
+      <div className="text-center mb-8">
+        <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+          Reimbursement calculator
+        </p>
+        <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+          Calculate your{' '}
+          <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">potential reimbursement.</span>
+        </h4>
+        <p className="mt-4 text-[15px] text-white/55 max-w-xl mx-auto leading-relaxed">
+          Select your gross annual FBA revenue to see roughly how much Amazon may owe you — and how much of it you keep.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 shadow-2xl bg-[#141618] p-6 sm:p-8" style={{ fontFamily: sysFont }}>
+        {/* slider */}
+        <div className="flex items-baseline justify-between mb-3">
+          <label htmlFor="reimb-calc-range" className="text-[13px] font-semibold text-white/60">FBA revenue range<span className="block text-[11px] font-normal text-white/35">gross annual revenue</span></label>
+          <span className="text-2xl font-extrabold text-white tracking-[-0.02em]">{fmt(revenue)}</span>
+        </div>
+        <input id="reimb-calc-range" type="range" min={MIN} max={MAX} step={50000} value={revenue}
+          onChange={e => setRevenue(Number(e.target.value))}
+          className="w-full cursor-pointer" style={{ accentColor: '#2F7D4F' }}
+          aria-label="FBA revenue range — gross annual revenue" />
+        <div className="flex justify-between text-[11px] text-white/35 mt-1" style={{ fontFamily: monoFont }}>
+          <span>{shortUsd(MIN)}</span><span>{shortUsd(MAX)}+</span>
+        </div>
+
+        {/* headline recoverable */}
+        <div className="mt-7 text-center">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/45 mb-1">Amount you could recover / year</div>
+          <div className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent tracking-[-0.03em]">
+            {fmt(recoverable)}
+          </div>
+        </div>
+
+        {/* what you keep, per option */}
+        <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {tiers.map(t => (
+            <div key={t.label} className={`rounded-xl border px-4 py-4 text-center ${t.highlight ? 'border-[#2F7D4F]/40 bg-[#2F7D4F]/10' : 'border-white/10 bg-white/[0.02]'}`}>
+              <div className="text-[12px] font-semibold text-white/70">{t.label}</div>
+              <div className="text-[11px] text-white/40 mb-2">{t.fee}</div>
+              <div className={`text-xl font-extrabold tracking-[-0.02em] ${t.highlight ? 'text-[#98CC65]' : 'text-white'}`}>{fmt(t.keep)}</div>
+              <div className="text-[10px] text-white/35 mt-0.5">you keep</div>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-5 text-center text-[11px] text-white/35 leading-relaxed">
+          Estimate only, based on a typical ~1.5% FBA recovery rate. Your actual recoverable amount depends on your
+          shipments, fees, and claim history — run a free audit for the exact figure.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 /* ─── What's in the box — three pillars ─── */
 const PILLARS = [
   {
@@ -2101,6 +2174,16 @@ export default function LandingV4({ page = null }) {
           </motion.div>
         </div>
       </section>
+
+      {/* ─── Reimbursement calculator (sandbox /refunds only) — sits between the
+           "we sell on Amazon" credentials band and the shipment-refunds dashboard. ─── */}
+      {page?.demo?.type === 'dashboard2' && (
+        <Section id="calculator" className="!py-16">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}>
+            <ReimbursementCalculator />
+          </motion.div>
+        </Section>
+      )}
 
       {/* ─── YOUR AI WITH DRAGONBOT (chat demo) ─── */}
       <Section id={page?.demo?.type === 'dashboard2' ? 'shipment-refunds' : 'your-ai'} className="!py-16">
