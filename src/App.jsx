@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { trackRouteChange } from './lib/track';
 import Home from './pages/Home';
 import Chats from './pages/Chats';
 import Privacy from './pages/Privacy';
@@ -19,9 +21,22 @@ import Beta from './pages/Beta';
 import LpPage from './pages/LpPage';
 import { lpPages } from './data/lpPages';
 
+// Reports every route to GA4 + the Meta Pixel. Renders nothing; must live
+// INSIDE <Router> so useLocation() has a router context. index.html only
+// fires a pageview on hard load, so without this every client-side
+// navigation goes uncounted — see trackRouteChange() in lib/track.js.
+function RouteAnalytics() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    trackRouteChange(pathname);
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <RouteAnalytics />
       <Routes>
         <Route path="/" element={<LandingV4 />} />
         <Route path="/v1" element={<Home />} />
