@@ -32,7 +32,11 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5">
-            <img src="/logos/dragonbot_fire.png" alt="DragonBot" className="h-9" />
+            {/* Same bob as dragonrefunds.com / dragonreply.ai and all three
+                app headers: 0 → -4px → 0, 1.2s ease-in-out, forever. */}
+            <motion.img src="/logos/dragonbot_fire.png" alt="DragonBot" className="h-9"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} />
             <span className="font-clash font-bold text-xl text-[#1A1A1A]" style={{ lineHeight: '1', paddingTop: '2px' }}>
               DragonBot
             </span>
