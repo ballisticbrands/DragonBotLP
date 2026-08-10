@@ -27,6 +27,7 @@ import { fileURLToPath } from 'node:url';
 
 import { lpPages } from '../src/data/lpPages.js';
 import { competitors } from '../src/data/competitors.js';
+import { AUDIT_POINTS_COPY, CLAIM_TYPES_COPY } from '../src/data/lpCopy.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
@@ -44,8 +45,16 @@ const esc = (s = '') =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const flat = (s = '') => String(s).replace(/\s+/g, ' ').trim();
 
-/* ── Route → { title, description, eyebrow, h1, intro, bullets[] } ────── */
+/* ── Route → { title, description, eyebrow, h1, intro, bullets[], sections[] } ── */
 const meta = {};
+
+/* Product copy the main LP renders, from ../src/data/lpCopy.js — the SAME module
+ * LandingV4.jsx reads, so this is prerendering, not cloaking. Without it the
+ * homepage prerendered at 44 crawler-visible words. */
+const PRODUCT_SECTIONS = [
+  { h: 'What the free audit finds', items: AUDIT_POINTS_COPY.map(p => `${p.title}. ${p.desc}`) },
+  { h: 'What DragonBot recovers', items: CLAIM_TYPES_COPY.map(c => `${c.headline} ${c.blurb}`) },
+];
 
 const STATIC = {
   '/':        { title: 'DragonBot — Your AI Amazon Operator',
@@ -60,6 +69,7 @@ const STATIC = {
 for (const [path, m] of Object.entries(STATIC)) {
   meta[path] = { ...m, h1: m.title.split(/[—|]/)[0].trim(), intro: m.description };
 }
+for (const r of ['/', '/pricing']) if (meta[r]) meta[r].sections = PRODUCT_SECTIONS;
 
 /* Data-driven LP pages (feature / alt templates). */
 for (const p of lpPages) {
@@ -70,6 +80,7 @@ for (const p of lpPages) {
     eyebrow: p.hero?.eyebrow,
     h1,
     intro: flat(p.hero?.paragraph),
+    sections: PRODUCT_SECTIONS,
   };
 }
 
@@ -84,6 +95,18 @@ for (const [slug, c] of Object.entries(competitors)) {
     h1: c.h1 ? [c.h1.plain, c.h1.accent].filter(Boolean).join(' ') : `DragonBot vs ${name}`,
     intro: flat(c.subhead),
     bullets: [c.tldr?.us, c.tldr?.them].filter(Boolean).map(flat),
+    /* Full comparison copy, not just the TL;DR (2026-08-10). These entries already
+     * hold themWins / usWins / comparisonTable / faq; emitting only the h1 left the
+     * pages at ~65 crawler-visible words, and a page that thin cannot earn a decent
+     * Google Ads landing-page-experience score. Rendered from this same object by
+     * the /vs/ component, so it is prerendering, not cloaking. */
+    sections: [
+      { h: `Where ${c.name || slug} wins`, items: (c.themWins || []).map(w => flat(`${w.title || ''}. ${w.desc || ''}`)) },
+      { h: 'Where DragonBot wins', items: (c.usWins || []).map(w => flat(`${w.title || ''}. ${w.desc || ''}`)) },
+      { h: 'Comparison', items: (c.comparisonTable || []).map(r =>
+          flat(`${r.feature || r.label || ''} — DragonBot: ${r.us ?? ''}; ${c.name || slug}: ${r.them ?? ''}`)) },
+      { h: 'Frequently asked questions', items: (c.faq || []).map(f => flat(`${f.q || ''} ${f.a || ''}`)) },
+    ].filter(sec => sec.items.filter(i => i.replace(/[—;:.\s]/g, '')).length),
   };
 }
 
@@ -120,6 +143,8 @@ function buildHtml(route, m) {
     m.intro ? `<p>${esc(m.intro)}</p>` : '',
     Array.isArray(m.bullets) && m.bullets.length
       ? `<ul>${m.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>` : '',
+    ...(m.sections || []).map(sec =>
+      `<h2>${esc(sec.h)}</h2>\n        <ul>${sec.items.map(i => `<li>${esc(flat(i))}</li>`).join('')}</ul>`),
     `<p><a href="${SIGNUP}">Get it free — no card required</a></p>`,
   ].filter(Boolean).join('\n        ');
 
@@ -143,4 +168,26 @@ for (const route of routes) {
   writeFileSync(join(dir, 'index.html'), buildHtml(route, m));
   n++;
 }
-console.log(`postbuild: prerendered ${n} routes (title + description + canonical + OG + content)`);
+/* ── Guard: a thin page cannot earn a decent Ads landing-page score ──────
+ * 2026-08-10: per-route titles alone left the homepage at 44 crawler-visible
+ * words; on the sibling refunds site that meant Quality Score 2/10. Fail the
+ * build rather than ship thin pages. Raise MIN_WORDS, never lower it. */
+const MIN_WORDS = 120;
+const EXEMPT = r => r.startsWith('/support') || ['/privacy', '/tos', '/v1', '/v2', '/v3', '/chats', '/beta'].includes(r);
+const thin = [];
+for (const route of routes) {
+  if (!meta[route] || EXEMPT(route)) continue;
+  const dir = route === '/' ? dist : join(dist, ...route.split('/').filter(Boolean));
+  const text = readFileSync(join(dir, 'index.html'), 'utf8')
+    .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, '')
+    .replace(/<[^>]+>/g, ' ');
+  const words = text.split(/\s+/).filter(Boolean).length;
+  if (words < MIN_WORDS) thin.push(`${route} (${words}w)`);
+}
+if (thin.length) {
+  console.error(`postbuild: ${thin.length} route(s) under ${MIN_WORDS} crawler-visible words:\n  ${thin.join('\n  ')}`);
+  console.error('Add real copy to a JSX-free data module and emit it here — see src/data/lpCopy.js');
+  process.exit(1);
+}
+
+console.log(`postbuild: prerendered ${n} routes (title + description + canonical + OG + content), all >= ${MIN_WORDS} words`);
