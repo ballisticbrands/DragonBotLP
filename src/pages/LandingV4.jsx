@@ -837,7 +837,7 @@ function ReimbursementAuditIntro() {
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#2F7D4F] hover:bg-[#98CC65] hover:text-[#0F0F0F] text-white text-[14px] font-bold transition-colors">
           Get my free audit <ArrowRight className="w-4 h-4" />
         </a>
-        <span className="text-[12px] text-white/40">No card. No call. The audit is yours to keep either way.</span>
+        <span className="text-[12px] text-white/40">No card. No call. The audit is yours to keep.</span>
       </div>
     </div>
   );
