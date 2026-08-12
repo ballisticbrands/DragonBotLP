@@ -2124,8 +2124,14 @@ export default function LandingV4({ page = null }) {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto mb-10">
+                {/* ?ai= carries the visitor's chosen host into the app's
+                    /sign-up, which personalises its headline + chat preview
+                    and the dashboard onboarding checklist (host ids match
+                    the app's src/lib/aiClients.ts). The attribution click
+                    rewriter only appends params a link doesn't already
+                    have, so this coexists with UTMs/gclid. */}
                 {HOSTS.map(h => (
-                  <a key={h.id} href="https://app.getdragonbot.com/sign-up"
+                  <a key={h.id} href={`https://app.getdragonbot.com/sign-up?ai=${h.id}`}
                     className="flex items-center justify-center gap-2.5 px-4 py-3.5 bg-white/5 hover:bg-[#2F7D4F]/15 border border-white/15 hover:border-[#98CC65]/40 rounded-lg transition-all text-[13px] sm:text-sm font-semibold text-white/85 hover:text-white cursor-pointer">
                     <HostMark host={h} size={20} />
                     <span>Connect Amazon Seller Central to {h.id === 'other' ? 'any MCP client' : h.label}</span>
