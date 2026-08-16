@@ -17,6 +17,72 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DragonBot — Your AI Amazon Operator</title>
+    <!-- Structured data (JSON-LD). Lives in the shell so every prerendered
+         route inherits it — postbuild-spa-routes.mjs rewrites <title> and the
+         meta block only, and prerender.mjs touches #root only.
+
+         ⚠️ Keep the `description` below in sync with public/llms.txt and the
+         per-route meta descriptions in scripts/postbuild-spa-routes.mjs: models
+         cross-check the three, and a contradiction costs trust.
+         ⚠️ NEVER add aggregateRating or review here. We have no published
+         reviews; fabricated rating markup is a structured-data violation and
+         can earn a manual action. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://getdragonbot.com/#organization",
+          "name": "Chacha Advisory LLC",
+          "alternateName": "DragonBot",
+          "url": "https://getdragonbot.com",
+          "logo": "https://getdragonbot.com/DragonBot-logo.png",
+          "email": "info@getdragonbot.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "30 N Gould St Ste R",
+            "addressLocality": "Sheridan",
+            "addressRegion": "WY",
+            "postalCode": "82801",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://getdragonbot.com/#software",
+          "name": "DragonBot",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "url": "https://getdragonbot.com",
+          "description": "DragonBot connects an Amazon seller's Seller Central account to AI chat tools. It is an Amazon MCP server backed by a hosted data layer that continuously ETLs the account's Amazon data over the official Selling Partner API, so Claude, ChatGPT, Cursor or any MCP client can answer questions about the account — and, on the paid tier, act on it. Read-only access is free forever.",
+          "featureList": [
+            "Amazon MCP server for Claude, ChatGPT, Cursor and any MCP client",
+            "Official Amazon Selling Partner API (SP-API) connection over OAuth",
+            "Orders, advertising, inventory, search query performance, reviews, buyer messages and account health",
+            "Write operations on Seller Central with supervised or autonomous modes and a full audit trail (paid tier)"
+          ],
+          "publisher": { "@id": "https://getdragonbot.com/#organization" },
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Free forever",
+              "price": "0",
+              "priceCurrency": "USD",
+              "description": "Read-only access to every skill. No credit card required."
+            },
+            {
+              "@type": "Offer",
+              "name": "Read + Write",
+              "price": "50",
+              "priceCurrency": "USD",
+              "description": "$50/month. Adds write operations on Seller Central with supervised or autonomous modes and a full audit trail. Currently in private beta."
+            }
+          ]
+        }
+      ]
+    }
+    </script>
     <!-- Facebook Pixel -->
     <script>
       !function(f,b,e,v,n,t,s)

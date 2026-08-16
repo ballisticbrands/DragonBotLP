@@ -8,7 +8,7 @@ export default function Beta() {
   return (
     <div className="min-h-screen bg-[#0F0F0F] text-white flex items-center justify-center px-6" style={{ fontFamily: sysFont }}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="max-w-xl w-full"

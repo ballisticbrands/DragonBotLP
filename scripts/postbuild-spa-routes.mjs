@@ -58,9 +58,9 @@ const PRODUCT_SECTIONS = [
 
 const STATIC = {
   '/':        { title: 'DragonBot — Your AI Amazon Operator',
-                description: 'DragonBot is an AI operator for Amazon sellers. It runs your PPC, finds reimbursements, answers customers, and researches keywords — finished work delivered in Slack, not another dashboard. Free forever.' },
+                description: 'Connect your Amazon Seller Central account to Claude, ChatGPT, Cursor, or any MCP client. DragonBot ETLs your Amazon data and lets your AI answer questions about the account — and act on it. Read-only access free forever.' },
   '/pricing': { title: 'Pricing — Free Forever, No Percentage Fees | DragonBot',
-                description: 'DragonBot is free forever for unlimited audits and reports. Optional paid tier executes the work with your approval. Never a percentage of your revenue or ad spend.' },
+                description: 'DragonBot pricing: read-only access free forever at $0/month, no credit card. Read + Write is $50/month (private beta) and lets your AI act on Seller Central. Never a percentage of revenue or ad spend.' },
   '/privacy': { title: 'Privacy Policy | DragonBot', description: 'How DragonBot collects, uses, and protects your data.' },
   '/tos':     { title: 'Terms of Service | DragonBot', description: 'The terms governing your use of DragonBot.' },
   '/support': { title: 'Support | DragonBot', description: 'Help and documentation for DragonBot.' },

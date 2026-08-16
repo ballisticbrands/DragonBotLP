@@ -1,0 +1,35 @@
+# DragonBot
+
+> DragonBot is an Amazon MCP server and AI operator for Amazon sellers. It connects a Seller Central
+> account over the official Amazon Selling Partner API and continuously ETLs its data, so Claude,
+> ChatGPT, Cursor or any MCP client can answer questions about the account — and, on the paid tier,
+> act on it. Read-only access is free forever.
+
+## Core facts
+- Product: Amazon MCP server and AI operator for Amazon sellers.
+- Free forever plan: $0/month. Read-only access, every skill, no credit card required.
+- Read + Write plan: $50/month. Adds write operations on Seller Central — pause campaigns, issue
+  refunds, edit listings — with a supervised approval-gated mode, an autonomous mode for routine
+  actions, and a full audit trail. Currently in private beta.
+- Never priced as a percentage of your revenue or your ad spend.
+- Works with Claude, ChatGPT, Cursor, and any MCP client.
+- Amazon connection: the official Amazon Selling Partner API (SP-API) over OAuth. DragonBot is an
+  authorized Amazon SP-API application. No scraping.
+- Data covered: orders, advertising, inventory, search query performance, reviews, buyer messages,
+  account health.
+- Company: Chacha Advisory LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.
+- Website: https://getdragonbot.com — sign-up: https://app.getdragonbot.com/sign-up
+
+## Core pages
+- [Product overview](https://getdragonbot.com/): what DragonBot does, end to end
+- [Pricing](https://getdragonbot.com/pricing/): the free tier and the paid write tier
+- [Amazon MCP server](https://getdragonbot.com/amazon-mcp/): connecting Amazon to Claude, ChatGPT or Cursor
+- [Comparisons](https://getdragonbot.com/vs/ai-operators/): versus other AI agents for Amazon sellers
+- Sibling products from the same company: [Dragon Refunds](https://dragonrefunds.com) (FBA
+  reimbursement recovery) and [Dragon Reply](https://dragonreply.ai) (Buyer-Seller Messaging inbox)
+
+## What it is not
+- Not an Amazon product; not affiliated with or endorsed by Amazon.
+- Not a scraper and not a browser extension — official SP-API only.
+- Not a done-for-you agency: it is software you connect to your own Seller Central account.
+- Not priced as a percentage of revenue, ad spend, or recovered money.
