@@ -50,7 +50,7 @@ export default function Beta() {
           </a>
 
           <div className="mt-8 pt-6 border-t border-white/10">
-            <a href="/" className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">
+            <a href="/" className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
               <ArrowLeft className="w-4 h-4" />
               Back to home
             </a>

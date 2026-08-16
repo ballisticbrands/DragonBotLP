@@ -39,7 +39,7 @@ function WorksWithDropdown() {
       onMouseLeave={() => setOpen(false)}
     >
       <button
-        className="flex items-center gap-1 text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors"
+        className="flex items-center gap-1 text-[13px] font-medium text-white/70 hover:text-[#98CC65] transition-colors"
         style={{ fontFamily: monoFont }}
         onClick={() => setOpen(o => !o)}
       >
@@ -181,7 +181,7 @@ function Navbar({ light, onToggle, links = navLinks, showWorksWith = true, ctaLa
           </a>
           <div className="hidden md:flex items-center gap-8">
             {links.map(l => (
-              <a key={l.label} href={l.href} {...(l.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className={`text-[13px] font-medium transition-colors ${l.active ? 'text-white bg-white/10 px-3 py-1.5 rounded-md' : 'text-white/50 hover:text-[#98CC65]'}`} style={{ fontFamily: monoFont }}>{l.label}</a>
+              <a key={l.label} href={l.href} {...(l.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className={`text-[13px] font-medium transition-colors ${l.active ? 'text-white bg-white/10 px-3 py-1.5 rounded-md' : 'text-white/70 hover:text-[#98CC65]'}`} style={{ fontFamily: monoFont }}>{l.label}</a>
             ))}
             {showWorksWith && <WorksWithDropdown />}
           </div>
@@ -252,7 +252,7 @@ function Eyebrow({ children }) {
 const CHAT_SCRIPT = [
   { who: 'user', text: 'Audit my Amazon PPC for the last 30 days.' },
   { who: 'tool', text: 'Running the `PPC audit` skill for the last `30 days`' },
-  { who: 'host', text: <>Done — pulled spend across 47 campaigns. <strong>Top finding:</strong> 23 keywords burning $1,840/mo with 0 conversions (paused, projected ACoS ↓ from 38% → 26%). Full breakdown:<div className="mt-2 grid grid-cols-2 gap-2 text-[12px]"><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">$1,840</div><div className="text-white/50">wasted/mo</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">−12pt</div><div className="text-white/50">projected ACoS</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">23</div><div className="text-white/50">keywords paused</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">$60/d</div><div className="text-white/50">reallocated</div></div></div></> },
+  { who: 'host', text: <>Done — pulled spend across 47 campaigns. <strong>Top finding:</strong> 23 keywords burning $1,840/mo with 0 conversions (paused, projected ACoS ↓ from 38% → 26%). Full breakdown:<div className="mt-2 grid grid-cols-2 gap-2 text-[12px]"><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">$1,840</div><div className="text-white/70">wasted/mo</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">−12pt</div><div className="text-white/70">projected ACoS</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">23</div><div className="text-white/70">keywords paused</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">$60/d</div><div className="text-white/70">reallocated</div></div></div></> },
   { who: 'user', text: 'Now check listing health — anything suppressed?' },
   { who: 'tool', text: 'Running the `account health` check' },
   { who: 'host', text: <>1 listing suppressed: <code className="px-1.5 py-0.5 rounded bg-white/10 text-[#98CC65] text-[11px]">B0CK5LRQX7</code> — backend image URL returned 404. Re-uploaded the image and submitted reinstatement. Should be back within 2 hours. Want me to schedule hourly health checks?</> },
@@ -265,7 +265,7 @@ function ChatHeader() {
         <img src="/DragonBot-avatar.png" alt="DragonBot" className="w-[18px] h-[18px] object-contain" />
         <span className="text-[13px] font-semibold text-white/80">DragonBot</span>
       </div>
-      <span className="flex items-center gap-1.5 text-[10px] font-bold text-white/30 uppercase tracking-widest" style={{ fontFamily: monoFont }}>
+      <span className="flex items-center gap-1.5 text-[10px] font-bold text-white/60 uppercase tracking-widest" style={{ fontFamily: monoFont }}>
         <span className="w-1.5 h-1.5 rounded-full bg-[#98CC65]" /> Amazon connected
       </span>
     </div>
@@ -307,8 +307,8 @@ function ChatBubble({ msg }) {
           {typeof msg.text === 'string' ? msg.text : <div>{msg.text}</div>}
           {msg.quote && (
             <div className="mt-2 border-l-2 border-white/20 pl-3 text-[12px] text-white/60 leading-relaxed">
-              {msg.quote.order && <div><span className="text-white/40">Order:</span> <span className="text-[#7BA9E0]">{msg.quote.order}</span></div>}
-              {msg.quote.product && <div><span className="text-white/40">Product:</span> {msg.quote.product}</div>}
+              {msg.quote.order && <div><span className="text-white/65">Order:</span> <span className="text-[#7BA9E0]">{msg.quote.order}</span></div>}
+              {msg.quote.product && <div><span className="text-white/65">Product:</span> {msg.quote.product}</div>}
               {msg.quote.body && <div className="mt-1 italic">“{msg.quote.body}”</div>}
             </div>
           )}
@@ -330,7 +330,7 @@ function ChatBubble({ msg }) {
               {msg.stats.map((s, i) => (
                 <div key={i} className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10">
                   <div className="font-bold text-[#98CC65]">{s.v}</div>
-                  <div className="text-white/50">{s.l}</div>
+                  <div className="text-white/70">{s.l}</div>
                 </div>
               ))}
             </div>
@@ -358,7 +358,7 @@ function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-6">
+      <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-6">
         {feature ? (
           <>Your <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">{feature}</span> with{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span></>
@@ -366,7 +366,7 @@ function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
           <>Your <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">AI</span> with{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span></>
         )}
-      </h4>
+      </h2>
       <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#141618]" style={{ fontFamily: sysFont }}>
         <ChatHeader />
         <div ref={scrollRef} className="flex flex-col py-3 min-h-[420px] sm:min-h-[460px] max-h-[460px] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
@@ -377,7 +377,7 @@ function ChatDemo({ script = CHAT_SCRIPT, feature = null }) {
           ))}
         </div>
         <div className="px-4 pb-3 pt-1 border-t border-white/10">
-          <div className="rounded-lg px-3 py-2 text-xs text-white/30 border border-white/10 bg-white/5">
+          <div className="rounded-lg px-3 py-2 text-xs text-white/60 border border-white/10 bg-white/5">
             Message DragonBot…
           </div>
         </div>
@@ -420,10 +420,10 @@ const REIMB_ROWS = [
 function ReimbursementDashboard({ feature = 'Amazon reimbursements' }) {
   return (
     <div className="w-full max-w-5xl mx-auto">
-      <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-6">
+      <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-6">
         Your <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">{feature}</span> with{' '}
         <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
-      </h4>
+      </h2>
       <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#141618]" style={{ fontFamily: sysFont }}>
         {/* header + region/program tabs */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
@@ -433,7 +433,7 @@ function ReimbursementDashboard({ feature = 'Amazon reimbursements' }) {
           </div>
           <div className="flex items-center gap-1">
             {REIMB_TABS.map((t, i) => (
-              <span key={t} className={`text-[10px] font-semibold px-2 py-1 rounded ${i === 0 ? 'bg-[#2F7D4F] text-white' : 'text-white/40'}`} style={{ fontFamily: monoFont }}>{t}</span>
+              <span key={t} className={`text-[10px] font-semibold px-2 py-1 rounded ${i === 0 ? 'bg-[#2F7D4F] text-white' : 'text-white/65'}`} style={{ fontFamily: monoFont }}>{t}</span>
             ))}
           </div>
         </div>
@@ -637,10 +637,10 @@ function ReimbursementDashboardV2({ feature = 'Amazon reimbursements', showHeadi
   return (
     <div className="w-full max-w-5xl mx-auto">
       {showHeading && (
-        <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-6">
+        <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] text-center mb-6">
           Your <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">{feature}</span> with{' '}
           <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">Dragon Refunds</span>
-        </h4>
+        </h2>
       )}
       <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#141618]" style={{ fontFamily: sysFont }}>
         {/* header + region/program tabs (toggleable) */}
@@ -652,7 +652,7 @@ function ReimbursementDashboardV2({ feature = 'Amazon reimbursements', showHeadi
           <div className="flex items-center gap-1">
             {REIMB2_TABS.map(t => (
               <button key={t} type="button" onClick={() => setTab(t)}
-                className={`text-[10px] font-semibold px-2 py-1 rounded transition-colors ${t === tab ? 'bg-[#2F7D4F] text-white' : 'text-white/40 hover:text-white/70'}`}
+                className={`text-[10px] font-semibold px-2 py-1 rounded transition-colors ${t === tab ? 'bg-[#2F7D4F] text-white' : 'text-white/65 hover:text-white/70'}`}
                 style={{ fontFamily: monoFont }}>{t}</button>
             ))}
           </div>
@@ -748,7 +748,7 @@ function ReimbursementDashboardV2({ feature = 'Amazon reimbursements', showHeadi
             </div>
           </>
         ) : (
-          <div className="px-4 py-16 text-center text-[13px] text-white/40">
+          <div className="px-4 py-16 text-center text-[13px] text-white/65">
             No reimbursement activity synced for <span className="text-white/70 font-semibold">{tab}</span> yet.
           </div>
         )}
@@ -807,7 +807,7 @@ function ReimbursementAuditIntro() {
   return (
     <div className="max-w-4xl mx-auto mb-12">
       <div className="text-center">
-        <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+        <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
           Shipment refunds
         </p>
         <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
@@ -826,7 +826,7 @@ function ReimbursementAuditIntro() {
             <span className="mt-0.5 shrink-0 text-[#98CC65]">{p.icon}</span>
             <span>
               <span className="block text-[13px] font-bold text-white/85">{p.title}</span>
-              <span className="block text-[12px] text-white/50 leading-relaxed mt-0.5">{p.desc}</span>
+              <span className="block text-[12px] text-white/70 leading-relaxed mt-0.5">{p.desc}</span>
             </span>
           </div>
         ))}
@@ -837,7 +837,7 @@ function ReimbursementAuditIntro() {
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#2F7D4F] hover:bg-[#98CC65] hover:text-[#0F0F0F] text-white text-[14px] font-bold transition-colors">
           Get my free audit <ArrowRight className="w-4 h-4" />
         </a>
-        <span className="text-[12px] text-white/40">No card. No call. The audit is yours to keep.</span>
+        <span className="text-[12px] text-white/65">No card. No call. The audit is yours to keep.</span>
       </div>
     </div>
   );
@@ -907,7 +907,7 @@ function PanelHeader({ feature }) {
   return (
     <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-white/10">
       <div className="flex items-center gap-2 min-w-0">
-        <Icon className="w-[15px] h-[15px] text-white/50 shrink-0" />
+        <Icon className="w-[15px] h-[15px] text-white/70 shrink-0" />
         <span className="text-[13px] font-semibold text-white/80 truncate">{feature.source}</span>
       </div>
       <span className={`inline-flex items-center gap-1.5 text-[10px] font-semibold px-2 py-1 rounded-full border shrink-0 ${badge.cls}`}>
@@ -1036,7 +1036,7 @@ function RemovalsPanel({ feature }) {
             className="w-full bg-[#0F0F0F] border border-white/15 rounded-lg px-3 py-2.5 text-[13px] text-white/85 focus:outline-none focus:border-[#2F7D4F]">
             {reasonsFor(row).map(r => <option key={r} value={r}>{r}</option>)}
           </select>
-          <p className="mt-2 text-[11px] text-white/40 leading-relaxed">{REMOVAL_NOTE[row.type]}</p>
+          <p className="mt-2 text-[11px] text-white/65 leading-relaxed">{REMOVAL_NOTE[row.type]}</p>
         </div>
 
         {row.evidence.length > 0 && (
@@ -1049,7 +1049,7 @@ function RemovalsPanel({ feature }) {
                     ? <Check className="w-3.5 h-3.5 text-[#98CC65] mt-0.5 shrink-0" />
                     : <span className="w-3.5 h-3.5 rounded-full border border-[#F5C451]/60 mt-0.5 shrink-0" />}
                   <span className={e.have ? 'text-white/60' : 'text-white/75'}>
-                    {e.t}{e.have ? <span className="text-white/30"> · attached automatically</span> : <span className="text-[#F5C451]"> · from you</span>}
+                    {e.t}{e.have ? <span className="text-white/60"> · attached automatically</span> : <span className="text-[#F5C451]"> · from you</span>}
                   </span>
                 </div>
               ))}
@@ -1109,7 +1109,7 @@ function RemovalsPanel({ feature }) {
                 <td className="px-3 py-2.5"><ProductCell p={r.p} wrap /></td>
                 <td className="px-3 py-2.5 text-white/60">
                   {r.issue}
-                  <div className="text-[10px] text-white/30 mt-0.5">{r.qty}</div>
+                  <div className="text-[10px] text-white/60 mt-0.5">{r.qty}</div>
                 </td>
                 <td className="px-3 py-2.5 text-right font-bold text-white">{r.value}</td>
                 <td className="px-3 py-2.5">
@@ -1131,7 +1131,7 @@ function RemovalsPanel({ feature }) {
         </table>
       </div>
       <div className="px-4 py-3 border-t border-white/10">
-        <p className="text-[11px] text-white/40 leading-relaxed">
+        <p className="text-[11px] text-white/65 leading-relaxed">
           Ranked by what expires first — not by value. The $310 disposal above aged out before anyone looked at it.
         </p>
       </div>
@@ -1159,10 +1159,10 @@ const FEATURE_TABS = [
     columns: [
       { label: 'Order', align: 'left', cell: r => <MonoCell>{r.order}</MonoCell> },
       { label: 'Product', align: 'left', cell: r => <ProductCell p={r.p} /> },
-      { label: 'Refunded', align: 'left', cell: r => <span className="text-white/50 whitespace-nowrap">{r.refunded}</span> },
+      { label: 'Refunded', align: 'left', cell: r => <span className="text-white/70 whitespace-nowrap">{r.refunded}</span> },
       { label: 'Days', align: 'right', cell: r => <span className="text-white/60">{r.days}</span> },
       { label: 'Status', align: 'left', cell: r => <Pill tone={r.tone}>{r.status}</Pill> },
-      { label: 'Action', align: 'right', cell: r => r.action === 'watch' ? <span className="text-[11px] text-white/30">Tracking</span> : <SolidBtn>File claim</SolidBtn> },
+      { label: 'Action', align: 'right', cell: r => r.action === 'watch' ? <span className="text-[11px] text-white/60">Tracking</span> : <SolidBtn>File claim</SolidBtn> },
     ],
   },
   {
@@ -1191,11 +1191,11 @@ const FEATURE_TABS = [
     columns: [
       { label: 'SKU', align: 'left', cell: r => <MonoCell>{r.p.sku}</MonoCell> },
       { label: 'Product', align: 'left', cell: r => <ProductCell p={r.p} /> },
-      { label: 'Amazon’s size', align: 'left', cell: r => <span className="text-white/50 whitespace-nowrap" style={{ fontFamily: monoFont }}>{r.size}</span> },
+      { label: 'Amazon’s size', align: 'left', cell: r => <span className="text-white/70 whitespace-nowrap" style={{ fontFamily: monoFont }}>{r.size}</span> },
       { label: 'Tier now', align: 'left', cell: r => <span className={`whitespace-nowrap ${r.tone === 'red' ? 'text-[#F87171]' : 'text-white/60'}`}>{r.tier}</span> },
       { label: 'Fee / unit', align: 'right', cell: r => <span className="font-bold text-white">{r.fee}</span> },
       { label: 'Should be', align: 'left', cell: r => r.action === 'ok' ? <Pill tone="green"><Check className="w-3.5 h-3.5" />Correct</Pill> : <span className="text-white/80 whitespace-nowrap">{r.should}</span> },
-      { label: 'Action', align: 'right', cell: r => r.action === 'ok' ? <span className="text-[11px] text-white/30">—</span> : <SolidBtn>Request re-measure</SolidBtn> },
+      { label: 'Action', align: 'right', cell: r => r.action === 'ok' ? <span className="text-[11px] text-white/60">—</span> : <SolidBtn>Request re-measure</SolidBtn> },
     ],
   },
   {
@@ -1273,7 +1273,7 @@ function ReimbursementFeatures() {
   return (
     <div className="w-full max-w-5xl mx-auto">
       <div className="text-center mb-8">
-        <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+        <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
           More Refunds
         </p>
         <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
@@ -1366,7 +1366,7 @@ function ReimbursementReportsPanel() {
             <img src="/logos/connections/slack.svg" alt="" className="w-4 h-4" />
             <span className="text-[12px] font-semibold text-white/70">Slack</span>
           </span>
-          <span className="text-[12px] text-white/40">— or both</span>
+          <span className="text-[12px] text-white/65">— or both</span>
         </div>
       </div>
 
@@ -1378,7 +1378,7 @@ function ReimbursementReportsPanel() {
                 <img src={c.logo} alt="" className="w-[15px] h-[15px] shrink-0" />
                 <span className="text-[13px] font-semibold text-white/80 truncate" style={{ fontFamily: monoFont }}>{c.where}</span>
               </div>
-              <span className="text-[10px] font-semibold text-white/40 shrink-0 ml-2" style={{ fontFamily: monoFont }}>{c.cadence}</span>
+              <span className="text-[10px] font-semibold text-white/65 shrink-0 ml-2" style={{ fontFamily: monoFont }}>{c.cadence}</span>
             </div>
             <div className="px-4 py-3.5 border-b border-white/[0.06]">
               <p className="text-[14px] font-bold text-white/90 leading-snug">{c.subject}</p>
@@ -1388,7 +1388,7 @@ function ReimbursementReportsPanel() {
                 <div key={l.k} className="flex items-baseline gap-2 text-[12px]">
                   <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${REIMB2_TONE[l.t].dot}`} />
                   <span className={`font-bold whitespace-nowrap ${REIMB2_TONE[l.t].text}`}>{l.k}</span>
-                  <span className="text-white/50">{l.v}</span>
+                  <span className="text-white/70">{l.v}</span>
                 </div>
               ))}
             </div>
@@ -1446,7 +1446,7 @@ function ReimbursementCasesPanel() {
             <img src="/DragonBot-avatar.png" alt="DragonBot" className="w-[18px] h-[18px] object-contain" />
             <span className="text-[13px] font-semibold text-white/80">Open cases</span>
           </div>
-          <span className="text-[10px] font-semibold text-white/40" style={{ fontFamily: monoFont }}>4 tracked · 2 need you</span>
+          <span className="text-[10px] font-semibold text-white/65" style={{ fontFamily: monoFont }}>4 tracked · 2 need you</span>
         </div>
 
         <div className="divide-y divide-white/[0.06]">
@@ -1461,7 +1461,7 @@ function ReimbursementCasesPanel() {
                   <span className={`text-[12px] font-bold ${REIMB2_TONE[c.tone].text}`}>{c.state}</span>
                   <span className="text-[11px] text-white/35">{c.age}</span>
                 </div>
-                <p className="text-[12px] text-white/50 leading-relaxed mt-1">{c.detail}</p>
+                <p className="text-[12px] text-white/70 leading-relaxed mt-1">{c.detail}</p>
               </div>
               <span className="shrink-0 self-center">
                 {c.state === 'Stalled' && <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#F59E0B]"><Clock className="w-3.5 h-3.5" />Nudged</span>}
@@ -1534,7 +1534,7 @@ function ReimbursementComparePanel() {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <div className="text-center mb-8">
-        <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+        <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
           How we compare
         </p>
         <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
@@ -1613,7 +1613,7 @@ function ReimbursementCalculator() {
   return (
     <div className="w-full max-w-3xl mx-auto">
       <div className="text-center mb-8">
-        <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+        <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
           Reimbursement calculator
         </p>
         <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
@@ -1652,7 +1652,7 @@ function ReimbursementCalculator() {
           {tiers.map(t => (
             <div key={t.label} className={`rounded-xl border px-4 py-4 text-center ${t.highlight ? 'border-[#2F7D4F]/40 bg-[#2F7D4F]/10' : 'border-white/10 bg-white/[0.02]'}`}>
               <div className="text-[12px] font-semibold text-white/70">{t.label}</div>
-              <div className="text-[11px] text-white/40 mb-2">{t.fee}</div>
+              <div className="text-[11px] text-white/65 mb-2">{t.fee}</div>
               <div className={`text-xl font-extrabold tracking-[-0.02em] ${t.highlight ? 'text-[#98CC65]' : 'text-white'}`}>{fmt(t.keep)}</div>
               <div className="text-[10px] text-white/35 mt-0.5">you keep</div>
             </div>
@@ -1832,7 +1832,7 @@ function PermissionsDemo({ light }) {
         {PERMISSION_MODES.map(m => (
           <button key={m.id} onClick={() => { setSelected(m.id); setClicked(true); }}
             className={`flex-1 py-1.5 text-[10px] font-semibold transition-all ${
-              selected === m.id ? 'bg-[#2F7D4F] text-white' : 'bg-white/5 text-white/40 hover:text-white/60'
+              selected === m.id ? 'bg-[#2F7D4F] text-white' : 'bg-white/5 text-white/65 hover:text-white/60'
             }`}>
             {m.label}
           </button>
@@ -1840,7 +1840,7 @@ function PermissionsDemo({ light }) {
       </div>
       <AnimatePresence mode="wait">
         <motion.p key={selected} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.2 }}
-          className="text-[11px] leading-relaxed text-white/50">
+          className="text-[11px] leading-relaxed text-white/70">
           {mode.desc}
         </motion.p>
       </AnimatePresence>
@@ -1891,7 +1891,7 @@ function ApprovalDemo({ light }) {
   const renderAction = (idx, action, decided, isApproved) => (
     <div className="flex gap-2 px-3 py-1.5" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       <div className="shrink-0 w-7 h-7 rounded flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#3A3A3A' }}>
-        <img src="/DragonBot-avatar.png" className="w-5 h-5 object-contain" />
+        <img src="/DragonBot-avatar.png" alt="DragonBot" className="w-5 h-5 object-contain" />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline gap-1.5 mb-0.5">
@@ -1905,11 +1905,11 @@ function ApprovalDemo({ light }) {
             isApproved ? (
               <>
                 <span className="px-3 py-1 rounded text-[10px] font-bold" style={{ backgroundColor: '#2F7D4F', color: '#FFFFFF' }}>✓ Approved</span>
-                <span className="px-3 py-1 rounded text-[10px] font-bold" style={{ backgroundColor: light ? '#E4E4E7' : '#3A3A3A', color: light ? '#9CA3AF' : '#6B6B6B' }}>Reject</span>
+                <span className="px-3 py-1 rounded text-[10px] font-bold" style={{ backgroundColor: light ? '#E4E4E7' : '#3A3A3A', color: light ? '#4B5563' : '#B0B0B0' }}>Reject</span>
               </>
             ) : (
               <>
-                <span className="px-3 py-1 rounded text-[10px] font-bold" style={{ backgroundColor: light ? '#E4E4E7' : '#3A3A3A', color: light ? '#9CA3AF' : '#6B6B6B' }}>Approve</span>
+                <span className="px-3 py-1 rounded text-[10px] font-bold" style={{ backgroundColor: light ? '#E4E4E7' : '#3A3A3A', color: light ? '#4B5563' : '#B0B0B0' }}>Approve</span>
                 <span className="px-3 py-1 rounded text-[10px] font-bold" style={{ backgroundColor: '#DC2626', color: '#FFFFFF' }}>✗ Rejected</span>
               </>
             )
@@ -2150,12 +2150,12 @@ export default function LandingV4({ page = null }) {
                 <span className="underline decoration-[#98CC65]/40 underline-offset-2">Amazon approved</span>
                 <ExternalLink className="w-3 h-3 opacity-60" />
               </a>
-              <span className="flex items-center gap-2 text-white/50">
+              <span className="flex items-center gap-2 text-white/70">
                 <Shield className="w-4 h-4 text-[#2F7D4F]" />
                 Amazon ToS Compliant
               </span>
               {page?.demo?.type !== 'dashboard2' && (
-                <span className="flex items-center gap-2 text-white/50">
+                <span className="flex items-center gap-2 text-white/70">
                   <DollarSign className="w-4 h-4 text-[#2F7D4F]" />
                   Basic plan is <strong className="font-bold text-[#98CC65]" style={{ fontFamily: monoFont }}>FREE FOREVER</strong>
                 </span>
@@ -2168,7 +2168,7 @@ export default function LandingV4({ page = null }) {
             {page?.demo?.type === 'dashboard2' ? <SellerCredBand /> : (
               <>
                 <p className="text-[15px] font-semibold text-white/60 mb-2">We sell on Amazon too</p>
-                <p className="text-[11px] font-medium text-white/50 uppercase tracking-[0.15em]">10 years on Amazon · 8 figures sold · DragonBot is the employee we always wanted</p>
+                <p className="text-[11px] font-medium text-white/70 uppercase tracking-[0.15em]">10 years on Amazon · 8 figures sold · DragonBot is the employee we always wanted</p>
               </>
             )}
           </motion.div>
@@ -2213,7 +2213,7 @@ export default function LandingV4({ page = null }) {
           <Section id="automated-workflow" className="!py-16">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}
               className="text-center max-w-2xl mx-auto mb-14">
-              <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+              <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
                 Automated workflow
               </p>
               <h4 className="font-extrabold text-3xl sm:text-4xl tracking-[-0.03em]">
@@ -2259,7 +2259,7 @@ export default function LandingV4({ page = null }) {
             <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer"
               className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#2F7D4F]/40 transition-all hover:shadow-lg hover:shadow-[#2F7D4F]/10 group">
               <div className="relative aspect-video">
-                <img src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} className="w-full h-full object-cover"
+                <img src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} loading="lazy" decoding="async" width="1280" height="720" className="w-full h-full object-cover"
                   onError={(e) => { e.currentTarget.src = `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`; }} />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
                   <div className="w-14 h-14 rounded-full bg-[#2F7D4F] flex items-center justify-center shadow-lg">
@@ -2283,7 +2283,7 @@ export default function LandingV4({ page = null }) {
       {/* ─── WHAT'S IN THE BOX ─── */}
       <Section id="whats-in-the-box">
         <div className="text-center mb-12">
-          <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+          <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
             What you get
           </p>
           <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
@@ -2310,14 +2310,14 @@ export default function LandingV4({ page = null }) {
       {/* ─── WHY ETL ─── */}
       <Section id="why-etl">
         <div className="text-center mb-10">
-          <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+          <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
             Why ETL?
           </p>
           <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             Other MCP servers wait on SP-API.{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">We don't.</span>
           </h4>
-          <p className="mt-4 text-base text-white/50 max-w-2xl mx-auto">
+          <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto">
             Live SP-API calls are rate-limited, latent, and brittle. We pre-pull everything so your AI gets answers the moment you ask.
           </p>
         </div>
@@ -2353,14 +2353,14 @@ export default function LandingV4({ page = null }) {
       {/* ─── SKILLS ─── */}
       <Section id="skills">
         <div className="text-center mb-12">
-          <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+          <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
             Skills
           </p>
           <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em] mb-4">
             Pre-built workflows your{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">AI runs on command.</span>
           </h4>
-          <p className="text-base text-white/50 max-w-2xl mx-auto">
+          <p className="text-base text-white/70 max-w-2xl mx-auto">
             Skills wrap real Amazon work — audits, analyses, alerts, reports — so your AI delivers finished output, not a prompt-engineering project.
           </p>
         </div>
@@ -2373,7 +2373,7 @@ export default function LandingV4({ page = null }) {
           <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             Let's talk <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">security</span> and <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">accountability</span>
           </h4>
-          <p className="mt-4 text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
             Your Amazon account is your business. We treat it that way.
           </p>
         </div>
@@ -2388,7 +2388,7 @@ export default function LandingV4({ page = null }) {
               <div className="p-6 pb-4">
                 <h3 className="font-bold text-xl mb-1">{f.title}</h3>
                 {f.subtitle && <p className="text-[#98CC65] text-sm font-semibold mb-1">{f.subtitle}</p>}
-                <p className="text-white/50 text-sm leading-relaxed">{f.desc}</p>
+                <p className="text-white/70 text-sm leading-relaxed">{f.desc}</p>
               </div>
               <div className="mt-auto">
                 {f.title === 'Supervised mode' ? (
@@ -2401,7 +2401,7 @@ export default function LandingV4({ page = null }) {
                   <div className="w-full h-36"><SPAPIConnectionDemo light={light} /></div>
                 ) : (
                   <div className="w-full h-36 bg-gradient-to-b from-white/5 to-white/10 flex items-end justify-center">
-                    <span className="text-xs text-white/20 mb-4">Illustration</span>
+                    <span className="text-xs text-white/60 mb-4">Illustration</span>
                   </div>
                 )}
               </div>
@@ -2413,7 +2413,7 @@ export default function LandingV4({ page = null }) {
       {/* ─── PLANS ─── */}
       <Section id="plans">
         <div className="text-center mb-12">
-          <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
+          <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
             Plans
           </p>
           <h4 className="font-extrabold text-3xl sm:text-4xl tracking-[-0.03em] leading-tight">
@@ -2425,11 +2425,11 @@ export default function LandingV4({ page = null }) {
           {/* Free Forever */}
           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
             <div className="mb-6">
-              <p className="text-[11px] font-bold text-white/40 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>Basic</p>
+              <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>Basic</p>
               <h3 className="font-extrabold text-2xl text-white mb-1">Free forever</h3>
               <div className="flex items-baseline gap-2">
                 <span className="text-4xl font-extrabold text-white">$0</span>
-                <span className="text-white/40 text-sm">/ month</span>
+                <span className="text-white/65 text-sm">/ month</span>
               </div>
               <p className="mt-3 text-sm text-white/55 leading-relaxed">
                 Read-only access. Pull data, run analyses, build reports — as much as you want.
@@ -2465,7 +2465,7 @@ export default function LandingV4({ page = null }) {
               <h3 className="font-extrabold text-2xl text-white mb-1">Take actions on Amazon</h3>
               <div className="flex items-baseline gap-2">
                 <span className="text-4xl font-extrabold bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">$50</span>
-                <span className="text-white/40 text-sm">/ month</span>
+                <span className="text-white/65 text-sm">/ month</span>
               </div>
               <p className="mt-3 text-sm text-white/65 leading-relaxed">
                 Everything in Free, plus your AI can take action — pause campaigns, send refunds, edit listings, and more.
@@ -2512,19 +2512,19 @@ export default function LandingV4({ page = null }) {
               <span className="font-bold text-lg text-white">{page?.demo?.type === 'dashboard2' ? 'Dragon Refunds' : 'DragonBot'}</span>
             </div>
             <div className="flex flex-wrap justify-center gap-8">
-              <a href="/" className="text-sm text-white/50 hover:text-white transition-colors">Product</a>
-              <a href="/pricing" className="text-sm text-white/50 hover:text-white transition-colors">Pricing</a>
-              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Privacy</a>
-              <a href="/tos" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Terms</a>
-              <a href="/support" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors">Support</a>
+              <a href="/" className="text-sm text-white/70 hover:text-white transition-colors">Product</a>
+              <a href="/pricing" className="text-sm text-white/70 hover:text-white transition-colors">Pricing</a>
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-sm text-white/70 hover:text-white transition-colors">Privacy</a>
+              <a href="/tos" target="_blank" rel="noopener noreferrer" className="text-sm text-white/70 hover:text-white transition-colors">Terms</a>
+              <a href="/support" target="_blank" rel="noopener noreferrer" className="text-sm text-white/70 hover:text-white transition-colors">Support</a>
               {(() => {
                 const email = page?.demo?.type === 'dashboard2' ? 'info@dragonrefunds.com' : 'info@getdragonbot.com';
-                return <a href={`mailto:${email}`} className="text-sm text-white/50 hover:text-white transition-colors">{email}</a>;
+                return <a href={`mailto:${email}`} className="text-sm text-white/70 hover:text-white transition-colors">{email}</a>;
               })()}
             </div>
             <div className="text-center md:text-right">
-              <p className="text-sm text-white/30">&copy; {new Date().getFullYear()} Chacha Advisory LLC. All rights reserved.</p>
-              <p className="text-xs text-white/20 mt-1">30 N Gould St Ste R, Sheridan, WY 82801, USA</p>
+              <p className="text-sm text-white/60">&copy; {new Date().getFullYear()} Chacha Advisory LLC. All rights reserved.</p>
+              <p className="text-xs text-white/60 mt-1">30 N Gould St Ste R, Sheridan, WY 82801, USA</p>
             </div>
           </div>
         </div>

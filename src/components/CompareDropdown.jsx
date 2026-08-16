@@ -53,7 +53,7 @@ export default function CompareDropdown({ activeSlug }) {
       onMouseLeave={() => setOpen(false)}
     >
       <button
-        className="flex items-center gap-1 text-[13px] font-medium text-white/50 hover:text-[#98CC65] transition-colors"
+        className="flex items-center gap-1 text-[13px] font-medium text-white/70 hover:text-[#98CC65] transition-colors"
         style={{ fontFamily: monoFont }}
         onClick={() => setOpen(o => !o)}
       >

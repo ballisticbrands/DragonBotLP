@@ -1,24 +1,24 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { trackRouteChange } from './lib/track';
-import Home from './pages/Home';
-import Chats from './pages/Chats';
-import Privacy from './pages/Privacy';
-import Terms from './pages/Terms';
-import Support from './pages/Support';
-import Pricing from './pages/Pricing';
-import GettingStarted from './pages/help/GettingStarted';
-import BillingCredits from './pages/help/BillingCredits';
-import AmazonIntegration from './pages/help/AmazonIntegration';
-import SecurityPrivacy from './pages/help/SecurityPrivacy';
-import AccountManagement from './pages/help/AccountManagement';
-import FeatureRequests from './pages/help/FeatureRequests';
-import LandingV2 from './pages/LandingV2';
-import LandingV3 from './pages/LandingV3';
+const Home = lazy(() => import('./pages/Home'));
+const Chats = lazy(() => import('./pages/Chats'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Terms = lazy(() => import('./pages/Terms'));
+const Support = lazy(() => import('./pages/Support'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const GettingStarted = lazy(() => import('./pages/help/GettingStarted'));
+const BillingCredits = lazy(() => import('./pages/help/BillingCredits'));
+const AmazonIntegration = lazy(() => import('./pages/help/AmazonIntegration'));
+const SecurityPrivacy = lazy(() => import('./pages/help/SecurityPrivacy'));
+const AccountManagement = lazy(() => import('./pages/help/AccountManagement'));
+const FeatureRequests = lazy(() => import('./pages/help/FeatureRequests'));
+const LandingV2 = lazy(() => import('./pages/LandingV2'));
+const LandingV3 = lazy(() => import('./pages/LandingV3'));
 import LandingV4 from './pages/LandingV4';
-import VsCompetitor from './pages/VsCompetitor';
-import Beta from './pages/Beta';
-import LpPage from './pages/LpPage';
+const VsCompetitor = lazy(() => import('./pages/VsCompetitor'));
+const Beta = lazy(() => import('./pages/Beta'));
+const LpPage = lazy(() => import('./pages/LpPage'));
 import { lpPages } from './data/lpPages';
 
 // Reports every route to GA4 + the Meta Pixel. Renders nothing; must live
@@ -37,6 +37,7 @@ function App() {
   return (
     <Router>
       <RouteAnalytics />
+      <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<LandingV4 />} />
         <Route path="/v1" element={<Home />} />
@@ -67,6 +68,7 @@ function App() {
         <Route path="/beta" element={<Beta />} />
         <Route path="*" element={<LandingV4 />} />
       </Routes>
+      </Suspense>
     </Router>
   )
 }
