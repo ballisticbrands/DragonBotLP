@@ -199,7 +199,8 @@ function Navbar({ light, onToggle, links = navLinks, showWorksWith = true, ctaLa
             <button type="button" onClick={onToggle} aria-label="Toggle light and dark theme" className="p-2 text-white/60">
               {light ? <Moon size={20} /> : <Sun size={20} />}
             </button>
-            <button className="p-2" onClick={() => setMobileOpen(!mobileOpen)}>
+            <button className="p-2" onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen}>
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
@@ -255,7 +256,7 @@ const CHAT_SCRIPT = [
   { who: 'host', text: <>Done — pulled spend across 47 campaigns. <strong>Top finding:</strong> 23 keywords burning $1,840/mo with 0 conversions (paused, projected ACoS ↓ from 38% → 26%). Full breakdown:<div className="mt-2 grid grid-cols-2 gap-2 text-[12px]"><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">$1,840</div><div className="text-white/70">wasted/mo</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">−12pt</div><div className="text-white/70">projected ACoS</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">23</div><div className="text-white/70">keywords paused</div></div><div className="px-2.5 py-1.5 bg-white/5 rounded border border-white/10"><div className="font-bold text-[#98CC65]">$60/d</div><div className="text-white/70">reallocated</div></div></div></> },
   { who: 'user', text: 'Now check listing health — anything suppressed?' },
   { who: 'tool', text: 'Running the `account health` check' },
-  { who: 'host', text: <>1 listing suppressed: <code className="px-1.5 py-0.5 rounded bg-white/10 text-[#98CC65] text-[11px]">B0CK5LRQX7</code> — backend image URL returned 404. Re-uploaded the image and submitted reinstatement. Should be back within 2 hours. Want me to schedule hourly health checks?</> },
+  { who: 'host', text: <>1 listing suppressed: <code className="px-1.5 py-0.5 rounded bg-[#0A0A0A] text-[#C3E88D] text-[11px]">B0CK5LRQX7</code> — backend image URL returned 404. Re-uploaded the image and submitted reinstatement. Should be back within 2 hours. Want me to schedule hourly health checks?</> },
 ];
 
 function ChatHeader() {
@@ -810,10 +811,10 @@ function ReimbursementAuditIntro() {
         <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
           Shipment refunds
         </p>
-        <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+        <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
           Connect your account.{' '}
           <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">See what Amazon owes you.</span>
-        </h4>
+        </h2>
         <p className="mt-4 text-[15px] text-white/55 max-w-2xl mx-auto leading-relaxed">
           The best way to find out what FBA reimbursements are worth to you is to take a look together.
           Connect in two minutes over Amazon's official API — read-only — and Dragon Refunds audits your entire history.
@@ -1276,10 +1277,10 @@ function ReimbursementFeatures() {
         <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
           More Refunds
         </p>
-        <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+        <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
           Shipments was just the start.{' '}
           <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">4 more ways Amazon keeps your money.</span>
-        </h4>
+        </h2>
         <p className="mt-4 text-[15px] text-white/55 max-w-2xl mx-auto leading-relaxed">
           You saw shipment refunds above. Amazon quietly holds onto money in four other places too —
           here’s each one, and how sure we are we can get it back.
@@ -1537,10 +1538,10 @@ function ReimbursementComparePanel() {
         <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
           How we compare
         </p>
-        <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+        <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
           Everyone claims to recover your money.{' '}
           <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">We show you where it came from.</span>
-        </h4>
+        </h2>
         <p className="mt-4 text-[15px] text-white/55 max-w-2xl mx-auto leading-relaxed">
           Most services hand you a number, take 25%, and ask you to trust it. Dragon Refunds pinpoints the exact
           source of every claim — a lost shipment, damaged inventory, a dimension mismatch, a COGS error — keeps the
@@ -1616,10 +1617,10 @@ function ReimbursementCalculator() {
         <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
           Reimbursement calculator
         </p>
-        <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+        <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
           Calculate your{' '}
           <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">potential reimbursement.</span>
-        </h4>
+        </h2>
         <p className="mt-4 text-[15px] text-white/55 max-w-xl mx-auto leading-relaxed">
           Select your gross annual FBA revenue to see roughly how much Amazon may owe you — and how much of it you keep.
         </p>
@@ -2249,10 +2250,10 @@ export default function LandingV4({ page = null }) {
       {/* ─── SELLER VIDEOS ─── */}
       <Section id="seller-videos">
         <div className="text-center mb-10">
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+          <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             See what <span className="bg-gradient-to-r from-[#FF9900] to-[#FFC266] bg-clip-text text-transparent">Amazon Sellers</span> have been building with{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot</span>
-          </h4>
+          </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
           {sellerVideos.map(v => (
@@ -2286,10 +2287,10 @@ export default function LandingV4({ page = null }) {
           <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
             What you get
           </p>
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+          <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             Here is what{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">DragonBot gives you.</span>
-          </h4>
+          </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {PILLARS.map((p, i) => (
@@ -2313,10 +2314,10 @@ export default function LandingV4({ page = null }) {
           <p className="text-[11px] font-bold text-white/65 uppercase tracking-[0.2em] mb-3" style={{ fontFamily: monoFont }}>
             Why ETL?
           </p>
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+          <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             Other MCP servers wait on SP-API.{' '}
             <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">We don't.</span>
-          </h4>
+          </h2>
           <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto">
             Live SP-API calls are rate-limited, latent, and brittle. We pre-pull everything so your AI gets answers the moment you ask.
           </p>
@@ -2370,9 +2371,9 @@ export default function LandingV4({ page = null }) {
       {/* ─── SECURITY ─── */}
       <Section id="security">
         <div className="text-center mb-14">
-          <h4 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
+          <h2 className="font-extrabold text-2xl sm:text-3xl tracking-[-0.03em]">
             Let's talk <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">security</span> and <span className="bg-gradient-to-r from-[#2F7D4F] to-[#98CC65] bg-clip-text text-transparent">accountability</span>
-          </h4>
+          </h2>
           <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
             Your Amazon account is your business. We treat it that way.
           </p>
